@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.83529411764705885" green="0.62352941176470589" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5n7-yO-Sp9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="V8m-zb-Ch6"/>
                             <constraint firstItem="fhj-az-CyY" firstAttribute="top" secondItem="5n7-yO-Sp9" secondAttribute="bottom" constant="20" id="ZNq-Tr-p9g"/>
@@ -36,6 +36,14 @@
                             <constraint firstItem="fhj-az-CyY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uui-hg-qaB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                <color key="value" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                <color key="value" red="0.5607843137254902" green="0.53725490196078429" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <segue destination="fUF-LV-URb" kind="show" identifier="loginFormSegue" id="iSj-n7-pRA"/>
