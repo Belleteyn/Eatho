@@ -11,7 +11,7 @@ import Foundation
 typealias CompletionHandler = (_ success: Bool) -> ()
 
 //URL
-let URL_BASE = "http://localhost:3001"
+let URL_BASE = "http://127.0.0.1:3001"
 let URL_REGISTER = "\(URL_BASE)/auth/register"
 let URL_LOGIN = "\(URL_BASE)/auth/login"
 
