@@ -78,6 +78,11 @@ class AuthService {
         })
     }
     
+    func logOut() {
+        self.token = ""
+        self.isLoggedIn = false
+    }
+    
     private func handleResponse(result: Result<Any>) {
         if let json = result.value as? Dictionary<String, Any> {
             if let receivedToken = json["token"] as? String {

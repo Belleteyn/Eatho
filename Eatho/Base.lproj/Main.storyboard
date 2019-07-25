@@ -19,10 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5n7-yO-Sp9">
-                                <rect key="frame" x="138.33333333333331" y="380" width="137.33333333333331" height="136"/>
+                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="47k-Zr-5tm"/>
+                                    <constraint firstAttribute="width" constant="100" id="5Ce-jz-gAn"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EATHO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhj-az-CyY">
-                                <rect key="frame" x="156" y="536" width="102" height="37"/>
+                                <rect key="frame" x="156" y="518" width="102" height="37"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="31"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -73,7 +77,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartQuotesType="no" textContentType="email"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAC-ZI-gIf">
                                                 <rect key="frame" x="0.0" y="28" width="294" height="2"/>
@@ -173,9 +177,11 @@
                     <connections>
                         <outlet property="registerEmailTxt" destination="07J-mg-IjT" id="fw2-g2-EyO"/>
                         <outlet property="registerPasswordTxt" destination="sct-tY-Zzb" id="i5z-ZL-pcB"/>
+                        <segue destination="fiR-GA-7M1" kind="unwind" identifier="unwindToWelcome" unwindAction="prepareForUnwindWithSegue:" id="WPm-bl-y9v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Trv-6G-34R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fiR-GA-7M1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1611.5942028985507" y="-688.39285714285711"/>
         </scene>
@@ -491,16 +497,34 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kct-gc-FTf" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
+                                <rect key="frame" x="20" y="728" width="374" height="30"/>
+                                <color key="backgroundColor" red="0.34855399770000001" green="0.39101962559999998" blue="0.82176007139999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="LOG OUT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logOutPressed" destination="FdW-V3-k6v" eventType="touchUpInside" id="VOv-AF-x7x"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="8qm-aT-rld" firstAttribute="top" secondItem="OJo-K7-9ad" secondAttribute="top" id="4f7-0S-juy"/>
                             <constraint firstAttribute="bottom" secondItem="alH-Nh-Mn3" secondAttribute="bottom" id="9wL-QK-889"/>
+                            <constraint firstItem="kct-gc-FTf" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" constant="20" id="9wO-Sz-Cnp"/>
+                            <constraint firstItem="7pw-90-dzu" firstAttribute="bottom" secondItem="kct-gc-FTf" secondAttribute="bottom" constant="16" id="PQL-xS-D89"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="top" secondItem="8qm-aT-rld" secondAttribute="bottom" id="V4v-bY-eit"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="ktb-id-D8g"/>
                             <constraint firstItem="8qm-aT-rld" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="lcr-8A-Bat"/>
                             <constraint firstItem="8qm-aT-rld" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="m7e-x0-R8z"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="oH6-Gt-3rO"/>
+                            <constraint firstItem="7pw-90-dzu" firstAttribute="trailing" secondItem="kct-gc-FTf" secondAttribute="trailing" constant="20" id="uqD-C1-BCJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7pw-90-dzu"/>
                     </view>

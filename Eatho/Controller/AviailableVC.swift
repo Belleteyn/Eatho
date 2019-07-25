@@ -20,7 +20,6 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(DataService.instance.getFoods().count)
         return DataService.instance.getFoods().count
     }
     
@@ -38,14 +37,9 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func logOutPressed() {
+        AuthService.instance.logOut()
+        dismiss(animated: true, completion: nil)
     }
-    */
-
 }
