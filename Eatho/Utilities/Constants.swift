@@ -22,3 +22,8 @@ let USER_LOGIN_EMAIL = "userLoginEmail"
 
 //headers
 let AUTH_HEADER: [String : String] = [:]
+
+//segues
+let TO_LOGIN_SEGUE = "toLoginSegue"
+let TO_REGISTER_SEGUE = "toRegisterSegue"
+let TO_AVAILABLE_SEGUE = "toAvailableSegue"

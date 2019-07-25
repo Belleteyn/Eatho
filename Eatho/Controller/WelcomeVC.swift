@@ -15,16 +15,20 @@ class WelcomeVC: UIViewController {
         // Do any additional setup after loading the view.
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
-            self.goToAvailable()
+            if AuthService.instance.isLoggedIn {
+                self.goToAvailable()
+            } else {
+                self.goToLogin()
+            }
         })
     }
     
     func goToLogin() {
-        performSegue(withIdentifier: "loginFormSegue", sender: self)
+        performSegue(withIdentifier: TO_LOGIN_SEGUE, sender: self)
     }
 
     func goToAvailable() {
-        performSegue(withIdentifier: "availableScreenSegue", sender: self)
+        performSegue(withIdentifier: TO_AVAILABLE_SEGUE, sender: self)
     }
 
 }

@@ -23,6 +23,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func registerPressed(_ sender: Any) {
-        performSegue(withIdentifier: "toRegister", sender: self)
+        performSegue(withIdentifier: TO_REGISTER_SEGUE, sender: nil)
     }
 }

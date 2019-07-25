@@ -20,11 +20,12 @@
 		95324E0922DF614C005905FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95324E0722DF614C005905FF /* LaunchScreen.storyboard */; };
 		95324E1422DF614C005905FF /* EathoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1322DF614C005905FF /* EathoTests.swift */; };
 		95324E1F22DF614C005905FF /* EathoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1E22DF614C005905FF /* EathoUITests.swift */; };
-		95324E3122DFB978005905FF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E3022DFB978005905FF /* LoginVC.swift */; };
+		95324E3122DFB978005905FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E3022DFB978005905FF /* LoginViewController.swift */; };
 		9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9572F90D22E5AD7E009C7B7B /* GradientView.swift */; };
 		958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81222E971E700DC6EB6 /* AuthService.swift */; };
 		958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81522E977BA00DC6EB6 /* Constants.swift */; };
 		958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81722E9CEA600DC6EB6 /* EathoButton.swift */; };
+		958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */; };
 		98770598EA10BDF9C007DAE1 /* Pods_EathoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35640F6AB094A3B244160383 /* Pods_EathoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,11 +72,12 @@
 		95324E1A22DF614C005905FF /* EathoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EathoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95324E1E22DF614C005905FF /* EathoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoUITests.swift; sourceTree = "<group>"; };
 		95324E2022DF614C005905FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95324E3022DFB978005905FF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		95324E3022DFB978005905FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9572F90D22E5AD7E009C7B7B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		958CD81222E971E700DC6EB6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		958CD81522E977BA00DC6EB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		958CD81722E9CEA600DC6EB6 /* EathoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoButton.swift; sourceTree = "<group>"; };
+		958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -219,8 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				95324E0022DF6149005905FF /* WelcomeVC.swift */,
-				95324E3022DFB978005905FF /* LoginVC.swift */,
+				95324E3022DFB978005905FF /* LoginViewController.swift */,
 				952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */,
+				958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -458,7 +461,8 @@
 				952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */,
 				958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */,
 				952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */,
-				95324E3122DFB978005905FF /* LoginVC.swift in Sources */,
+				95324E3122DFB978005905FF /* LoginViewController.swift in Sources */,
+				958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */,
 				9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */,
 				952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */,
 			);
