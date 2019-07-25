@@ -1,14 +1,14 @@
 //
-//  LoginVC.swift
+//  RegisterVC.swift
 //  Eatho
 //
-//  Created by Серафима Зыкова on 17/07/2019.
+//  Created by Серафима Зыкова on 25/07/2019.
 //  Copyright © 2019 Серафима Зыкова. All rights reserved.
 //
 
 import UIKit
 
-class LoginVC: UIViewController {
+class RegisterVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
