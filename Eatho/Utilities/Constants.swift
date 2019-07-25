@@ -11,9 +11,9 @@ import Foundation
 typealias CompletionHandler = (_ success: Bool) -> ()
 
 //URL
-let URL_BASE = "http://localhost:3005"
-let URL_REGISTER = "\(URL_BASE)/register"
-let URL_LOGIN = "\(URL_BASE)/login"
+let URL_BASE = "http://localhost:3001"
+let URL_REGISTER = "\(URL_BASE)/auth/register"
+let URL_LOGIN = "\(URL_BASE)/auth/login"
 
 //user defaults
 let LOGGED_IN_KEY = "loggedIn"
@@ -21,7 +21,7 @@ let TOKEN_KEY = "token"
 let USER_LOGIN_EMAIL = "userLoginEmail"
 
 //headers
-let AUTH_HEADER: [String : String] = [:]
+let AUTH_HEADER: [String : String] = ["Content-Type": "application/json"]
 
 //segues
 let TO_LOGIN_SEGUE = "toLoginSegue"

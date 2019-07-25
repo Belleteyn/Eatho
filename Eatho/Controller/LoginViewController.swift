@@ -20,6 +20,20 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
+        guard let email = emailTxt.text, emailTxt.text != "" else {
+            return
+        }
+        guard let pass = passwordTxt.text, passwordTxt.text != "" else {
+            return
+        }
+        
+        AuthService.instance.login(email: email, password: pass) { (success) in
+            if (success) {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print("login failed")
+            }
+        }
     }
     
     @IBAction func registerPressed(_ sender: Any) {

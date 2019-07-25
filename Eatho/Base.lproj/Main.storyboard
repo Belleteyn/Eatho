@@ -136,7 +136,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="loginPressed:" destination="K2N-5b-QHk" eventType="touchUpInside" id="HQc-ov-PI3"/>
                                             <action selector="registerPressed" destination="yw2-kz-UQR" eventType="touchUpInside" id="DIR-Wb-Mud"/>
                                         </connections>
                                     </button>

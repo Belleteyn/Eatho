@@ -66,7 +66,7 @@ class AuthService {
             "email": email,
             "password": password
         ]
-        Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: URLEncoding.default, headers: AUTH_HEADER).responseJSON(completionHandler: {
+        Alamofire.request(URL_LOGIN, method: .get, parameters: body, encoding: URLEncoding.default, headers: AUTH_HEADER).responseJSON(completionHandler: {
             (response) in
             if (response.error == nil) {
                 self.handleResponse(result: response.result)

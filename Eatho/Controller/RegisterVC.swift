@@ -15,8 +15,6 @@ class RegisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -24,6 +22,19 @@ class RegisterVC: UIViewController {
     }
     
     @IBAction func registerPressed() {
+        guard let email = registerEmailTxt.text , registerEmailTxt.text != "" else {
+            return
+        }
+        guard let pass = registerPasswordTxt.text, registerPasswordTxt.text != "" else {
+            return
+        }
         
+        AuthService.instance.register(email: email, password: pass) { (success) in
+            if (success) {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print("registration failed")
+            }
+        }
     }
 }
