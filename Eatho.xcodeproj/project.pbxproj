@@ -21,6 +21,7 @@
 		95324E1422DF614C005905FF /* EathoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1322DF614C005905FF /* EathoTests.swift */; };
 		95324E1F22DF614C005905FF /* EathoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1E22DF614C005905FF /* EathoUITests.swift */; };
 		95324E3122DFB978005905FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E3022DFB978005905FF /* LoginViewController.swift */; };
+		9532F7AB22EA490A0050F859 /* LoginTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532F7AA22EA490A0050F859 /* LoginTextView.swift */; };
 		9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9572F90D22E5AD7E009C7B7B /* GradientView.swift */; };
 		958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81222E971E700DC6EB6 /* AuthService.swift */; };
 		958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81522E977BA00DC6EB6 /* Constants.swift */; };
@@ -73,6 +74,7 @@
 		95324E1E22DF614C005905FF /* EathoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoUITests.swift; sourceTree = "<group>"; };
 		95324E2022DF614C005905FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95324E3022DFB978005905FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9532F7AA22EA490A0050F859 /* LoginTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextView.swift; sourceTree = "<group>"; };
 		9572F90D22E5AD7E009C7B7B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		958CD81222E971E700DC6EB6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		958CD81522E977BA00DC6EB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				952A6B6E22E246C700FD8D50 /* FoodCell.swift */,
 				9572F90D22E5AD7E009C7B7B /* GradientView.swift */,
 				958CD81722E9CEA600DC6EB6 /* EathoButton.swift */,
+				9532F7AA22EA490A0050F859 /* LoginTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */,
 				952A6B6F22E246C700FD8D50 /* FoodCell.swift in Sources */,
 				958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */,
+				9532F7AB22EA490A0050F859 /* LoginTextView.swift in Sources */,
 				95324DFF22DF6149005905FF /* AppDelegate.swift in Sources */,
 				958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */,
 				952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */,
