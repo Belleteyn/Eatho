@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20EAFAAAEB8C00A73E7F3CA3 /* Pods_EathoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */; };
+		2A1DAB6A1374B9867D349312 /* Pods_Eatho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */; };
 		952A6B6F22E246C700FD8D50 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B6E22E246C700FD8D50 /* FoodCell.swift */; };
 		952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7022E2480200FD8D50 /* FoodItem.swift */; };
 		952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7322E27B2700FD8D50 /* DataService.swift */; };
@@ -20,6 +22,10 @@
 		95324E1F22DF614C005905FF /* EathoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1E22DF614C005905FF /* EathoUITests.swift */; };
 		95324E3122DFB978005905FF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E3022DFB978005905FF /* LoginVC.swift */; };
 		9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9572F90D22E5AD7E009C7B7B /* GradientView.swift */; };
+		958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81222E971E700DC6EB6 /* AuthService.swift */; };
+		958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81522E977BA00DC6EB6 /* Constants.swift */; };
+		958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81722E9CEA600DC6EB6 /* EathoButton.swift */; };
+		98770598EA10BDF9C007DAE1 /* Pods_EathoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35640F6AB094A3B244160383 /* Pods_EathoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04FD72AD352C50EF62329B76 /* Pods-EathoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EathoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EathoTests/Pods-EathoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		142E855D6C0C1D8AA58774A3 /* Pods-EathoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EathoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EathoUITests/Pods-EathoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		197C9F9B51518FA54D5A6493 /* Pods-Eatho.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatho.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eatho/Pods-Eatho.debug.xcconfig"; sourceTree = "<group>"; };
+		35640F6AB094A3B244160383 /* Pods_EathoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EathoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		36AD52F2716503097A998B10 /* Pods-EathoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EathoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EathoUITests/Pods-EathoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3FECFA2A60F5B417A9CB9D8B /* Pods-EathoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EathoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EathoTests/Pods-EathoTests.release.xcconfig"; sourceTree = "<group>"; };
+		41FFFBAE1CF841C989C04427 /* Pods-Eatho.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatho.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatho/Pods-Eatho.release.xcconfig"; sourceTree = "<group>"; };
+		43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EathoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		952A6B6E22E246C700FD8D50 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		952A6B7022E2480200FD8D50 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		952A6B7322E27B2700FD8D50 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -59,6 +73,10 @@
 		95324E2022DF614C005905FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95324E3022DFB978005905FF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		9572F90D22E5AD7E009C7B7B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		958CD81222E971E700DC6EB6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		958CD81522E977BA00DC6EB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		958CD81722E9CEA600DC6EB6 /* EathoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoButton.swift; sourceTree = "<group>"; };
+		C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A1DAB6A1374B9867D349312 /* Pods_Eatho.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98770598EA10BDF9C007DAE1 /* Pods_EathoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,16 +100,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20EAFAAAEB8C00A73E7F3CA3 /* Pods_EathoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F89C8096D5D5D04176276C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */,
+				35640F6AB094A3B244160383 /* Pods_EathoTests.framework */,
+				43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		493D241661436CC6E57462C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				197C9F9B51518FA54D5A6493 /* Pods-Eatho.debug.xcconfig */,
+				41FFFBAE1CF841C989C04427 /* Pods-Eatho.release.xcconfig */,
+				04FD72AD352C50EF62329B76 /* Pods-EathoTests.debug.xcconfig */,
+				3FECFA2A60F5B417A9CB9D8B /* Pods-EathoTests.release.xcconfig */,
+				142E855D6C0C1D8AA58774A3 /* Pods-EathoUITests.debug.xcconfig */,
+				36AD52F2716503097A998B10 /* Pods-EathoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		952A6B7222E27B1300FD8D50 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				952A6B7322E27B2700FD8D50 /* DataService.swift */,
+				958CD81222E971E700DC6EB6 /* AuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -101,6 +146,8 @@
 				95324E1222DF614C005905FF /* EathoTests */,
 				95324E1D22DF614C005905FF /* EathoUITests */,
 				95324DFC22DF6149005905FF /* Products */,
+				493D241661436CC6E57462C7 /* Pods */,
+				0F89C8096D5D5D04176276C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +164,7 @@
 		95324DFD22DF6149005905FF /* Eatho */ = {
 			isa = PBXGroup;
 			children = (
+				958CD81422E977A500DC6EB6 /* Utilities */,
 				952A6B7222E27B1300FD8D50 /* Services */,
 				95324E2F22DF72F2005905FF /* fonts */,
 				95324E2E22DF616F005905FF /* Controller */,
@@ -162,6 +210,7 @@
 			children = (
 				952A6B6E22E246C700FD8D50 /* FoodCell.swift */,
 				9572F90D22E5AD7E009C7B7B /* GradientView.swift */,
+				958CD81722E9CEA600DC6EB6 /* EathoButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,6 +232,14 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		958CD81422E977A500DC6EB6 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				958CD81522E977BA00DC6EB6 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,9 +247,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95324E2322DF614C005905FF /* Build configuration list for PBXNativeTarget "Eatho" */;
 			buildPhases = (
+				2BA656AB92E2CD93491FF2D3 /* [CP] Check Pods Manifest.lock */,
 				95324DF722DF6149005905FF /* Sources */,
 				95324DF822DF6149005905FF /* Frameworks */,
 				95324DF922DF6149005905FF /* Resources */,
+				499D3E9E837A5B6F4258414E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -207,6 +266,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95324E2622DF614C005905FF /* Build configuration list for PBXNativeTarget "EathoTests" */;
 			buildPhases = (
+				EF5CFA4B10FD17F85859C850 /* [CP] Check Pods Manifest.lock */,
 				95324E0B22DF614C005905FF /* Sources */,
 				95324E0C22DF614C005905FF /* Frameworks */,
 				95324E0D22DF614C005905FF /* Resources */,
@@ -225,6 +285,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95324E2922DF614C005905FF /* Build configuration list for PBXNativeTarget "EathoUITests" */;
 			buildPhases = (
+				294E0AD7A9368B07A628DA95 /* [CP] Check Pods Manifest.lock */,
 				95324E1622DF614C005905FF /* Sources */,
 				95324E1722DF614C005905FF /* Frameworks */,
 				95324E1822DF614C005905FF /* Resources */,
@@ -309,6 +370,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		294E0AD7A9368B07A628DA95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EathoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2BA656AB92E2CD93491FF2D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eatho-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		499D3E9E837A5B6F4258414E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Eatho/Pods-Eatho-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eatho/Pods-Eatho-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF5CFA4B10FD17F85859C850 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EathoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		95324DF722DF6149005905FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -316,8 +452,11 @@
 			files = (
 				95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */,
 				952A6B6F22E246C700FD8D50 /* FoodCell.swift in Sources */,
+				958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */,
 				95324DFF22DF6149005905FF /* AppDelegate.swift in Sources */,
+				958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */,
 				952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */,
+				958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */,
 				952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */,
 				95324E3122DFB978005905FF /* LoginVC.swift in Sources */,
 				9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */,
@@ -494,6 +633,7 @@
 		};
 		95324E2422DF614C005905FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 197C9F9B51518FA54D5A6493 /* Pods-Eatho.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -512,6 +652,7 @@
 		};
 		95324E2522DF614C005905FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41FFFBAE1CF841C989C04427 /* Pods-Eatho.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,6 +671,7 @@
 		};
 		95324E2722DF614C005905FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04FD72AD352C50EF62329B76 /* Pods-EathoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -551,6 +693,7 @@
 		};
 		95324E2822DF614C005905FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FECFA2A60F5B417A9CB9D8B /* Pods-EathoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -572,6 +715,7 @@
 		};
 		95324E2A22DF614C005905FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 142E855D6C0C1D8AA58774A3 /* Pods-EathoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -592,6 +736,7 @@
 		};
 		95324E2B22DF614C005905FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36AD52F2716503097A998B10 /* Pods-EathoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
