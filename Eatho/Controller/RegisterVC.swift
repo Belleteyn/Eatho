@@ -31,7 +31,7 @@ class RegisterVC: UIViewController {
         
         AuthService.instance.register(email: email, password: pass) { (success) in
             if (success) {
-                self.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: UNWIND_TO_WELCOME, sender: nil)
             } else {
                 print("registration failed")
             }

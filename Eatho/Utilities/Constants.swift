@@ -27,3 +27,4 @@ let AUTH_HEADER: [String : String] = ["Content-Type": "application/json"]
 let TO_LOGIN_SEGUE = "toLoginSegue"
 let TO_REGISTER_SEGUE = "toRegisterSegue"
 let TO_AVAILABLE_SEGUE = "toAvailableSegue"
+let UNWIND_TO_WELCOME = "unwindToWelcome"
