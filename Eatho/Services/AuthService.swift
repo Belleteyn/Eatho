@@ -50,32 +50,35 @@ class AuthService {
             "password": password
         ]
         
-        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER).responseJSON(completionHandler: {
+        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER)
+            .responseJSON(completionHandler: {
             (response) in
-            if (response.error == nil) {
+            switch response.result {
+            case .success:
                 self.handleResponse(result: response.result)
                 handler(true)
-            } else {
+            case .failure(let error):
+                debugPrint(error)
                 handler(false)
-                debugPrint(response.error as Any)
             }
         })
     }
     
     func login(email: String, password: String, handler: @escaping CompletionHandler) {
-        let body: [String : Any] = [
+        let params: [String : Any] = [
             "email": email,
             "password": password
         ]
-        
-        Alamofire.request(URL_LOGIN, method: .get, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER).responseJSON(completionHandler: {
+        Alamofire.request(URL_LOGIN, method: .get, parameters: params, encoding: URLEncoding.default, headers: AUTH_HEADER)
+            .responseJSON(completionHandler: {
             (response) in
-            if (response.error == nil) {
+            switch response.result {
+            case .success:
                 self.handleResponse(result: response.result)
                 handler(true)
-            } else {
+            case .failure(let error):
+                debugPrint(error)
                 handler(false)
-                debugPrint(response.error as Any)
             }
         })
     }

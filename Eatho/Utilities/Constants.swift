@@ -21,7 +21,7 @@ let TOKEN_KEY = "token"
 let USER_LOGIN_EMAIL = "userLoginEmail"
 
 //headers
-let AUTH_HEADER: [String : String] = ["Content-Type": "application/json"]
+let AUTH_HEADER: [String : String] = ["Content-Type": "application/json; charset=utf-8"]
 
 //segues
 let TO_LOGIN_SEGUE = "toLoginSegue"
