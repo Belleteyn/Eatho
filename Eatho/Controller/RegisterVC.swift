@@ -12,6 +12,7 @@ class RegisterVC: UIViewController {
 
     @IBOutlet weak var registerEmailTxt: UITextField!
     @IBOutlet weak var registerPasswordTxt: UITextField!
+    @IBOutlet weak var confirmationPasswordTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +23,8 @@ class RegisterVC: UIViewController {
     }
     
     @IBAction func registerPressed() {
-        guard let email = registerEmailTxt.text , registerEmailTxt.text != "" else {
-            return
-        }
-        guard let pass = registerPasswordTxt.text, registerPasswordTxt.text != "" else {
-            return
-        }
+        guard let email = registerEmailTxt.text , registerEmailTxt.text != "" else { return }
+        guard let pass = registerPasswordTxt.text, registerPasswordTxt.text != "" && confirmationPasswordTxt.text == registerPasswordTxt.text else { return }
         
         AuthService.instance.register(email: email, password: pass) { (success) in
             if (success) {
