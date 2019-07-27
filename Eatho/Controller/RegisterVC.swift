@@ -20,6 +20,9 @@ class RegisterVC: UIViewController {
         registerEmailTxt.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         registerPasswordTxt.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         confirmationPasswordTxt.attributedPlaceholder = NSAttributedString(string: "Confirm password", attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tap)
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -37,5 +40,9 @@ class RegisterVC: UIViewController {
                 print("registration failed")
             }
         }
+    }
+    
+    @objc func handleTap() {
+        view.endEditing(true)
     }
 }

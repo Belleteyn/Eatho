@@ -18,6 +18,9 @@ class LoginViewController: UIViewController {
 
         emailTxt.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         passwordTxt.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+        view.addGestureRecognizer(tap)
     }
     
     @IBAction func loginPressed(_ sender: Any) {
@@ -40,4 +43,8 @@ class LoginViewController: UIViewController {
     @IBAction func registerPressed(_ sender: Any) {
         performSegue(withIdentifier: TO_REGISTER_SEGUE, sender: nil)
     }
+    
+    @objc func handleTap() {
+        view.endEditing(false)
+}
 }
