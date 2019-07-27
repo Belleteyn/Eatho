@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +25,17 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        guard let email = emailTxt.text, emailTxt.text != "" else {
-            return
-        }
-        guard let pass = passwordTxt.text, passwordTxt.text != "" else {
-            return
-        }
+        guard let email = emailTxt.text, emailTxt.text != "" else { return }
+        guard let pass = passwordTxt.text, passwordTxt.text != "" else { return }
         
+        spinner.startAnimating()
         AuthService.instance.login(email: email, password: pass) { (success) in
             if (success) {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 print("login failed")
             }
+            self.spinner.stopAnimating()
         }
     }
     
