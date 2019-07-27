@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias CompletionHandler = (_ success: Bool) -> ()
 
@@ -28,3 +29,6 @@ let TO_LOGIN_SEGUE = "toLoginSegue"
 let TO_REGISTER_SEGUE = "toRegisterSegue"
 let TO_AVAILABLE_SEGUE = "toAvailableSegue"
 let UNWIND_TO_WELCOME = "unwindToWelcome"
+
+//colors
+let LOGIN_PLACEHOLDER_COLOR = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.604291524)
