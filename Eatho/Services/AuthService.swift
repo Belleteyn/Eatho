@@ -96,11 +96,11 @@ class AuthService {
                 return
             }
             
-//            if let receivedEmail = json["email"] as? String {
-//                self.userEmail = receivedEmail
-//            } else {
-//                return
-//            }
+            if let receivedEmail = json["email"] as? String {
+                self.userEmail = receivedEmail
+            } else {
+                return
+            }
             
             self.isLoggedIn = true
         }
