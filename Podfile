@@ -9,6 +9,7 @@ target 'Eatho' do
 
   # Pods for Eatho
   pod 'Alamofire'
+  pod 'SwiftyJSON'
 
   target 'EathoTests' do
     inherit! :search_paths
