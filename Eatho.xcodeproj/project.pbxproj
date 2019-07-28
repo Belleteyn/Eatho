@@ -26,6 +26,8 @@
 		958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81522E977BA00DC6EB6 /* Constants.swift */; };
 		958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81722E9CEA600DC6EB6 /* EathoButton.swift */; };
 		958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */; };
+		95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711C22EE438600BD6B87 /* CreationVC.swift */; };
+		95F9711F22EE45AE00BD6B87 /* BarcodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */; };
 		98770598EA10BDF9C007DAE1 /* Pods_EathoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35640F6AB094A3B244160383 /* Pods_EathoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		958CD81522E977BA00DC6EB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		958CD81722E9CEA600DC6EB6 /* EathoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoButton.swift; sourceTree = "<group>"; };
 		958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		95F9711C22EE438600BD6B87 /* CreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationVC.swift; sourceTree = "<group>"; };
+		95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeButton.swift; sourceTree = "<group>"; };
 		C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -213,6 +217,7 @@
 				952A6B6E22E246C700FD8D50 /* FoodCell.swift */,
 				9572F90D22E5AD7E009C7B7B /* GradientView.swift */,
 				958CD81722E9CEA600DC6EB6 /* EathoButton.swift */,
+				95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				95324E3022DFB978005905FF /* LoginViewController.swift */,
 				952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */,
 				958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */,
+				95F9711C22EE438600BD6B87 /* CreationVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -465,8 +471,10 @@
 				952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */,
 				95324E3122DFB978005905FF /* LoginViewController.swift in Sources */,
 				958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */,
+				95F9711F22EE45AE00BD6B87 /* BarcodeButton.swift in Sources */,
 				9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */,
 				952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */,
+				95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
