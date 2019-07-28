@@ -13,8 +13,10 @@ typealias CompletionHandler = (_ success: Bool) -> ()
 
 //URL
 let URL_BASE = "http://127.0.0.1:3001"
+let URL_API = "http://127.0.0.1:3001/api"
 let URL_REGISTER = "\(URL_BASE)/auth/register"
 let URL_LOGIN = "\(URL_BASE)/auth/login"
+let URL_AVAILABLE = "\(URL_API)/available"
 
 //user defaults
 let LOGGED_IN_KEY = "loggedIn"

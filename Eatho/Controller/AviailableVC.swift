@@ -19,13 +19,23 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         foodTable.dataSource = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DataService.instance.requestAvailableFoodItems(handler: { (success) in
+            if success {
+                self.foodTable.reloadData()
+            }
+        })
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataService.instance.getFoods().count
+        return DataService.instance.foods.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell") as? FoodCell {
-            let food = DataService.instance.getFoods()[indexPath.row]
+            let food = DataService.instance.foods[indexPath.row]
             cell.updateViews(foodItem: food)
             return cell
         } else {
