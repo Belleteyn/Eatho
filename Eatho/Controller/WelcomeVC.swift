@@ -10,16 +10,13 @@ import UIKit
 
 class WelcomeVC: UIViewController {
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
-            self.showNextScreen()
-        })
-    }
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
             self.showNextScreen()
         })
