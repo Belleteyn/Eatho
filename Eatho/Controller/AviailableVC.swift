@@ -17,16 +17,24 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
         foodTable.delegate = self
         foodTable.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NOTIF_USER_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NOTIF_FOOD_DATA_CHANGED, object: nil)
+        
+        loadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        DataService.instance.requestAvailableFoodItems(handler: { (success) in
-            if success {
-                self.foodTable.reloadData()
-            }
-        })
+    @objc private func loadData() {
+        if AuthService.instance.isLoggedIn {
+            DataService.instance.requestAvailableFoodItems(handler: { (success) in })
+        } else {
+            DataService.instance.clearData()
+            self.foodTable.reloadData()
+        }
+    }
+    
+    @objc private func updateData() {
+        self.foodTable.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

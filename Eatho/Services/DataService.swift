@@ -15,6 +15,10 @@ class DataService {
     
     private(set) public var foods: [FoodItem] = []
     
+    func clearData() {
+        foods = []
+    }
+    
     func requestAvailableFoodItems(handler: @escaping CompletionHandler) {
         let params = [
             "email": AuthService.instance.userEmail,
@@ -25,28 +29,18 @@ class DataService {
             switch response.result {
             case .success:
                 do {
-                    guard let data = response.data else {
-                        handler(false)
-                        return
-                    }
+                    guard let data = response.data else { return }
                     
                     if let jsonArr = try JSON(data: data).array {
                         self.foods = [] //clear before append
                         
                         for item in jsonArr {
-                            let name = item["food"]["name"]["en"].string ?? ""
-                            let type = item["food"]["type"].string ?? ""
-                            let weight = item["available"].int ?? 0
-                            let calories = item["food"]["nutrition"]["calories"]["total"].double ?? 0
-                            let carbs = item["food"]["nutrition"]["carbs"]["total"].double ?? 0
-                            let fats = item["food"]["nutrition"]["fats"]["total"].double ?? 0
-                            let proteins = item["food"]["nutrition"]["proteins"].double ?? 0
-                            
-                            let food = FoodItem(name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats)
+                            let food = self.parseFoodItem(item: item)
                             self.foods.append(food)
-                            
-                            handler(true)
                         }
+                        
+                        handler(true)
+                        NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
                     }
                 } catch let error {
                     debugPrint("available foods json parsing error:", error)
@@ -95,7 +89,13 @@ class DataService {
                 Alamofire.request(URL_ADD_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER).responseJSON { (response) in
                     switch response.result {
                     case .success:
+                        guard let data = response.data else { return }
+                        let json = JSON(data)
+                        let food = self.parseFoodItem(item: json)
+                        self.foods.append(food)
+                        
                         handler(true)
+                        NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
                     case.failure(let error):
                         debugPrint(error)
                         handler(false)
@@ -106,5 +106,17 @@ class DataService {
                 handler(false)
             }
         }
+    }
+    
+    private func parseFoodItem(item: JSON) -> FoodItem {
+        let name = item["food"]["name"]["en"].string ?? ""
+        let type = item["food"]["type"].string ?? ""
+        let weight = item["available"].int ?? 0
+        let calories = item["food"]["nutrition"]["calories"]["total"].double ?? 0
+        let carbs = item["food"]["nutrition"]["carbs"]["total"].double ?? 0
+        let fats = item["food"]["nutrition"]["fats"]["total"].double ?? 0
+        let proteins = item["food"]["nutrition"]["proteins"].double ?? 0
+        
+        return FoodItem(name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats)
     }
 }

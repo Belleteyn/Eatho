@@ -14,29 +14,24 @@ class WelcomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showNextScreen), name: NOTIF_USER_DATA_CHANGED, object: nil)
+        
+        showNextScreen()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+    }
+    
+    @objc private func showNextScreen() {
+        //NOTE: not working without timer
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
-            self.showNextScreen()
+            if AuthService.instance.isLoggedIn {
+                self.performSegue(withIdentifier: TO_AVAILABLE_SEGUE, sender: self)
+            } else {
+                self.performSegue(withIdentifier: TO_LOGIN_SEGUE, sender: self)
+            }
         })
     }
-    
-    private func showNextScreen() {
-        if AuthService.instance.isLoggedIn {
-            self.goToAvailable()
-        } else {
-            self.goToLogin()
-        }
-    }
-    
-    private func goToLogin() {
-        performSegue(withIdentifier: TO_LOGIN_SEGUE, sender: self)
-    }
-
-    private func goToAvailable() {
-        performSegue(withIdentifier: TO_AVAILABLE_SEGUE, sender: self)
-    }
-
 }
 
