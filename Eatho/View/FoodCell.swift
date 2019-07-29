@@ -30,7 +30,7 @@ class FoodCell: UITableViewCell {
         name.text = foodItem.name
         addButtonState = foodItem.selectionState
         
-        weightLbl.text = "\(Int(foodItem.weight)) \(foodItem.weightMeasure)"
+        weightLbl.text = "\(Int(foodItem.availableWeight)) \(foodItem.weightMeasure)"
         caloriesLbl.text = "\(foodItem.calories) kkal (100 g)"
         
         proteins.text = "\(foodItem.proteins) \(foodItem.pcfMeasure)"

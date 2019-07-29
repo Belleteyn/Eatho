@@ -13,12 +13,7 @@ import SwiftyJSON
 class DataService {
     static let instance = DataService()
     
-    private(set) public var foods: [FoodItem] = [
-//        FoodItem(name: "Parmesan cheese", icon: "content_item_cheese.png", weight: 60, calories: 431, proteins: 38, carbs: 4.1, fats: 29),
-//        FoodItem(name: "Grape", icon: "content_item_grape.png", weight: 70, calories: 65, proteins: 0.6, carbs: 16.8, fats: 0.2),
-//        FoodItem(name: "Avocado", icon: "content_item_avocado.png", weight: 120, calories: 160, proteins: 2, carbs: 22, fats: 76),
-//        FoodItem(name: "Chicken", icon: "content_item_chiken.png", weight: 100, calories: 170, proteins: 16, carbs: 0, fats: 14)
-    ]
+    private(set) public var foods: [FoodItem] = []
     
     func requestAvailableFoodItems(handler: @escaping CompletionHandler) {
         let params = [
@@ -36,16 +31,18 @@ class DataService {
                     }
                     
                     if let jsonArr = try JSON(data: data).array {
+                        self.foods = [] //clear before append
+                        
                         for item in jsonArr {
                             let name = item["food"]["name"]["en"].string ?? ""
-                            let icon = "content_item_\(item["food"]["type"]).png"
+                            let type = item["food"]["type"].string ?? ""
                             let weight = item["available"].int ?? 0
                             let calories = item["food"]["nutrition"]["calories"]["total"].double ?? 0
                             let carbs = item["food"]["nutrition"]["carbs"]["total"].double ?? 0
                             let fats = item["food"]["nutrition"]["fats"]["total"].double ?? 0
                             let proteins = item["food"]["nutrition"]["proteins"].double ?? 0
                             
-                            let food = FoodItem(name: name, icon: icon, weight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats)
+                            let food = FoodItem(name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats)
                             self.foods.append(food)
                             
                             handler(true)
@@ -58,6 +55,54 @@ class DataService {
                 
             case .failure(let error):
                 debugPrint(error as Any)
+                handler(false)
+            }
+        }
+    }
+    
+    func addNewFood(food: FoodItem, handler: @escaping CompletionHandler) {
+        let body: [String: Any] = [
+            "email": AuthService.instance.userEmail,
+            "token": AuthService.instance.token,
+            "food": [
+                "name": food.name,
+                "type": food.type,
+                "calories": food.calories,
+                "carbs": food.carbs,
+                "fats": food.fats,
+                "proteins": food.proteins,
+                "gi": food.gi
+            ]
+        ]
+        
+        Alamofire.request(URL_ADD_FOOD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                guard let data = response.data else { return }
+                let json = JSON(data)
+                let body: [String: Any] = [
+                    "email": AuthService.instance.userEmail,
+                    "token": AuthService.instance.token,
+                    "info": [
+                        "id": json["id"].stringValue,
+                        "available": food.availableWeight,
+                        "min": food.min,
+                        "max": food.max,
+                        "preferred": food.preferred
+                    ]
+                ]
+                
+                Alamofire.request(URL_ADD_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER).responseJSON { (response) in
+                    switch response.result {
+                    case .success:
+                        handler(true)
+                    case.failure(let error):
+                        debugPrint(error)
+                        handler(false)
+                    }
+                }
+            case .failure(let error):
+                debugPrint(error)
                 handler(false)
             }
         }

@@ -23,6 +23,8 @@ class CreationVC: UIViewController {
     @IBOutlet weak var maxTxt: UITextField!
     @IBOutlet weak var preferredTxt: UITextField!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -35,14 +37,24 @@ class CreationVC: UIViewController {
         guard let proteins = proteinsTxt.text, proteinsTxt.text != "" else { return }
         guard let fats = fatsTxt.text, fatsTxt.text != "" else { return }
         
-        let type = typeTxt.text ?? ""
-        let gi = giTxt.text ?? "0"
-        let available = availableTxt.text ?? "0"
-        let min = minTxt.text ?? "0"
-        let max = maxTxt.text ?? "0"
-        let preferred = preferredTxt.text ?? "0"
+        let caloriesVal = Double(calories) ?? 0
+        let carbsVal = Double(carbs) ?? 0
+        let proteinsVal = Double(proteins) ?? 0
+        let fatsVal = Double(fats) ?? 0
         
-        //todo check validness
-        //todo send info, close view
+        let type = typeTxt.text ?? ""
+        let gi = Int(giTxt.text!) ?? 0
+        let available = Double(availableTxt.text!) ?? 0
+        let min = Int(minTxt.text!) ?? 0
+        let max = Int(maxTxt.text!) ?? 0
+        let preferred = Int(preferredTxt.text!) ?? 0
+        
+        activityIndicator.startAnimating()
+        DataService.instance.addNewFood(food: FoodItem(name: name, type: type, availableWeight: available, calories: caloriesVal, proteins: proteinsVal, carbs: carbsVal, fats: fatsVal, gi: gi, min: min, max: max, preferred: preferred)) { (success) in
+            if success {
+                self.activityIndicator.stopAnimating()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 }

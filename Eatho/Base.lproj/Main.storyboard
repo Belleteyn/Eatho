@@ -363,10 +363,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tt8-Zu-IKk">
-                                                    <rect key="frame" x="8" y="4" width="304" height="92"/>
+                                                    <rect key="frame" x="8" y="4" width="398" height="92"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK7-ek-lON">
-                                                            <rect key="frame" x="238" y="21" width="26" height="14.333333333333336"/>
+                                                            <rect key="frame" x="332" y="21" width="26" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.6470588235294118" green="0.6470588235294118" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -385,10 +385,10 @@
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsf-er-b2f">
-                                                            <rect key="frame" x="0.0" y="55" width="304" height="37"/>
+                                                            <rect key="frame" x="0.0" y="55" width="398" height="37"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZB2-v5-Q9l">
-                                                                    <rect key="frame" x="52" y="6" width="240" height="26.333333333333332"/>
+                                                                    <rect key="frame" x="52" y="5.9999999999999982" width="240" height="26.333333333333332"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ypr-Sa-OZK">
@@ -475,7 +475,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xT2-hV-kJV">
-                                                            <rect key="frame" x="276" y="18" width="20" height="20"/>
+                                                            <rect key="frame" x="370" y="18" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="WQN-Kv-jbc"/>
                                                                 <constraint firstAttribute="width" constant="20" id="dxg-qX-Wc0"/>
@@ -590,11 +590,11 @@
             <objects>
                 <viewController id="XdL-88-SZS" customClass="CreationVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TDg-QD-bfM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csk-fQ-U2M" customClass="BarcodeButton" customModule="Eatho" customModuleProvider="target">
-                                <rect key="frame" x="136.66666666666666" y="68" width="140.99999999999997" height="32"/>
+                                <rect key="frame" x="136.66666666666666" y="24" width="140.99999999999997" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="U0X-Hk-qnZ"/>
                                 </constraints>
@@ -603,7 +603,7 @@
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kMj-TI-0ZA">
-                                <rect key="frame" x="0.0" y="116" width="414" height="554"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="554"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="22x-YL-DGh">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -740,6 +740,10 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AgU-jk-gbl">
+                                <rect key="frame" x="0.0" y="394" width="414" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -760,6 +764,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="AgU-jk-gbl" id="bku-Ks-98j"/>
                         <outlet property="availableTxt" destination="0T1-5Y-69K" id="KAw-s1-LGr"/>
                         <outlet property="caloriesTxt" destination="ihE-qA-vGU" id="Ikt-Nt-EXE"/>
                         <outlet property="carbsTxt" destination="Mh3-Do-Xu7" id="C6x-JF-cAc"/>
@@ -812,6 +817,6 @@
         <image name="logo" width="137.33332824707031" height="136"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4EI-Up-pt9"/>
+        <segue reference="8Tk-bc-bez"/>
     </inferredMetricsTieBreakers>
 </document>
