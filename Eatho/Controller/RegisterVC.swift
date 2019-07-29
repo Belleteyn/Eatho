@@ -32,6 +32,7 @@ class RegisterVC: UIViewController {
     @IBAction func registerPressed() {
         guard let email = registerEmailTxt.text , registerEmailTxt.text != "" else { return }
         guard let pass = registerPasswordTxt.text, registerPasswordTxt.text != "" && confirmationPasswordTxt.text == registerPasswordTxt.text else { return }
+        self.view.endEditing(false)
         
         AuthService.instance.register(email: email, password: pass) { (success) in
             if (success) {

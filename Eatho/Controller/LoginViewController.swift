@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginPressed(_ sender: Any) {
         guard let email = emailTxt.text, emailTxt.text != "" else { return }
         guard let pass = passwordTxt.text, passwordTxt.text != "" else { return }
+        self.view.endEditing(false)
         
         spinner.startAnimating()
         AuthService.instance.login(email: email, password: pass) { (success) in
