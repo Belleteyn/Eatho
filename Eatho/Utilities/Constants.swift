@@ -27,6 +27,7 @@ let URL_ADD_FOOD = "\(URL_API)/food/add"
 let LOGGED_IN_KEY = "loggedIn"
 let TOKEN_KEY = "token"
 let USER_LOGIN_EMAIL = "userLoginEmail"
+let IS_CONFIGURED = "settingsConfigured"
 
 // notifications
 let NOTIF_USER_DATA_CHANGED = Notification.Name(rawValue: "userDataChanged")
