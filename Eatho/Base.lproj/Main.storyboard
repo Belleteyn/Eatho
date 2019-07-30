@@ -709,6 +709,9 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J56-CT-VQZ">
                                 <rect key="frame" x="349" y="234" width="51" height="31"/>
+                                <connections>
+                                    <action selector="autoKcalSettingChanged:" destination="knJ-Pu-dvo" eventType="valueChanged" id="aYp-IU-L33"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assume calories automatically" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHQ-Kd-gfW">
                                 <rect key="frame" x="146" y="241" width="195" height="17"/>
@@ -808,6 +811,7 @@
                     <connections>
                         <outlet property="activitySelection" destination="Vze-jQ-6WX" id="VtB-7a-Ycc"/>
                         <outlet property="ageTxt" destination="8ey-mk-vVN" id="dSi-wp-4AB"/>
+                        <outlet property="autoParamsView" destination="2Ov-Bg-KKC" id="har-xF-EOz"/>
                         <outlet property="autoSwitch" destination="J56-CT-VQZ" id="7A0-JL-YcL"/>
                         <outlet property="carbsTxt" destination="2Cc-HK-pUa" id="dEm-DM-UtV"/>
                         <outlet property="fatsTxt" destination="bR5-gd-oCc" id="6SY-js-xHT"/>

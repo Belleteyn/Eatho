@@ -61,4 +61,25 @@ class SettingsVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func autoKcalSettingChanged(_ sender: Any) {
+        if autoSwitch.isOn {
+            genderSwitch.isHidden = false
+            weightTxt.isHidden = false
+            heightTxt.isHidden = false
+            ageTxt.isHidden = false
+            activitySelection.isHidden = false
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.genderSwitch.isHidden = true
+                self.weightTxt.isHidden = true
+                self.heightTxt.isHidden = true
+                self.ageTxt.isHidden = true
+                self.activitySelection.isHidden = true
+            })
+        }
+    }
 }
