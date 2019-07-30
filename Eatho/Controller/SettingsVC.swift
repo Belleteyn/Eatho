@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsVC: UIViewController {
+class SettingsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     //Outlets
     @IBOutlet weak var kcalTxt: UITextField!
@@ -16,6 +16,7 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var proteinsTxt: UITextField!
     @IBOutlet weak var fatsTxt: UITextField!
     
+    @IBOutlet weak var autoParamsView: UIStackView!
     @IBOutlet weak var autoSwitch: UISwitch!
     @IBOutlet weak var genderSwitch: UISegmentedControl!
     @IBOutlet weak var weightTxt: UITextField!
@@ -23,8 +24,21 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var ageTxt: UITextField!
     @IBOutlet weak var activitySelection: UIPickerView!
     
+    // picker data
+    let activityPickerData = [
+        "Minimal",
+        "Light (training 3 times a week)",
+        "Medium (intensive training 3 or more times a week)",
+        "High (intensive training everyday)",
+        "Extra (athletes)"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // picker
+        activitySelection.dataSource = self
+        activitySelection.delegate = self
 
         //hide keyboard 
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
@@ -52,6 +66,19 @@ class SettingsVC: UIViewController {
         if !AuthService.instance.isLoggedIn {
             SettingsService.instance.isConfigured = false
         }
+    }
+    
+    // picker impl
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 5
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.activityPickerData[row]
     }
     
     // Actions
