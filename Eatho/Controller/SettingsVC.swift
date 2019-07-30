@@ -13,7 +13,12 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapHandler() {
+        self.view.endEditing(false)
     }
     
     @IBAction func logOutPressed() {

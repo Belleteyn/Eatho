@@ -27,6 +27,13 @@ class CreationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapHandler() {
+        self.view.endEditing(false)
     }
 
     // Actions
