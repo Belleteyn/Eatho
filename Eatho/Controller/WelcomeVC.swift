@@ -20,9 +20,6 @@ class WelcomeVC: UIViewController {
         showNextScreen()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-    }
-    
     @objc private func showNextScreen() {
         //NOTE: not working without timer
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in

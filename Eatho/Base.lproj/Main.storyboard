@@ -50,8 +50,8 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <segue destination="lXA-VY-Zes" kind="show" identifier="toAvailableSegue" id="QPq-I6-IJi"/>
                         <segue destination="K2N-5b-QHk" kind="show" identifier="toLoginSegue" id="Sdn-wd-nG1"/>
+                        <segue destination="8rb-GV-EhW" kind="show" identifier="toAvailableSegue" id="8FO-cX-5KO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -348,11 +348,11 @@
             <objects>
                 <viewController id="FdW-V3-k6v" userLabel="AvailableVC" customClass="AviailableVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OJo-K7-9ad">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="alH-Nh-Mn3">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="840"/>
                                 <color key="backgroundColor" red="0.92157477140426636" green="0.92155748605728149" blue="0.92156922817230225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="100" id="CUA-TR-Hoa" customClass="FoodCell" customModule="Eatho" customModuleProvider="target">
@@ -536,7 +536,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="yes" returnKeyType="search" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="no"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kct-gc-FTf" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                <rect key="frame" x="20" y="728" width="374" height="30"/>
+                                <rect key="frame" x="20" y="767" width="374" height="30"/>
                                 <color key="backgroundColor" red="0.34855399770000001" green="0.39101962559999998" blue="0.82176007139999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="LOG OUT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -566,6 +566,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7pw-90-dzu"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Available" image="bottom_bar_avaliable" id="CJO-gE-pjB">
+                        <color key="badgeColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Available" largeTitleDisplayMode="always" id="j0s-Wp-TpV">
                         <barButtonItem key="leftBarButtonItem" systemItem="search" id="BvJ-zg-Pet">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -583,27 +586,111 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6B-eh-NXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1612" y="21"/>
+            <point key="canvasLocation" x="3021.739130434783" y="-14.0625"/>
+        </scene>
+        <!--Ration-->
+        <scene sceneID="AcV-e7-TBB">
+            <objects>
+                <viewController id="ulf-Hk-oci" customClass="RationVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="08i-kc-nQf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="XyD-Iu-xbd"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Ration" image="bottom_bar_ingestions" id="qPv-SU-kQG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A6Y-0F-1Ay" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4126.086956521739" y="-16.071428571428569"/>
+        </scene>
+        <!--Shopping List-->
+        <scene sceneID="txY-DP-r58">
+            <objects>
+                <viewController id="SNz-WS-W8Y" customClass="ShopListVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G3Z-Xj-Kua">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dkC-wh-ET1"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Shopping List" image="bottom_bar_shop_list" id="YNb-Ha-vxH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6rg-Hr-1q5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5144.927536231884" y="-28.125"/>
+        </scene>
+        <!--Diary-->
+        <scene sceneID="fgQ-ey-qiG">
+            <objects>
+                <viewController id="JCZ-J6-8bf" customClass="DiaryVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="khj-s8-6en">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="icO-kA-uzD"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Diary" image="bottom_bar_diary" id="pqJ-JJ-PAW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GEA-zA-5bE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6152.1739130434789" y="-28.125"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="0ar-kq-euQ">
+            <objects>
+                <viewController id="knJ-Pu-dvo" customClass="SettingsVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gsh-eU-Pxr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VeP-Qb-Geu"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="bottom_bar_settings" id="MNQ-33-aCW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mZR-Ov-MXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7150.7246376811599" y="-28.125"/>
+        </scene>
+        <!--Scan BarcodeVC-->
+        <scene sceneID="RKT-rw-FsJ">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="Lbo-DX-hoO" customClass="ScanBarcodeVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0UK-DO-xZZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ygB-NU-iC8"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wLg-dM-2Yl"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rdM-fl-SVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3022" y="1491"/>
         </scene>
         <!--Create new food item-->
         <scene sceneID="EJF-RQ-uYk">
             <objects>
-                <viewController id="XdL-88-SZS" customClass="CreationVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="XdL-88-SZS" customClass="CreationVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TDg-QD-bfM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csk-fQ-U2M" customClass="BarcodeButton" customModule="Eatho" customModuleProvider="target">
-                                <rect key="frame" x="136.66666666666666" y="24" width="140.99999999999997" height="32"/>
+                                <rect key="frame" x="136.66666666666666" y="112" width="140.99999999999997" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="U0X-Hk-qnZ"/>
                                 </constraints>
                                 <state key="normal" title="  Scan barcode" image="content_barcode">
                                     <color key="titleColor" red="0.61176470589999998" green="0.64705882349999999" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Lbo-DX-hoO" kind="show" id="Iwg-C2-6lo"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kMj-TI-0ZA">
-                                <rect key="frame" x="0.0" y="72" width="414" height="554"/>
+                                <rect key="frame" x="0.0" y="160" width="414" height="554"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="22x-YL-DGh">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -763,6 +850,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="AgU-jk-gbl" id="bku-Ks-98j"/>
                         <outlet property="availableTxt" destination="0T1-5Y-69K" id="KAw-s1-LGr"/>
@@ -780,14 +868,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pG1-UA-1TM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1611.5942028985507" y="738.61607142857144"/>
+            <point key="canvasLocation" x="3022" y="767"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Available-->
         <scene sceneID="qct-kI-jXn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lXA-VY-Zes" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Available" image="bottom_bar_avaliable" id="7xU-gC-K1Z"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" backIndicatorImage="app_bar_back" backIndicatorTransitionMaskImage="app_bar_back" id="eJI-W3-UcF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" backIndicatorImage="app_bar_back" backIndicatorTransitionMaskImage="app_bar_back" id="eJI-W3-UcF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -798,25 +887,60 @@
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                <color key="value" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                <color key="value" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ey0-OE-duN">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
-                        <segue destination="FdW-V3-k6v" kind="relationship" relationship="rootViewController" id="nMm-Nw-Fww"/>
-                        <segue destination="XdL-88-SZS" kind="show" identifier="toCreationView" id="4EI-Up-pt9"/>
+                        <segue destination="FdW-V3-k6v" kind="relationship" relationship="rootViewController" id="3Dn-GN-4R3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIX-lq-YZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="819" y="350"/>
+            <point key="canvasLocation" x="3948" y="767"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="tJm-g7-fyI">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8rb-GV-EhW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="IwN-gb-sfn">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="lXA-VY-Zes" kind="relationship" relationship="viewControllers" id="Xck-0k-oSv"/>
+                        <segue destination="ulf-Hk-oci" kind="relationship" relationship="viewControllers" id="S03-I6-Qet"/>
+                        <segue destination="JCZ-J6-8bf" kind="relationship" relationship="viewControllers" id="TUY-tw-YoM"/>
+                        <segue destination="SNz-WS-W8Y" kind="relationship" relationship="viewControllers" id="JOk-Ei-qtA"/>
+                        <segue destination="knJ-Pu-dvo" kind="relationship" relationship="viewControllers" id="96w-kb-8By"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8dP-Gu-Kcm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5043" y="767"/>
         </scene>
     </scenes>
     <resources>
         <image name="app_bar_back" width="29.333333969116211" height="21.333333969116211"/>
+        <image name="bottom_bar_avaliable" width="22.666666030883789" height="21.333333969116211"/>
+        <image name="bottom_bar_diary" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="bottom_bar_ingestions" width="24" height="18.666666030883789"/>
+        <image name="bottom_bar_settings" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="bottom_bar_shop_list" width="24" height="18.666666030883789"/>
         <image name="content_barcode" width="20" height="16"/>
         <image name="content_item_add_to_ration" width="26.666666030883789" height="26.666666030883789"/>
         <image name="logo" width="137.33332824707031" height="136"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="8Tk-bc-bez"/>
-    </inferredMetricsTieBreakers>
 </document>
