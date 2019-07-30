@@ -55,9 +55,4 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    
-    @IBAction func logOutPressed() {
-        AuthService.instance.logOut()
-        dismiss(animated: true, completion: nil)
-    }
 }

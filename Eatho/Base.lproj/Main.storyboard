@@ -535,34 +535,16 @@
                                 <color key="barTintColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="yes" returnKeyType="search" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="no"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kct-gc-FTf" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                <rect key="frame" x="20" y="767" width="374" height="30"/>
-                                <color key="backgroundColor" red="0.34855399770000001" green="0.39101962559999998" blue="0.82176007139999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="LOG OUT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="logOutPressed" destination="FdW-V3-k6v" eventType="touchUpInside" id="VOv-AF-x7x"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="8qm-aT-rld" firstAttribute="top" secondItem="OJo-K7-9ad" secondAttribute="top" id="4f7-0S-juy"/>
                             <constraint firstAttribute="bottom" secondItem="alH-Nh-Mn3" secondAttribute="bottom" id="9wL-QK-889"/>
-                            <constraint firstItem="kct-gc-FTf" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" constant="20" id="9wO-Sz-Cnp"/>
-                            <constraint firstItem="7pw-90-dzu" firstAttribute="bottom" secondItem="kct-gc-FTf" secondAttribute="bottom" constant="16" id="PQL-xS-D89"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="top" secondItem="8qm-aT-rld" secondAttribute="bottom" id="V4v-bY-eit"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="ktb-id-D8g"/>
                             <constraint firstItem="8qm-aT-rld" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="lcr-8A-Bat"/>
                             <constraint firstItem="8qm-aT-rld" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="m7e-x0-R8z"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="oH6-Gt-3rO"/>
-                            <constraint firstItem="7pw-90-dzu" firstAttribute="trailing" secondItem="kct-gc-FTf" secondAttribute="trailing" constant="20" id="uqD-C1-BCJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7pw-90-dzu"/>
                     </view>
@@ -643,6 +625,24 @@
                     <view key="view" contentMode="scaleToFill" id="gsh-eU-Pxr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kct-gc-FTf" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
+                                <rect key="frame" x="20" y="774" width="374" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="LOG OUT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logOutPressed" destination="knJ-Pu-dvo" eventType="touchUpInside" id="JCf-mQ-U0M"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VeP-Qb-Geu"/>
                     </view>
