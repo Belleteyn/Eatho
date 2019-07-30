@@ -568,67 +568,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6B-eh-NXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3021.739130434783" y="-14.0625"/>
+            <point key="canvasLocation" x="3170" y="767"/>
         </scene>
         <!--Ration-->
         <scene sceneID="AcV-e7-TBB">
             <objects>
                 <viewController id="ulf-Hk-oci" customClass="RationVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="08i-kc-nQf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="XyD-Iu-xbd"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ration" image="bottom_bar_ingestions" id="qPv-SU-kQG"/>
+                    <navigationItem key="navigationItem" title="Ration" id="9qX-JE-DO7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6Y-0F-1Ay" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4126.086956521739" y="-16.071428571428569"/>
+            <point key="canvasLocation" x="4125" y="767"/>
         </scene>
         <!--Shopping List-->
         <scene sceneID="txY-DP-r58">
             <objects>
                 <viewController id="SNz-WS-W8Y" customClass="ShopListVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G3Z-Xj-Kua">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="dkC-wh-ET1"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shopping List" image="bottom_bar_shop_list" id="YNb-Ha-vxH"/>
+                    <navigationItem key="navigationItem" title="Shopping List" id="9Vw-I6-L7T"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rg-Hr-1q5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5144.927536231884" y="-28.125"/>
+            <point key="canvasLocation" x="5041" y="767"/>
         </scene>
         <!--Diary-->
         <scene sceneID="fgQ-ey-qiG">
             <objects>
                 <viewController id="JCZ-J6-8bf" customClass="DiaryVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="khj-s8-6en">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="icO-kA-uzD"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Diary" image="bottom_bar_diary" id="pqJ-JJ-PAW"/>
+                    <navigationItem key="navigationItem" title="Diary" id="VIF-5f-9An"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GEA-zA-5bE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6152.1739130434789" y="-28.125"/>
+            <point key="canvasLocation" x="6016" y="767"/>
         </scene>
         <!--Settings-->
         <scene sceneID="0ar-kq-euQ">
             <objects>
                 <viewController id="knJ-Pu-dvo" customClass="SettingsVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gsh-eU-Pxr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kct-gc-FTf" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                <rect key="frame" x="20" y="774" width="374" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kct-gc-FTf" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
+                                <rect key="frame" x="20" y="675" width="374" height="30"/>
                                 <color key="backgroundColor" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="LOG OUT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -644,13 +643,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="kct-gc-FTf" secondAttribute="bottom" constant="20" id="P36-Nu-MlT"/>
+                            <constraint firstItem="kct-gc-FTf" firstAttribute="trailing" secondItem="gsh-eU-Pxr" secondAttribute="trailingMargin" id="a5J-Zj-haA"/>
+                            <constraint firstItem="kct-gc-FTf" firstAttribute="leading" secondItem="gsh-eU-Pxr" secondAttribute="leadingMargin" id="snP-dY-4Qw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="VeP-Qb-Geu"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="bottom_bar_settings" id="MNQ-33-aCW"/>
+                    <navigationItem key="navigationItem" title="Settings" id="Gur-Qy-pQ0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZR-Ov-MXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7150.7246376811599" y="-28.125"/>
+            <point key="canvasLocation" x="7000" y="767"/>
         </scene>
         <!--Scan BarcodeVC-->
         <scene sceneID="RKT-rw-FsJ">
@@ -667,7 +671,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdM-fl-SVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3022" y="1491"/>
+            <point key="canvasLocation" x="3170" y="2247"/>
         </scene>
         <!--Create new food item-->
         <scene sceneID="EJF-RQ-uYk">
@@ -868,7 +872,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pG1-UA-1TM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3022" y="767"/>
+            <point key="canvasLocation" x="3170" y="1506"/>
         </scene>
         <!--Available-->
         <scene sceneID="qct-kI-jXn">
@@ -906,7 +910,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIX-lq-YZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3948" y="767"/>
+            <point key="canvasLocation" x="3171" y="-16"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tJm-g7-fyI">
@@ -921,15 +925,100 @@
                     </tabBar>
                     <connections>
                         <segue destination="lXA-VY-Zes" kind="relationship" relationship="viewControllers" id="Xck-0k-oSv"/>
-                        <segue destination="ulf-Hk-oci" kind="relationship" relationship="viewControllers" id="S03-I6-Qet"/>
-                        <segue destination="JCZ-J6-8bf" kind="relationship" relationship="viewControllers" id="TUY-tw-YoM"/>
-                        <segue destination="SNz-WS-W8Y" kind="relationship" relationship="viewControllers" id="JOk-Ei-qtA"/>
-                        <segue destination="knJ-Pu-dvo" kind="relationship" relationship="viewControllers" id="96w-kb-8By"/>
+                        <segue destination="m6a-Zt-pkd" kind="relationship" relationship="viewControllers" id="S03-I6-Qet"/>
+                        <segue destination="rBc-ve-vMX" kind="relationship" relationship="viewControllers" id="TUY-tw-YoM"/>
+                        <segue destination="l2p-ez-wSI" kind="relationship" relationship="viewControllers" id="JOk-Ei-qtA"/>
+                        <segue destination="Kcu-KM-cYu" kind="relationship" relationship="viewControllers" id="96w-kb-8By"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dP-Gu-Kcm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5043" y="767"/>
+            <point key="canvasLocation" x="5041" y="-753"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="38A-Q9-BMJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kcu-KM-cYu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="bottom_bar_settings" id="MNQ-33-aCW"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="Ldu-3w-K9z">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="knJ-Pu-dvo" kind="relationship" relationship="rootViewController" id="Lmg-QI-j85"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybg-JU-IVv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7001" y="-28"/>
+        </scene>
+        <!--Diary-->
+        <scene sceneID="cFF-3p-UFa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rBc-ve-vMX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Diary" image="bottom_bar_diary" id="pqJ-JJ-PAW"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="Ozl-vO-sjp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JCZ-J6-8bf" kind="relationship" relationship="rootViewController" id="UEM-wY-wzA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VJ0-sk-MrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6016" y="-28"/>
+        </scene>
+        <!--Shopping List-->
+        <scene sceneID="NMI-xm-Kz4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l2p-ez-wSI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Shopping List" image="bottom_bar_shop_list" id="YNb-Ha-vxH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="pow-b0-5fm">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SNz-WS-W8Y" kind="relationship" relationship="rootViewController" id="3Ic-Sn-7d2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g8g-xu-tht" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5042" y="-16"/>
+        </scene>
+        <!--Ration-->
+        <scene sceneID="nLB-9w-Dmi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m6a-Zt-pkd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ration" image="bottom_bar_ingestions" id="qPv-SU-kQG"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="7MH-8G-644">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ulf-Hk-oci" kind="relationship" relationship="rootViewController" id="d25-xY-Fze"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zgD-4n-ryN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4124.6376811594209" y="-16.071428571428569"/>
         </scene>
     </scenes>
     <resources>
