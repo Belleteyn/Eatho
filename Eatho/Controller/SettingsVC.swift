@@ -24,22 +24,11 @@ class SettingsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     @IBOutlet weak var ageTxt: UITextField!
     @IBOutlet weak var activitySelection: UIPickerView!
     
-    // picker data
-    let activityPickerData = [
-        "Minimal",
-        "Light (training 3 times a week)",
-        "Medium (intensive training 3 or more times a week)",
-        "High (intensive training everyday)",
-        "Extra (athletes)"
-    ]
+    var activityIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // picker
-        activitySelection.dataSource = self
-        activitySelection.delegate = self
-
         //hide keyboard 
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         self.view.addGestureRecognizer(tap)
@@ -68,17 +57,13 @@ class SettingsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         }
     }
     
-    // picker impl
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 5
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.activityPickerData[row]
+    @objc func pickerViewValueHandler(_ notification: Notification) {
+        if let activityLevelIndex = notification.object as? Int {
+            print("ACTIVITY CHANGED: \(activityIndex) \(activityLevelIndex)")
+            activityIndex = activityLevelIndex
+        } else {
+            print("fuck it")
+        }
     }
     
     // Actions

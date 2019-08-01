@@ -33,6 +33,8 @@ let IS_CONFIGURED = "settingsConfigured"
 let NOTIF_USER_DATA_CHANGED = Notification.Name(rawValue: "userDataChanged")
 let NOTIF_FOOD_DATA_CHANGED = Notification.Name("foodDataChanged")
 
+let NOTIF_USER_ACTIVITY_LEVEL_CHANGED = Notification.Name("userActivityLevelChanged")
+
 // headers
 let AUTH_HEADER: [String : String] = ["Content-Type": "application/json; charset=utf-8"]
 
@@ -44,3 +46,4 @@ let UNWIND_TO_WELCOME = "unwindToWelcome"
 
 //  colors
 let LOGIN_PLACEHOLDER_COLOR = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.604291524)
+let TEXT_COLOR = #colorLiteral(red: 0.3698856235, green: 0.4013975859, blue: 0.4641202092, alpha: 1)
