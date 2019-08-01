@@ -33,7 +33,9 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //hide keyboard 
+        // keyboard
+        view.bindToKeyboard()
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         self.view.addGestureRecognizer(tap)
     }
