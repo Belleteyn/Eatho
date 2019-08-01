@@ -841,7 +841,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2Ov-Bg-KKC">
-                                <rect key="frame" x="20" y="311" width="374" height="232"/>
+                                <rect key="frame" x="20" y="311" width="374" height="231"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="scY-yX-QtN">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="29"/>
@@ -887,20 +887,18 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Daily activity level" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="idS-yW-g2I">
-                                        <rect key="frame" x="0.0" y="168" width="374" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="d3n-Mq-j4a"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cr5-i1-eur">
+                                        <rect key="frame" x="0.0" y="168" width="374" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <state key="normal" title="Daily activity level">
+                                            <color key="titleColor" red="0.29803921568627451" green="0.32549019607843138" blue="0.38823529411764707" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
-                                            <action selector="activityChange:" destination="knJ-Pu-dvo" eventType="editingDidBegin" id="Lnr-17-V9i"/>
+                                            <action selector="dailyActivityBtnPressed:" destination="knJ-Pu-dvo" eventType="touchUpInside" id="sRH-U1-lPq"/>
                                         </connections>
-                                    </textField>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVJ-so-m57" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="202" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="201" width="374" height="30"/>
                                         <color key="backgroundColor" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="CALCULATE">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -920,12 +918,6 @@
                                     <constraint firstAttribute="trailing" secondItem="scY-yX-QtN" secondAttribute="trailing" id="wsc-VI-fOh"/>
                                 </constraints>
                             </stackView>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vze-jQ-6WX">
-                                <rect key="frame" x="0.0" y="708" width="414" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="PwB-rQ-31T"/>
-                                </constraints>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kcal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLx-X2-scg">
                                 <rect key="frame" x="372" y="68.5" width="26" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -971,11 +963,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Vze-jQ-6WX" firstAttribute="trailing" secondItem="VeP-Qb-Geu" secondAttribute="trailing" id="147-Jq-kMg"/>
                             <constraint firstItem="3mU-Sl-iyQ" firstAttribute="trailing" secondItem="ffC-31-rT9" secondAttribute="trailing" constant="-16" id="1S6-VZ-Swi"/>
                             <constraint firstItem="Uv5-fv-9Ii" firstAttribute="trailing" secondItem="zJf-J3-4fA" secondAttribute="trailing" constant="-16" id="4mb-yk-ouM"/>
                             <constraint firstItem="XLx-X2-scg" firstAttribute="centerY" secondItem="2f9-tW-DTF" secondAttribute="centerY" id="62p-Nm-QhZ"/>
-                            <constraint firstAttribute="bottom" secondItem="Vze-jQ-6WX" secondAttribute="bottom" id="7jK-yM-aXn"/>
                             <constraint firstItem="uzf-g4-uFm" firstAttribute="centerY" secondItem="jx5-P6-NTr" secondAttribute="centerY" id="8EC-VM-jCp"/>
                             <constraint firstItem="f9X-Pb-7Jt" firstAttribute="top" secondItem="Jhg-Ii-Gv8" secondAttribute="bottom" constant="36" id="ANW-Re-GBC"/>
                             <constraint firstItem="CLJ-Rd-uPd" firstAttribute="trailing" secondItem="Flu-GM-bCz" secondAttribute="trailing" constant="-16" id="CWh-XM-pn9"/>
@@ -993,7 +983,6 @@
                             <constraint firstItem="h8a-07-vnH" firstAttribute="trailing" secondItem="Ccw-KL-T1A" secondAttribute="trailing" constant="-16" id="bCC-zQ-0PA"/>
                             <constraint firstItem="fmh-VR-KB3" firstAttribute="trailing" secondItem="pB9-1u-foQ" secondAttribute="trailing" constant="-16" id="bq8-qn-B4p"/>
                             <constraint firstItem="VeP-Qb-Geu" firstAttribute="trailing" secondItem="2Ov-Bg-KKC" secondAttribute="trailing" constant="20" id="dc1-ep-rxF"/>
-                            <constraint firstItem="Vze-jQ-6WX" firstAttribute="leading" secondItem="VeP-Qb-Geu" secondAttribute="leading" id="dch-Bd-end"/>
                             <constraint firstItem="CLJ-Rd-uPd" firstAttribute="centerY" secondItem="Flu-GM-bCz" secondAttribute="centerY" id="fYf-LQ-cxz"/>
                             <constraint firstItem="Jhg-Ii-Gv8" firstAttribute="leading" secondItem="VeP-Qb-Geu" secondAttribute="leading" id="imT-cp-rGK"/>
                             <constraint firstItem="f9X-Pb-7Jt" firstAttribute="leading" secondItem="VeP-Qb-Geu" secondAttribute="leading" id="kQ8-P7-AZO"/>
@@ -1008,7 +997,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Gur-Qy-pQ0"/>
                     <connections>
-                        <outlet property="activityTxt" destination="idS-yW-g2I" id="B1b-77-Hxy"/>
                         <outlet property="ageTxt" destination="8ey-mk-vVN" id="dSi-wp-4AB"/>
                         <outlet property="autoSwitch" destination="J56-CT-VQZ" id="7A0-JL-YcL"/>
                         <outlet property="calculateBtn" destination="BVJ-so-m57" id="sTf-k2-ifh"/>
@@ -1016,6 +1004,7 @@
                         <outlet property="caloriesTxt" destination="2f9-tW-DTF" id="BDL-n5-yso"/>
                         <outlet property="carbsMassTxt" destination="ffC-31-rT9" id="7ay-c5-AV8"/>
                         <outlet property="carbsPercentTxt" destination="jx5-P6-NTr" id="ZA2-tR-ylL"/>
+                        <outlet property="dailyActivityBtn" destination="Cr5-i1-eur" id="N7v-pB-Nwf"/>
                         <outlet property="fatsMassTxt" destination="Ccw-KL-T1A" id="MkI-ou-EhL"/>
                         <outlet property="fatsPercentTxt" destination="Flu-GM-bCz" id="h0f-BL-2q3"/>
                         <outlet property="genderSwitch" destination="scY-yX-QtN" id="QZd-Qa-TmK"/>

@@ -24,8 +24,8 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var weightTxt: UITextField!
     @IBOutlet weak var heightTxt: UITextField!
     @IBOutlet weak var ageTxt: UITextField!
-    @IBOutlet weak var activityTxt: UITextField!
     @IBOutlet weak var caloriesShortageTxt: UITextField!
+    @IBOutlet weak var dailyActivityBtn: UIButton!
     @IBOutlet weak var calculateBtn: EathoButton!
     
     var activityIndex: Int = 0
@@ -85,8 +85,8 @@ class SettingsVC: UIViewController {
             weightTxt.isHidden = false
             heightTxt.isHidden = false
             ageTxt.isHidden = false
-            activityTxt.isHidden = false
             caloriesShortageTxt.isHidden = false
+            dailyActivityBtn.isHidden = false
             calculateBtn.isHidden = false
             
             UIView.animate(withDuration: 0.3, animations: {
@@ -98,8 +98,8 @@ class SettingsVC: UIViewController {
                 self.weightTxt.isHidden = true
                 self.heightTxt.isHidden = true
                 self.ageTxt.isHidden = true
-                self.activityTxt.isHidden = true
                 self.caloriesShortageTxt.isHidden = true
+                self.dailyActivityBtn.isHidden = true
                 self.calculateBtn.isHidden = true
             })
         }
@@ -128,7 +128,7 @@ class SettingsVC: UIViewController {
         fatsPercentTxt.text = "\(Int(round(f * 9.29 * 100 / calories)))"
     }
     
-    @IBAction func activityChange(_ sender: Any) {
+    @IBAction func dailyActivityBtnPressed(_ sender: Any) {
         let activityPicker = ActivityPickerVC()
         activityPicker.modalPresentationStyle = .custom
         present(activityPicker, animated: true, completion: nil)
