@@ -841,7 +841,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2Ov-Bg-KKC">
-                                <rect key="frame" x="20" y="311" width="374" height="241"/>
+                                <rect key="frame" x="20" y="311" width="374" height="246"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="scY-yX-QtN">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="35"/>
@@ -849,8 +849,8 @@
                                             <constraint firstAttribute="height" constant="34" id="dr9-f6-XVo"/>
                                         </constraints>
                                         <segments>
-                                            <segment title="Male"/>
                                             <segment title="Female"/>
+                                            <segment title="Male"/>
                                         </segments>
                                         <color key="tintColor" red="0.67588701143561658" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </segmentedControl>
@@ -891,7 +891,10 @@
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cr5-i1-eur">
-                                        <rect key="frame" x="0.0" y="174" width="374" height="29"/>
+                                        <rect key="frame" x="0.0" y="174" width="374" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="rQb-7n-gQZ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="Daily activity level">
                                             <color key="titleColor" red="0.29803921568627451" green="0.32549019607843138" blue="0.38823529411764707" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
@@ -901,7 +904,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVJ-so-m57" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="207" width="374" height="34"/>
+                                        <rect key="frame" x="0.0" y="212" width="374" height="34"/>
                                         <color key="backgroundColor" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="fNc-lR-L3i"/>

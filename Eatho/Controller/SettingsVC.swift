@@ -71,6 +71,8 @@ class SettingsVC: UIViewController {
         caloriesShortageTxt.text = "\(info.caloriesShortage)"
         dailyActivityBtn.setTitle("\(SettingsService.instance.activityPickerData[info.activityIndex])", for: .normal)
         dailyActivityBtn.setTitleColor(TEXT_COLOR, for: .normal)
+        
+        activityIndex = info.activityIndex
     }
     
     // Handlers
@@ -90,7 +92,7 @@ class SettingsVC: UIViewController {
             activityIndex = activityLevelIndex
             dailyActivityBtn.setTitle("\(SettingsService.instance.activityPickerData[activityIndex])", for: .normal)
             dailyActivityBtn.setTitleColor(TEXT_COLOR, for: .normal)
-        } 
+        }
     }
     
     // Actions
@@ -131,6 +133,7 @@ class SettingsVC: UIViewController {
         guard let heightStr = heightTxt.text else { return }
         guard let ageStr = ageTxt.text else { return }
         let shortageStr = caloriesShortageTxt.text ?? "0"
+        let gender = genderSwitch.selectedSegmentIndex
 
         let weight = Double(weightStr) ?? 0
         let height = Double(heightStr) ?? 0
@@ -138,11 +141,12 @@ class SettingsVC: UIViewController {
         let shortage = Double(shortageStr) ?? 0
 
         var info = SettingsService.instance.userInfo
+        info.gender = gender
         info.weight = weight
         info.height = height
         info.age = age
         info.caloriesShortage = shortage
-        info.activityIndex = activityIndex
+        info.activityIndex = self.activityIndex
         info.recalculateNutrition()
         
         SettingsService.instance.userInfo = info

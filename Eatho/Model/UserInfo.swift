@@ -46,7 +46,9 @@ struct UserInfo: Codable {
     
     private func leanMass(weightKg w: Double, heightM h: Double, age: Double, gender: Int) -> Double {
         let bmi = w / (h * h)
-        let fatPercent = gender == 1 ? (1.51 * bmi - 0.7 * age - 3.6 + 1.4) : (1.51 * bmi - 0.7 * age + 1.4)
+        let fatPercent = gender == 1
+            ? (1.51 * bmi - 0.7 * age - 2.2) //male
+            : (1.51 * bmi - 0.7 * age + 1.4) //female
         return (w * (100 - fatPercent) / 100)
     }
 }
