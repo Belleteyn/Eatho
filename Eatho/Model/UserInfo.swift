@@ -9,13 +9,13 @@
 import Foundation
 
 struct UserInfo: Codable {
-    var setupNutrientsFlag = true
-    var gender = 0
-    var weight = 0.0
-    var height = 0.0 //cm
-    var age = 0 //years
-    var caloriesShortage = 0.0
-    var activityIndex = 0
+    var setupNutrientsFlag: Bool = true
+    var gender: Int = 0
+    var weight: Double = 0.0
+    var height: Double = 0.0 //cm
+    var age: Int = 0 //years
+    var caloriesShortage: Double = 0.0
+    var activityIndex: Int = 0
     var nutrition: NutritionFacts
     
     mutating func recalculateNutrition() {

@@ -23,6 +23,9 @@ let URL_ADD_AVAILABLE = "\(URL_AVAILABLE)/add"
 
 let URL_ADD_FOOD = "\(URL_API)/food/add"
 
+let URL_SETTINGS = "\(URL_API)/settings"
+let URL_USER_DATA = "\(URL_API)/settings/userData"
+
 // user defaults
 let LOGGED_IN_KEY = "loggedIn"
 let TOKEN_KEY = "token"
@@ -31,6 +34,7 @@ let IS_CONFIGURED = "settingsConfigured"
 let USER_INFO = "eathoUserInfo"
 
 // notifications
+let NOTIF_AUTH_DATA_CHANGED = Notification.Name(rawValue: "authDataChanged")
 let NOTIF_USER_DATA_CHANGED = Notification.Name(rawValue: "userDataChanged")
 let NOTIF_FOOD_DATA_CHANGED = Notification.Name("foodDataChanged")
 

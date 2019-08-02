@@ -40,14 +40,18 @@ class SettingsVC: UIViewController {
         self.view.addGestureRecognizer(tap)
         
         // notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_USER_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: NOTIF_USER_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(pickerValueHandler(_:)), name: NOTIF_USER_ACTIVITY_LEVEL_CHANGED, object: nil)
         
         // data
-        if AuthService.instance.isLoggedIn && SettingsService.instance.isConfigured {
-            //todo request settings
-            setupData()
-        } 
+        if AuthService.instance.isLoggedIn {
+            SettingsService.instance.downloadUserData()
+            
+            if SettingsService.instance.isConfigured {
+                setupData()
+            }
+        }
     }
     
     override func awakeFromNib() {
@@ -57,27 +61,8 @@ class SettingsVC: UIViewController {
         }
     }
     
-    func setupData() {
-        let info = SettingsService.instance.userInfo
-        
-        caloriesTxt.text = "\(info.nutrition.calories)"
-        proteinsMassTxt.text = "\(info.nutrition.proteins)"
-        proteinsPercentTxt.text = "\(round((info.nutrition.proteins * 4.1 * 100) / info.nutrition.calories))"
-        carbsMassTxt.text = "\(info.nutrition.carbs)"
-        carbsPercentTxt.text = "\(round((info.nutrition.carbs * 4.1 * 100) / info.nutrition.calories))"
-        fatsMassTxt.text = "\(info.nutrition.fats)"
-        fatsPercentTxt.text = "\(round((info.nutrition.fats * 9.29 * 100) / info.nutrition.calories))"
-        
-        autoSwitch.isOn = info.setupNutrientsFlag
-        genderSwitch.selectedSegmentIndex = info.gender
-        weightTxt.text = "\(info.weight)"
-        heightTxt.text = "\(info.height)"
-        ageTxt.text = "\(info.age)"
-        caloriesShortageTxt.text = "\(info.caloriesShortage)"
-        dailyActivityBtn.setTitle("\(SettingsService.instance.activityPickerData[info.activityIndex])", for: .normal)
-        dailyActivityBtn.setTitleColor(TEXT_COLOR, for: .normal)
-        
-        activityIndex = info.activityIndex
+    override func viewWillDisappear(_ animated: Bool) {
+        //todo: save settings, upload to server
     }
     
     // Handlers
@@ -98,6 +83,29 @@ class SettingsVC: UIViewController {
             dailyActivityBtn.setTitle("\(SettingsService.instance.activityPickerData[activityIndex])", for: .normal)
             dailyActivityBtn.setTitleColor(TEXT_COLOR, for: .normal)
         }
+    }
+    
+    @objc func setupData() {
+        let info = SettingsService.instance.userInfo
+        
+        caloriesTxt.text = "\(info.nutrition.calories)"
+        proteinsMassTxt.text = "\(info.nutrition.proteins)"
+        proteinsPercentTxt.text = "\(round((info.nutrition.proteins * 4.1 * 100) / info.nutrition.calories))"
+        carbsMassTxt.text = "\(info.nutrition.carbs)"
+        carbsPercentTxt.text = "\(round((info.nutrition.carbs * 4.1 * 100) / info.nutrition.calories))"
+        fatsMassTxt.text = "\(info.nutrition.fats)"
+        fatsPercentTxt.text = "\(round((info.nutrition.fats * 9.29 * 100) / info.nutrition.calories))"
+        
+        autoSwitch.isOn = info.setupNutrientsFlag
+        genderSwitch.selectedSegmentIndex = info.gender
+        weightTxt.text = "\(info.weight)"
+        heightTxt.text = "\(info.height)"
+        ageTxt.text = "\(info.age)"
+        caloriesShortageTxt.text = "\(info.caloriesShortage)"
+        dailyActivityBtn.setTitle("\(SettingsService.instance.activityPickerData[info.activityIndex])", for: .normal)
+        dailyActivityBtn.setTitleColor(TEXT_COLOR, for: .normal)
+        
+        activityIndex = info.activityIndex
     }
     
     // Actions

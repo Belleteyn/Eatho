@@ -18,7 +18,7 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         foodTable.delegate = self
         foodTable.dataSource = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NOTIF_USER_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NOTIF_FOOD_DATA_CHANGED, object: nil)
         
         loadData()

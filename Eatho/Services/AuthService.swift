@@ -24,7 +24,7 @@ class AuthService {
             defaults.set(newValue, forKey: LOGGED_IN_KEY)
             
             if (newValue != oldValue) {
-                NotificationCenter.default.post(name: NOTIF_USER_DATA_CHANGED, object: nil)
+                NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
             }
         }
     }

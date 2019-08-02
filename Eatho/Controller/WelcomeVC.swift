@@ -15,7 +15,7 @@ class WelcomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showNextScreen), name: NOTIF_USER_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showNextScreen), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         
         showNextScreen()
     }
