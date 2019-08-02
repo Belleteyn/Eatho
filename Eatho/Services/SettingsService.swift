@@ -10,8 +10,14 @@ import Foundation
 
 class SettingsService {
     static let instance = SettingsService()
-    
     let defaults = UserDefaults.standard
+    let activityPickerData = [
+        "Minimal",
+        "Light (training 3 times a week)",
+        "Medium (intensive training 3 or more times a week)",
+        "High (intensive training everyday)",
+        "Extra (athletes)"
+    ]
     
     var isConfigured: Bool {
         get {

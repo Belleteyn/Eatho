@@ -41,6 +41,7 @@ class SettingsVC: UIViewController {
         
         // notifications
         NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_USER_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pickerValueHandler(_:)), name: NOTIF_USER_ACTIVITY_LEVEL_CHANGED, object: nil)
         
         // data
         if AuthService.instance.isLoggedIn && SettingsService.instance.isConfigured {
@@ -69,6 +70,7 @@ class SettingsVC: UIViewController {
         ageTxt.text = "\(info.age)"
         caloriesShortageTxt.text = "\(info.caloriesShortage)"
         dailyActivityBtn.setTitle("\(SettingsService.instance.activityPickerData[info.activityIndex])", for: .normal)
+        dailyActivityBtn.setTitleColor(TEXT_COLOR, for: .normal)
     }
     
     // Handlers
@@ -83,13 +85,12 @@ class SettingsVC: UIViewController {
         }
     }
     
-    @objc func pickerViewValueHandler(_ notification: Notification) {
-        if let activityLevelIndex = notification.object as? Int {
-            print("ACTIVITY CHANGED: \(activityIndex) \(activityLevelIndex)")
+    @objc func pickerValueHandler(_ notification: Notification) {
+        if let activityLevelIndex = notification.userInfo?["activityIndex"] as? Int {
             activityIndex = activityLevelIndex
-        } else {
-            print("fuck it")
-        }
+            dailyActivityBtn.setTitle("\(SettingsService.instance.activityPickerData[activityIndex])", for: .normal)
+            dailyActivityBtn.setTitleColor(TEXT_COLOR, for: .normal)
+        } 
     }
     
     // Actions
@@ -141,6 +142,7 @@ class SettingsVC: UIViewController {
         info.height = height
         info.age = age
         info.caloriesShortage = shortage
+        info.activityIndex = activityIndex
         info.recalculateNutrition()
         
         SettingsService.instance.userInfo = info

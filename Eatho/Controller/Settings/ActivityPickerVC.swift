@@ -14,15 +14,6 @@ class ActivityPickerVC: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     @IBOutlet weak var activityPicker: UIPickerView!
     @IBOutlet var bgView: UIView!
     
-    // picker data
-    let activityPickerData = [
-        "Minimal",
-        "Light (training 3 times a week)",
-        "Medium (intensive training 3 or more times a week)",
-        "High (intensive training everyday)",
-        "Extra (athletes)"
-    ]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +23,8 @@ class ActivityPickerVC: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandle))
         bgView.addGestureRecognizer(tap)
+        
+        activityPicker.selectRow(SettingsService.instance.userInfo.activityIndex, inComponent: 0, animated: true)
     }
 
     // picker impl
@@ -44,16 +37,15 @@ class ActivityPickerVC: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.activityPickerData[row]
+        return SettingsService.instance.activityPickerData[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: activityPickerData[row], attributes: [NSAttributedString.Key.foregroundColor : TEXT_COLOR, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10)])
+        return NSAttributedString(string: SettingsService.instance.activityPickerData[row], attributes: [NSAttributedString.Key.foregroundColor : TEXT_COLOR, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10)])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("DID SELECT ROW \(row)")
-        NotificationCenter.default.post(name: NOTIF_USER_ACTIVITY_LEVEL_CHANGED, object: row)
+        NotificationCenter.default.post(name: NOTIF_USER_ACTIVITY_LEVEL_CHANGED, object: nil, userInfo: ["activityIndex": row])
     }
     
     // tap handle
