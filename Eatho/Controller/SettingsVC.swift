@@ -38,17 +38,37 @@ class SettingsVC: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         self.view.addGestureRecognizer(tap)
-    }
-    
-    override func awakeFromNib() {
-        // check if settings were configured
+        
+        // notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_USER_DATA_CHANGED, object: nil)
+        
+        // data
         if AuthService.instance.isLoggedIn && SettingsService.instance.isConfigured {
             //todo request settings
+            setupData()
         } else {
             self.tabBarController?.tabBar.items?[4].badgeValue = "!"
         }
+    }
+    
+    func setupData() {
+        let info = SettingsService.instance.userInfo
         
-         NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_USER_DATA_CHANGED, object: nil)
+        caloriesTxt.text = "\(info.nutrition.calories)"
+        proteinsMassTxt.text = "\(info.nutrition.proteins)"
+        proteinsPercentTxt.text = "\(round((info.nutrition.proteins * 4.1 * 100) / info.nutrition.calories))"
+        carbsMassTxt.text = "\(info.nutrition.carbs)"
+        carbsPercentTxt.text = "\(round((info.nutrition.carbs * 4.1 * 100) / info.nutrition.calories))"
+        fatsMassTxt.text = "\(info.nutrition.fats)"
+        fatsPercentTxt.text = "\(round((info.nutrition.fats * 9.29 * 100) / info.nutrition.calories))"
+        
+        autoSwitch.isOn = info.setupNutrientsFlag
+        genderSwitch.selectedSegmentIndex = info.gender
+        weightTxt.text = "\(info.weight)"
+        heightTxt.text = "\(info.height)"
+        ageTxt.text = "\(info.age)"
+        caloriesShortageTxt.text = "\(info.caloriesShortage)"
+        dailyActivityBtn.setTitle("\(SettingsService.instance.activityPickerData[info.activityIndex])", for: .normal)
     }
     
     // Handlers
@@ -113,19 +133,18 @@ class SettingsVC: UIViewController {
 
         let weight = Double(weightStr) ?? 0
         let height = Double(heightStr) ?? 0
-        let age = Double(ageStr) ?? 0
+        let age = Int(ageStr) ?? 0
         let shortage = Double(shortageStr) ?? 0
 
-        var calories = 0.0, p = 0.0, c = 0.0, f = 0.0
-        SettingsService.instance.calculateNutrients(weightKg: weight, heightM: height / 100, age: age, gender: genderSwitch.selectedSegmentIndex, activityIndex: activityIndex, shortage: shortage, p: &p, c: &c, f: &f, calories: &calories)
-
-        caloriesTxt.text = "\(round(calories))"
-        proteinsMassTxt.text = "\(round(p))"
-        proteinsPercentTxt.text = "\(Int(round(p * 4.1 * 100 / calories)))"
-        carbsMassTxt.text = "\(round(c))"
-        carbsPercentTxt.text = "\(Int(round(c * 4.1 * 100 / calories)))"
-        fatsMassTxt.text = "\(round(f))"
-        fatsPercentTxt.text = "\(Int(round(f * 9.29 * 100 / calories)))"
+        var info = SettingsService.instance.userInfo
+        info.weight = weight
+        info.height = height
+        info.age = age
+        info.caloriesShortage = shortage
+        info.recalculateNutrition()
+        
+        SettingsService.instance.userInfo = info
+        setupData()
     }
     
     @IBAction func dailyActivityBtnPressed(_ sender: Any) {
