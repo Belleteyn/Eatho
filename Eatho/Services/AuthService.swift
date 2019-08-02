@@ -55,7 +55,7 @@ class AuthService {
             "password": password
         ]
         
-        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER)
+        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER)
             .responseJSON(completionHandler: {
             (response) in
             switch response.result {
@@ -74,7 +74,7 @@ class AuthService {
             "email": email,
             "password": password
         ]
-        Alamofire.request(URL_LOGIN, method: .get, parameters: params, encoding: URLEncoding.default, headers: AUTH_HEADER)
+        Alamofire.request(URL_LOGIN, method: .get, parameters: params, encoding: URLEncoding.default, headers: JSON_HEADER)
             .responseJSON(completionHandler: {
             (response) in
             switch response.result {

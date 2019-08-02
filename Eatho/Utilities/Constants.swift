@@ -37,7 +37,7 @@ let NOTIF_FOOD_DATA_CHANGED = Notification.Name("foodDataChanged")
 let NOTIF_USER_ACTIVITY_LEVEL_CHANGED = Notification.Name("userActivityLevelChanged")
 
 // headers
-let AUTH_HEADER: [String : String] = ["Content-Type": "application/json; charset=utf-8"]
+let JSON_HEADER: [String : String] = ["Content-Type": "application/json; charset=utf-8"]
 
 // segues
 let TO_LOGIN_SEGUE = "toLoginSegue"

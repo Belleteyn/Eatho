@@ -25,7 +25,7 @@ class DataService {
             "token": AuthService.instance.token
         ]
         
-        Alamofire.request(URL_AVAILABLE, method: .get, parameters: params, encoding: URLEncoding.default, headers: AUTH_HEADER).responseJSON { (response) in
+        Alamofire.request(URL_AVAILABLE, method: .get, parameters: params, encoding: URLEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
             switch response.result {
             case .success:
                 do {
@@ -69,7 +69,7 @@ class DataService {
             ]
         ]
         
-        Alamofire.request(URL_ADD_FOOD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER).responseJSON { (response) in
+        Alamofire.request(URL_ADD_FOOD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
             switch response.result {
             case .success:
                 guard let data = response.data else { return }
@@ -86,7 +86,7 @@ class DataService {
                     ]
                 ]
                 
-                Alamofire.request(URL_ADD_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: AUTH_HEADER).responseJSON { (response) in
+                Alamofire.request(URL_ADD_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
                     switch response.result {
                     case .success:
                         guard let data = response.data else { return }
