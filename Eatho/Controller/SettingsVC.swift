@@ -47,7 +47,12 @@ class SettingsVC: UIViewController {
         if AuthService.instance.isLoggedIn && SettingsService.instance.isConfigured {
             //todo request settings
             setupData()
-        } else {
+        } 
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        if !AuthService.instance.isLoggedIn || !SettingsService.instance.isConfigured {
             self.tabBarController?.tabBar.items?[4].badgeValue = "!"
         }
     }
