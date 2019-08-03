@@ -52,3 +52,4 @@ let UNWIND_TO_WELCOME = "unwindToWelcome"
 //  colors
 let LOGIN_PLACEHOLDER_COLOR = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.604291524)
 let TEXT_COLOR = #colorLiteral(red: 0.3698856235, green: 0.4013975859, blue: 0.4641202092, alpha: 1)
+let LIGHT_TEXT_COLOR = #colorLiteral(red: 0.6431372549, green: 0.6784313725, blue: 0.7529411765, alpha: 1)

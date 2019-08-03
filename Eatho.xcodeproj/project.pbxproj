@@ -32,6 +32,7 @@
 		956D437422F316E20091C9C4 /* KeyboardBindedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D437322F316E20091C9C4 /* KeyboardBindedView.swift */; };
 		956D437822F377820091C9C4 /* NutritionFacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D437722F377820091C9C4 /* NutritionFacts.swift */; };
 		956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D437922F377F30091C9C4 /* UserInfo.swift */; };
+		956D437C22F579BF0091C9C4 /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956D437B22F579BF0091C9C4 /* LabeledTextField.swift */; };
 		9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9572F90D22E5AD7E009C7B7B /* GradientView.swift */; };
 		958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81222E971E700DC6EB6 /* AuthService.swift */; };
 		958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81522E977BA00DC6EB6 /* Constants.swift */; };
@@ -97,6 +98,7 @@
 		956D437322F316E20091C9C4 /* KeyboardBindedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardBindedView.swift; sourceTree = "<group>"; };
 		956D437722F377820091C9C4 /* NutritionFacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionFacts.swift; sourceTree = "<group>"; };
 		956D437922F377F30091C9C4 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		956D437B22F579BF0091C9C4 /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
 		9572F90D22E5AD7E009C7B7B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		958CD81222E971E700DC6EB6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		958CD81522E977BA00DC6EB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				958CD81722E9CEA600DC6EB6 /* EathoButton.swift */,
 				95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */,
 				956D437322F316E20091C9C4 /* KeyboardBindedView.swift */,
+				956D437B22F579BF0091C9C4 /* LabeledTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */,
 				956D437422F316E20091C9C4 /* KeyboardBindedView.swift in Sources */,
 				95F9711F22EE45AE00BD6B87 /* BarcodeButton.swift in Sources */,
+				956D437C22F579BF0091C9C4 /* LabeledTextField.swift in Sources */,
 				9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */,
 				95512ABF22F0898A0038790F /* ShopListVC.swift in Sources */,
 				952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */,
