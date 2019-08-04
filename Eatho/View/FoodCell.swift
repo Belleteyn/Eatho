@@ -40,6 +40,13 @@ class FoodCell: UITableViewCell {
         cardView.layer.cornerRadius = 6.0
         cardView.clipsToBounds = true
     }
+    
+    //TODO:
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
 
     @IBAction func onAddBtnClicked(_ sender: Any) {
         addButtonState = !addButtonState

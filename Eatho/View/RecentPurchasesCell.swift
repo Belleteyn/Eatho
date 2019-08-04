@@ -10,6 +10,8 @@ import UIKit
 
 class RecentPurchasesCell: UITableViewCell {
 
+    @IBOutlet weak var name: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +22,11 @@ class RecentPurchasesCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func updateView(name: String) {
+        self.name.text = name
+    }
 
+    @IBAction func selectionButtonClicked(_ sender: Any) {
+    }
 }

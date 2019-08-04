@@ -606,7 +606,7 @@
                                 <color key="tintColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="selectedImageTintColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dza-gx-fBs">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dza-gx-fBs">
                                 <rect key="frame" x="0.0" y="49" width="414" height="676"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -630,6 +630,9 @@
                                                         <constraint firstAttribute="height" constant="20" id="Wfe-2J-Qk9"/>
                                                     </constraints>
                                                     <state key="normal" image="content_item_add_to_ration"/>
+                                                    <connections>
+                                                        <action selector="selectionButtonClicked:" destination="svv-lT-v8w" eventType="touchUpInside" id="fGr-Av-Qcn"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -639,6 +642,9 @@
                                                 <constraint firstItem="xEh-Ht-V9x" firstAttribute="centerY" secondItem="VW4-hB-1w2" secondAttribute="centerY" id="uZ4-x6-oqy"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="xEh-Ht-V9x" id="R2d-Xi-MQj"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingListCell" id="ff0-ex-pJJ" customClass="ShoppingListCell" customModule="Eatho" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="414" height="44"/>
@@ -660,6 +666,9 @@
                                                         <constraint firstAttribute="height" constant="20" id="v5z-eI-tXi"/>
                                                     </constraints>
                                                     <state key="normal" image="content_list_unchecked"/>
+                                                    <connections>
+                                                        <action selector="selectionButtonClicked:" destination="ff0-ex-pJJ" eventType="touchUpInside" id="rNy-D9-Gd1"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -669,6 +678,10 @@
                                                 <constraint firstItem="0rE-UJ-hes" firstAttribute="centerY" secondItem="fkq-6x-HjQ" secondAttribute="centerY" id="kic-mp-f4X"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="0rE-UJ-hes" id="jxR-Er-Xug"/>
+                                            <outlet property="selectedButton" destination="VUJ-ca-Baa" id="yfI-Cf-aHL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -686,6 +699,10 @@
                         <viewLayoutGuide key="safeArea" id="dkC-wh-ET1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shopping List" id="9Vw-I6-L7T"/>
+                    <connections>
+                        <outlet property="shopListTabBar" destination="upw-xm-DFE" id="bsu-kI-xsE"/>
+                        <outlet property="shopListTableView" destination="dza-gx-fBs" id="Mqc-k2-GRt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rg-Hr-1q5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
