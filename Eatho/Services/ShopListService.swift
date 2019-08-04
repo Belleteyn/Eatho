@@ -23,4 +23,13 @@ class ShopListService {
         "Cheese",
         "Wholegrain rue bread"
     ]
+    
+    func selectRecent(name: String) {
+        list[name] = false
+        mostRecentList = mostRecentList.filter { $0 != name }
+    }
+    
+    func chageSelectionInShoppingList(key: String, value: Bool) {
+        list[key] = value
+    }
 }

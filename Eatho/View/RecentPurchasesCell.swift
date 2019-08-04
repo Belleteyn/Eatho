@@ -28,5 +28,6 @@ class RecentPurchasesCell: UITableViewCell {
     }
 
     @IBAction func selectionButtonClicked(_ sender: Any) {
+        ShopListService.instance.selectRecent(name: self.name.text!)
     }
 }

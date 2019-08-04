@@ -19,13 +19,6 @@ class ShoppingListCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        selectionState = !selectionState
-        selectionStateChangedHandle()
-    }
     
     func updateView(name: String, selectionState: Bool) {
         self.name.text = name
@@ -34,6 +27,7 @@ class ShoppingListCell: UITableViewCell {
     }
     
     func selectionStateChangedHandle() {
+        print("selection state change -> \(name.text!): \(selectionState)")
         if selectionState {
             selectedButton.setImage(UIImage(named: "content_list_checked.png"), for: .normal)
         } else {
@@ -43,6 +37,7 @@ class ShoppingListCell: UITableViewCell {
 
     @IBAction func selectionButtonClicked(_ sender: Any) {
         selectionState = !selectionState
+        ShopListService.instance.chageSelectionInShoppingList(key: self.name.text!, value: selectionState)
         selectionStateChangedHandle()
     }
 }
