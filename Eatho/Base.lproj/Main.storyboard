@@ -593,7 +593,96 @@
                     <view key="view" contentMode="scaleToFill" id="G3Z-Xj-Kua">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upw-xm-DFE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Shopping list" image="bottom_bar_shop_list" id="Kxt-pM-uUj">
+                                        <color key="badgeColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tabBarItem>
+                                    <tabBarItem systemItem="mostRecent" id="3HE-3T-EKX"/>
+                                </items>
+                                <color key="tintColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="selectedImageTintColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tabBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dza-gx-fBs">
+                                <rect key="frame" x="0.0" y="49" width="414" height="676"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recentPurchasesCell" id="svv-lT-v8w" customClass="RecentPurchasesCell" customModule="Eatho" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="svv-lT-v8w" id="VW4-hB-1w2">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEh-Ht-V9x">
+                                                    <rect key="frame" x="20" y="13.333333333333336" width="48" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8NA-Ol-kap">
+                                                    <rect key="frame" x="374" y="12" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="DEV-b9-q0W"/>
+                                                        <constraint firstAttribute="height" constant="20" id="Wfe-2J-Qk9"/>
+                                                    </constraints>
+                                                    <state key="normal" image="content_item_add_to_ration"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xEh-Ht-V9x" firstAttribute="leading" secondItem="VW4-hB-1w2" secondAttribute="leadingMargin" id="Ttk-RL-UVR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8NA-Ol-kap" secondAttribute="trailing" id="nBM-gK-c9A"/>
+                                                <constraint firstItem="8NA-Ol-kap" firstAttribute="centerY" secondItem="VW4-hB-1w2" secondAttribute="centerY" id="nmC-Be-A2R"/>
+                                                <constraint firstItem="xEh-Ht-V9x" firstAttribute="centerY" secondItem="VW4-hB-1w2" secondAttribute="centerY" id="uZ4-x6-oqy"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingListCell" id="ff0-ex-pJJ" customClass="ShoppingListCell" customModule="Eatho" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ff0-ex-pJJ" id="fkq-6x-HjQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rE-UJ-hes">
+                                                    <rect key="frame" x="56" y="13.333333333333336" width="48" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUJ-ca-Baa">
+                                                    <rect key="frame" x="20" y="12" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="ON7-CX-sGQ"/>
+                                                        <constraint firstAttribute="height" constant="20" id="v5z-eI-tXi"/>
+                                                    </constraints>
+                                                    <state key="normal" image="content_list_unchecked"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VUJ-ca-Baa" firstAttribute="centerY" secondItem="fkq-6x-HjQ" secondAttribute="centerY" id="IBh-Vu-41U"/>
+                                                <constraint firstItem="VUJ-ca-Baa" firstAttribute="leading" secondItem="fkq-6x-HjQ" secondAttribute="leadingMargin" id="MZa-w2-AnI"/>
+                                                <constraint firstItem="0rE-UJ-hes" firstAttribute="leading" secondItem="VUJ-ca-Baa" secondAttribute="trailing" constant="16" id="iEu-Fg-2Z8"/>
+                                                <constraint firstItem="0rE-UJ-hes" firstAttribute="centerY" secondItem="fkq-6x-HjQ" secondAttribute="centerY" id="kic-mp-f4X"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dza-gx-fBs" firstAttribute="leading" secondItem="dkC-wh-ET1" secondAttribute="leading" id="71Y-KV-Hgn"/>
+                            <constraint firstItem="dkC-wh-ET1" firstAttribute="bottom" secondItem="dza-gx-fBs" secondAttribute="bottom" id="MeO-NU-vIY"/>
+                            <constraint firstItem="upw-xm-DFE" firstAttribute="top" secondItem="G3Z-Xj-Kua" secondAttribute="top" id="Q3q-kj-ZM3"/>
+                            <constraint firstItem="upw-xm-DFE" firstAttribute="bottom" secondItem="dza-gx-fBs" secondAttribute="top" id="T5e-RE-kUD"/>
+                            <constraint firstItem="upw-xm-DFE" firstAttribute="leading" secondItem="dkC-wh-ET1" secondAttribute="leading" id="T8c-nu-6oM"/>
+                            <constraint firstItem="upw-xm-DFE" firstAttribute="trailing" secondItem="dkC-wh-ET1" secondAttribute="trailing" id="Tr8-EK-NBr"/>
+                            <constraint firstItem="dkC-wh-ET1" firstAttribute="trailing" secondItem="dza-gx-fBs" secondAttribute="trailing" id="bg0-oi-eT1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dkC-wh-ET1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shopping List" id="9Vw-I6-L7T"/>
@@ -1456,6 +1545,7 @@
         <image name="bottom_bar_shop_list" width="24" height="18.666666030883789"/>
         <image name="content_barcode" width="20" height="16"/>
         <image name="content_item_add_to_ration" width="26.666666030883789" height="26.666666030883789"/>
+        <image name="content_list_unchecked" width="26.666666030883789" height="26.666666030883789"/>
         <image name="logo" width="137.33332824707031" height="136"/>
     </resources>
 </document>
