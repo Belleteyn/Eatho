@@ -13,6 +13,7 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     // Outlets
     @IBOutlet weak var shopListTabBar: UITabBar!
     @IBOutlet weak var shopListTableView: UITableView!
+    @IBOutlet weak var insertionTxt: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,10 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         shopListTableView.reloadData()
+        UIView.animate(withDuration: 0.3, animations:  {
+            self.insertionTxt.isHidden = (self.shopListTabBar.selectedItem != self.shopListTabBar.items?.first)
+            self.view.layoutIfNeeded()
+        })
     }
     
     // table view

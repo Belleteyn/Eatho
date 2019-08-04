@@ -606,8 +606,23 @@
                                 <color key="tintColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="selectedImageTintColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tabBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tjr-J8-yoc">
+                                <rect key="frame" x="16" y="65" width="382" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add new item" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CEN-Wg-51h">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
+                                        <color key="backgroundColor" red="0.89411764705882346" green="0.89803921568627454" blue="0.93725490196078431" alpha="0.52643407534246578" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="esY-R7-Qed"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dza-gx-fBs">
-                                <rect key="frame" x="0.0" y="49" width="414" height="676"/>
+                                <rect key="frame" x="0.0" y="121" width="414" height="604"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recentPurchasesCell" id="svv-lT-v8w" customClass="RecentPurchasesCell" customModule="Eatho" customModuleProvider="target">
@@ -688,18 +703,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Tjr-J8-yoc" firstAttribute="leading" secondItem="dkC-wh-ET1" secondAttribute="leading" constant="16" id="54T-K5-4qU"/>
                             <constraint firstItem="dza-gx-fBs" firstAttribute="leading" secondItem="dkC-wh-ET1" secondAttribute="leading" id="71Y-KV-Hgn"/>
+                            <constraint firstItem="dkC-wh-ET1" firstAttribute="trailing" secondItem="Tjr-J8-yoc" secondAttribute="trailing" constant="16" id="D90-Ab-PVe"/>
                             <constraint firstItem="dkC-wh-ET1" firstAttribute="bottom" secondItem="dza-gx-fBs" secondAttribute="bottom" id="MeO-NU-vIY"/>
                             <constraint firstItem="upw-xm-DFE" firstAttribute="top" secondItem="G3Z-Xj-Kua" secondAttribute="top" id="Q3q-kj-ZM3"/>
-                            <constraint firstItem="upw-xm-DFE" firstAttribute="bottom" secondItem="dza-gx-fBs" secondAttribute="top" id="T5e-RE-kUD"/>
                             <constraint firstItem="upw-xm-DFE" firstAttribute="leading" secondItem="dkC-wh-ET1" secondAttribute="leading" id="T8c-nu-6oM"/>
                             <constraint firstItem="upw-xm-DFE" firstAttribute="trailing" secondItem="dkC-wh-ET1" secondAttribute="trailing" id="Tr8-EK-NBr"/>
-                            <constraint firstItem="dkC-wh-ET1" firstAttribute="trailing" secondItem="dza-gx-fBs" secondAttribute="trailing" id="bg0-oi-eT1"/>
+                            <constraint firstItem="Tjr-J8-yoc" firstAttribute="top" secondItem="upw-xm-DFE" secondAttribute="bottom" constant="16" id="nrh-cI-3Sd"/>
+                            <constraint firstItem="dza-gx-fBs" firstAttribute="trailing" secondItem="dkC-wh-ET1" secondAttribute="trailing" id="r5C-Ki-pCn"/>
+                            <constraint firstItem="dza-gx-fBs" firstAttribute="top" secondItem="Tjr-J8-yoc" secondAttribute="bottom" constant="16" id="sIR-SO-KMh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dkC-wh-ET1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shopping List" id="9Vw-I6-L7T"/>
                     <connections>
+                        <outlet property="insertionTxt" destination="CEN-Wg-51h" id="a0c-i7-4yV"/>
                         <outlet property="shopListTabBar" destination="upw-xm-DFE" id="bsu-kI-xsE"/>
                         <outlet property="shopListTableView" destination="dza-gx-fBs" id="Mqc-k2-GRt"/>
                     </connections>
