@@ -24,6 +24,10 @@ class ShopListService {
         "Wholegrain rue bread"
     ]
     
+    func addItem(name: String) {
+        list[name] = false
+    }
+    
     func selectRecent(name: String) {
         list[name] = false
         mostRecentList = mostRecentList.filter { $0 != name }

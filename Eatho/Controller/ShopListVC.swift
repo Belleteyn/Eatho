@@ -23,8 +23,13 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         shopListTabBar.delegate = self
         shopListTabBar.selectedItem = shopListTabBar.items?.first
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandle))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
+    // tab bar
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         shopListTableView.reloadData()
         UIView.animate(withDuration: 0.3, animations:  {
@@ -61,5 +66,19 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
         
         return UITableViewCell()
+    }
+    
+    // handlers
+    @objc func tapHandle() {
+        view.endEditing(true)
+    }
+    
+    // Actions
+    @IBAction func insertionStringHandle(_ sender: Any) {
+        if (insertionTxt.text != "") {
+            ShopListService.instance.addItem(name: insertionTxt.text!)
+            shopListTableView.reloadData()
+            insertionTxt.text = ""
+        }
     }
 }

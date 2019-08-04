@@ -618,6 +618,9 @@
                                         <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="insertionStringHandle:" destination="SNz-WS-W8Y" eventType="editingDidEndOnExit" id="VbT-nL-KFK"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
