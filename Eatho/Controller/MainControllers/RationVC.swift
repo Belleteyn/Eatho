@@ -34,14 +34,27 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell") as? RationFoodCell {
-            cell.updateViews(foodItem: RationService.instance.ration[indexPath.row])
-            return cell
+            if (indexPath.row < RationService.instance.ration.count) {
+                cell.updateViews(foodItem: RationService.instance.ration[indexPath.row])
+                return cell
+            }
         }
-        return UITableViewCell()
+        return RationFoodCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            RationService.instance.removeItem(index: indexPath.row)
+            success(true)
+            self.rationTableView.reloadData()
+        }
+        removeAction.backgroundColor = EATHO_RED
+        
+        return UISwipeActionsConfiguration(actions: [removeAction])
     }
     
     // handlers

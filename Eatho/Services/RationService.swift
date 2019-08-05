@@ -19,6 +19,10 @@ class RationService {
         ration = []
     }
     
+    func removeItem(index: Int) {
+        ration.remove(at: index)
+    }
+    
     func requestRation(handler: @escaping CompletionHandler) {
         let query = [
             "email": AuthService.instance.userEmail,
@@ -33,11 +37,8 @@ class RationService {
                     
                     self.ration = []
                     guard let ration = json["ration"].array else { return }
-                    print(ration)
-                    
                     for item in ration {
                         self.ration.append(self.parseFoodItem(item: item))
-                        print(self.ration.count)
                     }
                     
                     handler(true)

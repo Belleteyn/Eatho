@@ -55,12 +55,13 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell") as? AvailableFoodCell {
-            let food = DataService.instance.foods[indexPath.row]
-            cell.updateViews(foodItem: food)
-            return cell
-        } else {
-            return AvailableFoodCell()
+            if (indexPath.row < DataService.instance.foods.count) {
+                let food = DataService.instance.foods[indexPath.row]
+                cell.updateViews(foodItem: food)
+                return cell
+            }
         }
+        return AvailableFoodCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
