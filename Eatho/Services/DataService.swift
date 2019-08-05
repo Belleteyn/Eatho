@@ -44,7 +44,6 @@ class DataService {
                         }
                         
                         handler(true)
-                        NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
                     }
                 } catch let error {
                     debugPrint("available foods json parsing error:", error)

@@ -35,7 +35,9 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // handlers
     @objc private func loadData() {
         if AuthService.instance.isLoggedIn {
-            DataService.instance.requestAvailableFoodItems(handler: { (success) in })
+            DataService.instance.requestAvailableFoodItems(handler: { (success) in
+                self.foodTable.reloadData()
+            })
         } else {
             DataService.instance.clearData()
             self.foodTable.reloadData()
