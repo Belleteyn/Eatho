@@ -19,6 +19,10 @@ class DataService {
         foods = []
     }
     
+    func removeItem(index: Int) {
+        foods.remove(at: index)
+    }
+    
     func requestAvailableFoodItems(handler: @escaping CompletionHandler) {
         let params = [
             "email": AuthService.instance.userEmail,

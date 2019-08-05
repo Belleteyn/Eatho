@@ -37,6 +37,7 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.foodTable.reloadData()
     }
     
+    // table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataService.instance.foods.count
     }
@@ -51,8 +52,17 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            DataService.instance.removeItem(index: indexPath.row)
+            success(true)
+        }
+        removeAction.backgroundColor = EATHO_RED
+        
+        return UISwipeActionsConfiguration(actions: [removeAction])
     }
 }
