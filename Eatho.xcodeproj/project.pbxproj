@@ -41,9 +41,10 @@
 		958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81522E977BA00DC6EB6 /* Constants.swift */; };
 		958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81722E9CEA600DC6EB6 /* EathoButton.swift */; };
 		958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */; };
-		95A05A1B22F84CC2002A35B9 /* RaionFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1A22F84CC2002A35B9 /* RaionFoodCell.swift */; };
+		95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */; };
 		95A05A1F22F84D2B002A35B9 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1D22F84D2B002A35B9 /* FoodCell.swift */; };
 		95A05A2022F84D2B002A35B9 /* FoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A05A1E22F84D2B002A35B9 /* FoodCell.xib */; };
+		95A05A2222F86D04002A35B9 /* RationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A2122F86D04002A35B9 /* RationService.swift */; };
 		95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711C22EE438600BD6B87 /* CreationVC.swift */; };
 		95F9711F22EE45AE00BD6B87 /* BarcodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */; };
 		98770598EA10BDF9C007DAE1 /* Pods_EathoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35640F6AB094A3B244160383 /* Pods_EathoTests.framework */; };
@@ -113,9 +114,10 @@
 		958CD81522E977BA00DC6EB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		958CD81722E9CEA600DC6EB6 /* EathoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoButton.swift; sourceTree = "<group>"; };
 		958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
-		95A05A1A22F84CC2002A35B9 /* RaionFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaionFoodCell.swift; sourceTree = "<group>"; };
+		95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationFoodCell.swift; sourceTree = "<group>"; };
 		95A05A1D22F84D2B002A35B9 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		95A05A1E22F84D2B002A35B9 /* FoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodCell.xib; sourceTree = "<group>"; };
+		95A05A2122F86D04002A35B9 /* RationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationService.swift; sourceTree = "<group>"; };
 		95F9711C22EE438600BD6B87 /* CreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationVC.swift; sourceTree = "<group>"; };
 		95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeButton.swift; sourceTree = "<group>"; };
 		C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,10 +177,11 @@
 		952A6B7222E27B1300FD8D50 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				952A6B7322E27B2700FD8D50 /* DataService.swift */,
 				958CD81222E971E700DC6EB6 /* AuthService.swift */,
+				952A6B7322E27B2700FD8D50 /* DataService.swift */,
 				95512AC422F0D3DA0038790F /* SettingsService.swift */,
 				956D438122F6B0B60091C9C4 /* ShopListService.swift */,
+				95A05A2122F86D04002A35B9 /* RationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -308,7 +311,7 @@
 				95A05A1D22F84D2B002A35B9 /* FoodCell.swift */,
 				95A05A1E22F84D2B002A35B9 /* FoodCell.xib */,
 				952A6B6E22E246C700FD8D50 /* AvailableFoodCell.swift */,
-				95A05A1A22F84CC2002A35B9 /* RaionFoodCell.swift */,
+				95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */,
 			);
 			path = FoodCell;
 			sourceTree = "<group>";
@@ -560,9 +563,10 @@
 				956D437122F2FEE00091C9C4 /* ActivityPickerVC.swift in Sources */,
 				95512AC322F089A80038790F /* SettingsVC.swift in Sources */,
 				95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */,
-				95A05A1B22F84CC2002A35B9 /* RaionFoodCell.swift in Sources */,
+				95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */,
 				952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */,
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
+				95A05A2222F86D04002A35B9 /* RationService.swift in Sources */,
 				956D437822F377820091C9C4 /* NutritionFacts.swift in Sources */,
 				95A05A1F22F84D2B002A35B9 /* FoodCell.swift in Sources */,
 				958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */,

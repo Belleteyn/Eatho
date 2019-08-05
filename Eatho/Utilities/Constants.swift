@@ -24,6 +24,9 @@ let URL_AVAILABLE_UPLOAD = "\(URL_AVAILABLE)/upload"
 
 let URL_ADD_FOOD = "\(URL_API)/food/add"
 
+let URL_RATION = "\(URL_API)/ration"
+let URL_UPD_RATION = "\(URL_API)/ration/update"
+
 let URL_SETTINGS = "\(URL_API)/settings"
 let URL_USER_DATA = "\(URL_API)/settings/userData"
 
@@ -41,6 +44,7 @@ let USER_INFO = "eathoUserInfo"
 let NOTIF_AUTH_DATA_CHANGED = Notification.Name(rawValue: "authDataChanged")
 let NOTIF_USER_DATA_CHANGED = Notification.Name(rawValue: "userDataChanged")
 let NOTIF_FOOD_DATA_CHANGED = Notification.Name("foodDataChanged")
+let NOTIF_RATION_DATA_CHANGED = Notification.Name("rationDataChanged")
 let NOTIF_SHOPPING_LIST_DATA_CHAGNED = Notification.Name("shoppingListDataChanged")
 
 let NOTIF_USER_ACTIVITY_LEVEL_CHANGED = Notification.Name("userActivityLevelChanged")

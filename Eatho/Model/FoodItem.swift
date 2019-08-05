@@ -27,6 +27,9 @@ struct FoodItem: Codable {
     private (set) public var max: Int
     private (set) public var preferred: Int
     
+    private (set) public var portion: Int
+    private (set) public var delta: Int
+    
     private (set) public var selectionState: Bool
     
     init(name: String, type: String,
@@ -34,6 +37,7 @@ struct FoodItem: Codable {
          calories: Double, proteins: Double, carbs: Double, fats: Double,
          gi: Int = 0,
          min: Int = 0, max: Int = 0, preferred: Int = 0,
+         portion: Int = 0, delta: Int = 0,
          selectionState: Bool = false,
          weightMeasure: String = "g", pcfMeasure: String = "g") {
         self.name = name
@@ -54,5 +58,8 @@ struct FoodItem: Codable {
         self.min = min
         self.max = max
         self.preferred = preferred
+        
+        self.portion = portion
+        self.delta = delta
     }
 }

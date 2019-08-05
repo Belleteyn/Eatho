@@ -8,19 +8,19 @@
 
 import UIKit
 
-class RaionFoodCell: FoodCell {
+class RationFoodCell: FoodCell {
 
     @IBOutlet weak var decreaseBtn: UIButton!
     @IBOutlet weak var increaseBtn: UIButton!
     @IBOutlet weak var portionTxt: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
+
     override func updateViews(foodItem: FoodItem) {
         super.updateViews(foodItem: foodItem)
+        
+        portionTxt.text = "\(foodItem.delta) g"
+        
+        let caloriesPerPortion = round(Double(foodItem.portion) * foodItem.calories / 100)
+        super.info.text = "\(foodItem.portion) g (\(Int(caloriesPerPortion)) kcal)"
     }
 
     @IBAction func decreaseBtnClick(_ sender: Any) {
