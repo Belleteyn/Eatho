@@ -33,11 +33,10 @@ class RationService {
             switch response.result {
             case .success:
                 if let data = response.data {
-                    let json = JSON(data)
-                    
+                    guard let json = JSON(data).array else { return }
                     self.ration = []
-                    guard let ration = json["ration"].array else { return }
-                    for item in ration {
+                    
+                    for item in json {
                         self.ration.append(self.parseFoodItem(item: item))
                     }
                     
