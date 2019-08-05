@@ -26,6 +26,9 @@ let URL_ADD_FOOD = "\(URL_API)/food/add"
 let URL_SETTINGS = "\(URL_API)/settings"
 let URL_USER_DATA = "\(URL_API)/settings/userData"
 
+let URL_SHOPPING_LIST_GET = "\(URL_API)/shoppingList"
+let URL_SHOPPING_LIST_UPD = "\(URL_API)/shoppingList/update"
+
 // user defaults
 let LOGGED_IN_KEY = "loggedIn"
 let TOKEN_KEY = "token"
@@ -37,6 +40,7 @@ let USER_INFO = "eathoUserInfo"
 let NOTIF_AUTH_DATA_CHANGED = Notification.Name(rawValue: "authDataChanged")
 let NOTIF_USER_DATA_CHANGED = Notification.Name(rawValue: "userDataChanged")
 let NOTIF_FOOD_DATA_CHANGED = Notification.Name("foodDataChanged")
+let NOTIF_SHOPPING_LIST_DATA_CHAGNED = Notification.Name("shoppingListDataChanged")
 
 let NOTIF_USER_ACTIVITY_LEVEL_CHANGED = Notification.Name("userActivityLevelChanged")
 

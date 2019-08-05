@@ -18,15 +18,31 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // table view
         shopListTableView.delegate = self
         shopListTableView.dataSource = self
         
+        // tab bar
         shopListTabBar.delegate = self
         shopListTabBar.selectedItem = shopListTabBar.items?.first
         
+        // gestures
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandle))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        
+        // notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(dataUpdateHandle), name: NOTIF_SHOPPING_LIST_DATA_CHAGNED, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ShopListService.instance.requestData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ShopListService.instance.uploadData()
     }
     
     // tab bar
@@ -71,6 +87,10 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     // handlers
     @objc func tapHandle() {
         view.endEditing(true)
+    }
+    
+    @objc func dataUpdateHandle() {
+        shopListTableView.reloadData()
     }
     
     // Actions

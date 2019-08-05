@@ -27,7 +27,6 @@ class ShoppingListCell: UITableViewCell {
     }
     
     func selectionStateChangedHandle() {
-        print("selection state change -> \(name.text!): \(selectionState)")
         if selectionState {
             selectedButton.setImage(UIImage(named: "content_list_checked.png"), for: .normal)
         } else {
