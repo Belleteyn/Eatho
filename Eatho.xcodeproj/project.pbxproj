@@ -263,17 +263,11 @@
 		95324E2E22DF616F005905FF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				95A9984F22F81DD4007DE2A4 /* Available */,
+				95A9984E22F81DA5007DE2A4 /* MainControllers */,
+				95A9984D22F81D85007DE2A4 /* AuthControllers */,
 				956D436E22F2FEB50091C9C4 /* Settings */,
 				95324E0022DF6149005905FF /* WelcomeVC.swift */,
-				95324E3022DFB978005905FF /* LoginViewController.swift */,
-				952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */,
-				958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */,
-				95F9711C22EE438600BD6B87 /* CreationVC.swift */,
-				95512ABA22F0883F0038790F /* ScanBarcodeVC.swift */,
-				95512ABC22F089790038790F /* RationVC.swift */,
-				95512ABE22F0898A0038790F /* ShopListVC.swift */,
-				95512AC022F089970038790F /* DiaryVC.swift */,
-				95512AC222F089A80038790F /* SettingsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -300,6 +294,36 @@
 				958CD81522E977BA00DC6EB6 /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		95A9984D22F81D85007DE2A4 /* AuthControllers */ = {
+			isa = PBXGroup;
+			children = (
+				95324E3022DFB978005905FF /* LoginViewController.swift */,
+				958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */,
+			);
+			path = AuthControllers;
+			sourceTree = "<group>";
+		};
+		95A9984E22F81DA5007DE2A4 /* MainControllers */ = {
+			isa = PBXGroup;
+			children = (
+				952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */,
+				95512ABC22F089790038790F /* RationVC.swift */,
+				95512ABE22F0898A0038790F /* ShopListVC.swift */,
+				95512AC022F089970038790F /* DiaryVC.swift */,
+				95512AC222F089A80038790F /* SettingsVC.swift */,
+			);
+			path = MainControllers;
+			sourceTree = "<group>";
+		};
+		95A9984F22F81DD4007DE2A4 /* Available */ = {
+			isa = PBXGroup;
+			children = (
+				95F9711C22EE438600BD6B87 /* CreationVC.swift */,
+				95512ABA22F0883F0038790F /* ScanBarcodeVC.swift */,
+			);
+			path = Available;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
