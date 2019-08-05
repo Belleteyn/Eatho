@@ -84,6 +84,25 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let trashAction = UIContextualAction(style: .normal, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            
+            if self.shopListTabBar.selectedItem == self.shopListTabBar.items?.first {
+                let list = ShopListService.instance.list
+                let index = list.index(list.startIndex, offsetBy: indexPath.row)
+                ShopListService.instance.removeItemFromShopList(index: index)
+            } else {
+                ShopListService.instance.removeItemFromRecent(index: indexPath.row)
+            }
+            
+            self.shopListTableView.reloadData()
+            success(true)
+        }
+        trashAction.backgroundColor = EATHO_RED
+        
+        return UISwipeActionsConfiguration(actions: [trashAction])
+    }
+    
     // handlers
     @objc func tapHandle() {
         view.endEditing(true)

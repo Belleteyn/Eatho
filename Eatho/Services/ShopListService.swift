@@ -20,6 +20,14 @@ class ShopListService {
         list[name] = false
     }
     
+    func removeItemFromShopList(index: Dictionary<String, Bool>.Index) {
+        list.remove(at: index)
+    }
+    
+    func removeItemFromRecent(index: Int) {
+        mostRecentList.remove(at: index)
+    }
+    
     func selectRecent(name: String) {
         list[name] = false
         mostRecentList = mostRecentList.filter { $0 != name }
