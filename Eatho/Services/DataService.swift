@@ -112,6 +112,29 @@ class DataService {
         }
     }
     
+    func uploadData() {
+        var body: JSON = [
+            "email": AuthService.instance.userEmail,
+            "token": AuthService.instance.token
+        ]
+        
+        do {
+            let encodedData = try JSONEncoder().encode(foods)
+            body["data"] = try JSON(data: encodedData)
+            
+            Alamofire.request(URL_AVAILABLE_UPLOAD, method: .post, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+                switch response.result {
+                case .success:
+                    print("available data uploaded successfully")
+                case .failure(let err):
+                    debugPrint(err)
+                }
+            }
+        } catch let err {
+            debugPrint(err)
+        }
+    }
+    
     private func parseFoodItem(item: JSON) -> FoodItem {
         let name = item["food"]["name"]["en"].string ?? ""
         let type = item["food"]["type"].string ?? ""

@@ -24,6 +24,15 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         loadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if AuthService.instance.isLoggedIn {
+            DataService.instance.uploadData()
+        }
+    }
+    
+    // handlers
     @objc private func loadData() {
         if AuthService.instance.isLoggedIn {
             DataService.instance.requestAvailableFoodItems(handler: { (success) in })

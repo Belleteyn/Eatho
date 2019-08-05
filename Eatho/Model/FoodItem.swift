@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FoodItem {
+struct FoodItem: Codable {
     private (set) public var name: String
     private (set) public var type: String
     private (set) public var icon: String
