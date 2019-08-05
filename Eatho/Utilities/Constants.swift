@@ -20,7 +20,7 @@ let URL_LOGIN = "\(URL_BASE)/auth/login"
 
 let URL_AVAILABLE = "\(URL_API)/available"
 let URL_ADD_AVAILABLE = "\(URL_AVAILABLE)/add"
-let URL_AVAILABLE_UPLOAD = "\(URL_AVAILABLE)/upload"
+let URL_AVAILABLE_UPDATE = "\(URL_AVAILABLE)/update"
 
 let URL_ADD_FOOD = "\(URL_API)/food/add"
 

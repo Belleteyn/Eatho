@@ -121,10 +121,10 @@ class DataService {
             let encodedData = try JSONEncoder().encode(foods)
             body["data"] = try JSON(data: encodedData)
             
-            Alamofire.request(URL_AVAILABLE_UPLOAD, method: .post, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+            Alamofire.request(URL_AVAILABLE_UPDATE, method: .post, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
                 switch response.result {
                 case .success:
-                    print("available data uploaded successfully")
+                    print("available data updated successfully")
                 case .failure(let err):
                     debugPrint(err)
                 }

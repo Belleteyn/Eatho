@@ -179,9 +179,9 @@
 			children = (
 				958CD81222E971E700DC6EB6 /* AuthService.swift */,
 				952A6B7322E27B2700FD8D50 /* DataService.swift */,
+				95A05A2122F86D04002A35B9 /* RationService.swift */,
 				95512AC422F0D3DA0038790F /* SettingsService.swift */,
 				956D438122F6B0B60091C9C4 /* ShopListService.swift */,
-				95A05A2122F86D04002A35B9 /* RationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
