@@ -23,10 +23,17 @@ class ShopListService {
     func selectRecent(name: String) {
         list[name] = false
         mostRecentList = mostRecentList.filter { $0 != name }
+        
+        NotificationCenter.default.post(name: NOTIF_SHOPPING_LIST_DATA_CHAGNED, object: nil)
     }
     
     func chageSelectionInShoppingList(key: String, value: Bool) {
         list[key] = value
+        
+        if value {
+            mostRecentList = mostRecentList.filter { $0 != key } //remove prev occurances if any
+            mostRecentList.append(key)
+        }
     }
     
     func requestData() {
@@ -38,9 +45,9 @@ class ShopListService {
         Alamofire.request(URL_SHOPPING_LIST_GET, method: .get, parameters: query, encoding: URLEncoding.default).validate().responseJSON { (response) in
             switch (response.result) {
             case .success:
-                do {
-                    let json = try JSON(response.data)
-                    print(json)
+                if let data =  response.data {
+                    let json = JSON(data)
+                    
                     if let shoppingList = json["shoppingList"].dictionaryObject as? [String : Bool] {
                         self.list = shoppingList
                     }
@@ -50,8 +57,6 @@ class ShopListService {
                     }
                     
                     NotificationCenter.default.post(name: NOTIF_SHOPPING_LIST_DATA_CHAGNED, object: nil)
-                } catch let err {
-                    debugPrint(err)
                 }
             case .failure(let error):
                 debugPrint(error)
@@ -60,11 +65,13 @@ class ShopListService {
     }
     
     func uploadData() {
+        list = list.filter({ !$1 })
+        
         let body: [String: Any] = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
-            "shoppingList": list, //todo to json
-            "recentPurchases": mostRecentList //todo to json
+            "shoppingList": list,
+            "recentPurchases": mostRecentList
         ]
         
         Alamofire.request(URL_SHOPPING_LIST_UPD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
