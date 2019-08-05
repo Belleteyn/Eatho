@@ -10,7 +10,18 @@ import UIKit
 
 class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // Outlets
     @IBOutlet weak var rationTableView: UITableView!
+    
+    @IBOutlet weak var carbsView: UIView!
+    @IBOutlet weak var fatsView: UIView!
+    @IBOutlet weak var proteinsView: UIView!
+    
+    @IBOutlet weak var rationCaloriesLbl: UILabel!
+    @IBOutlet weak var expectedCaloriesLbl: UILabel!
+    @IBOutlet weak var carbsLbl: UILabel!
+    @IBOutlet weak var fatsLbl: UILabel!
+    @IBOutlet weak var proteinsLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +34,14 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
         
         RationService.instance.requestRation { (success) in
-            self.rationTableView.reloadData()
+            self.updateView()
         }
+    }
+    
+    func updateView() {
+        rationTableView.reloadData()
+        
+        //TODO: update top view data
     }
     
     // table view
@@ -66,6 +83,6 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func dataChangedHandle() {
-        rationTableView.reloadData()
+        updateView()
     }
 }
