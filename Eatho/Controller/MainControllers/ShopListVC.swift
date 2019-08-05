@@ -32,11 +32,10 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         view.addGestureRecognizer(tap)
         
         // notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(authDataChanged), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dataUpdateHandle), name: NOTIF_SHOPPING_LIST_DATA_CHAGNED, object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        // init data
         ShopListService.instance.requestData()
     }
     
@@ -109,6 +108,15 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     @objc func dataUpdateHandle() {
+        shopListTableView.reloadData()
+    }
+    
+    @objc func authDataChanged() {
+        if AuthService.instance.isLoggedIn {
+            ShopListService.instance.requestData()
+        } else {
+            ShopListService.instance.clearData()
+        }
         shopListTableView.reloadData()
     }
     

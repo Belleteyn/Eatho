@@ -44,6 +44,11 @@ class ShopListService {
         }
     }
     
+    func clearData() {
+        list = [:]
+        mostRecentList = []
+    }
+    
     func requestData() {
         let query = [
             "email": AuthService.instance.userEmail,
