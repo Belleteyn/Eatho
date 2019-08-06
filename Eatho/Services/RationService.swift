@@ -13,7 +13,25 @@ import SwiftyJSON
 class RationService {
     static let instance = RationService()
     
-    var ration: [FoodItem] = []
+    public private(set) var calories: Double = 0
+    public private(set) var proteins: Double = 0
+    public private(set) var carbs: Double = 0
+    public private(set) var fats: Double = 0
+    public private(set) var ration: [FoodItem] = [] {
+        didSet {
+            calories = 0
+            proteins = 0
+            carbs = 0
+            fats = 0
+            
+            for food in ration {
+                calories += food.calories
+                proteins += food.proteins
+                carbs += food.carbs
+                fats += food.fats
+            }
+        }
+    }
     
     func clearData() {
         ration = []

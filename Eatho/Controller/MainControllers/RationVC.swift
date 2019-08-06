@@ -39,7 +39,17 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func updateView() {
         rationTableView.reloadData()
         
-        //TODO: update top view data
+        rationCaloriesLbl.text = "\(Int(round(RationService.instance.calories))) kcal"
+        expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) kcal"
+        carbsLbl.text = "\(Int(round(RationService.instance.carbs))) g"
+        fatsLbl.text = "\(Int(round(RationService.instance.fats))) g"
+        proteinsLbl.text = "\(Int(round(RationService.instance.proteins))) g"
+        
+        let carbsPercent = (RationService.instance.carbs * 4.1 / RationService.instance.calories)
+        let proteinsPercent = (RationService.instance.proteins * 4.1 / RationService.instance.calories)
+        let fatsPercent = (RationService.instance.fats * 9.29 / RationService.instance.calories)
+        
+        print("carbs: \(carbsPercent), fats: \(fatsPercent), p: \(proteinsPercent)")
         nutrientRelativityView.updateView(proteinsPercent: proteinsPercent, carbsPercent: carbsPercent, fatsPercent: fatsPercent)
     }
     
