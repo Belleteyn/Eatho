@@ -13,9 +13,7 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Outlets
     @IBOutlet weak var rationTableView: UITableView!
     
-    @IBOutlet weak var carbsView: UIView!
-    @IBOutlet weak var fatsView: UIView!
-    @IBOutlet weak var proteinsView: UIView!
+    @IBOutlet weak var nutrientRelativityView: NutrientsRelativityView!
     
     @IBOutlet weak var rationCaloriesLbl: UILabel!
     @IBOutlet weak var expectedCaloriesLbl: UILabel!
@@ -42,6 +40,7 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         rationTableView.reloadData()
         
         //TODO: update top view data
+        nutrientRelativityView.updateView(proteinsPercent: proteinsPercent, carbsPercent: carbsPercent, fatsPercent: fatsPercent)
     }
     
     // table view

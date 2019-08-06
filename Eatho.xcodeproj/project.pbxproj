@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20EAFAAAEB8C00A73E7F3CA3 /* Pods_EathoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */; };
 		2A1DAB6A1374B9867D349312 /* Pods_Eatho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */; };
+		951D215A22F9627200A8CDB9 /* NutrientsRelativityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */; };
 		952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B6E22E246C700FD8D50 /* AvailableFoodCell.swift */; };
 		952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7022E2480200FD8D50 /* FoodItem.swift */; };
 		952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7322E27B2700FD8D50 /* DataService.swift */; };
@@ -76,6 +77,7 @@
 		3FECFA2A60F5B417A9CB9D8B /* Pods-EathoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EathoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EathoTests/Pods-EathoTests.release.xcconfig"; sourceTree = "<group>"; };
 		41FFFBAE1CF841C989C04427 /* Pods-Eatho.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatho.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatho/Pods-Eatho.release.xcconfig"; sourceTree = "<group>"; };
 		43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EathoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsRelativityView.swift; sourceTree = "<group>"; };
 		952A6B6E22E246C700FD8D50 /* AvailableFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableFoodCell.swift; sourceTree = "<group>"; };
 		952A6B7022E2480200FD8D50 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		952A6B7322E27B2700FD8D50 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				956D437B22F579BF0091C9C4 /* LabeledTextField.swift */,
 				956D437D22F6ADD40091C9C4 /* RecentPurchasesCell.swift */,
 				956D437F22F6ADF10091C9C4 /* ShoppingListCell.swift */,
+				951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */,
 				95324DFF22DF6149005905FF /* AppDelegate.swift in Sources */,
 				95512AC122F089970038790F /* DiaryVC.swift in Sources */,
+				951D215A22F9627200A8CDB9 /* NutrientsRelativityView.swift in Sources */,
 				958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */,
 				952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */,
 				958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */,
