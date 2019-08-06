@@ -19,17 +19,7 @@ class RationService {
     public private(set) var fats: Double = 0
     public private(set) var ration: [FoodItem] = [] {
         didSet {
-            calories = 0
-            proteins = 0
-            carbs = 0
-            fats = 0
-            
-            for food in ration {
-                calories += food.calories
-                proteins += food.proteins
-                carbs += food.carbs
-                fats += food.fats
-            }
+            updateRationInfo()
         }
     }
     
@@ -39,6 +29,52 @@ class RationService {
     
     func removeItem(index: Int) {
         ration.remove(at: index)
+        updateRationInfo()
+        NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+    }
+    
+    func incPortion(name: String) {
+        if let row = self.ration.firstIndex(where: { $0.name == name }) {
+            let food = ration[row]
+            let delta = food.delta
+            if Double(food.portion + delta) < food.availableWeight {
+                ration[row].updateWeight(delta: delta)
+            } else {
+                ration[row].updateWeight(delta: (Int(food.availableWeight) - food.portion))
+            }
+            
+            updateRationInfo()
+            NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+        }
+    }
+    
+    func decPortion(name: String) {
+        if let row = self.ration.firstIndex(where: { $0.name == name }) {
+            let food = ration[row]
+            let delta = food.delta
+            if food.portion - delta >= 0 {
+                ration[row].updateWeight(delta: -delta)
+            } else {
+                ration[row].updateWeight(delta: -food.portion)
+            }
+            
+            updateRationInfo()
+            NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+        }
+    }
+    
+    private func updateRationInfo() {
+        calories = 0
+        proteins = 0
+        carbs = 0
+        fats = 0
+        
+        for food in ration {
+            calories += food.calories * Double(food.portion) / 100
+            proteins += food.proteins * Double(food.portion) / 100
+            carbs += food.carbs * Double(food.portion) / 100
+            fats += food.fats * Double(food.portion) / 100
+        }
     }
     
     func requestRation(handler: @escaping CompletionHandler) {

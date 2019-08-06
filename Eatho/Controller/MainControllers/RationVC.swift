@@ -36,11 +36,17 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //to keep updated version in case if user changed calories in settings
+        expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) kcal"
+    }
+    
     func updateView() {
         rationTableView.reloadData()
         
         rationCaloriesLbl.text = "\(Int(round(RationService.instance.calories))) kcal"
-        expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) kcal"
         carbsLbl.text = "\(Int(round(RationService.instance.carbs))) g"
         fatsLbl.text = "\(Int(round(RationService.instance.fats))) g"
         proteinsLbl.text = "\(Int(round(RationService.instance.proteins))) g"
@@ -49,7 +55,6 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let proteinsPercent = (RationService.instance.proteins * 4.1 / RationService.instance.calories)
         let fatsPercent = (RationService.instance.fats * 9.29 / RationService.instance.calories)
         
-        print("carbs: \(carbsPercent), fats: \(fatsPercent), p: \(proteinsPercent)")
         nutrientRelativityView.updateView(proteinsPercent: proteinsPercent, carbsPercent: carbsPercent, fatsPercent: fatsPercent)
     }
     

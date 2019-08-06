@@ -62,4 +62,8 @@ struct FoodItem: Codable {
         self.portion = portion
         self.delta = delta
     }
+    
+    mutating func updateWeight(delta: Int) {
+        portion += delta
+    }
 }
