@@ -352,7 +352,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="alH-Nh-Mn3">
-                                <rect key="frame" x="0.0" y="56" width="414" height="840"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.92157477140426636" green="0.92155748605728149" blue="0.92156922817230225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoodCell" editingAccessoryType="disclosureIndicator" rowHeight="100" id="CUA-TR-Hoa" customClass="AvailableFoodCell" customModule="Eatho" customModuleProvider="target">
@@ -527,23 +527,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar clipsSubviews="YES" contentMode="redraw" placeholder="Search food" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qm-aT-rld">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="S7K-1k-oue"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="yes" returnKeyType="search" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="no"/>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="8qm-aT-rld" firstAttribute="top" secondItem="OJo-K7-9ad" secondAttribute="top" id="4f7-0S-juy"/>
                             <constraint firstAttribute="bottom" secondItem="alH-Nh-Mn3" secondAttribute="bottom" id="9wL-QK-889"/>
-                            <constraint firstItem="alH-Nh-Mn3" firstAttribute="top" secondItem="8qm-aT-rld" secondAttribute="bottom" id="V4v-bY-eit"/>
+                            <constraint firstItem="alH-Nh-Mn3" firstAttribute="top" secondItem="OJo-K7-9ad" secondAttribute="top" id="EX1-2p-jhp"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="ktb-id-D8g"/>
-                            <constraint firstItem="8qm-aT-rld" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="lcr-8A-Bat"/>
-                            <constraint firstItem="8qm-aT-rld" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="m7e-x0-R8z"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="oH6-Gt-3rO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7pw-90-dzu"/>
@@ -891,7 +880,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XyD-Iu-xbd"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Ration" id="9qX-JE-DO7"/>
+                    <navigationItem key="navigationItem" title="Ration" id="9qX-JE-DO7">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="2Sl-V4-KYJ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="carbsLbl" destination="tbT-kM-L11" id="F1e-K5-hc8"/>
                         <outlet property="expectedCaloriesLbl" destination="CzD-9C-OEA" id="pe9-On-5Rm"/>
