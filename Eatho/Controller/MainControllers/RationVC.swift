@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RationVC: UIViewController {
     
     // Outlets
     @IBOutlet weak var rationTableView: UITableView!
@@ -58,7 +58,20 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         nutrientRelativityView.updateView(proteinsPercent: proteinsPercent, carbsPercent: carbsPercent, fatsPercent: fatsPercent)
     }
     
-    // table view
+    // handlers
+    @objc func authChangedHandle() {
+        if !AuthService.instance.isLoggedIn {
+            RationService.instance.clearData()
+            self.rationTableView.reloadData()
+        }
+    }
+    
+    @objc func dataChangedHandle() {
+        updateView()
+    }
+}
+
+extension RationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RationService.instance.ration.count
     }
@@ -86,17 +99,5 @@ class RationVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         removeAction.backgroundColor = EATHO_RED
         
         return UISwipeActionsConfiguration(actions: [removeAction])
-    }
-    
-    // handlers
-    @objc func authChangedHandle() {
-        if !AuthService.instance.isLoggedIn {
-            RationService.instance.clearData()
-            self.rationTableView.reloadData()
-        }
-    }
-    
-    @objc func dataChangedHandle() {
-        updateView()
     }
 }

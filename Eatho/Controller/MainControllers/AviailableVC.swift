@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AviailableVC: UIViewController {
 
     @IBOutlet weak var foodTable: UITableView!
     
@@ -47,8 +47,10 @@ class AviailableVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @objc private func updateData() {
         self.foodTable.reloadData()
     }
+}
+
+extension AviailableVC: UITableViewDelegate, UITableViewDataSource {
     
-    // table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataService.instance.foods.count
     }

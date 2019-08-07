@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
+class ShopListVC: UIViewController {
 
     // Outlets
     @IBOutlet weak var shopListTabBar: UITabBar!
@@ -44,16 +44,36 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         ShopListService.instance.uploadData()
     }
     
-    // tab bar
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        shopListTableView.reloadData()
-        UIView.animate(withDuration: 0.3, animations:  {
-            self.insertionTxt.isHidden = (self.shopListTabBar.selectedItem != self.shopListTabBar.items?.first)
-            self.view.layoutIfNeeded()
-        })
+    // handlers
+    @objc func tapHandle() {
+        view.endEditing(true)
     }
     
-    // table view
+    @objc func dataUpdateHandle() {
+        shopListTableView.reloadData()
+    }
+    
+    @objc func authDataChanged() {
+        if AuthService.instance.isLoggedIn {
+            ShopListService.instance.requestData()
+        } else {
+            ShopListService.instance.clearData()
+        }
+        shopListTableView.reloadData()
+    }
+    
+    // Actions
+    @IBAction func insertionStringHandle(_ sender: Any) {
+        if (insertionTxt.text != "") {
+            ShopListService.instance.addItem(name: insertionTxt.text!)
+            shopListTableView.reloadData()
+            insertionTxt.text = ""
+        }
+    }
+}
+
+extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if shopListTabBar.selectedItem == shopListTabBar.items?.first {
             return ShopListService.instance.list.count
@@ -101,31 +121,15 @@ class ShopListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         return UISwipeActionsConfiguration(actions: [trashAction])
     }
+}
+
+extension ShopListVC: UITabBarDelegate {
     
-    // handlers
-    @objc func tapHandle() {
-        view.endEditing(true)
-    }
-    
-    @objc func dataUpdateHandle() {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         shopListTableView.reloadData()
-    }
-    
-    @objc func authDataChanged() {
-        if AuthService.instance.isLoggedIn {
-            ShopListService.instance.requestData()
-        } else {
-            ShopListService.instance.clearData()
-        }
-        shopListTableView.reloadData()
-    }
-    
-    // Actions
-    @IBAction func insertionStringHandle(_ sender: Any) {
-        if (insertionTxt.text != "") {
-            ShopListService.instance.addItem(name: insertionTxt.text!)
-            shopListTableView.reloadData()
-            insertionTxt.text = ""
-        }
+        UIView.animate(withDuration: 0.3, animations:  {
+            self.insertionTxt.isHidden = (self.shopListTabBar.selectedItem != self.shopListTabBar.items?.first)
+            self.view.layoutIfNeeded()
+        })
     }
 }
