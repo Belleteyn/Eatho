@@ -23,6 +23,17 @@ class DataService {
         foods.remove(at: index)
     }
     
+    func setSelected(name: String) {
+        if let row = foods.firstIndex(where: { $0.name == name }) {
+            if foods[row].min == 0 {
+                foods[row].min = foods[row].delta
+            } else {
+                foods[row].min = 0
+            }
+        }
+        NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
+    }
+    
     func requestAvailableFoodItems(handler: @escaping CompletionHandler) {
         let params = [
             "email": AuthService.instance.userEmail,

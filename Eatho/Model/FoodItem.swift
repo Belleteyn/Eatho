@@ -23,7 +23,7 @@ struct FoodItem: Codable {
     private (set) public var fats: Double
     private (set) public var gi: Int
     
-    private (set) public var min: Int
+    public var min: Int 
     private (set) public var max: Int
     private (set) public var preferred: Int
     
