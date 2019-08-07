@@ -352,7 +352,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="alH-Nh-Mn3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.92157477140426636" green="0.92155748605728149" blue="0.92156922817230225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoodCell" editingAccessoryType="disclosureIndicator" rowHeight="100" id="CUA-TR-Hoa" customClass="AvailableFoodCell" customModule="Eatho" customModuleProvider="target">
@@ -527,11 +527,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Fwx-pr-GQ0">
+                                <rect key="frame" x="0.0" y="88" width="414" height="0.0"/>
+                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="cgl-31-bvk"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="FdW-V3-k6v" id="lPV-KN-Up3"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="alH-Nh-Mn3" secondAttribute="bottom" id="9wL-QK-889"/>
-                            <constraint firstItem="alH-Nh-Mn3" firstAttribute="top" secondItem="OJo-K7-9ad" secondAttribute="top" id="EX1-2p-jhp"/>
+                            <constraint firstItem="alH-Nh-Mn3" firstAttribute="top" secondItem="Fwx-pr-GQ0" secondAttribute="bottom" id="EX1-2p-jhp"/>
+                            <constraint firstItem="Fwx-pr-GQ0" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="EzV-ZC-sBZ"/>
+                            <constraint firstItem="Fwx-pr-GQ0" firstAttribute="top" secondItem="7pw-90-dzu" secondAttribute="top" id="NrE-Kz-9sg"/>
+                            <constraint firstItem="Fwx-pr-GQ0" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="kJM-jp-cem"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="ktb-id-D8g"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="oH6-Gt-3rO"/>
                         </constraints>
@@ -543,6 +558,9 @@
                     <navigationItem key="navigationItem" title="Available" largeTitleDisplayMode="always" id="j0s-Wp-TpV">
                         <barButtonItem key="leftBarButtonItem" systemItem="search" id="BvJ-zg-Pet">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="searchPressed:" destination="FdW-V3-k6v" id="Rtc-2E-8IS"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hZG-AP-HNb">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -553,9 +571,20 @@
                     </navigationItem>
                     <connections>
                         <outlet property="foodTable" destination="alH-Nh-Mn3" id="ihy-8e-gOk"/>
+                        <outlet property="searchBarHeightConstraint" destination="cgl-31-bvk" id="UJh-eK-zBy"/>
+                        <outlet property="searchDisplayController" destination="brV-ZP-9fH" id="MJb-I8-uQm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6B-eh-NXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="brV-ZP-9fH">
+                    <connections>
+                        <outlet property="delegate" destination="FdW-V3-k6v" id="v9k-8P-5Qs"/>
+                        <outlet property="searchBar" destination="Fwx-pr-GQ0" id="o3Q-Vk-tAE"/>
+                        <outlet property="searchContentsController" destination="FdW-V3-k6v" id="HID-GZ-pjf"/>
+                        <outlet property="searchResultsDataSource" destination="FdW-V3-k6v" id="YD4-Xj-g1e"/>
+                        <outlet property="searchResultsDelegate" destination="FdW-V3-k6v" id="Ogk-1q-Mpp"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3170" y="767"/>
         </scene>

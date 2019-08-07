@@ -11,6 +11,8 @@ import UIKit
 class AviailableVC: UIViewController {
 
     @IBOutlet weak var foodTable: UITableView!
+    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,17 @@ class AviailableVC: UIViewController {
     
     @objc private func updateData() {
         self.foodTable.reloadData()
+    }
+    
+    @IBAction func searchPressed(_ sender: Any) {
+        UIView.animate(withDuration: 0.3) {
+            if self.searchBarHeightConstraint.constant == 0 {
+                self.searchBarHeightConstraint.constant = 56
+            } else {
+                self.searchBarHeightConstraint.constant = 0
+            }
+            self.view.layoutIfNeeded()
+        }
     }
 }
 
