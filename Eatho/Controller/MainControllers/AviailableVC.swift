@@ -13,7 +13,6 @@ class AviailableVC: UIViewController {
     @IBOutlet weak var foodTable: UITableView!
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +26,7 @@ class AviailableVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NOTIF_FOOD_DATA_CHANGED, object: nil)
         
         configureRefreshControl()
+        registerForPreviewing(with: self, sourceView: foodTable)
         loadData()
     }
     
@@ -38,12 +38,16 @@ class AviailableVC: UIViewController {
         }
     }
     
+    // Configure
+    
     func configureRefreshControl() {
         foodTable.refreshControl = UIRefreshControl()
         foodTable.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
-    // handlers
+    
+    // Handlers
+    
     @objc private func loadData() {
         if AuthService.instance.isLoggedIn {
             
@@ -64,6 +68,26 @@ class AviailableVC: UIViewController {
     @objc private func updateData() {
         self.foodTable.reloadData()
     }
+    
+    @objc func handleRefresh() {
+        DataService.instance.requestAvailableFoodItems(handler: { (success) in
+            self.foodTable.reloadData()
+            
+            // Dismiss the refresh control.
+            DispatchQueue.main.async {
+                self.foodTable.refreshControl?.endRefreshing()
+            }
+        })
+    }
+    
+    func openDetails(index: Int) {
+        guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as? DetailsVC else { return }
+        
+        present(detailsVC, animated: true, completion: nil)
+        detailsVC.initData(food: DataService.instance.foods[index])
+    }
+    
+    // Actions
     
     @IBAction func searchPressed(_ sender: Any) {
         UIView.animate(withDuration: 0.3) {
@@ -106,17 +130,34 @@ extension AviailableVC: UITableViewDelegate, UITableViewDataSource {
         }
         removeAction.backgroundColor = EATHO_RED
         
-        return UISwipeActionsConfiguration(actions: [removeAction])
+        let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Details") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            self.openDetails(index: indexPath.row)
+            success(true)
+        }
+        
+        let updateAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Update") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            success(true)
+        }
+        updateAction.backgroundColor = EATHO_YELLOW
+        
+        return UISwipeActionsConfiguration(actions: [removeAction, updateAction, revealDetailsAction])
+    }
+}
+
+extension AviailableVC: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = foodTable.indexPathForRow(at: location) else { return nil }
+        guard let cell = foodTable.cellForRow(at: indexPath) else { return nil }
+        guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as? DetailsVC else { return nil }
+        
+        detailsVC.initData(food: DataService.instance.foods[indexPath.row])
+        previewingContext.sourceRect = cell.contentView.frame
+        
+        return detailsVC
     }
     
-    @objc func handleRefresh() {
-        DataService.instance.requestAvailableFoodItems(handler: { (success) in
-            self.foodTable.reloadData()
-            
-            // Dismiss the refresh control.
-            DispatchQueue.main.async {
-                self.foodTable.refreshControl?.endRefreshing()
-            }
-        })
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
+//        show(viewControllerToCommit, sender: self)
     }
 }

@@ -48,6 +48,7 @@
 		95A05A1F22F84D2B002A35B9 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1D22F84D2B002A35B9 /* FoodCell.swift */; };
 		95A05A2022F84D2B002A35B9 /* FoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A05A1E22F84D2B002A35B9 /* FoodCell.xib */; };
 		95A05A2222F86D04002A35B9 /* RationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A2122F86D04002A35B9 /* RationService.swift */; };
+		95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446B230469BA00BAAE01 /* DetailsVC.swift */; };
 		95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711C22EE438600BD6B87 /* CreationVC.swift */; };
 		95F9711F22EE45AE00BD6B87 /* BarcodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */; };
 		98770598EA10BDF9C007DAE1 /* Pods_EathoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35640F6AB094A3B244160383 /* Pods_EathoTests.framework */; };
@@ -124,6 +125,7 @@
 		95A05A1D22F84D2B002A35B9 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		95A05A1E22F84D2B002A35B9 /* FoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodCell.xib; sourceTree = "<group>"; };
 		95A05A2122F86D04002A35B9 /* RationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationService.swift; sourceTree = "<group>"; };
+		95EF446B230469BA00BAAE01 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		95F9711C22EE438600BD6B87 /* CreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationVC.swift; sourceTree = "<group>"; };
 		95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeButton.swift; sourceTree = "<group>"; };
 		C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +350,7 @@
 			children = (
 				95F9711C22EE438600BD6B87 /* CreationVC.swift */,
 				95512ABA22F0883F0038790F /* ScanBarcodeVC.swift */,
+				95EF446B230469BA00BAAE01 /* DetailsVC.swift */,
 			);
 			path = Available;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				95512AC322F089A80038790F /* SettingsVC.swift in Sources */,
 				95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */,
 				95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */,
+				95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */,
 				952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */,
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
 				95A05A2222F86D04002A35B9 /* RationService.swift in Sources */,

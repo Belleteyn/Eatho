@@ -343,6 +343,66 @@
             </objects>
             <point key="canvasLocation" x="1191" y="-753"/>
         </scene>
+        <!--DetailsVC-->
+        <scene sceneID="Kn9-f8-M5S">
+            <objects>
+                <viewController storyboardIdentifier="DetailsVC" id="037-qn-xGA" customClass="DetailsVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TL2-7U-25E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Bf-3L-V2o">
+                                <rect key="frame" x="0.0" y="241" width="414" height="655"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QDq-z8-J14">
+                                <rect key="frame" x="0.0" y="105" width="414" height="138"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content_item_avocado" translatesAutoresizingMaskIntoConstraints="NO" id="Kzp-oK-9JB">
+                                <rect key="frame" x="20" y="64" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="Qe9-g4-YVg"/>
+                                    <constraint firstAttribute="width" constant="32" id="oDJ-2T-t2I"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avocado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i19-Kb-KEm">
+                                <rect key="frame" x="64" y="64" width="62.5" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZY-Od-Y9o">
+                                <rect key="frame" x="362" y="62" width="18" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="content_close"/>
+                                <connections>
+                                    <action selector="closePressed:" destination="037-qn-xGA" eventType="touchUpInside" id="4nO-HC-C0s"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Kzp-oK-9JB" firstAttribute="top" secondItem="fWq-pR-eca" secondAttribute="top" constant="20" id="Aar-el-il0"/>
+                            <constraint firstItem="Kzp-oK-9JB" firstAttribute="leading" secondItem="fWq-pR-eca" secondAttribute="leading" constant="20" id="VxH-i3-Bjx"/>
+                            <constraint firstItem="i19-Kb-KEm" firstAttribute="leading" secondItem="Kzp-oK-9JB" secondAttribute="trailing" constant="12" id="Wqp-7N-Ntm"/>
+                            <constraint firstItem="i19-Kb-KEm" firstAttribute="centerY" secondItem="Kzp-oK-9JB" secondAttribute="centerY" id="k9u-Kx-GMC"/>
+                            <constraint firstItem="i19-Kb-KEm" firstAttribute="top" secondItem="Kzp-oK-9JB" secondAttribute="top" id="t6F-8L-zn9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fWq-pR-eca"/>
+                    </view>
+                    <connections>
+                        <outlet property="fullInfoTableView" destination="4Bf-3L-V2o" id="MA4-Pz-zCQ"/>
+                        <outlet property="icon" destination="Kzp-oK-9JB" id="UhZ-L2-2Zc"/>
+                        <outlet property="nameLbl" destination="i19-Kb-KEm" id="P1w-HD-B8A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlR-tg-CPR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2362.3188405797105" y="769.41964285714278"/>
+        </scene>
         <!--AvailableVC-->
         <scene sceneID="4G8-a7-aIh">
             <objects>
@@ -2098,8 +2158,10 @@
         <image name="bottom_bar_settings" width="24" height="24"/>
         <image name="bottom_bar_shop_list" width="27" height="21"/>
         <image name="content_barcode" width="22.5" height="18"/>
+        <image name="content_close" width="18" height="18"/>
         <image name="content_item_1" width="48" height="48"/>
         <image name="content_item_add_to_ration" width="30" height="30"/>
+        <image name="content_item_avocado" width="48" height="48"/>
         <image name="content_item_minus" width="18" height="18"/>
         <image name="content_item_plus" width="18" height="18"/>
         <image name="content_list_unchecked" width="30" height="30"/>
