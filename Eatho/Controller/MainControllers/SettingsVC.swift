@@ -11,6 +11,8 @@ import UIKit
 class SettingsVC: UIViewController {
 
     //Outlets
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     @IBOutlet weak var caloriesTxt: UITextField!
     @IBOutlet weak var proteinsMassTxt: UITextField!
     @IBOutlet weak var proteinsPercentTxt: UITextField!

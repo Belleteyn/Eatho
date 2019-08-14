@@ -12,6 +12,7 @@ class RationVC: UIViewController {
     
     // Outlets
     @IBOutlet weak var rationTableView: UITableView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBOutlet weak var nutrientRelativityView: NutrientsRelativityView!
     

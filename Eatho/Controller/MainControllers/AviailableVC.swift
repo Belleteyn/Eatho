@@ -12,6 +12,7 @@ class AviailableVC: UIViewController {
 
     @IBOutlet weak var foodTable: UITableView!
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
@@ -20,24 +21,28 @@ class AviailableVC: UIViewController {
         foodTable.delegate = self
         foodTable.dataSource = self
         
+        spinner.hidesWhenStopped = true
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NOTIF_FOOD_DATA_CHANGED, object: nil)
         
         loadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if AuthService.instance.isLoggedIn {
-            DataService.instance.uploadData()
+        if (AuthService.instance.isLoggedIn && DataService.instance.foods.count == 0) {
+            loadData()
         }
     }
     
     // handlers
     @objc private func loadData() {
         if AuthService.instance.isLoggedIn {
+            spinner.startAnimating()
             DataService.instance.requestAvailableFoodItems(handler: { (success) in
+                self.spinner.stopAnimating()
                 self.foodTable.reloadData()
             })
         } else {
@@ -61,6 +66,7 @@ class AviailableVC: UIViewController {
         }
     }
 }
+
 
 extension AviailableVC: UITableViewDelegate, UITableViewDataSource {
     

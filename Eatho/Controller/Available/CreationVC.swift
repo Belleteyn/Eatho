@@ -23,7 +23,7 @@ class CreationVC: UIViewController {
     @IBOutlet weak var maxTxt: UITextField!
     @IBOutlet weak var preferredTxt: UITextField!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,11 +56,13 @@ class CreationVC: UIViewController {
         let max = Int(maxTxt.text!) ?? 0
         let preferred = Int(preferredTxt.text!) ?? 0
         
-        activityIndicator.startAnimating()
-        DataService.instance.addNewFood(food: FoodItem(name: name, type: type, availableWeight: available, calories: caloriesVal, proteins: proteinsVal, carbs: carbsVal, fats: fatsVal, gi: gi, min: min, max: max, preferred: preferred)) { (success) in
-            if success {
-                self.activityIndicator.stopAnimating()
+        spinner.startAnimating()
+        DataService.instance.addNewFood(food: FoodItem(id: "", name: name, type: type, availableWeight: available, calories: caloriesVal, proteins: proteinsVal, carbs: carbsVal, fats: fatsVal, gi: gi, min: min, max: max, preferred: preferred)) { (success) in
+            self.spinner.stopAnimating()
+            if success != nil {
                 self.navigationController?.popViewController(animated: true)
+            } else {
+                //todo show error
             }
         }
     }

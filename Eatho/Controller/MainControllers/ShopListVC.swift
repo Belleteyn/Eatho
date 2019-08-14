@@ -14,6 +14,7 @@ class ShopListVC: UIViewController {
     @IBOutlet weak var shopListTabBar: UITabBar!
     @IBOutlet weak var shopListTableView: UITableView!
     @IBOutlet weak var insertionTxt: UITextField!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

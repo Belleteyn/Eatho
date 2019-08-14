@@ -11,6 +11,7 @@ import UIKit
 class DiaryVC: UIViewController {
 
     @IBOutlet weak var daysPicker: UIPickerView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
