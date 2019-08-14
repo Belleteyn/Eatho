@@ -13,7 +13,7 @@ class AviailableVC: UIViewController {
     @IBOutlet weak var foodTable: UITableView!
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,7 @@ class AviailableVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NOTIF_FOOD_DATA_CHANGED, object: nil)
         
+        configureRefreshControl()
         loadData()
     }
     
@@ -37,10 +38,19 @@ class AviailableVC: UIViewController {
         }
     }
     
+    func configureRefreshControl() {
+        foodTable.refreshControl = UIRefreshControl()
+        foodTable.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    }
+    
     // handlers
     @objc private func loadData() {
         if AuthService.instance.isLoggedIn {
-            spinner.startAnimating()
+            
+            if DataService.instance.foods.count == 0 {
+                spinner.startAnimating()
+            }
+            
             DataService.instance.requestAvailableFoodItems(handler: { (success) in
                 self.spinner.stopAnimating()
                 self.foodTable.reloadData()
@@ -69,7 +79,7 @@ class AviailableVC: UIViewController {
 
 
 extension AviailableVC: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataService.instance.foods.count
     }
@@ -97,5 +107,16 @@ extension AviailableVC: UITableViewDelegate, UITableViewDataSource {
         removeAction.backgroundColor = EATHO_RED
         
         return UISwipeActionsConfiguration(actions: [removeAction])
+    }
+    
+    @objc func handleRefresh() {
+        DataService.instance.requestAvailableFoodItems(handler: { (success) in
+            self.foodTable.reloadData()
+            
+            // Dismiss the refresh control.
+            DispatchQueue.main.async {
+                self.foodTable.refreshControl?.endRefreshing()
+            }
+        })
     }
 }
