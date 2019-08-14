@@ -20,6 +20,7 @@ class DataService {
     }
     
     func removeItem(index: Int) {
+        removeFromAvailable(foodId: foods[index]._id)
         foods.remove(at: index)
     }
     
@@ -119,26 +120,20 @@ class DataService {
         }
     }
     
-    func uploadData() {
-        var body: JSON = [
+    func removeFromAvailable(foodId: String) {
+        let body = [
             "email": AuthService.instance.userEmail,
-            "token": AuthService.instance.token
+            "token": AuthService.instance.token,
+            "foodId": foodId
         ]
         
-        do {
-            let encodedData = try JSONEncoder().encode(foods)
-            body["data"] = try JSON(data: encodedData)
-            
-            Alamofire.request(URL_AVAILABLE_UPDATE, method: .post, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-                switch response.result {
-                case .success:
-                    print("available data updated successfully")
-                case .failure(let err):
-                    debugPrint(err)
-                }
+        Alamofire.request(URL_AVAILABLE, method: .delete, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+            switch response.result {
+            case .success:
+                print("item removed sucessfully from available")
+            case .failure(let error):
+                debugPrint(error)
             }
-        } catch let err {
-            debugPrint(err)
         }
     }
     
