@@ -35,12 +35,9 @@ class DataService {
     }
     
     func requestAvailableFoodItems(handler: @escaping CompletionHandler) {
-        let params = [
-            "email": AuthService.instance.userEmail,
-            "token": AuthService.instance.token
-        ]
+        let params = AuthService.instance.credentials
         
-        Alamofire.request(URL_AVAILABLE, method: .get, parameters: params, encoding: URLEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
+        Alamofire.request(URL_AVAILABLE, method: .get, parameters: params.dictionaryObject, encoding: URLEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
             switch response.result {
             case .success:
                 do {
@@ -86,7 +83,7 @@ class DataService {
         Alamofire.request(URL_ADD_FOOD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
             switch response.result {
             case .success:
-                guard let data = response.data else { return }
+                guard let data = response.data else { handler(false); return }
                 let json = JSON(data)
                 let body: [String: Any] = [
                     "email": AuthService.instance.userEmail,
@@ -100,24 +97,24 @@ class DataService {
                     ]
                 ]
                 
-                Alamofire.request(URL_ADD_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
+                Alamofire.request(URL_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
                     switch response.result {
                     case .success:
-                        guard let data = response.data else { return }
+                        guard let data = response.data else { handler(false); return }
                         let json = JSON(data)
                         let food = self.parseFoodItem(item: json)
                         self.foods.append(food)
                         
-                        handler(true)
                         NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
+                        handler(true)
                     case.failure(let error):
                         debugPrint(error)
-                        handler(false)
+                        handler(true)
                     }
                 }
             case .failure(let error):
                 debugPrint(error)
-                handler(false)
+                handler(true)
             }
         }
     }

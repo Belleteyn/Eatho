@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 typealias CompletionHandler = (_ success: Bool) -> ()
+typealias DataCompletionHandler = (_ food: FoodItem?) -> ()
 
 // URLs
 let URL_BASE = "http://127.0.0.1:3001"
@@ -19,8 +20,6 @@ let URL_REGISTER = "\(URL_BASE)/auth/register"
 let URL_LOGIN = "\(URL_BASE)/auth/login"
 
 let URL_AVAILABLE = "\(URL_API)/available"
-let URL_ADD_AVAILABLE = "\(URL_AVAILABLE)/add"
-let URL_AVAILABLE_UPDATE = "\(URL_AVAILABLE)/update"
 
 let URL_ADD_FOOD = "\(URL_API)/food/add"
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class AuthService {
     static let instance = AuthService()
@@ -46,6 +47,15 @@ class AuthService {
         
         set {
             defaults.setValue(newValue, forKey: USER_LOGIN_EMAIL)
+        }
+    }
+    
+    var credentials: JSON {
+        get {
+            return [
+                "email": AuthService.instance.userEmail,
+                "token": AuthService.instance.token
+            ]
         }
     }
     
