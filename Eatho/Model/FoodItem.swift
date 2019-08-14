@@ -9,6 +9,7 @@
 import Foundation
 
 struct FoodItem: Codable {
+    private (set) public var _id: String
     private (set) public var name: String
     private (set) public var type: String
     private (set) public var icon: String
@@ -32,7 +33,7 @@ struct FoodItem: Codable {
     
     private (set) public var selectionState: Bool
     
-    init(name: String, type: String,
+    init(id: String, name: String, type: String,
          availableWeight: Double,
          calories: Double, proteins: Double, carbs: Double, fats: Double,
          gi: Int = 0,
@@ -40,6 +41,7 @@ struct FoodItem: Codable {
          portion: Int = 0, delta: Int = 0,
          selectionState: Bool = false,
          weightMeasure: String = "g", pcfMeasure: String = "g") {
+        self._id = id
         self.name = name
         self.type = type
         self.icon = "content_item_\(type).png"

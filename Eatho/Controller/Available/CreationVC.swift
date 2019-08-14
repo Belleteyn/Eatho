@@ -59,7 +59,7 @@ class CreationVC: UIViewController {
         spinner.startAnimating()
         DataService.instance.addNewFood(food: FoodItem(id: "", name: name, type: type, availableWeight: available, calories: caloriesVal, proteins: proteinsVal, carbs: carbsVal, fats: fatsVal, gi: gi, min: min, max: max, preferred: preferred)) { (success) in
             self.spinner.stopAnimating()
-            if success != nil {
+            if success {
                 self.navigationController?.popViewController(animated: true)
             } else {
                 //todo show error

@@ -146,6 +146,7 @@ class DataService {
     }
     
     private func parseFoodItem(item: JSON) -> FoodItem {
+        let id = item["food"]["_id"].string ?? ""
         let name = item["food"]["name"]["en"].string ?? ""
         let type = item["food"]["type"].string ?? ""
         let weight = item["available"].int ?? 0
@@ -154,6 +155,6 @@ class DataService {
         let fats = item["food"]["nutrition"]["fats"]["total"].double ?? 0
         let proteins = item["food"]["nutrition"]["proteins"].double ?? 0
         
-        return FoodItem(name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats)
+        return FoodItem(id: id, name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats)
     }
 }

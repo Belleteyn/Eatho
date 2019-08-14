@@ -107,6 +107,7 @@ class RationService {
     }
     
     private func parseFoodItem(item: JSON) -> FoodItem {
+        let id = item["food"]["_id"].string ?? ""
         let name = item["food"]["name"]["en"].string ?? ""
         let type = item["food"]["type"].string ?? ""
         let calories = item["food"]["nutrition"]["calories"]["total"].double ?? 0
@@ -118,6 +119,6 @@ class RationService {
         let portion = item["portion"].int ?? 0
         let delta = item["delta"].int ?? 0
         
-        return FoodItem(name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats, gi: 0, min: 0, max: 0, preferred: 0, portion: portion, delta: delta)
+        return FoodItem(id: id, name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats, gi: 0, min: 0, max: 0, preferred: 0, portion: portion, delta: delta)
     }
 }
