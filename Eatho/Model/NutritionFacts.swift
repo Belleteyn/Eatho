@@ -143,6 +143,39 @@ struct NutritionFacts: Codable {
         
         return micro
     }
+    
+    func getVitamins(portion: Double) -> [Nutrient] {
+        var vitamins = [Nutrient]()
+        guard let nutrients = self.micronutrients else { return vitamins }
+        guard let v = nutrients.vitamins else { return vitamins }
+        
+        if v.arae != nil {
+            vitamins.append(Nutrient(name: "Vitamin A", perPorition: v.arae! * portion / 100, per100g: v.arae!, type: .main))
+        }
+        if v.b6 != nil {
+            vitamins.append(Nutrient(name: "B6", perPorition: v.b6! * portion / 100, per100g: v.b6!, type: .main))
+        }
+        if v.b12 != nil {
+            vitamins.append(Nutrient(name: "B12", perPorition: v.b12! * portion / 100, per100g: v.b12!, type: .main))
+        }
+        if v.c != nil {
+            vitamins.append(Nutrient(name: "Vitamin C", perPorition: v.c! * portion / 100, per100g: v.c!, type: .main))
+        }
+        if v.d != nil {
+            vitamins.append(Nutrient(name: "Vitamin D", perPorition: v.d! * portion / 100, per100g: v.d!, type: .main))
+        }
+        if v.e != nil {
+            vitamins.append(Nutrient(name: "Vitamin E", perPorition: v.e! * portion / 100, per100g: v.e!, type: .main))
+        }
+        if v.k != nil {
+            vitamins.append(Nutrient(name: "Vitamin K", perPorition: v.k! * portion / 100, per100g: v.k!, type: .main))
+        }
+        if v.folate != nil {
+            vitamins.append(Nutrient(name: "Folate", perPorition: v.folate! * portion / 100, per100g: v.folate!, type: .main))
+        }
+        
+        return vitamins
+    }
 }
 
 struct Calories: Codable {

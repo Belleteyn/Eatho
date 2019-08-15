@@ -16,6 +16,7 @@ class DetailsVC: UIViewController {
     
     var macro = [Nutrient]()
     var micro = [Nutrient]()
+    var vitamins = [Nutrient]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,9 @@ class DetailsVC: UIViewController {
         nameLbl.text = food.name
         icon.image = UIImage(named: food.icon)
         
-        macro = food.nutrition.getMacro(portion: food.portion ?? 0)
+        macro = food.nutrition.getMacro(portion: food.delta ?? 0)
+        micro = food.nutrition.getMicro(portion: food.delta ?? 0)
+        vitamins = food.nutrition.getVitamins(portion: food.delta ?? 0)
     }
 
     @IBAction func closePressed(_ sender: Any) {
@@ -36,7 +39,7 @@ class DetailsVC: UIViewController {
 
 extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1 + (micro.count == 0 ? 0 : 1) + (vitamins.count == 0 ? 0 : 1)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +48,8 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
             return macro.count
         case 1:
             return micro.count
+        case 2:
+            return vitamins.count
         default:
             return 0
         }
@@ -69,6 +74,11 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
                 cell.initData(nutrient: micro[indexPath.row])
                 return cell
             }
+        case 2:
+            if let cell = fullInfoTableView.dequeueReusableCell(withIdentifier: "foodDetailsCell", for: indexPath) as? FoodDetailsCell {
+                cell.initData(nutrient: vitamins[indexPath.row])
+                return cell
+            }
         default:
             return UITableViewCell()
         }
@@ -78,11 +88,13 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Macronutriens"
+            return "Nutrition facts"
         case 1:
             return "Micronutrients"
+        case 2:
+            return "Vitamins"
         default:
-            return "unknown section"
+            return ""
         }
     }
     
@@ -92,6 +104,6 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
                 return 33
             }
         }
-        return 45
+        return 43
     }
 }
