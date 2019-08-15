@@ -51,24 +51,27 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = fullInfoTableView.dequeueReusableCell(withIdentifier: "foodDetailsCell", for: indexPath) as? FoodDetailsCell {
-            if indexPath.section == 0 {
-                cell.initData(nutrient: macro[indexPath.row])
+        switch indexPath.section {
+        case 0:
+            if macro[indexPath.row].type == .main {
+                if let cell = fullInfoTableView.dequeueReusableCell(withIdentifier: "foodDetailsCell", for: indexPath) as? FoodDetailsCell {
+                    cell.initData(nutrient: macro[indexPath.row])
+                    return cell
+                }
             } else {
-                cell.initData(nutrient: micro[indexPath.row])
+                if let cell = fullInfoTableView.dequeueReusableCell(withIdentifier: "foodDetailsEnclosedCell", for: indexPath) as? FoodDetailsCell {
+                    cell.initData(nutrient: macro[indexPath.row])
+                    return cell
+                }
             }
-            return cell
-        }
-        
-        if let cell = fullInfoTableView.dequeueReusableCell(withIdentifier: "foodDetailsEnclosedCell", for: indexPath) as? FoodDetailsCell {
-            if indexPath.section == 0 {
-                cell.initData(nutrient: macro[indexPath.row])
-            } else {
+        case 1:
+            if let cell = fullInfoTableView.dequeueReusableCell(withIdentifier: "foodDetailsCell", for: indexPath) as? FoodDetailsCell {
                 cell.initData(nutrient: micro[indexPath.row])
+                return cell
             }
-            return cell
+        default:
+            return UITableViewCell()
         }
-        
         return UITableViewCell()
     }
     
@@ -81,5 +84,14 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
         default:
             return "unknown section"
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            if macro[indexPath.row].type == .enclosed {
+                return 33
+            }
+        }
+        return 45
     }
 }
