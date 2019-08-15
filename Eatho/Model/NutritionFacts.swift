@@ -63,6 +63,42 @@ struct NutritionFacts: Codable {
         self.carbs = Carbs(carbs: carbs)
         self.fats = Fats(fats: fats)
     }
+    
+    
+    func getMacro(portion: Double) -> [Nutrient] {
+        var macro = [Nutrient]()
+        macro.append(Nutrient(name: "Calories", perPorition: calories.total! * portion / 100, per100g: calories.total!, type: .main))
+        
+        if calories.fromFat != nil {
+            macro.append(Nutrient(name: "from fat", perPorition: calories.fromFat! * portion / 100, per100g: calories.fromFat!, type: .enclosed))
+        }
+        
+        macro.append(Nutrient(name: "Proteins", perPorition: proteins! * portion / 100, per100g: proteins!, type: .main))
+        
+        macro.append(Nutrient(name: "Carbs", perPorition: carbs.total! * portion / 100, per100g: carbs.total!, type: .main))
+        if carbs.dietaryFiber != nil {
+            macro.append(Nutrient(name: "dietary fiber", perPorition: carbs.dietaryFiber! * portion / 100, per100g: carbs.dietaryFiber!, type: .enclosed))
+        }
+        if carbs.sugars != nil {
+            macro.append(Nutrient(name: "sugars", perPorition: carbs.sugars! * portion / 100, per100g: carbs.sugars!, type: .enclosed))
+        }
+        
+        macro.append(Nutrient(name: "Fats", perPorition: fats.total! * portion / 100, per100g: fats.total!, type: .main))
+        if fats.trans != nil {
+            macro.append(Nutrient(name: "trans", perPorition: fats.trans! * portion / 100, per100g: fats.trans!, type: .enclosed))
+        }
+        if fats.saturated != nil {
+            macro.append(Nutrient(name: "saturated", perPorition: fats.saturated! * portion / 100, per100g: fats.saturated!, type: .enclosed))
+        }
+        if fats.monounsaturated != nil {
+            macro.append(Nutrient(name: "monounsaturated", perPorition: fats.monounsaturated! * portion / 100, per100g: fats.monounsaturated!, type: .enclosed))
+        }
+        if fats.polyunsaturated != nil {
+            macro.append(Nutrient(name: "polyunsaturated", perPorition: fats.polyunsaturated! * portion / 100, per100g: fats.polyunsaturated!, type: .enclosed))
+        }
+        
+        return macro
+    }
 }
 
 struct Calories: Codable {
