@@ -14,7 +14,7 @@ class RationService {
     static let instance = RationService()
     
     public private(set) var diary = [Ration]()
-    public private(set) var nutrition = NutritionFacts(calories: 0, proteins: 0, carbs: 0, fats: 0)
+    public private(set) var nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
     public private(set) var currentRation: [FoodItem] = [] {
         didSet {
             updateRationInfo()
@@ -99,7 +99,7 @@ class RationService {
                             self.diary.append(ration)
                             
                             if dateStr == today {
-                                self.nutrition = ration.nutrition
+                                self.nutrition.set(nutrition: ration.nutrition)
                                 self.currentRation = ration.ration
                             }
                         } catch let err {

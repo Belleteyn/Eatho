@@ -49,10 +49,10 @@ class RationVC: UIViewController {
     func updateView() {
         rationTableView.reloadData()
         
-        guard let calories = RationService.instance.nutrition.calories.total else { return }
-        guard let carbs = RationService.instance.nutrition.carbs.total else { return }
-        guard let proteins = RationService.instance.nutrition.proteins else { return }
-        guard let fats = RationService.instance.nutrition.fats.total else { return }
+        let calories = RationService.instance.nutrition.calories
+        let carbs = RationService.instance.nutrition.carbs
+        let proteins = RationService.instance.nutrition.proteins
+        let fats = RationService.instance.nutrition.fats
         
         rationCaloriesLbl.text = "\(Int(round(calories))) kcal"
         carbsLbl.text = "\(Int(round(carbs))) g"

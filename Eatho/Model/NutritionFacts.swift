@@ -63,17 +63,6 @@ struct NutritionFacts: Codable {
         self.carbs = Carbs(carbs: carbs)
         self.fats = Fats(fats: fats)
     }
-    
-    mutating func addPortion(food: FoodItem) {
-//        calories += food.calories * Double(food.portion) / 100
-//        proteins += food.proteins * Double(food.portion) / 100
-//        carbs += food.carbs * Double(food.portion) / 100
-//        fats += food.fats * Double(food.portion) / 100
-    }
-    
-    mutating func reset() {
-
-    }
 }
 
 struct Calories: Codable {
