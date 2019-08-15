@@ -54,7 +54,7 @@ struct NutritionFacts: Codable {
         proteins = json["proteins"].double
         carbs = Carbs(json: json["carbs"])
         fats = Fats(json: json["fats"])
-        micronutrients = Micronutrients(json: json["micronutrients"])
+        micronutrients = Micronutrients(json: json)
     }
     
     init(calories: Double, proteins: Double, carbs: Double, fats: Double) {
@@ -98,6 +98,50 @@ struct NutritionFacts: Codable {
         }
         
         return macro
+    }
+    
+    func getMicro(portion: Double) -> [Nutrient] {
+        var micro = [Nutrient]()
+        guard let nutrients = self.micronutrients else { return micro }
+        
+        if nutrients.caffeinne != nil {
+            micro.append(Nutrient(name: "Caffeinne", perPorition: nutrients.caffeinne! * portion / 100, per100g: nutrients.caffeinne!, type: .main))
+        }
+        if nutrients.calcium != nil {
+            micro.append(Nutrient(name: "Calcium", perPorition: nutrients.calcium! * portion / 100, per100g: nutrients.calcium!, type: .main))
+        }
+        if nutrients.cholesterol != nil {
+            micro.append(Nutrient(name: "Cholesterol", perPorition: nutrients.cholesterol! * portion / 100, per100g: nutrients.cholesterol!, type: .main))
+        }
+        if nutrients.iron != nil {
+            micro.append(Nutrient(name: "Iron", perPorition: nutrients.iron! * portion / 100, per100g: nutrients.iron!, type: .main))
+        }
+        if nutrients.magnesium != nil {
+            micro.append(Nutrient(name: "Magnesium", perPorition: nutrients.magnesium! * portion / 100, per100g: nutrients.magnesium!, type: .main))
+        }
+        if nutrients.niacin != nil {
+            micro.append(Nutrient(name: "Niacin", perPorition: nutrients.niacin! * portion / 100, per100g: nutrients.niacin!, type: .main))
+        }
+        if nutrients.phosphorous != nil {
+            micro.append(Nutrient(name: "Phosphorous", perPorition: nutrients.phosphorous! * portion / 100, per100g: nutrients.phosphorous!, type: .main))
+        }
+        if nutrients.potassium != nil {
+            micro.append(Nutrient(name: "Potassium", perPorition: nutrients.potassium! * portion / 100, per100g: nutrients.potassium!, type: .main))
+        }
+        if nutrients.riboflavin != nil {
+            micro.append(Nutrient(name: "Riboflavin", perPorition: nutrients.riboflavin! * portion / 100, per100g: nutrients.riboflavin!, type: .main))
+        }
+        if nutrients.sodium != nil {
+            micro.append(Nutrient(name: "Sodium", perPorition: nutrients.sodium! * portion / 100, per100g: nutrients.sodium!, type: .main))
+        }
+        if nutrients.thiamin != nil {
+            micro.append(Nutrient(name: "Thiamin", perPorition: nutrients.thiamin! * portion / 100, per100g: nutrients.thiamin!, type: .main))
+        }
+        if nutrients.zinc != nil {
+            micro.append(Nutrient(name: "Zinc", perPorition: nutrients.zinc! * portion / 100, per100g: nutrients.zinc!, type: .main))
+        }
+        
+        return micro
     }
 }
 
