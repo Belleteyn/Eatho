@@ -32,8 +32,10 @@ class RationVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(authChangedHandle), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
         
-        RationService.instance.requestRation { (success) in
-            self.updateView()
+        if RationService.instance.diary.count == 0 {
+            RationService.instance.requestRation { (success) in
+                self.updateView()
+            }
         }
     }
     
@@ -41,22 +43,32 @@ class RationVC: UIViewController {
         super.viewDidAppear(animated)
         
         //to keep updated version in case if user changed calories in settings
-        expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) kcal"
+        expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories.total!))) kcal"
     }
     
     func updateView() {
         rationTableView.reloadData()
         
-        rationCaloriesLbl.text = "\(Int(round(RationService.instance.calories))) kcal"
-        carbsLbl.text = "\(Int(round(RationService.instance.carbs))) g"
-        fatsLbl.text = "\(Int(round(RationService.instance.fats))) g"
-        proteinsLbl.text = "\(Int(round(RationService.instance.proteins))) g"
+        guard let calories = RationService.instance.nutrition.calories.total else { return }
+        guard let carbs = RationService.instance.nutrition.carbs.total else { return }
+        guard let proteins = RationService.instance.nutrition.proteins else { return }
+        guard let fats = RationService.instance.nutrition.fats.total else { return }
         
-        let carbsPercent = (RationService.instance.carbs * 4.1 / RationService.instance.calories)
-        let proteinsPercent = (RationService.instance.proteins * 4.1 / RationService.instance.calories)
-        let fatsPercent = (RationService.instance.fats * 9.29 / RationService.instance.calories)
+        rationCaloriesLbl.text = "\(Int(round(calories))) kcal"
+        carbsLbl.text = "\(Int(round(carbs))) g"
+        fatsLbl.text = "\(Int(round(fats))) g"
+        proteinsLbl.text = "\(Int(round(proteins))) g"
         
-        nutrientRelativityView.updateView(proteinsPercent: proteinsPercent, carbsPercent: carbsPercent, fatsPercent: fatsPercent)
+        if (calories != 0) {
+            let carbsPercent = (carbs * 4.1 / calories)
+            let proteinsPercent = (proteins * 4.1 / calories)
+            let fatsPercent = (fats * 9.29 / calories)
+            
+            nutrientRelativityView.updateView(proteinsPercent: proteinsPercent, carbsPercent: carbsPercent, fatsPercent: fatsPercent)
+        } else {
+            nutrientRelativityView.updateView(proteinsPercent: 0, carbsPercent: 0, fatsPercent: 0)
+        }
+        
     }
     
     // handlers
@@ -74,13 +86,13 @@ class RationVC: UIViewController {
 
 extension RationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RationService.instance.ration.count
+        return RationService.instance.currentRation.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell") as? RationFoodCell {
-            if (indexPath.row < RationService.instance.ration.count) {
-                cell.updateViews(foodItem: RationService.instance.ration[indexPath.row])
+            if (indexPath.row < RationService.instance.currentRation.count) {
+                cell.updateViews(foodItem: RationService.instance.currentRation[indexPath.row])
                 return cell
             }
         }

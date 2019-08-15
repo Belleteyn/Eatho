@@ -91,12 +91,12 @@ class SettingsVC: UIViewController {
         let info = SettingsService.instance.userInfo
         
         caloriesTxt.text = "\(info.nutrition.calories)"
-        proteinsMassTxt.text = "\(info.nutrition.proteins)"
-        proteinsPercentTxt.text = "\(round((info.nutrition.proteins * 4.1 * 100) / info.nutrition.calories))"
+        proteinsMassTxt.text = "\(info.nutrition.proteins ?? 0)"
+        proteinsPercentTxt.text = "\(round(info.nutrition.pPercent))"
         carbsMassTxt.text = "\(info.nutrition.carbs)"
-        carbsPercentTxt.text = "\(round((info.nutrition.carbs * 4.1 * 100) / info.nutrition.calories))"
+        carbsPercentTxt.text = "\(round(info.nutrition.cPercent))"
         fatsMassTxt.text = "\(info.nutrition.fats)"
-        fatsPercentTxt.text = "\(round((info.nutrition.fats * 9.29 * 100) / info.nutrition.calories))"
+        fatsPercentTxt.text = "\(round(info.nutrition.fPercent))"
         
         autoSwitch.isOn = info.setupNutrientsFlag
         genderSwitch.selectedSegmentIndex = info.gender

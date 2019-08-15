@@ -57,7 +57,10 @@ class CreationVC: UIViewController {
         let preferred = Int(preferredTxt.text!) ?? 0
         
         spinner.startAnimating()
-        DataService.instance.addNewFood(food: FoodItem(id: "", name: name, type: type, availableWeight: available, calories: caloriesVal, proteins: proteinsVal, carbs: carbsVal, fats: fatsVal, gi: gi, min: min, max: max, preferred: preferred)) { (success) in
+        let nutrition = NutritionFacts(calories: caloriesVal, proteins: proteinsVal, carbs: carbsVal, fats: fatsVal)
+        let daily = DailyPortion(min: min, max: max, preferred: preferred)
+        let food = FoodItem(name: name, type: type, availableWeight: available, nutrition: nutrition, gi: gi, dailyPortion: daily)
+        DataService.instance.addNewFood(food: food) { (success) in
             self.spinner.stopAnimating()
             if success {
                 self.navigationController?.popViewController(animated: true)

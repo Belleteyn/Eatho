@@ -16,10 +16,10 @@ class AvailableFoodCell: FoodCell {
     override func updateViews(foodItem: FoodItem) {
         super.updateViews(foodItem: foodItem)
         
-        weightLbl.text = "\(Int(foodItem.availableWeight)) \(foodItem.weightMeasure)"
-        info.text = "\(foodItem.calories) kkal (100 g)"
+        weightLbl.text = "\(Int(foodItem.availableWeight ?? 0)) \(foodItem.weightMeasure ?? "g")"
+        info.text = "\(foodItem.nutrition.calories.total ?? 0) kkal (100 g)"
         
-        if foodItem.min > 0 {
+        if (foodItem.dailyPortion.min ?? 0) > 0 {
             addButton.setImage(UIImage(named: "content_item_checked.png"), for: .normal)
         } else {
             addButton.setImage(UIImage(named: "content_item_add_to_ration.png"), for: .normal)

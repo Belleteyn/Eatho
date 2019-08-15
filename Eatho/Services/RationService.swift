@@ -13,34 +13,34 @@ import SwiftyJSON
 class RationService {
     static let instance = RationService()
     
-    public private(set) var calories: Double = 0
-    public private(set) var proteins: Double = 0
-    public private(set) var carbs: Double = 0
-    public private(set) var fats: Double = 0
-    public private(set) var ration: [FoodItem] = [] {
+    public private(set) var diary = [Ration]()
+    public private(set) var nutrition = NutritionFacts(calories: 0, proteins: 0, carbs: 0, fats: 0)
+    public private(set) var currentRation: [FoodItem] = [] {
         didSet {
             updateRationInfo()
         }
     }
     
     func clearData() {
-        ration = []
+        currentRation = []
     }
     
     func removeItem(index: Int) {
-        ration.remove(at: index)
+        currentRation.remove(at: index)
         updateRationInfo()
         NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
     }
     
     func incPortion(name: String) {
-        if let row = self.ration.firstIndex(where: { $0.name == name }) {
-            let food = ration[row]
-            let delta = food.delta
-            if Double(food.portion + delta) < food.availableWeight {
-                ration[row].updateWeight(delta: delta)
+        if let row = self.currentRation.firstIndex(where: { $0.name == name }) {
+            let food = currentRation[row]
+            let delta = food.delta ?? 0
+            let available = food.availableWeight ?? 0
+            let portion = food.portion ?? 0
+            if portion + delta < (available) {
+                currentRation[row].updateWeight(delta: delta)
             } else {
-                ration[row].updateWeight(delta: (Int(food.availableWeight) - food.portion))
+                currentRation[row].updateWeight(delta: (available - portion))
             }
             
             updateRationInfo()
@@ -49,13 +49,14 @@ class RationService {
     }
     
     func decPortion(name: String) {
-        if let row = self.ration.firstIndex(where: { $0.name == name }) {
-            let food = ration[row]
-            let delta = food.delta
-            if food.portion - delta >= 0 {
-                ration[row].updateWeight(delta: -delta)
+        if let row = self.currentRation.firstIndex(where: { $0.name == name }) {
+            let food = currentRation[row]
+            let delta = food.delta ?? 0
+            let portion = food.portion ?? 0
+            if portion - delta >= 0 {
+                currentRation[row].updateWeight(delta: -delta)
             } else {
-                ration[row].updateWeight(delta: -food.portion)
+                currentRation[row].updateWeight(delta: -portion)
             }
             
             updateRationInfo()
@@ -64,23 +65,18 @@ class RationService {
     }
     
     private func updateRationInfo() {
-        calories = 0
-        proteins = 0
-        carbs = 0
-        fats = 0
+        nutrition.reset()
         
-        for food in ration {
-            calories += food.calories * Double(food.portion) / 100
-            proteins += food.proteins * Double(food.portion) / 100
-            carbs += food.carbs * Double(food.portion) / 100
-            fats += food.fats * Double(food.portion) / 100
+        for food in currentRation {
+            nutrition.addPortion(food: food)
         }
     }
     
     func requestRation(handler: @escaping CompletionHandler) {
-        let query = [
+        let query: [String : Any] = [
             "email": AuthService.instance.userEmail,
-            "token": AuthService.instance.token
+            "token": AuthService.instance.token,
+            "count": 10
         ]
         
         Alamofire.request(URL_RATION, method: .get, parameters: query, encoding: URLEncoding.default).validate().responseJSON { (response) in
@@ -88,10 +84,27 @@ class RationService {
             case .success:
                 if let data = response.data {
                     guard let json = JSON(data).array else { return }
-                    self.ration = []
+                    self.currentRation = []
                     
+                    
+                    let isoFormatter = ISO8601DateFormatter()
+                    let today = isoFormatter.string(from: Date()).prefix(10)
+                    
+                    print(today)
                     for item in json {
-                        self.ration.append(self.parseFoodItem(item: item))
+                        guard let dateStr = item["date"].string else { continue }
+                        do {
+                            let data = try item.rawData()
+                            let ration = try JSONDecoder().decode(Ration.self, from: data)
+                            self.diary.append(ration)
+                            
+                            if dateStr == today {
+                                self.nutrition = ration.nutrition
+                                self.currentRation = ration.ration
+                            }
+                        } catch let err {
+                            debugPrint(err)
+                        }
                     }
                     
                     handler(true)
@@ -100,25 +113,5 @@ class RationService {
                 debugPrint(err)
             }
         }
-    }
-    
-    func uploadRation() {
-        
-    }
-    
-    private func parseFoodItem(item: JSON) -> FoodItem {
-        let id = item["food"]["_id"].string ?? ""
-        let name = item["food"]["name"]["en"].string ?? ""
-        let type = item["food"]["type"].string ?? ""
-        let calories = item["food"]["nutrition"]["calories"]["total"].double ?? 0
-        let carbs = item["food"]["nutrition"]["carbs"]["total"].double ?? 0
-        let fats = item["food"]["nutrition"]["fats"]["total"].double ?? 0
-        let proteins = item["food"]["nutrition"]["proteins"].double ?? 0
-        
-        let weight = item["available"].int ?? 0
-        let portion = item["portion"].int ?? 0
-        let delta = item["delta"].int ?? 0
-        
-        return FoodItem(id: id, name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats, gi: 0, min: 0, max: 0, preferred: 0, portion: portion, delta: delta)
     }
 }

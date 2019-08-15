@@ -17,13 +17,14 @@ class RationFoodCell: FoodCell {
     override func updateViews(foodItem: FoodItem) {
         super.updateViews(foodItem: foodItem)
         
-        portionTxt.text = "\(foodItem.delta) g"
+        let portion = foodItem.portion ?? 0
+        portionTxt.text = "\(foodItem.delta ?? 0) g"
         
-        let caloriesPerPortion = round(Double(foodItem.portion) * foodItem.calories / 100)
-        super.info.text = "\(foodItem.portion) g (\(Int(caloriesPerPortion)) kcal)"
+        let caloriesPerPortion = round(portion * (foodItem.nutrition.calories.total ?? 0) / 100)
+        super.info.text = "\(Int(portion)) g (\(Int(caloriesPerPortion)) kcal)"
         
-        increaseBtn.isEnabled = (foodItem.availableWeight > Double(foodItem.portion))
-        decreaseBtn.isEnabled = (foodItem.portion > 0)
+        increaseBtn.isEnabled = ((foodItem.availableWeight ?? 0) > portion)
+        decreaseBtn.isEnabled = (portion > 0)
     }
 
     @IBAction func decreaseBtnClick(_ sender: Any) {

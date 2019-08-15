@@ -36,8 +36,8 @@ class FoodCell: UITableViewCell {
         icon.image = UIImage(named: foodItem.icon)
         name.text = foodItem.name
         
-        proteins.text = "\(foodItem.proteins) \(foodItem.pcfMeasure)"
-        carbs.text = "\(foodItem.carbs) \(foodItem.pcfMeasure)"
-        fats.text = "\(foodItem.fats) \(foodItem.pcfMeasure)"
+        proteins.text = "\(foodItem.nutrition.proteins ?? 0) g"
+        carbs.text = "\(foodItem.nutrition.carbs.total ?? 0) g"
+        fats.text = "\(foodItem.nutrition.fats.total ?? 0) h"
     }
 }

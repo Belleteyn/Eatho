@@ -20,16 +20,21 @@ class DataService {
     }
     
     func removeItem(index: Int) {
-        removeFromAvailable(foodId: foods[index]._id)
+        guard index < foods.count && index >= 0 else { return }
+        guard let id = foods[index]._id else { return }
+        removeFromAvailable(foodId: id)
         foods.remove(at: index)
     }
     
     func setSelected(name: String) {
         if let row = foods.firstIndex(where: { $0.name == name }) {
-            if foods[row].min == 0 {
-                foods[row].min = foods[row].delta
+            let daily = foods[row].dailyPortion
+            
+            if daily.min == nil || daily.min! == 0 {
+                guard let delta = foods[row].delta else { return }
+                foods[row].dailyPortion.min = Int(delta)
             } else {
-                foods[row].min = 0
+                foods[row].dailyPortion.min = 0
             }
         }
         NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
@@ -48,7 +53,7 @@ class DataService {
                         self.foods = [] //clear before append
                         
                         for item in jsonArr {
-                            let food = self.parseFoodItem(item: item)
+                            let food = FoodItem(json: item)
                             self.foods.append(food)
                         }
                         
@@ -71,13 +76,13 @@ class DataService {
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "food": [
-                "name": food.name,
-                "type": food.type,
-                "calories": food.calories,
-                "carbs": food.carbs,
-                "fats": food.fats,
-                "proteins": food.proteins,
-                "gi": food.gi
+                "name": food.name!,
+                "type": food.type!,
+                "calories": food.nutrition.calories.total!,
+                "carbs": food.nutrition.carbs.total!,
+                "fats": food.nutrition.fats.total!,
+                "proteins": food.nutrition.proteins!,
+                "gi": food.gi!
             ]
         ]
         
@@ -91,10 +96,10 @@ class DataService {
                     "token": AuthService.instance.token,
                     "info": [
                         "id": json["id"].stringValue,
-                        "available": food.availableWeight,
-                        "min": food.min,
-                        "max": food.max,
-                        "preferred": food.preferred
+                        "available": food.availableWeight ?? 0,
+                        "min": (food.dailyPortion.min ?? 0),
+                        "max": (food.dailyPortion.max ?? 0),
+                        "preferred": (food.dailyPortion.preferred ?? 0)
                     ]
                 ]
                 
@@ -103,7 +108,7 @@ class DataService {
                     case .success:
                         guard let data = response.data else { handler(false); return }
                         let json = JSON(data)
-                        let food = self.parseFoodItem(item: json)
+                        let food = FoodItem(json: json)
                         self.foods.append(food)
                         
                         NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
@@ -135,18 +140,5 @@ class DataService {
                 debugPrint(error)
             }
         }
-    }
-    
-    private func parseFoodItem(item: JSON) -> FoodItem {
-        let id = item["food"]["_id"].string ?? ""
-        let name = item["food"]["name"]["en"].string ?? ""
-        let type = item["food"]["type"].string ?? ""
-        let weight = item["available"].int ?? 0
-        let calories = item["food"]["nutrition"]["calories"]["total"].double ?? 0
-        let carbs = item["food"]["nutrition"]["carbs"]["total"].double ?? 0
-        let fats = item["food"]["nutrition"]["fats"]["total"].double ?? 0
-        let proteins = item["food"]["nutrition"]["proteins"].double ?? 0
-        
-        return FoodItem(id: id, name: name, type: type, availableWeight: Double(weight), calories: calories, proteins: proteins, carbs: carbs, fats: fats)
     }
 }
