@@ -29,9 +29,9 @@ class DetailsVC: UIViewController {
         titleLbl.text = food.name!
         
         userData = getUserData(food: food)
-        macro = food.nutrition.getMacro(portion: food.delta ?? 0)
-        minerals = food.nutrition.getMinerals(portion: food.delta ?? 0)
-        vitamins = food.nutrition.getVitamins(portion: food.delta ?? 0)
+        macro = food.nutrition.getMacro(portion: food.delta)
+        minerals = food.nutrition.getMinerals(portion: food.delta)
+        vitamins = food.nutrition.getVitamins(portion: food.delta)
         
         chartView.initData(nutrition: food.nutrition)
     }
