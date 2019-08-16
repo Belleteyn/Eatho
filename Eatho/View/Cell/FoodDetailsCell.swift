@@ -21,9 +21,9 @@ class FoodDetailsCell: UITableViewCell {
 
     func initData(nutrient: Nutrient) {
         nameLbl.text = nutrient.name
-        per100gLbl.text = "\(nutrient.per100g)"
+        per100gLbl.text = "\(nutrient.per100g) \(nutrient.measure)"
         if nutrient.perPorition != nil {
-            perPortionLbl.text = "\(nutrient.perPorition!)"
+            perPortionLbl.text = "\(nutrient.perPorition!) \(nutrient.measure)"
         } else {
             perPortionLbl.text = ""
         }

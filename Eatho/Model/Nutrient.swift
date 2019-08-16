@@ -16,5 +16,6 @@ struct Nutrient {
     var name = ""
     var perPorition: Double?
     var per100g = 0.0
+    var measure = "g"
     var type = NutrientCellType.main
 }

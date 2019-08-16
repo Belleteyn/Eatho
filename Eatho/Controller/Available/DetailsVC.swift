@@ -48,10 +48,10 @@ class DetailsVC: UIViewController {
     
     func getUserData(food: FoodItem) -> [Nutrient] {
         var data = [Nutrient]()
-        data.append(Nutrient(name: "Available, g", perPorition: nil, per100g: food.availableWeight ?? 0, type: .main))
-        data.append(Nutrient(name: "Daily min portion, g", perPorition: nil, per100g: Double(food.dailyPortion.min ?? 0), type: .main))
-        data.append(Nutrient(name: "Daily max portion, g", perPorition: nil, per100g: Double(food.dailyPortion.max ?? 0), type: .main))
-        data.append(Nutrient(name: "Delta portion, g", perPorition: nil, per100g: food.delta ?? 0, type: .main))
+        data.append(Nutrient(name: "Available", perPorition: nil, per100g: food.availableWeight ?? 0, measure: "g", type: .main))
+        data.append(Nutrient(name: "Daily min portion", perPorition: nil, per100g: Double(food.dailyPortion.min ?? 0), measure: "g", type: .main))
+        data.append(Nutrient(name: "Daily max portion", perPorition: nil, per100g: Double(food.dailyPortion.max ?? 0), measure: "g", type: .main))
+        data.append(Nutrient(name: "Delta portion", perPorition: nil, per100g: food.delta ?? 0, measure: "g", type: .main))
         
         return data
     }

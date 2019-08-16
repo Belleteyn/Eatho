@@ -69,38 +69,38 @@ struct NutritionFacts: Codable {
     
     func getMacro(portion p: Double?) -> [Nutrient] {
         var macro = [Nutrient]()
-        macro.append(Nutrient(name: "Calories", perPorition: p != nil ? calories.total! * p! / 100 : nil, per100g: calories.total!, type: .main))
+        macro.append(Nutrient(name: "Calories", perPorition: p != nil ? calories.total! * p! / 100 : nil, per100g: calories.total!, measure: "g", type: .main))
         
         if calories.fromFat != nil {
-            macro.append(Nutrient(name: "from fat", perPorition: p != nil ? calories.fromFat! * p! / 100 : nil, per100g: calories.fromFat!, type: .enclosed))
+            macro.append(Nutrient(name: "from fat", perPorition: p != nil ? calories.fromFat! * p! / 100 : nil, per100g: calories.fromFat!, measure: "g", type: .enclosed))
         }
         
-        macro.append(Nutrient(name: "Proteins", perPorition: p != nil ? proteins! * p! / 100 : nil, per100g: proteins!, type: .main))
+        macro.append(Nutrient(name: "Proteins", perPorition: p != nil ? proteins! * p! / 100 : nil, per100g: proteins!, measure: "g", type: .main))
         
-        macro.append(Nutrient(name: "Carbs", perPorition: p != nil ? carbs.total! * p! / 100 : nil, per100g: carbs.total!, type: .main))
+        macro.append(Nutrient(name: "Carbs", perPorition: p != nil ? carbs.total! * p! / 100 : nil, per100g: carbs.total!, measure: "g", type: .main))
         if carbs.dietaryFiber != nil {
-            macro.append(Nutrient(name: "dietary fiber", perPorition: p != nil ? carbs.dietaryFiber! * p! / 100 : nil, per100g: carbs.dietaryFiber!, type: .enclosed))
+            macro.append(Nutrient(name: "dietary fiber", perPorition: p != nil ? carbs.dietaryFiber! * p! / 100 : nil, per100g: carbs.dietaryFiber!, measure: "g", type: .enclosed))
         }
         if carbs.sugars != nil {
-            macro.append(Nutrient(name: "sugars", perPorition: p != nil ? carbs.sugars! * p! / 100 : nil, per100g: carbs.sugars!, type: .enclosed))
+            macro.append(Nutrient(name: "sugars", perPorition: p != nil ? carbs.sugars! * p! / 100 : nil, per100g: carbs.sugars!, measure: "g", type: .enclosed))
         }
         
-        macro.append(Nutrient(name: "Fats", perPorition: p != nil ? fats.total! * p! / 100 : nil, per100g: fats.total!, type: .main))
+        macro.append(Nutrient(name: "Fats", perPorition: p != nil ? fats.total! * p! / 100 : nil, per100g: fats.total!, measure: "g", type: .main))
         if fats.trans != nil {
-            macro.append(Nutrient(name: "trans", perPorition: p != nil ? fats.trans! * p! / 100 : nil, per100g: fats.trans!, type: .enclosed))
+            macro.append(Nutrient(name: "trans", perPorition: p != nil ? fats.trans! * p! / 100 : nil, per100g: fats.trans!, measure: "g", type: .enclosed))
         }
         if fats.saturated != nil {
-            macro.append(Nutrient(name: "saturated", perPorition: p != nil ? fats.saturated! * p! / 100 : nil, per100g: fats.saturated!, type: .enclosed))
+            macro.append(Nutrient(name: "saturated", perPorition: p != nil ? fats.saturated! * p! / 100 : nil, per100g: fats.saturated!, measure: "g", type: .enclosed))
         }
         if fats.monounsaturated != nil {
-            macro.append(Nutrient(name: "monounsaturated", perPorition: p != nil ? fats.monounsaturated! * p! / 100 : nil, per100g: fats.monounsaturated!, type: .enclosed))
+            macro.append(Nutrient(name: "monounsaturated", perPorition: p != nil ? fats.monounsaturated! * p! / 100 : nil, per100g: fats.monounsaturated!, measure: "g", type: .enclosed))
         }
         if fats.polyunsaturated != nil {
-            macro.append(Nutrient(name: "polyunsaturated", perPorition: p != nil ? fats.polyunsaturated! * p! / 100 : nil, per100g: fats.polyunsaturated!, type: .enclosed))
+            macro.append(Nutrient(name: "polyunsaturated", perPorition: p != nil ? fats.polyunsaturated! * p! / 100 : nil, per100g: fats.polyunsaturated!, measure: "g", type: .enclosed))
         }
         
         if gi != nil {
-            macro.append(Nutrient(name: "Glycemic index", perPorition: nil, per100g: gi!, type: .main))
+            macro.append(Nutrient(name: "Glycemic index", perPorition: nil, per100g: gi!, measure: "", type: .main))
         }
         
         return macro
@@ -111,40 +111,40 @@ struct NutritionFacts: Codable {
         guard let nutrients = self.micronutrients else { return micro }
         
         if nutrients.caffeinne != nil {
-            micro.append(Nutrient(name: "Caffeinne", perPorition: p != nil ? nutrients.caffeinne! * p! / 100 : nil, per100g: nutrients.caffeinne!, type: .main))
+            micro.append(Nutrient(name: "Caffeinne", perPorition: p != nil ? nutrients.caffeinne! * p! / 100 : nil, per100g: nutrients.caffeinne!, measure: "mg", type: .main))
         }
         if nutrients.calcium != nil {
-            micro.append(Nutrient(name: "Calcium", perPorition: p != nil ? nutrients.calcium! * p! / 100 : nil, per100g: nutrients.calcium!, type: .main))
+            micro.append(Nutrient(name: "Calcium", perPorition: p != nil ? nutrients.calcium! * p! / 100 : nil, per100g: nutrients.calcium!, measure: "mg", type: .main))
         }
         if nutrients.cholesterol != nil {
-            micro.append(Nutrient(name: "Cholesterol", perPorition: p != nil ? nutrients.cholesterol! * p! / 100 : nil, per100g: nutrients.cholesterol!, type: .main))
+            micro.append(Nutrient(name: "Cholesterol", perPorition: p != nil ? nutrients.cholesterol! * p! / 100 : nil, per100g: nutrients.cholesterol!, measure: "mg", type: .main))
         }
         if nutrients.iron != nil {
-            micro.append(Nutrient(name: "Iron", perPorition: p != nil ? nutrients.iron! * p! / 100 : nil, per100g: nutrients.iron!, type: .main))
+            micro.append(Nutrient(name: "Iron", perPorition: p != nil ? nutrients.iron! * p! / 100 : nil, per100g: nutrients.iron!, measure: "mg", type: .main))
         }
         if nutrients.magnesium != nil {
-            micro.append(Nutrient(name: "Magnesium", perPorition: p != nil ? nutrients.magnesium! * p! / 100 : nil, per100g: nutrients.magnesium!, type: .main))
+            micro.append(Nutrient(name: "Magnesium", perPorition: p != nil ? nutrients.magnesium! * p! / 100 : nil, per100g: nutrients.magnesium!, measure: "mg", type: .main))
         }
         if nutrients.niacin != nil {
-            micro.append(Nutrient(name: "Niacin", perPorition: p != nil ? nutrients.niacin! * p! / 100 : nil, per100g: nutrients.niacin!, type: .main))
+            micro.append(Nutrient(name: "Niacin", perPorition: p != nil ? nutrients.niacin! * p! / 100 : nil, per100g: nutrients.niacin!, measure: "mg", type: .main))
         }
         if nutrients.phosphorous != nil {
-            micro.append(Nutrient(name: "Phosphorous", perPorition: p != nil ? nutrients.phosphorous! * p! / 100 : nil, per100g: nutrients.phosphorous!, type: .main))
+            micro.append(Nutrient(name: "Phosphorous", perPorition: p != nil ? nutrients.phosphorous! * p! / 100 : nil, per100g: nutrients.phosphorous!, measure: "mg", type: .main))
         }
         if nutrients.potassium != nil {
-            micro.append(Nutrient(name: "Potassium", perPorition: p != nil ? nutrients.potassium! * p! / 100 : nil, per100g: nutrients.potassium!, type: .main))
+            micro.append(Nutrient(name: "Potassium", perPorition: p != nil ? nutrients.potassium! * p! / 100 : nil, per100g: nutrients.potassium!, measure: "mg", type: .main))
         }
         if nutrients.riboflavin != nil {
-            micro.append(Nutrient(name: "Riboflavin", perPorition: p != nil ? nutrients.riboflavin! * p! / 100 : nil, per100g: nutrients.riboflavin!, type: .main))
+            micro.append(Nutrient(name: "Riboflavin", perPorition: p != nil ? nutrients.riboflavin! * p! / 100 : nil, per100g: nutrients.riboflavin!, measure: "mg", type: .main))
         }
         if nutrients.sodium != nil {
-            micro.append(Nutrient(name: "Sodium", perPorition: p != nil ? nutrients.sodium! * p! / 100 : nil, per100g: nutrients.sodium!, type: .main))
+            micro.append(Nutrient(name: "Sodium", perPorition: p != nil ? nutrients.sodium! * p! / 100 : nil, per100g: nutrients.sodium!, measure: "mg", type: .main))
         }
         if nutrients.thiamin != nil {
-            micro.append(Nutrient(name: "Thiamin", perPorition: p != nil ? nutrients.thiamin! * p! / 100 : nil, per100g: nutrients.thiamin!, type: .main))
+            micro.append(Nutrient(name: "Thiamin", perPorition: p != nil ? nutrients.thiamin! * p! / 100 : nil, per100g: nutrients.thiamin!, measure: "mg", type: .main))
         }
         if nutrients.zinc != nil {
-            micro.append(Nutrient(name: "Zinc", perPorition: p != nil ? nutrients.zinc! * p! / 100 : nil, per100g: nutrients.zinc!, type: .main))
+            micro.append(Nutrient(name: "Zinc", perPorition: p != nil ? nutrients.zinc! * p! / 100 : nil, per100g: nutrients.zinc!, measure: "mg", type: .main))
         }
         
         return micro
@@ -156,28 +156,28 @@ struct NutritionFacts: Codable {
         guard let v = nutrients.vitamins else { return vitamins }
         
         if v.arae != nil {
-            vitamins.append(Nutrient(name: "Vitamin A", perPorition: p != nil ? v.arae! * p! / 100 : nil, per100g: v.arae!, type: .main))
+            vitamins.append(Nutrient(name: "Vitamin A", perPorition: p != nil ? v.arae! * p! / 100 : nil, per100g: v.arae!, measure: "mg", type: .main))
         }
         if v.b6 != nil {
-            vitamins.append(Nutrient(name: "B6", perPorition: p != nil ? v.b6! * p! / 100 : nil, per100g: v.b6!, type: .main))
+            vitamins.append(Nutrient(name: "B6", perPorition: p != nil ? v.b6! * p! / 100 : nil, per100g: v.b6!, measure: "mg", type: .main))
         }
         if v.b12 != nil {
-            vitamins.append(Nutrient(name: "B12", perPorition: p != nil ? v.b12! * p! / 100 : nil, per100g: v.b12!, type: .main))
+            vitamins.append(Nutrient(name: "B12", perPorition: p != nil ? v.b12! * p! / 100 : nil, per100g: v.b12!, measure: "mg", type: .main))
         }
         if v.c != nil {
-            vitamins.append(Nutrient(name: "Vitamin C", perPorition: p != nil ? v.c! * p! / 100 : nil, per100g: v.c!, type: .main))
+            vitamins.append(Nutrient(name: "Vitamin C", perPorition: p != nil ? v.c! * p! / 100 : nil, per100g: v.c!, measure: "mg", type: .main))
         }
         if v.d != nil {
-            vitamins.append(Nutrient(name: "Vitamin D", perPorition: p != nil ? v.d! * p! / 100 : nil, per100g: v.d!, type: .main))
+            vitamins.append(Nutrient(name: "Vitamin D", perPorition: p != nil ? v.d! * p! / 100 : nil, per100g: v.d!, measure: "mg", type: .main))
         }
         if v.e != nil {
-            vitamins.append(Nutrient(name: "Vitamin E", perPorition: p != nil ? v.e! * p! / 100 : nil, per100g: v.e!, type: .main))
+            vitamins.append(Nutrient(name: "Vitamin E", perPorition: p != nil ? v.e! * p! / 100 : nil, per100g: v.e!, measure: "mg", type: .main))
         }
         if v.k != nil {
-            vitamins.append(Nutrient(name: "Vitamin K", perPorition: p != nil ? v.k! * p! / 100 : nil, per100g: v.k!, type: .main))
+            vitamins.append(Nutrient(name: "Vitamin K", perPorition: p != nil ? v.k! * p! / 100 : nil, per100g: v.k!, measure: "mg", type: .main))
         }
         if v.folate != nil {
-            vitamins.append(Nutrient(name: "Folate", perPorition: p != nil ? v.folate! * p! / 100 : nil, per100g: v.folate!, type: .main))
+            vitamins.append(Nutrient(name: "Folate", perPorition: p != nil ? v.folate! * p! / 100 : nil, per100g: v.folate!, measure: "mg", type: .main))
         }
         
         return vitamins
