@@ -16,6 +16,7 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var chartView: NutritionChartView!
     @IBOutlet weak var fullInfoTableView: UITableView!
     
+    var food: FoodItem?
     var userData = [Nutrient]()
     var macro = [Nutrient]()
     var minerals = [Nutrient]()
@@ -26,6 +27,7 @@ class DetailsVC: UIViewController {
     }
     
     func initData(food: FoodItem) {
+        self.food = food
         titleLbl.text = food.name!
         
         userData = getUserData(food: food)
@@ -39,7 +41,7 @@ class DetailsVC: UIViewController {
     @IBAction func editPressed(_ sender: Any) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
         present(vc, animated: true, completion: nil)
-        vc.setupView(title: titleLbl.text!)
+        vc.setupView(title: titleLbl.text!, id: food!._id!)
     }
     
     @IBAction func backPressed(_ sender: Any) {

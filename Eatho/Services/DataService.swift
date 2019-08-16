@@ -40,6 +40,34 @@ class DataService {
         NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
     }
     
+    func updateFood(id: String, available: Double?, min: Int?, max: Int?, delta: Double?, handler: @escaping CompletionHandler) {
+        guard let row = foods.firstIndex(where: { $0._id == id }) else { return }
+        var updJson: Dictionary<String, Any> = [ "_id": id ]
+        
+        if available != nil {
+            foods[row].availableWeight = available!
+            updJson["available"] = available!
+        }
+        
+        if min != nil {
+            foods[row].dailyPortion.min = min!
+            updJson["dailyPortion"] = ["min": min!]
+        }
+        
+        if max != nil {
+            foods[row].dailyPortion.max = max!
+            updJson["dailyPortion"] = ["max": max!]
+        }
+        
+        if delta != nil {
+            foods[row].delta = delta!
+            updJson["delta"] = delta!
+        }
+        
+        //todo send data
+        handler(true)
+    }
+    
     func requestAvailableFoodItems(handler: @escaping CompletionHandler) {
         let params = AuthService.instance.credentials
         

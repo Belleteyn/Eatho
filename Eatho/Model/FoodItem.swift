@@ -17,10 +17,9 @@ struct FoodItem: Codable {
     private (set) public var nutrition: NutritionFacts
     private (set) public var gi: Int?
     
-    private (set) public var availableWeight: Double?
-    
-    private (set) public var delta: Double?
-    private (set) public var portion: Double?
+    var availableWeight: Double?
+    var delta: Double?
+    var portion: Double?
     
     private (set) public var weightMeasure: String?
     

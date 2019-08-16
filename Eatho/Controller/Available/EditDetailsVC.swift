@@ -17,14 +17,15 @@ class EditDetailsVC: UIViewController {
     @IBOutlet weak var maxTxtField: UITextField!
     @IBOutlet weak var deltaTxtField: UITextField!
     
+    var id: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    
-    
-    func setupView(title: String) {
+    func setupView(title: String, id: String) {
         titleLbl.text = title
+        self.id = id
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
@@ -32,6 +33,12 @@ class EditDetailsVC: UIViewController {
     }
     
     @IBAction func savePressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        DataService.instance.updateFood(id: id!, available: availableTxtField.text != nil ? Double(availableTxtField.text!) : nil, min: minTxtField.text != nil ? Int(minTxtField.text!) : nil, max: maxTxtField.text != nil ? Int(maxTxtField.text!) : nil, delta: deltaTxtField.text != nil ? Double(deltaTxtField.text!) : nil) {(success) in
+            if (success) {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print("failed to update user data")
+            }
+        }
     }
 }
