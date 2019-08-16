@@ -10,8 +10,9 @@ import UIKit
 
 class DetailsVC: UIViewController {
 
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var chartView: NutritionChartView!
     @IBOutlet weak var fullInfoTableView: UITableView!
     
@@ -25,8 +26,7 @@ class DetailsVC: UIViewController {
     }
     
     func initData(food: FoodItem) {
-        nameLbl.text = food.name
-        icon.image = UIImage(named: food.icon)
+        titleLbl.text = food.name!
         
         userData = getUserData(food: food)
         macro = food.nutrition.getMacro(portion: food.delta ?? 0)
@@ -35,10 +35,17 @@ class DetailsVC: UIViewController {
         
         chartView.initData(nutrition: food.nutrition)
     }
-
-    @IBAction func closePressed(_ sender: Any) {
+    
+    @IBAction func editPressed(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
+        present(vc, animated: true, completion: nil)
+        vc.setupView(title: titleLbl.text!)
+    }
+    
+    @IBAction func backPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
     func getUserData(food: FoodItem) -> [Nutrient] {
         var data = [Nutrient]()
         data.append(Nutrient(name: "Available, g", perPorition: nil, per100g: food.availableWeight ?? 0, type: .main))
@@ -47,7 +54,7 @@ class DetailsVC: UIViewController {
         data.append(Nutrient(name: "Delta portion, g", perPorition: nil, per100g: food.delta ?? 0, type: .main))
         
         return data
-}
+    }
 }
 
 

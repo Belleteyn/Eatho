@@ -87,6 +87,13 @@ class AviailableVC: UIViewController {
         detailsVC.initData(food: DataService.instance.foods[index])
     }
     
+    func openUpdateVC(index: Int) {
+        guard let editVC = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
+        
+        present(editVC, animated: true, completion: nil)
+        editVC.setupView(title: DataService.instance.foods[index].name!)
+    }
+    
     // Actions
     
     @IBAction func searchPressed(_ sender: Any) {
@@ -136,6 +143,7 @@ extension AviailableVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         let updateAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Update") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            self.openUpdateVC(index: indexPath.row)
             success(true)
         }
         updateAction.backgroundColor = EATHO_YELLOW

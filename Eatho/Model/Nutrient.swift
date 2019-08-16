@@ -14,7 +14,7 @@ enum NutrientCellType {
 
 struct Nutrient {
     var name = ""
-    var perPorition = 0.0
+    var perPorition: Double?
     var per100g = 0.0
     var type = NutrientCellType.main
 }
