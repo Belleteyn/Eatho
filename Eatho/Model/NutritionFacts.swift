@@ -14,6 +14,7 @@ struct NutritionFacts: Codable {
     var proteins: Double?
     var carbs: Carbs
     var fats: Fats
+    var gi: Double?
     var micronutrients: Micronutrients?
     
     var pKcal: Double {
@@ -54,6 +55,7 @@ struct NutritionFacts: Codable {
         proteins = json["proteins"].double
         carbs = Carbs(json: json["carbs"])
         fats = Fats(json: json["fats"])
+        gi = json["glycemicIndex"].double
         micronutrients = Micronutrients(json: json)
     }
     
@@ -95,6 +97,10 @@ struct NutritionFacts: Codable {
         }
         if fats.polyunsaturated != nil {
             macro.append(Nutrient(name: "polyunsaturated", perPorition: fats.polyunsaturated! * portion / 100, per100g: fats.polyunsaturated!, type: .enclosed))
+        }
+        
+        if gi != nil {
+            macro.append(Nutrient(name: "Glycemic index", perPorition: nil, per100g: gi!, type: .main))
         }
         
         return macro
