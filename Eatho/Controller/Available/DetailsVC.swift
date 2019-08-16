@@ -12,10 +12,11 @@ class DetailsVC: UIViewController {
 
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var chartView: NutritionChartView!
     @IBOutlet weak var fullInfoTableView: UITableView!
     
     var macro = [Nutrient]()
-    var micro = [Nutrient]()
+    var minerals = [Nutrient]()
     var vitamins = [Nutrient]()
     
     override func viewDidLoad() {
@@ -27,8 +28,10 @@ class DetailsVC: UIViewController {
         icon.image = UIImage(named: food.icon)
         
         macro = food.nutrition.getMacro(portion: food.delta ?? 0)
-        micro = food.nutrition.getMicro(portion: food.delta ?? 0)
+        minerals = food.nutrition.getMinerals(portion: food.delta ?? 0)
         vitamins = food.nutrition.getVitamins(portion: food.delta ?? 0)
+        
+        chartView.initData(nutrition: food.nutrition)
     }
 
     @IBAction func closePressed(_ sender: Any) {
@@ -39,7 +42,7 @@ class DetailsVC: UIViewController {
 
 extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 + (micro.count == 0 ? 0 : 1) + (vitamins.count == 0 ? 0 : 1)
+        return 1 + (minerals.count == 0 ? 0 : 1) + (vitamins.count == 0 ? 0 : 1)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,7 +50,7 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return macro.count
         case 1:
-            return micro.count
+            return minerals.count
         case 2:
             return vitamins.count
         default:
@@ -71,7 +74,7 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
             }
         case 1:
             if let cell = fullInfoTableView.dequeueReusableCell(withIdentifier: "foodDetailsCell", for: indexPath) as? FoodDetailsCell {
-                cell.initData(nutrient: micro[indexPath.row])
+                cell.initData(nutrient: minerals[indexPath.row])
                 return cell
             }
         case 2:
@@ -90,7 +93,7 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return "Nutrition facts"
         case 1:
-            return "Micronutrients"
+            return "Minerals"
         case 2:
             return "Vitamins"
         default:

@@ -100,7 +100,7 @@ struct NutritionFacts: Codable {
         return macro
     }
     
-    func getMicro(portion: Double) -> [Nutrient] {
+    func getMinerals(portion: Double) -> [Nutrient] {
         var micro = [Nutrient]()
         guard let nutrients = self.micronutrients else { return micro }
         
