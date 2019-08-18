@@ -31,8 +31,11 @@ class DataService {
             let daily = foods[row].dailyPortion
             
             if daily.min == nil || daily.min! == 0 {
-                guard let delta = foods[row].delta else { return }
-                foods[row].dailyPortion.min = Int(delta)
+                if let delta = foods[row].delta {
+                    foods[row].dailyPortion.min = Int(delta)
+                } else {
+                    foods[row].dailyPortion.min = 1
+                }
             } else {
                 foods[row].dailyPortion.min = 0
             }
@@ -40,32 +43,32 @@ class DataService {
         NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
     }
     
-    func updateFood(id: String, available: Double?, min: Int?, max: Int?, delta: Double?, handler: @escaping CompletionHandler) {
-        guard let row = foods.firstIndex(where: { $0._id == id }) else { return }
-        var updJson: Dictionary<String, Any> = [ "_id": id ]
+    func updateFood(food: FoodItem, handler: @escaping CompletionHandler) {
+        guard let row = foods.firstIndex(where: { $0._id == food._id }) else { return }
         
-        if available != nil {
-            foods[row].availableWeight = available!
-            updJson["available"] = available!
+        do {
+            let body: JSON = [
+                "email": AuthService.instance.userEmail,
+                "token": AuthService.instance.token,
+                "food": try JSON(data: try! JSONEncoder().encode(food))
+                ]
+            
+            print(body.dictionaryObject)
+            
+            Alamofire.request(URL_AVAILABLE, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+                switch response.result {
+                case .success:
+                    self.foods[row] = food
+                    handler(true)
+                case .failure(let err):
+                    debugPrint(err)
+                    handler(false)
+                }
+            }
+        } catch let err {
+            debugPrint(err)
+            handler(false)
         }
-        
-        if min != nil {
-            foods[row].dailyPortion.min = min!
-            updJson["dailyPortion"] = ["min": min!]
-        }
-        
-        if max != nil {
-            foods[row].dailyPortion.max = max!
-            updJson["dailyPortion"] = ["max": max!]
-        }
-        
-        if delta != nil {
-            foods[row].delta = delta!
-            updJson["delta"] = delta!
-        }
-        
-        //todo send data
-        handler(true)
     }
     
     func requestAvailableFoodItems(handler: @escaping CompletionHandler) {

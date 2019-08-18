@@ -41,7 +41,7 @@ class DetailsVC: UIViewController {
     @IBAction func editPressed(_ sender: Any) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
         present(vc, animated: true, completion: nil)
-        vc.setupView(title: titleLbl.text!, id: food!._id!)
+        vc.setupView(title: titleLbl.text!, food: food!)
     }
     
     @IBAction func backPressed(_ sender: Any) {

@@ -11,21 +11,28 @@ import UIKit
 class EditDetailsVC: UIViewController {
 
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBOutlet weak var availableTxtField: UITextField!
     @IBOutlet weak var minTxtField: UITextField!
     @IBOutlet weak var maxTxtField: UITextField!
     @IBOutlet weak var deltaTxtField: UITextField!
     
-    var id: String?
+    var food: FoodItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.hidesWhenStopped = true
     }
     
-    func setupView(title: String, id: String) {
+    func setupView(title: String, food: FoodItem) {
         titleLbl.text = title
-        self.id = id
+        self.food = food
+        
+        availableTxtField.text = "\(food.availableWeight ?? 0)"
+        minTxtField.text = "\(food.dailyPortion.min ?? 0)"
+        maxTxtField.text = "\(food.dailyPortion.max ?? 0)"
+        deltaTxtField.text = "\(food.delta ?? 0)"
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
@@ -33,7 +40,30 @@ class EditDetailsVC: UIViewController {
     }
     
     @IBAction func savePressed(_ sender: Any) {
-        DataService.instance.updateFood(id: id!, available: availableTxtField.text != nil ? Double(availableTxtField.text!) : nil, min: minTxtField.text != nil ? Int(minTxtField.text!) : nil, max: maxTxtField.text != nil ? Int(maxTxtField.text!) : nil, delta: deltaTxtField.text != nil ? Double(deltaTxtField.text!) : nil) {(success) in
+        if let availText = availableTxtField.text {
+            if let availVal = Double(availText) {
+                food?.availableWeight = availVal
+            }
+        }
+        if let minText = minTxtField.text {
+            if let minVal = Int(minText) {
+                food?.dailyPortion.min = minVal
+            }
+        }
+        if let maxText = maxTxtField.text {
+            if let maxVal = Int(maxText) {
+                food?.dailyPortion.max = maxVal
+            }
+        }
+        if let deltaText = deltaTxtField.text {
+            if let deltaVal = Double(deltaText) {
+                food?.delta = deltaVal
+            }
+        }
+        
+        spinner.startAnimating()
+        DataService.instance.updateFood(food: food!) {(success) in
+            self.spinner.stopAnimating()
             if (success) {
                 self.dismiss(animated: true, completion: nil)
             } else {

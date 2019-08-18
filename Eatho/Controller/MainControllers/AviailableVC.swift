@@ -91,7 +91,7 @@ class AviailableVC: UIViewController {
         guard let editVC = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
         
         present(editVC, animated: true, completion: nil)
-        editVC.setupView(title: DataService.instance.foods[index].name!, id: DataService.instance.foods[index]._id!)
+        editVC.setupView(title: DataService.instance.foods[index].name!, food: DataService.instance.foods[index])
     }
     
     // Actions
