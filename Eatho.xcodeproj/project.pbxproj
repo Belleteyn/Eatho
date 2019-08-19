@@ -314,6 +314,7 @@
 		956D436E22F2FEB50091C9C4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				95512AC222F089A80038790F /* SettingsVC.swift */,
 				956D436F22F2FEE00091C9C4 /* ActivityPickerVC.swift */,
 				956D437022F2FEE00091C9C4 /* ActivityPickerVC.xib */,
 			);
@@ -351,11 +352,9 @@
 		95A9984E22F81DA5007DE2A4 /* MainControllers */ = {
 			isa = PBXGroup;
 			children = (
-				952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */,
 				95512ABC22F089790038790F /* RationVC.swift */,
 				95512ABE22F0898A0038790F /* ShopListVC.swift */,
 				95512AC022F089970038790F /* DiaryVC.swift */,
-				95512AC222F089A80038790F /* SettingsVC.swift */,
 			);
 			path = MainControllers;
 			sourceTree = "<group>";
@@ -363,6 +362,7 @@
 		95A9984F22F81DD4007DE2A4 /* Available */ = {
 			isa = PBXGroup;
 			children = (
+				952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */,
 				95F9711C22EE438600BD6B87 /* CreationVC.swift */,
 				95512ABA22F0883F0038790F /* ScanBarcodeVC.swift */,
 				95EF446B230469BA00BAAE01 /* DetailsVC.swift */,
