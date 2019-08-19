@@ -82,7 +82,6 @@ class DataService {
                         self.foods = [] //clear before append
                         
                         for item in jsonArr {
-                            print("AVAIL: \(item)")
                             let food = FoodItem(json: item)
                             self.foods.append(food)
                         }

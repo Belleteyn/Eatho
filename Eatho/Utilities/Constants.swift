@@ -22,6 +22,7 @@ let URL_LOGIN = "\(URL_BASE)/auth/login"
 let URL_AVAILABLE = "\(URL_API)/available"
 
 let URL_ADD_FOOD = "\(URL_API)/food/add"
+let URL_SEARCH_FOOD = "\(URL_API)/food/search"
 
 let URL_RATION = "\(URL_API)/ration"
 let URL_UPD_RATION = "\(URL_API)/ration/update"

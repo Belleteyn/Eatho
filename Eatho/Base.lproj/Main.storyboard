@@ -601,8 +601,8 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tt8-Zu-IKk">
                                                     <rect key="frame" x="8" y="4" width="398" height="92"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK7-ek-lON">
-                                                            <rect key="frame" x="332" y="21" width="26" height="14.333333333333336"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK7-ek-lON">
+                                                            <rect key="frame" x="339.66666666666669" y="21" width="18.333333333333314" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.6470588235294118" green="0.6470588235294118" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1991,12 +1991,6 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vD1-bk-Q8v">
                                                     <rect key="frame" x="8" y="4" width="398" height="92"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRj-3g-ld4">
-                                                            <rect key="frame" x="332" y="21" width="26" height="14.333333333333336"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 kkal (100g)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBR-Ze-gr8">
                                                             <rect key="frame" x="56" y="29.666666666666661" width="87" height="14.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -2124,8 +2118,6 @@
                                                         <constraint firstAttribute="bottom" secondItem="rhi-jo-CeQ" secondAttribute="bottom" id="b5F-SE-9j5"/>
                                                         <constraint firstItem="PMr-f4-p2M" firstAttribute="trailing" secondItem="vD1-bk-Q8v" secondAttribute="trailingMargin" id="i40-eh-0R0"/>
                                                         <constraint firstItem="VBR-Ze-gr8" firstAttribute="leading" secondItem="aY3-sT-8jR" secondAttribute="leading" id="pLF-5S-L26"/>
-                                                        <constraint firstItem="PMr-f4-p2M" firstAttribute="leading" secondItem="aRj-3g-ld4" secondAttribute="trailing" constant="12" id="vgz-ka-heZ"/>
-                                                        <constraint firstItem="PMr-f4-p2M" firstAttribute="centerY" secondItem="aRj-3g-ld4" secondAttribute="centerY" id="x4y-G0-wpi"/>
                                                         <constraint firstItem="uis-Yq-wL3" firstAttribute="top" secondItem="vD1-bk-Q8v" secondAttribute="top" constant="12" id="yzn-k2-cNF"/>
                                                     </constraints>
                                                 </view>
@@ -2148,7 +2140,6 @@
                                             <outlet property="info" destination="VBR-Ze-gr8" id="GJx-Ll-kr2"/>
                                             <outlet property="name" destination="aY3-sT-8jR" id="mvM-3E-C77"/>
                                             <outlet property="proteins" destination="KJa-2X-U7u" id="gVe-aF-96D"/>
-                                            <outlet property="weightLbl" destination="aRj-3g-ld4" id="x2k-Jv-Dy3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
