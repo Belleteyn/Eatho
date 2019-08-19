@@ -13,11 +13,12 @@ class AvailableFoodCell: FoodCell {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var weightLbl: UILabel!
     
-    override func updateViews(foodItem: FoodItem) {
-        super.updateViews(foodItem: foodItem)
+    func updateViews(foodItem: FoodItem) {
+        guard let food = foodItem.food else { return }
+        super.updateViews(food: food)
         
         weightLbl.text = "\(Int(foodItem.availableWeight ?? 0)) \(foodItem.weightMeasure ?? "g")"
-        info.text = "\(foodItem.nutrition.calories.total ?? 0) kkal (100 g)"
+        info.text = "\(foodItem.food!.nutrition.calories.total ?? 0) kkal (100 g)"
         
         if (foodItem.dailyPortion.min ?? 0) > 0 {
             addButton.setImage(UIImage(named: "content_item_checked.png"), for: .normal)

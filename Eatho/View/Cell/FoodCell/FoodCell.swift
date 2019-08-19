@@ -32,12 +32,12 @@ class FoodCell: UITableViewCell {
         self.layoutIfNeeded()
     }
     
-    func updateViews(foodItem: FoodItem) {
-        icon.image = UIImage(named: foodItem.icon)
-        name.text = foodItem.name
+    func updateViews(food: Food) {
+        icon.image = UIImage(named: food.icon)
+        name.text = food.name
         
-        proteins.text = "\(foodItem.nutrition.proteins ?? 0) g"
-        carbs.text = "\(foodItem.nutrition.carbs.total ?? 0) g"
-        fats.text = "\(foodItem.nutrition.fats.total ?? 0) h"
+        proteins.text = "\(food.nutrition.proteins ?? 0) g"
+        carbs.text = "\(food.nutrition.carbs.total ?? 0) g"
+        fats.text = "\(food.nutrition.fats.total ?? 0) h"
     }
 }

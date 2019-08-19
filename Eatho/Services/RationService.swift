@@ -32,7 +32,7 @@ class RationService {
     }
     
     func incPortion(name: String) {
-        if let row = self.currentRation.firstIndex(where: { $0.name == name }) {
+        if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
             let food = currentRation[row]
             let delta = food.delta ?? 0
             let available = food.availableWeight ?? 0
@@ -49,7 +49,7 @@ class RationService {
     }
     
     func decPortion(name: String) {
-        if let row = self.currentRation.firstIndex(where: { $0.name == name }) {
+        if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
             let food = currentRation[row]
             let delta = food.delta ?? 0
             let portion = food.portion ?? 0

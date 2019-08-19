@@ -43,6 +43,7 @@
 		9571892E2305CB9C004A3EE3 /* Nutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571892D2305CB9C004A3EE3 /* Nutrient.swift */; };
 		9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9572F90D22E5AD7E009C7B7B /* GradientView.swift */; };
 		958195B4230ADD4D00B08C92 /* FoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958195B3230ADD4D00B08C92 /* FoodVC.swift */; };
+		958195B8230B2DA100B08C92 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958195B7230B2DA100B08C92 /* Food.swift */; };
 		958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81222E971E700DC6EB6 /* AuthService.swift */; };
 		958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81522E977BA00DC6EB6 /* Constants.swift */; };
 		958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81722E9CEA600DC6EB6 /* EathoButton.swift */; };
@@ -127,6 +128,7 @@
 		9571892D2305CB9C004A3EE3 /* Nutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
 		9572F90D22E5AD7E009C7B7B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		958195B3230ADD4D00B08C92 /* FoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodVC.swift; sourceTree = "<group>"; };
+		958195B7230B2DA100B08C92 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		958CD81222E971E700DC6EB6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		958CD81522E977BA00DC6EB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		958CD81722E9CEA600DC6EB6 /* EathoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoButton.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		95324E2C22DF615C005905FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				958195B7230B2DA100B08C92 /* Food.swift */,
 				952A6B7022E2480200FD8D50 /* FoodItem.swift */,
 				956D437722F377820091C9C4 /* NutritionFacts.swift */,
 				9571892B2305C61E004A3EE3 /* Nutrition.swift */,
@@ -633,6 +636,7 @@
 				95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */,
 				958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */,
 				956D437422F316E20091C9C4 /* KeyboardBindedView.swift in Sources */,
+				958195B8230B2DA100B08C92 /* Food.swift in Sources */,
 				956D438022F6ADF10091C9C4 /* ShoppingListCell.swift in Sources */,
 				95F9711F22EE45AE00BD6B87 /* BarcodeButton.swift in Sources */,
 				956D437C22F579BF0091C9C4 /* LabeledTextField.swift in Sources */,

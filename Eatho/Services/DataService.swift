@@ -21,13 +21,13 @@ class DataService {
     
     func removeItem(index: Int) {
         guard index < foods.count && index >= 0 else { return }
-        guard let id = foods[index]._id else { return }
+        guard let food = foods[index].food, let id = food._id else { return }
         removeFromAvailable(foodId: id)
         foods.remove(at: index)
     }
     
     func setSelected(name: String) {
-        if let row = foods.firstIndex(where: { $0.name == name }) {
+        if let row = foods.firstIndex(where: { $0.food!.name == name }) {
             let daily = foods[row].dailyPortion
             
             if daily.min == nil || daily.min! == 0 {
@@ -44,7 +44,7 @@ class DataService {
     }
     
     func updateFood(food: FoodItem, handler: @escaping CompletionHandler) {
-        guard let row = foods.firstIndex(where: { $0._id == food._id }) else { return }
+        guard let row = foods.firstIndex(where: { $0.food!._id == food.food!._id }) else { return }
         
         do {
             let body: JSON = [
@@ -52,8 +52,6 @@ class DataService {
                 "token": AuthService.instance.token,
                 "food": try JSON(data: try! JSONEncoder().encode(food))
                 ]
-            
-            print(body.dictionaryObject)
             
             Alamofire.request(URL_AVAILABLE, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
                 switch response.result {
@@ -84,6 +82,7 @@ class DataService {
                         self.foods = [] //clear before append
                         
                         for item in jsonArr {
+                            print("AVAIL: \(item)")
                             let food = FoodItem(json: item)
                             self.foods.append(food)
                         }
@@ -102,7 +101,8 @@ class DataService {
         }
     }
     
-    func addNewFood(food: FoodItem, handler: @escaping CompletionHandler) {
+    func addNewFood(foodItem: FoodItem, handler: @escaping CompletionHandler) {
+        guard let food = foodItem.food else { return }
         let body: [String: Any] = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
@@ -127,10 +127,10 @@ class DataService {
                     "token": AuthService.instance.token,
                     "info": [
                         "id": json["id"].stringValue,
-                        "available": food.availableWeight ?? 0,
-                        "min": (food.dailyPortion.min ?? 0),
-                        "max": (food.dailyPortion.max ?? 0),
-                        "preferred": (food.dailyPortion.preferred ?? 0)
+                        "available": foodItem.availableWeight ?? 0,
+                        "min": (foodItem.dailyPortion.min ?? 0),
+                        "max": (foodItem.dailyPortion.max ?? 0),
+                        "preferred": (foodItem.dailyPortion.preferred ?? 0)
                     ]
                 ]
                 

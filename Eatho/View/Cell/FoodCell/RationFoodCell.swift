@@ -14,13 +14,15 @@ class RationFoodCell: FoodCell {
     @IBOutlet weak var increaseBtn: UIButton!
     @IBOutlet weak var portionTxt: UILabel!
     
-    override func updateViews(foodItem: FoodItem) {
-        super.updateViews(foodItem: foodItem)
+    func updateViews(foodItem: FoodItem) {
+        guard let food = foodItem.food else { return }
+        
+        super.updateViews(food: food)
         
         let portion = foodItem.portion ?? 0
         portionTxt.text = "\(foodItem.delta ?? 0) g"
         
-        let caloriesPerPortion = round(portion * (foodItem.nutrition.calories.total ?? 0) / 100)
+        let caloriesPerPortion = round(portion * (food.nutrition.calories.total ?? 0) / 100)
         super.info.text = "\(Int(portion)) g (\(Int(caloriesPerPortion)) kcal)"
         
         increaseBtn.isEnabled = ((foodItem.availableWeight ?? 0) > portion)

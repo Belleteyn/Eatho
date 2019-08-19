@@ -10,41 +10,24 @@ import Foundation
 import SwiftyJSON
 
 struct FoodItem: Codable {
-    private (set) public var _id: String?
-    private (set) public var name: String?
-    private (set) public var type: String?
     
-    private (set) public var nutrition: NutritionFacts
-    private (set) public var gi: Int?
-    
+    var food: Food?
     var availableWeight: Double?
     var delta: Double?
     var portion: Double?
     
     private (set) public var weightMeasure: String?
-    
-    var icon: String {
-        if type != nil {
-            return "content_item_\(type!).png"
-        } else {
-            return ""
-        }
-    }
-    
+
     var dailyPortion: DailyPortion
     
     init(json: JSON) {
         let food = json["food"]
-        self._id = food["_id"].string
-        self.name = food["name"]["en"].string
-        self.type = food["type"].string
-        self.gi = food["gi"].int
+        self.food = Food(json: food)
         self.availableWeight = json["available"].double
         self.delta = json["delta"].double
         self.portion = json["portion"].double
         self.weightMeasure = json["measure"].string
         
-        self.nutrition = NutritionFacts(json: food["nutrition"])
         self.dailyPortion = DailyPortion(json: json["dailyPortion"])
     }
     
@@ -54,13 +37,8 @@ struct FoodItem: Codable {
          dailyPortion: DailyPortion,
          weightMeasure: String = "g") {
 
-        self.name = name
-        self.type = type
-        
+        self.food = Food(name: name, type: type, nutrition: nutrition, gi: gi)
         self.availableWeight = availableWeight
-        self.nutrition = nutrition
-        self.gi = gi
-        
         self.dailyPortion = dailyPortion
         self.weightMeasure = weightMeasure
     }

@@ -17,6 +17,8 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var fullInfoTableView: UITableView!
     
     var food: FoodItem?
+    var foodInfo: Food?
+    
     var userData = [Nutrient]()
     var macro = [Nutrient]()
     var minerals = [Nutrient]()
@@ -27,13 +29,25 @@ class DetailsVC: UIViewController {
     }
     
     func initData(food: FoodItem) {
+        guard let foodInfo = food.food else { return }
         self.food = food
-        titleLbl.text = food.name!
+        titleLbl.text = foodInfo.name!
         
         userData = getUserData(food: food)
-        macro = food.nutrition.getMacro(portion: food.delta)
-        minerals = food.nutrition.getMinerals(portion: food.delta)
-        vitamins = food.nutrition.getVitamins(portion: food.delta)
+        macro = foodInfo.nutrition.getMacro(portion: food.delta)
+        minerals = foodInfo.nutrition.getMinerals(portion: food.delta)
+        vitamins = foodInfo.nutrition.getVitamins(portion: food.delta)
+        
+        chartView.initData(nutrition: foodInfo.nutrition)
+    }
+    
+    func initData(food: Food) {
+        self.foodInfo = food
+        titleLbl.text = food.name!
+        
+        macro = food.nutrition.getMacro(portion: nil)
+        minerals = food.nutrition.getMinerals(portion: nil)
+        vitamins = food.nutrition.getVitamins(portion: nil)
         
         chartView.initData(nutrition: food.nutrition)
     }

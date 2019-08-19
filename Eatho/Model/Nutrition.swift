@@ -16,6 +16,8 @@ struct Nutrition {
     
     mutating func addPortion(food: FoodItem) {
         guard let portion = food.portion else { return }
+        guard let food = food.food else { return }
+        
         calories += food.nutrition.calories.total! * portion / 100
         proteins += food.nutrition.proteins! * portion / 100
         carbs += food.nutrition.carbs.total! * portion / 100
