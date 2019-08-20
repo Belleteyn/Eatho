@@ -143,16 +143,24 @@ class DataService {
             ]
         ]
         
-        Alamofire.request(URL_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
+        Alamofire.request(URL_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             switch response.result {
             case .success:
                 guard let data = response.data else { handler(false); return }
-                let json = JSON(data)
-                let food = FoodItem(json: json)
-                self.foods.append(food)
-                
-                NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
-                handler(true)
+                do {
+                    if let json = try JSON(data: data).array {
+                        for item in json {
+                            let food = FoodItem(json: item)
+                            self.foods.append(food)
+                        }
+                    }
+                    
+                    NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
+                    handler(true)
+                } catch let err {
+                    debugPrint(err)
+                    handler(false)
+                }
             case.failure(let error):
                 debugPrint(error)
                 handler(true)

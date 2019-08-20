@@ -33,18 +33,31 @@ class SearchVC: FoodVC {
         searchController.dimsBackgroundDuringPresentation = false
         //searchController.hidesNavigationBarDuringPresentation = false
         
-        searchController.searchBar.barStyle = .blackOpaque
+        searchController.searchBar.barStyle = .default
         searchController.searchBar.placeholder = "Search food"
         searchController.searchBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         searchController.searchBar.isHidden = false
         
-        //not working
-        let searchBarTextField = searchController.searchBar.value(forKey: "searchField") as! UITextField
-        searchBarTextField.textColor = UIColor.black
-        searchController.searchBar.setValue(searchBarTextField, forKey: "searchField")
+        navigationItem.largeTitleDisplayMode = .never
+        
+//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: TEXT_COLOR]
+//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(string: "Search food", attributes: [NSAttributedString.Key.foregroundColor: TEXT_COLOR])
+        
+        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = UIColor.blue
+            if let backgroundview = textfield.subviews.first {
+
+                // Background color
+                backgroundview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5482930223)
+
+                // Rounded corner
+                backgroundview.layer.cornerRadius = 10;
+                backgroundview.clipsToBounds = true;
+            }
+        }
 
         navigationItem.searchController = searchController
-        definesPresentationContext = false
+        definesPresentationContext = true
         
         searchController.isActive = true
     }
