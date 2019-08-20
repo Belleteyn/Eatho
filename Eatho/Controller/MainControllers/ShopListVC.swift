@@ -27,6 +27,9 @@ class ShopListVC: UIViewController {
         shopListTabBar.delegate = self
         shopListTabBar.selectedItem = shopListTabBar.items?.first
         
+        // spinner
+        spinner.hidesWhenStopped = true
+        
         // gestures
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandle))
         tap.cancelsTouchesInView = false
