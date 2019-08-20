@@ -87,14 +87,14 @@ extension SearchVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell") as? FoodCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "searchFoodCell") as? SearchFoodCell {
             if (indexPath.row < SearchService.instance.foods.count) {
                 let food = SearchService.instance.foods[indexPath.row]
                 cell.updateViews(food: food)
                 return cell
             }
         }
-        return FoodCell()
+        return SearchFoodCell()
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

@@ -1981,7 +1981,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" red="0.92157477139999999" green="0.92155748609999999" blue="0.92156922819999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoodCell" rowHeight="100" id="ee9-Yq-lKb" customClass="AvailableFoodCell" customModule="Eatho" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="searchFoodCell" rowHeight="100" id="ee9-Yq-lKb" customClass="SearchFoodCell" customModule="Eatho" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ee9-Yq-lKb" id="8LM-kc-tld">
@@ -2094,15 +2094,15 @@
                                                             <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMr-f4-p2M">
-                                                            <rect key="frame" x="370" y="18" width="20" height="20"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMr-f4-p2M">
+                                                            <rect key="frame" x="326" y="18" width="20" height="359"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="Ioa-Bc-GU2"/>
                                                                 <constraint firstAttribute="height" constant="20" id="a5W-FU-rzV"/>
                                                             </constraints>
                                                             <state key="normal" image="content_item_add_to_ration"/>
                                                             <connections>
-                                                                <action selector="onAddBtnClicked:" destination="ee9-Yq-lKb" eventType="touchUpInside" id="Amu-cy-2iq"/>
+                                                                <action selector="addBtnPressed:" destination="ee9-Yq-lKb" eventType="touchUpInside" id="mM6-Je-5Ag"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -2132,7 +2132,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="addButton" destination="PMr-f4-p2M" id="F7s-2c-4yp"/>
                                             <outlet property="carbs" destination="13X-6z-Lkt" id="M0N-v3-9P5"/>
                                             <outlet property="cardView" destination="vD1-bk-Q8v" id="L2n-Qk-keO"/>
                                             <outlet property="fats" destination="AZq-kx-KpV" id="MZE-h2-Drc"/>
@@ -2167,7 +2166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zX1-oO-NbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2361" y="1505"/>
+            <point key="canvasLocation" x="2360.8695652173915" y="1504.6875"/>
         </scene>
         <!--Create new food item-->
         <scene sceneID="EJF-RQ-uYk">
@@ -2703,7 +2702,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="pYs-WQ-iYB"/>
                     <connections>
-                        <outlet property="backButton" destination="lXj-oT-95c" id="cg1-Mh-UCV"/>
                         <outlet property="chartView" destination="JWf-cy-Fm3" id="yXm-eG-aQW"/>
                         <outlet property="editButton" destination="0ri-uI-tHI" id="EDx-x1-ugG"/>
                         <outlet property="fullInfoTableView" destination="gy8-VG-h57" id="kd7-Bz-Yh4"/>

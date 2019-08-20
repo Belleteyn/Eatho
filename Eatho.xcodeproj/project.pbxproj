@@ -52,8 +52,8 @@
 		958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */; };
 		95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */; };
 		95A05A1F22F84D2B002A35B9 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1D22F84D2B002A35B9 /* FoodCell.swift */; };
-		95A05A2022F84D2B002A35B9 /* FoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A05A1E22F84D2B002A35B9 /* FoodCell.xib */; };
 		95A05A2222F86D04002A35B9 /* RationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A2122F86D04002A35B9 /* RationService.swift */; };
+		95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */; };
 		95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEDA07230728D10094E161 /* EditDetailsVC.swift */; };
 		95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD32306A89700685806 /* NutritionChartView.swift */; };
 		95D3DFD62306E37400685806 /* EditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD52306E37400685806 /* EditableCell.swift */; };
@@ -139,8 +139,8 @@
 		958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationFoodCell.swift; sourceTree = "<group>"; };
 		95A05A1D22F84D2B002A35B9 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
-		95A05A1E22F84D2B002A35B9 /* FoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodCell.xib; sourceTree = "<group>"; };
 		95A05A2122F86D04002A35B9 /* RationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationService.swift; sourceTree = "<group>"; };
+		95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodCell.swift; sourceTree = "<group>"; };
 		95AEDA07230728D10094E161 /* EditDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsVC.swift; sourceTree = "<group>"; };
 		95D3DFD32306A89700685806 /* NutritionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionChartView.swift; sourceTree = "<group>"; };
 		95D3DFD52306E37400685806 /* EditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCell.swift; sourceTree = "<group>"; };
@@ -343,9 +343,9 @@
 			isa = PBXGroup;
 			children = (
 				95A05A1D22F84D2B002A35B9 /* FoodCell.swift */,
-				95A05A1E22F84D2B002A35B9 /* FoodCell.xib */,
 				952A6B6E22E246C700FD8D50 /* AvailableFoodCell.swift */,
 				95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */,
+				95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */,
 			);
 			path = FoodCell;
 			sourceTree = "<group>";
@@ -506,7 +506,6 @@
 			files = (
 				95324E0922DF614C005905FF /* LaunchScreen.storyboard in Resources */,
 				956D437222F2FEE00091C9C4 /* ActivityPickerVC.xib in Resources */,
-				95A05A2022F84D2B002A35B9 /* FoodCell.xib in Resources */,
 				95324E0622DF614C005905FF /* Assets.xcassets in Resources */,
 				95324E0422DF6149005905FF /* Main.storyboard in Resources */,
 			);
@@ -621,6 +620,7 @@
 				95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */,
 				952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */,
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
+				95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */,
 				95A05A2222F86D04002A35B9 /* RationService.swift in Sources */,
 				9571892E2305CB9C004A3EE3 /* Nutrient.swift in Sources */,
 				956D437822F377820091C9C4 /* NutritionFacts.swift in Sources */,
