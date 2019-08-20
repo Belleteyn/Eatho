@@ -12,7 +12,6 @@ class DetailsVC: UIViewController {
 
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var chartView: NutritionChartView!
     @IBOutlet weak var fullInfoTableView: UITableView!
     
@@ -50,6 +49,8 @@ class DetailsVC: UIViewController {
         vitamins = food.nutrition.getVitamins(portion: nil)
         
         chartView.initData(nutrition: food.nutrition)
+        
+        editButton.isEnabled = false
     }
     
     @IBAction func editPressed(_ sender: Any) {
