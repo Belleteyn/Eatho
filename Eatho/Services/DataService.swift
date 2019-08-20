@@ -121,34 +121,39 @@ class DataService {
             case .success:
                 guard let data = response.data else { handler(false); return }
                 let json = JSON(data)
-                let body: [String: Any] = [
-                    "email": AuthService.instance.userEmail,
-                    "token": AuthService.instance.token,
-                    "info": [
-                        "id": json["id"].stringValue,
-                        "available": foodItem.availableWeight ?? 0,
-                        "min": (foodItem.dailyPortion.min ?? 0),
-                        "max": (foodItem.dailyPortion.max ?? 0),
-                        "preferred": (foodItem.dailyPortion.preferred ?? 0)
-                    ]
-                ]
-                
-                Alamofire.request(URL_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
-                    switch response.result {
-                    case .success:
-                        guard let data = response.data else { handler(false); return }
-                        let json = JSON(data)
-                        let food = FoodItem(json: json)
-                        self.foods.append(food)
-                        
-                        NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
-                        handler(true)
-                    case.failure(let error):
-                        debugPrint(error)
-                        handler(true)
-                    }
-                }
+                let dailyPortion = DailyPortion(min: (foodItem.dailyPortion.min ?? 0), max: (foodItem.dailyPortion.max ?? 0), preferred: (foodItem.dailyPortion.preferred ?? 0))
+                self.addFoodToAvailable(forId: json["id"].stringValue, available: foodItem.availableWeight ?? 0.0, dailyPortion: dailyPortion, handler: handler)
             case .failure(let error):
+                debugPrint(error)
+                handler(true)
+            }
+        }
+    }
+    
+    func addFoodToAvailable(forId id: String, available: Double, dailyPortion: DailyPortion, handler: @escaping CompletionHandler) {
+        let body: [String: Any] = [
+            "email": AuthService.instance.userEmail,
+            "token": AuthService.instance.token,
+            "info": [
+                "id": id,
+                "available": available,
+                "min": dailyPortion.min!,
+                "max": dailyPortion.max!,
+                "preferred": dailyPortion.preferred!
+            ]
+        ]
+        
+        Alamofire.request(URL_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
+            switch response.result {
+            case .success:
+                guard let data = response.data else { handler(false); return }
+                let json = JSON(data)
+                let food = FoodItem(json: json)
+                self.foods.append(food)
+                
+                NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
+                handler(true)
+            case.failure(let error):
                 debugPrint(error)
                 handler(true)
             }

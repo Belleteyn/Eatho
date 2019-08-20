@@ -20,6 +20,8 @@ class SearchVC: FoodVC {
         
         foodTable.dataSource = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(startSpinner), name: NOTIF_SEARCH_FOOD_ADD, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addFinished(_:)), name: NOTIF_SEARCH_FOOD_ADD_DONE, object: nil)
         configureSearch()
     }
 
@@ -52,6 +54,21 @@ class SearchVC: FoodVC {
         
         present(detailsVC, animated: true, completion: nil)
         detailsVC.initData(food: SearchService.instance.foods[index])
+    }
+    
+    // Handlers
+    
+    @objc func startSpinner() {
+        spinner.startAnimating()
+    }
+    
+    @objc func addFinished(_ notification: Notification) {
+        spinner.stopAnimating()
+        if let success = notification.userInfo?["success"] as? Bool {
+            if success {
+                navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
 }
