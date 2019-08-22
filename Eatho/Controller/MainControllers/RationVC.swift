@@ -43,7 +43,7 @@ class RationVC: UIViewController {
         super.viewDidAppear(animated)
         
         //to keep updated version in case if user changed calories in settings
-        expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories.total!))) kcal"
+        expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) kcal"
     }
     
     func updateView() {

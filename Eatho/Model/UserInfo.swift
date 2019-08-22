@@ -9,14 +9,14 @@
 import Foundation
 
 struct UserInfo: Codable {
-    var setupNutrientsFlag: Bool = true
-    var gender: Int = 0
-    var weight: Double = 0.0
-    var height: Double = 0.0 //cm
-    var age: Int = 0 //years
-    var caloriesShortage: Double = 0.0
-    var activityIndex: Int = 0
-    var nutrition: NutritionFacts
+    var setupNutrientsFlag = true
+    var gender = 0
+    var weight = 0.0
+    var height = 0.0 //cm
+    var age = 0 //years
+    var caloriesShortage = 0.0
+    var activityIndex = 0
+    var nutrition = UserNutrition()
     
     mutating func recalculateNutrition() {
         let lean = leanMass(weightKg: weight, heightM: height, age: Double(age), gender: gender)
@@ -41,7 +41,10 @@ struct UserInfo: Codable {
         
         calories = p * 4.1 + c * 4.1 + f * 9.29
         
-        nutrition = NutritionFacts(calories: round(calories), proteins: round(p), carbs: round(c), fats: round(f))
+        nutrition.setCalories(kcal: round(calories * 10) / 10)
+        nutrition.setFats(grams: round(f * 10) / 10)
+        nutrition.setCarbs(grams: round(c * 10) / 10)
+        nutrition.setProteins(grams: round(p * 10) / 10)
     }
     
     private func leanMass(weightKg w: Double, heightM h: Double, age: Double, gender: Int) -> Double {

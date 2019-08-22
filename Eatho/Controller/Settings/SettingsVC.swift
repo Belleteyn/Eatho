@@ -35,6 +35,8 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        spinner.hidesWhenStopped = true
+        
         // keyboard
         view.bindToKeyboard()
         
@@ -91,12 +93,12 @@ class SettingsVC: UIViewController {
         let info = SettingsService.instance.userInfo
         
         caloriesTxt.text = "\(info.nutrition.calories)"
-        proteinsMassTxt.text = "\(info.nutrition.proteins ?? 0)"
-        proteinsPercentTxt.text = "\(round(info.nutrition.pPercent))"
-        carbsMassTxt.text = "\(info.nutrition.carbs)"
-        carbsPercentTxt.text = "\(round(info.nutrition.cPercent))"
-        fatsMassTxt.text = "\(info.nutrition.fats)"
-        fatsPercentTxt.text = "\(round(info.nutrition.fPercent))"
+        proteinsMassTxt.text = "\(info.nutrition.proteins["g"]!)"
+        proteinsPercentTxt.text = "\(info.nutrition.proteins["percent"]!)"
+        carbsMassTxt.text = "\(info.nutrition.carbs["g"]!)"
+        carbsPercentTxt.text = "\(info.nutrition.carbs["percent"]!)"
+        fatsMassTxt.text = "\(info.nutrition.fats["g"]!)"
+        fatsPercentTxt.text = "\(info.nutrition.fats["percent"]!)"
         
         autoSwitch.isOn = info.setupNutrientsFlag
         genderSwitch.selectedSegmentIndex = info.gender

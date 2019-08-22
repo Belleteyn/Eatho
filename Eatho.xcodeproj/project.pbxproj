@@ -54,6 +54,7 @@
 		95A05A1F22F84D2B002A35B9 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1D22F84D2B002A35B9 /* FoodCell.swift */; };
 		95A05A2222F86D04002A35B9 /* RationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A2122F86D04002A35B9 /* RationService.swift */; };
 		95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */; };
+		95A5B29F230EDF36002F54F9 /* UserNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5B29E230EDF35002F54F9 /* UserNutrition.swift */; };
 		95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEDA07230728D10094E161 /* EditDetailsVC.swift */; };
 		95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD32306A89700685806 /* NutritionChartView.swift */; };
 		95D3DFD62306E37400685806 /* EditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD52306E37400685806 /* EditableCell.swift */; };
@@ -141,6 +142,7 @@
 		95A05A1D22F84D2B002A35B9 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		95A05A2122F86D04002A35B9 /* RationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationService.swift; sourceTree = "<group>"; };
 		95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodCell.swift; sourceTree = "<group>"; };
+		95A5B29E230EDF35002F54F9 /* UserNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNutrition.swift; sourceTree = "<group>"; };
 		95AEDA07230728D10094E161 /* EditDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsVC.swift; sourceTree = "<group>"; };
 		95D3DFD32306A89700685806 /* NutritionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionChartView.swift; sourceTree = "<group>"; };
 		95D3DFD52306E37400685806 /* EditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCell.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				958195B7230B2DA100B08C92 /* Food.swift */,
 				952A6B7022E2480200FD8D50 /* FoodItem.swift */,
 				956D437722F377820091C9C4 /* NutritionFacts.swift */,
+				95A5B29E230EDF35002F54F9 /* UserNutrition.swift */,
 				9571892B2305C61E004A3EE3 /* Nutrition.swift */,
 				9571892D2305CB9C004A3EE3 /* Nutrient.swift */,
 				956D437922F377F30091C9C4 /* UserInfo.swift */,
@@ -632,6 +635,7 @@
 				958195B6230B22E700B08C92 /* SearchService.swift in Sources */,
 				95512AC522F0D3DA0038790F /* SettingsService.swift in Sources */,
 				95512ABB22F0883F0038790F /* ScanBarcodeVC.swift in Sources */,
+				95A5B29F230EDF36002F54F9 /* UserNutrition.swift in Sources */,
 				95324E3122DFB978005905FF /* LoginViewController.swift in Sources */,
 				95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */,
 				958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */,

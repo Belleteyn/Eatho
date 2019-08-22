@@ -17,39 +17,6 @@ struct NutritionFacts: Codable {
     var gi: Double?
     var micronutrients: Micronutrients?
     
-    var pKcal: Double {
-        return (proteins ?? 0.0) * 4.1
-    }
-    var pPercent: Double {
-        if calories.total != nil {
-            return pKcal * 100 / calories.total!
-        } else {
-            return 0
-        }
-    }
-    
-    var cKcal: Double {
-        return (carbs.total ?? 0.0) * 4.1
-    }
-    var cPercent: Double {
-        if calories.total != nil {
-            return cKcal * 100 / calories.total!
-        } else {
-            return 0
-        }
-    }
-    
-    var fKcal: Double {
-        return (fats.total ?? 0.0) * 9.29
-    }
-    var fPercent: Double {
-        if calories.total != nil {
-            return fKcal * 100 / calories.total!
-        } else {
-            return 0
-        }
-    }
-    
     init(json: JSON) {
         calories = Calories(json: json["calories"])
         proteins = json["proteins"].double

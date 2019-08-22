@@ -42,7 +42,7 @@ class SettingsService {
                 }
             }
             
-            return UserInfo(setupNutrientsFlag: true, gender: 0, weight: 0, height: 0, age: 0, caloriesShortage: 0, activityIndex: 0, nutrition: NutritionFacts(calories: 0, proteins: 0, carbs: 0, fats: 0))
+            return UserInfo()
         }
         
         set {
