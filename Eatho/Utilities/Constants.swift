@@ -25,7 +25,6 @@ let URL_ADD_FOOD = "\(URL_API)/food/add"
 let URL_SEARCH_FOOD = "\(URL_API)/food/search"
 
 let URL_RATION = "\(URL_API)/ration"
-let URL_UPD_RATION = "\(URL_API)/ration/update"
 
 let URL_SETTINGS = "\(URL_API)/settings"
 let URL_USER_DATA = "\(URL_API)/settings/userData"

@@ -242,7 +242,6 @@
 			children = (
 				958CD81422E977A500DC6EB6 /* Utilities */,
 				952A6B7222E27B1300FD8D50 /* Services */,
-				95324E2F22DF72F2005905FF /* fonts */,
 				95324E2E22DF616F005905FF /* Controller */,
 				95324E2D22DF6168005905FF /* View */,
 				95324E2C22DF615C005905FF /* Model */,
@@ -312,13 +311,6 @@
 				95324E0022DF6149005905FF /* WelcomeVC.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		95324E2F22DF72F2005905FF /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		956D436E22F2FEB50091C9C4 /* Settings */ = {
