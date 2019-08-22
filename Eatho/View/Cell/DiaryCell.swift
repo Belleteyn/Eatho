@@ -20,20 +20,23 @@ class DiaryCell: UITableViewCell {
     }
     
     func updateView(ration: Ration) {
-        let today = Date()
-        print(today)
-        print(ration.date)
-        
         let isoFormatter = ISO8601DateFormatter()
-        let date = isoFormatter.date(from: "\(ration.date)Z")!
+        guard let date = isoFormatter.date(from: "\(ration.date)") else { return }
         
-        dateLbl.text = ration.date
-        if date == today {
-            imgView.image = UIImage(named: "content_today.png")
-        } else if date < today {
-            imgView.image = UIImage(named: "content_item_2.png")
-        } else {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd") // set template after setting locale
+        dateLbl.text = dateFormatter.string(from: date)
+        
+        let interval = date.timeIntervalSinceNow //in seconds
+        let day = 24.0 * 60 * 60
+        
+        if interval > 0 {
             imgView.image = UIImage(named: "content_item_4.png")
+        } else if day + interval >= 0 {
+            imgView.image = UIImage(named: "content_today.png")
+        } else {
+            imgView.image = UIImage(named: "content_item_1.png")
         }
     }
 

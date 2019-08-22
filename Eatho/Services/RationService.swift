@@ -86,24 +86,18 @@ class RationService {
                     guard let json = JSON(data).array else { return }
                     self.currentRation = []
                     
+                    let formatter = ISO8601DateFormatter()
+                    let today = Date()
                     
-                    let isoFormatter = ISO8601DateFormatter()
-                    let today = isoFormatter.string(from: Date()).prefix(10)
-                    
-                    print(today)
                     for item in json {
-                        guard let dateStr = item["date"].string else { continue }
-                        do {
-                            let data = try item.rawData()
-                            let ration = try JSONDecoder().decode(Ration.self, from: data)
-                            self.diary.append(ration)
-                            
-                            if dateStr == today {
-                                self.nutrition.set(nutrition: ration.nutrition)
-                                self.currentRation = ration.ration
-                            }
-                        } catch let err {
-                            debugPrint(err)
+                        guard let dateStr = item["date"].string, let date = formatter.date(from: dateStr) else { continue }
+                        
+                        let ration = Ration(json: item)
+                        self.diary.append(ration)
+                        
+                        if date == today {
+                            self.nutrition.set(nutrition: ration.nutrition)
+                            self.currentRation = ration.ration
                         }
                     }
                     
@@ -111,6 +105,30 @@ class RationService {
                 }
             case .failure(let err):
                 debugPrint(err)
+            }
+        }
+    }
+    
+    func prepRation(forDays days: Int, handler: @escaping CompletionHandler) {
+        let body: [String : Any] = [
+            "email": AuthService.instance.userEmail,
+            "token": AuthService.instance.token,
+            "count": days
+        ]
+        
+        Alamofire.request(URL_RATION, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+            
+            do {
+                guard let data = response.data, let json = try JSON(data: data).array else { handler(false); return }
+                self.diary = []
+                for item in json {
+                    self.diary.append(Ration(json: item))
+                }
+                
+                handler(true)
+            } catch let err {
+                debugPrint(err)
+                handler(false)
             }
         }
     }
