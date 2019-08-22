@@ -73,6 +73,7 @@ class SettingsVC: UIViewController {
     
     @objc func tapHandler() {
         self.view.endEditing(false)
+        setupData()
     }
     
     @objc func loginHandler() {
