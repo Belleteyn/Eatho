@@ -25,9 +25,24 @@ class DiaryVC: UIViewController {
         
         spinner.hidesWhenStopped = true
         
-        if RationService.instance.diary.count == 0 {
-            RationService.instance.requestRation { (success) in
-                self.diaryTableView.reloadData()
+        configureRefreshControl()
+        
+        RationService.instance.requestRation { (success) in
+            self.diaryTableView.reloadData()
+        }
+    }
+    
+    func configureRefreshControl() {
+        diaryTableView.refreshControl = UIRefreshControl()
+        diaryTableView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    }
+    
+    @objc func handleRefresh() {
+        RationService.instance.requestRation { (success) in
+            self.diaryTableView.reloadData()
+            
+            DispatchQueue.main.async {
+                self.diaryTableView.refreshControl?.endRefreshing()
             }
         }
     }

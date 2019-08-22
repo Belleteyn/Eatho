@@ -21,7 +21,9 @@ class RationService {
         }
     }
     
-    func clearData() {
+    func resetData() {
+        diary = []
+        nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
         currentRation = []
     }
     
@@ -82,6 +84,8 @@ class RationService {
         Alamofire.request(URL_RATION, method: .get, parameters: query, encoding: URLEncoding.default).validate().responseJSON { (response) in
             switch response.result {
             case .success:
+                self.resetData()
+                
                 if let data = response.data {
                     guard let json = JSON(data).array else { return }
                     self.currentRation = []

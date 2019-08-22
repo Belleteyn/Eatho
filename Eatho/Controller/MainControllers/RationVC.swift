@@ -74,7 +74,7 @@ class RationVC: UIViewController {
     // handlers
     @objc func authChangedHandle() {
         if !AuthService.instance.isLoggedIn {
-            RationService.instance.clearData()
+            RationService.instance.resetData()
             self.rationTableView.reloadData()
         }
     }
