@@ -90,4 +90,21 @@ extension DiaryVC: UITableViewDelegate, UITableViewDataSource {
         
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let update = UIContextualAction(style: UIContextualAction.Style.normal, title: "Update") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            //todo
+            success(true)
+            self.diaryTableView.reloadData()
+        }
+        update.backgroundColor = EATHO_YELLOW
+        
+        let details = UIContextualAction(style: UIContextualAction.Style.normal, title: "Details") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            //todo
+            success(true)
+            self.diaryTableView.reloadData()
+        }
+        
+        return UISwipeActionsConfiguration(actions: [details, update])
+    }
 }
