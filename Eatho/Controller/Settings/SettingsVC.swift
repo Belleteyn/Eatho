@@ -30,12 +30,23 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var dailyActivityBtn: UIButton!
     @IBOutlet weak var calculateBtn: EathoButton!
     
+    @IBOutlet weak var warningLbl: UILabel!
+    
     var activityIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         spinner.hidesWhenStopped = true
+        
+        // text field delegates
+        caloriesTxt.delegate = self
+        proteinsMassTxt.delegate = self
+        proteinsPercentTxt.delegate = self
+        fatsMassTxt.delegate = self
+        fatsPercentTxt.delegate = self
+        carbsMassTxt.delegate = self
+        carbsPercentTxt.delegate = self
         
         // keyboard
         view.bindToKeyboard()
@@ -65,10 +76,6 @@ class SettingsVC: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        //todo: save settings, upload to server
-    }
-    
     // Handlers
     
     @objc func tapHandler() {
@@ -95,11 +102,11 @@ class SettingsVC: UIViewController {
         
         caloriesTxt.text = "\(info.nutrition.calories)"
         proteinsMassTxt.text = "\(info.nutrition.proteins["g"]!)"
-        proteinsPercentTxt.text = "\(info.nutrition.proteins["percent"]!)"
+        proteinsPercentTxt.text = "\(round(info.nutrition.proteins["percent"]! * 10) / 10)"
         carbsMassTxt.text = "\(info.nutrition.carbs["g"]!)"
-        carbsPercentTxt.text = "\(info.nutrition.carbs["percent"]!)"
+        carbsPercentTxt.text = "\(round(info.nutrition.carbs["percent"]! * 10) / 10)"
         fatsMassTxt.text = "\(info.nutrition.fats["g"]!)"
-        fatsPercentTxt.text = "\(info.nutrition.fats["percent"]!)"
+        fatsPercentTxt.text = "\(round(info.nutrition.fats["percent"]! * 10) / 10)"
         
         autoSwitch.isOn = info.setupNutrientsFlag
         genderSwitch.selectedSegmentIndex = info.gender
@@ -111,6 +118,7 @@ class SettingsVC: UIViewController {
         dailyActivityBtn.setTitleColor(TEXT_COLOR, for: .normal)
         
         activityIndex = info.activityIndex
+        warningLbl.isHidden = info.nutrition.isValid
     }
     
     // Actions
@@ -175,5 +183,36 @@ class SettingsVC: UIViewController {
         let activityPicker = ActivityPickerVC()
         activityPicker.modalPresentationStyle = .custom
         present(activityPicker, animated: true, completion: nil)
+    }
+}
+
+extension SettingsVC: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let text = textField.text, let val = Double(text) {
+            var info = SettingsService.instance.userInfo
+            
+            switch textField {
+            case caloriesTxt:
+                info.nutrition.setCalories(kcal: val, updGrams: true)
+            case proteinsPercentTxt:
+                info.nutrition.setProteins(grams: nil, percent: val, updCalories: true)
+            case proteinsMassTxt:
+                info.nutrition.setProteins(grams: val, percent: nil, updCalories: true)
+            case carbsPercentTxt:
+                info.nutrition.setCarbs(grams: nil, percent: val, updCalories: true)
+            case carbsMassTxt:
+                info.nutrition.setCarbs(grams: val, percent: nil, updCalories: true)
+            case fatsPercentTxt:
+                info.nutrition.setFats(grams: nil, percent: val, updCalories: true)
+            case fatsMassTxt:
+                info.nutrition.setFats(grams: val, percent: nil, updCalories: true)
+            default:
+                print(textField)
+            }
+            
+            // update in storage and on server
+            SettingsService.instance.userInfo = info
+            warningLbl.isHidden = info.nutrition.isValid
+        }
     }
 }

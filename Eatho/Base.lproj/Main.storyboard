@@ -1880,9 +1880,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Pgx-dN-NM2">
-                                <rect key="frame" x="188.66666666666666" y="16" width="37" height="37"/>
+                                <rect key="frame" x="188.66666666666666" y="385.66666666666669" width="37" height="37"/>
                                 <color key="color" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please set appropriate values" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aD-eC-kyq">
+                                <rect key="frame" x="208.33333333333337" y="229" width="189.66666666666663" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.99215686274509807" green="0.47058823529411764" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1895,6 +1901,7 @@
                             <constraint firstItem="f9X-Pb-7Jt" firstAttribute="top" secondItem="Jhg-Ii-Gv8" secondAttribute="bottom" constant="36" id="ANW-Re-GBC"/>
                             <constraint firstItem="CLJ-Rd-uPd" firstAttribute="trailing" secondItem="Flu-GM-bCz" secondAttribute="trailing" constant="-16" id="CWh-XM-pn9"/>
                             <constraint firstItem="2f9-tW-DTF" firstAttribute="trailing" secondItem="XLx-X2-scg" secondAttribute="trailing" constant="16" id="G3e-BM-B2a"/>
+                            <constraint firstItem="Pgx-dN-NM2" firstAttribute="centerY" secondItem="gsh-eU-Pxr" secondAttribute="centerY" id="IDP-CJ-Q35"/>
                             <constraint firstItem="Uv5-fv-9Ii" firstAttribute="centerY" secondItem="zJf-J3-4fA" secondAttribute="centerY" id="L1S-B5-8yC"/>
                             <constraint firstItem="8ey-mk-vVN" firstAttribute="trailing" secondItem="Uys-e6-pQI" secondAttribute="trailing" constant="16" id="L3X-3O-p6u"/>
                             <constraint firstItem="Jhg-Ii-Gv8" firstAttribute="trailing" secondItem="VeP-Qb-Geu" secondAttribute="trailing" id="NXS-Ej-y0R"/>
@@ -1906,11 +1913,13 @@
                             <constraint firstItem="fmh-VR-KB3" firstAttribute="centerY" secondItem="pB9-1u-foQ" secondAttribute="centerY" id="Rx8-4b-5QH"/>
                             <constraint firstItem="2Ov-Bg-KKC" firstAttribute="leading" secondItem="VeP-Qb-Geu" secondAttribute="leading" constant="20" id="UVy-gF-EEc"/>
                             <constraint firstItem="f9X-Pb-7Jt" firstAttribute="leading" secondItem="VeP-Qb-Geu" secondAttribute="leading" id="UwN-kS-VDB"/>
+                            <constraint firstItem="7aD-eC-kyq" firstAttribute="top" secondItem="Jhg-Ii-Gv8" secondAttribute="bottom" constant="8" id="Xn8-ZA-cUc"/>
                             <constraint firstItem="kct-gc-FTf" firstAttribute="trailing" secondItem="gsh-eU-Pxr" secondAttribute="trailingMargin" id="a5J-Zj-haA"/>
                             <constraint firstItem="f9X-Pb-7Jt" firstAttribute="trailing" secondItem="VeP-Qb-Geu" secondAttribute="trailing" id="a71-0i-Fzy"/>
                             <constraint firstItem="Jhg-Ii-Gv8" firstAttribute="top" secondItem="nct-mg-rDn" secondAttribute="bottom" constant="8" id="ahs-gU-qUw"/>
                             <constraint firstItem="h8a-07-vnH" firstAttribute="trailing" secondItem="Ccw-KL-T1A" secondAttribute="trailing" constant="-16" id="bCC-zQ-0PA"/>
                             <constraint firstItem="fmh-VR-KB3" firstAttribute="trailing" secondItem="pB9-1u-foQ" secondAttribute="trailing" constant="-16" id="bq8-qn-B4p"/>
+                            <constraint firstItem="VeP-Qb-Geu" firstAttribute="trailing" secondItem="7aD-eC-kyq" secondAttribute="trailing" constant="16" id="cf6-fa-Odr"/>
                             <constraint firstItem="VeP-Qb-Geu" firstAttribute="trailing" secondItem="2Ov-Bg-KKC" secondAttribute="trailing" constant="20" id="dc1-ep-rxF"/>
                             <constraint firstItem="1Y1-wx-fLT" firstAttribute="trailing" secondItem="9T8-6y-SjD" secondAttribute="trailing" constant="16" id="dzN-gS-TAp"/>
                             <constraint firstItem="CLJ-Rd-uPd" firstAttribute="centerY" secondItem="Flu-GM-bCz" secondAttribute="centerY" id="fYf-LQ-cxz"/>
@@ -1924,7 +1933,6 @@
                             <constraint firstItem="Aij-ez-ceK" firstAttribute="centerY" secondItem="CgW-hE-mUs" secondAttribute="centerY" id="vrK-jJ-MOB"/>
                             <constraint firstItem="3mU-Sl-iyQ" firstAttribute="centerY" secondItem="ffC-31-rT9" secondAttribute="centerY" id="wTv-as-JcD"/>
                             <constraint firstItem="h8a-07-vnH" firstAttribute="centerY" secondItem="Ccw-KL-T1A" secondAttribute="centerY" id="wav-Va-icj"/>
-                            <constraint firstItem="Pgx-dN-NM2" firstAttribute="top" secondItem="VeP-Qb-Geu" secondAttribute="top" constant="16" id="zxg-ua-WRw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VeP-Qb-Geu"/>
                     </view>
@@ -1945,6 +1953,7 @@
                         <outlet property="proteinsMassTxt" destination="zJf-J3-4fA" id="Bv6-dA-iId"/>
                         <outlet property="proteinsPercentTxt" destination="pB9-1u-foQ" id="rKM-OE-GCe"/>
                         <outlet property="spinner" destination="Pgx-dN-NM2" id="xl4-TR-mg6"/>
+                        <outlet property="warningLbl" destination="7aD-eC-kyq" id="mYm-e9-1mJ"/>
                         <outlet property="weightTxt" destination="1Y1-wx-fLT" id="GDq-7k-6zY"/>
                     </connections>
                 </viewController>

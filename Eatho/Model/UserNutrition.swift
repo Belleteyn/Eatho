@@ -26,10 +26,21 @@ struct UserNutrition: Codable {
         "percent": 0
     ]
     
-    mutating func setProteins(grams: Double?, percent: Double? = nil) {
+    var isValid: Bool {
+        get {
+            return abs(100 - proteins["percent"]! - carbs["percent"]! - fats["percent"]!) < 0.2
+        }
+    }
+    
+    mutating func setProteins(grams: Double?, percent: Double? = nil, updCalories: Bool = false) {
         if let grams = grams {
             let kcal = grams * 4.1
-            let percent = calories > 0 ? round(kcal * 1000 / calories) / 10 : 0
+            
+            if updCalories {
+                calories += (kcal - proteins["kcal"]!)
+            }
+            
+            let percent = calories > 0 ? kcal * 100 / calories : 0
             proteins = [ "kcal": kcal, "g": grams, "percent": percent ]
         } else if let percent = percent {
             let kcal = calories * percent / 100
@@ -38,10 +49,15 @@ struct UserNutrition: Codable {
         }
     }
     
-    mutating func setCarbs(grams: Double?, percent: Double? = nil) {
+    mutating func setCarbs(grams: Double?, percent: Double? = nil, updCalories: Bool = false) {
         if let grams = grams {
             let kcal = grams * 4.1
-            let percent = calories > 0 ? round(kcal * 1000 / calories) / 10 : 0
+            
+            if updCalories {
+                calories += (kcal - carbs["kcal"]!)
+            }
+            
+            let percent = calories > 0 ? kcal * 100 / calories : 0
             carbs = [ "kcal": kcal, "g": grams, "percent": percent ]
         } else if let percent = percent {
             let kcal = calories * percent / 100
@@ -50,10 +66,15 @@ struct UserNutrition: Codable {
         }
     }
     
-    mutating func setFats(grams: Double?, percent: Double? = nil) {
+    mutating func setFats(grams: Double?, percent: Double? = nil, updCalories: Bool = false) {
         if let grams = grams {
             let kcal = grams * 9.29
-            let percent = calories > 0 ? round(kcal * 1000 / calories) / 10 : 0
+            
+            if updCalories {
+                calories += (kcal - fats["kcal"]!)
+            }
+            
+            let percent = calories > 0 ? kcal * 100 / calories : 0
             fats = [ "kcal": kcal, "g": grams, "percent": percent ]
         } else if let percent = percent {
             let kcal = calories * percent / 100
@@ -62,12 +83,25 @@ struct UserNutrition: Codable {
         }
     }
     
-    mutating func setCalories(kcal: Double) {
+    mutating func setCalories(kcal: Double, updGrams: Bool = false) {
         calories = kcal
-        if (calories > 0) {
+        
+        if updGrams {
+            carbs["kcal"] = carbs["percent"]! * calories / 100
+            fats["kcal"] = fats["percent"]! * calories / 100
+            proteins["kcal"] = proteins["percent"]! * calories / 100
+            
+            carbs["g"] = carbs["kcal"]! / 4.1
+            fats["g"] = fats["kcal"]! / 9.29
+            proteins["g"] = proteins["kcal"]! / 4.1
+        } else if (calories > 0) {
             carbs["percent"] = carbs["kcal"]! * 100 / calories
             fats["percent"] = fats["kcal"]! * 100 / calories
             proteins["percent"] = proteins["kcal"]! * 100 / calories
+        } else {
+            carbs["percent"] = 0
+            fats["percent"] = 0
+            proteins["percent"] = 0
         }
     }
 }
