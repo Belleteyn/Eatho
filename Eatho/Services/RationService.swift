@@ -15,11 +15,7 @@ class RationService {
     
     public private(set) var diary = [Ration]()
     public private(set) var nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
-    public private(set) var currentRation: [FoodItem] = [] {
-        didSet {
-            updateRationInfo()
-        }
-    }
+    public private(set) var currentRation: [FoodItem] = []
     
     func resetData() {
         diary = []
@@ -28,9 +24,19 @@ class RationService {
     }
     
     func removeItem(index: Int) {
+        updateNutrition(delta: currentRation[index].food!.nutrition, portion: currentRation[index].portion!, inc: false)
         currentRation.remove(at: index)
-        updateRationInfo()
+        
         NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+    }
+    
+    private func updateNutrition(delta: NutritionFacts, portion: Double, inc: Bool) {
+        let kcal = delta.calories.total! * portion / 100, c = delta.carbs.total! * portion / 100, f = delta.fats.total! * portion / 100, p = delta.proteins! * portion / 100
+        
+        nutrition.calories += inc ? kcal : -kcal
+        nutrition.carbs += inc ? c : -c
+        nutrition.fats += inc ? f : -f
+        nutrition.proteins += inc ? p : -p
     }
     
     func incPortion(name: String) {
@@ -39,13 +45,15 @@ class RationService {
             let delta = food.delta ?? 0
             let available = food.availableWeight ?? 0
             let portion = food.portion ?? 0
+            
+            updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: false)
             if portion + delta < (available) {
                 currentRation[row].updateWeight(delta: delta)
             } else {
                 currentRation[row].updateWeight(delta: (available - portion))
             }
+            updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: true)
             
-            updateRationInfo()
             NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
         }
     }
@@ -55,22 +63,16 @@ class RationService {
             let food = currentRation[row]
             let delta = food.delta ?? 0
             let portion = food.portion ?? 0
+            
+            updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: false)
             if portion - delta >= 0 {
                 currentRation[row].updateWeight(delta: -delta)
             } else {
                 currentRation[row].updateWeight(delta: -portion)
             }
+            updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: true)
             
-            updateRationInfo()
             NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
-        }
-    }
-    
-    private func updateRationInfo() {
-        nutrition.reset()
-        
-        for food in currentRation {
-            nutrition.addPortion(food: food)
         }
     }
     
@@ -88,10 +90,9 @@ class RationService {
                 
                 if let data = response.data {
                     guard let json = JSON(data).array else { return }
-                    self.currentRation = []
                     
                     let formatter = ISO8601DateFormatter()
-                    let today = Date()
+                    let day = 24.0 * 60 * 60
                     
                     for item in json {
                         guard let dateStr = item["date"].string, let date = formatter.date(from: dateStr) else { continue }
@@ -99,7 +100,8 @@ class RationService {
                         let ration = Ration(json: item)
                         self.diary.append(ration)
                         
-                        if date == today {
+                        let interval = date.timeIntervalSinceNow
+                        if interval < 0 && day + interval >= 0 {
                             self.nutrition.set(nutrition: ration.nutrition)
                             self.currentRation = ration.ration
                         }
@@ -109,6 +111,7 @@ class RationService {
                 }
             case .failure(let err):
                 debugPrint(err)
+                handler(false)
             }
         }
     }

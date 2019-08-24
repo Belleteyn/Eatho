@@ -38,6 +38,6 @@ class FoodCell: UITableViewCell {
         
         proteins.text = "\(food.nutrition.proteins ?? 0) g"
         carbs.text = "\(food.nutrition.carbs.total ?? 0) g"
-        fats.text = "\(food.nutrition.fats.total ?? 0) h"
+        fats.text = "\(food.nutrition.fats.total ?? 0) g"
     }
 }

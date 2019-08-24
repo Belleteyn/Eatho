@@ -18,14 +18,14 @@ struct Ration: Codable {
     init(json: JSON) {
         self.date = json["date"].string ?? ""
         
-        let rationObj = json["ration"]
-        self.nutrition = NutritionFacts(json: rationObj["nutrition"])
+        self.nutrition = NutritionFacts(json: json["nutrition"])
         
-        if let err = rationObj["error"].dictionaryObject as? Dictionary<String, Double> {
+        if let err = json["error"].dictionaryObject as? Dictionary<String, Double> {
             self.error = err
         }
         
-        if let rationArr = rationObj["ration"].array {
+        if let rationArr = json["ration"].array {
+
             for item in rationArr {
                 self.ration.append(FoodItem(json: item))
             }

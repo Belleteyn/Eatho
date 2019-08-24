@@ -28,6 +28,8 @@ class RationVC: UIViewController {
         rationTableView.delegate = self
         rationTableView.dataSource = self
         
+        spinner.hidesWhenStopped = true
+        
         // Notifications
         NotificationCenter.default.addObserver(self, selector: #selector(authChangedHandle), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
@@ -44,11 +46,15 @@ class RationVC: UIViewController {
         
         //to keep updated version in case if user changed calories in settings
         expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) kcal"
+        updateView()
     }
     
     func updateView() {
         rationTableView.reloadData()
-        
+        updateNutrientView()
+    }
+    
+    func updateNutrientView() {
         let calories = RationService.instance.nutrition.calories
         let carbs = RationService.instance.nutrition.carbs
         let proteins = RationService.instance.nutrition.proteins
@@ -68,7 +74,6 @@ class RationVC: UIViewController {
         } else {
             nutrientRelativityView.updateView(proteinsPercent: 0, carbsPercent: 0, fatsPercent: 0)
         }
-        
     }
     
     // handlers

@@ -101,11 +101,11 @@ class SettingsVC: UIViewController {
         let info = SettingsService.instance.userInfo
         
         caloriesTxt.text = "\(info.nutrition.calories)"
-        proteinsMassTxt.text = "\(info.nutrition.proteins["g"]!)"
+        proteinsMassTxt.text = "\(round(info.nutrition.proteins["g"]! * 10) / 10)"
         proteinsPercentTxt.text = "\(round(info.nutrition.proteins["percent"]! * 10) / 10)"
-        carbsMassTxt.text = "\(info.nutrition.carbs["g"]!)"
+        carbsMassTxt.text = "\(round(info.nutrition.carbs["g"]! * 10) / 10)"
         carbsPercentTxt.text = "\(round(info.nutrition.carbs["percent"]! * 10) / 10)"
-        fatsMassTxt.text = "\(info.nutrition.fats["g"]!)"
+        fatsMassTxt.text = "\(round(info.nutrition.fats["g"]! * 10) / 10)"
         fatsPercentTxt.text = "\(round(info.nutrition.fats["percent"]! * 10) / 10)"
         
         autoSwitch.isOn = info.setupNutrientsFlag
