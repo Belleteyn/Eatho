@@ -31,6 +31,8 @@ class AviailableVC: FoodVC {
         if (AuthService.instance.isLoggedIn && DataService.instance.foods.count == 0) {
             loadData()
         }
+        
+        foodTable.reloadData()
     }
     
     // Configure

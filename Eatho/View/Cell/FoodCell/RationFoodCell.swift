@@ -25,7 +25,7 @@ class RationFoodCell: FoodCell {
         let caloriesPerPortion = round(portion * (food.nutrition.calories.total ?? 0) / 100)
         super.info.text = "\(Int(portion)) g (\(Int(caloriesPerPortion)) kcal)"
         
-        increaseBtn.isEnabled = ((foodItem.availableWeight ?? 0) > portion)
+        increaseBtn.isEnabled = ((foodItem.available ?? 0) > portion)
         decreaseBtn.isEnabled = (portion > 0)
     }
 

@@ -29,7 +29,7 @@ class EditDetailsVC: UIViewController {
         titleLbl.text = title
         self.food = food
         
-        availableTxtField.text = "\(food.availableWeight ?? 0)"
+        availableTxtField.text = "\(food.available ?? 0)"
         minTxtField.text = "\(food.dailyPortion.min ?? 0)"
         maxTxtField.text = "\(food.dailyPortion.max ?? 0)"
         deltaTxtField.text = "\(food.delta ?? 0)"
@@ -42,7 +42,7 @@ class EditDetailsVC: UIViewController {
     @IBAction func savePressed(_ sender: Any) {
         if let availText = availableTxtField.text {
             if let availVal = Double(availText) {
-                food?.availableWeight = availVal
+                food?.available = availVal
             }
         }
         if let minText = minTxtField.text {

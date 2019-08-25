@@ -12,7 +12,7 @@ import SwiftyJSON
 struct FoodItem: Codable {
     
     var food: Food?
-    var availableWeight: Double?
+    var available: Double?
     var delta: Double?
     var portion: Double?
     
@@ -23,7 +23,7 @@ struct FoodItem: Codable {
     init(json: JSON) {
         let food = json["food"]
         self.food = Food(json: food)
-        self.availableWeight = json["available"].double
+        self.available = json["available"].double
         self.delta = json["delta"].double
         self.portion = json["portion"].double
         self.weightMeasure = json["measure"].string
@@ -38,7 +38,7 @@ struct FoodItem: Codable {
          weightMeasure: String = "g") {
 
         self.food = Food(name: name, type: type, nutrition: nutrition, gi: gi)
-        self.availableWeight = availableWeight
+        self.available = availableWeight
         self.dailyPortion = dailyPortion
         self.weightMeasure = weightMeasure
     }

@@ -43,7 +43,7 @@ class RationService {
         if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
             let food = currentRation[row]
             let delta = food.delta ?? 0
-            let available = food.availableWeight ?? 0
+            let available = food.available ?? 0
             let portion = food.portion ?? 0
             
             updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: false)

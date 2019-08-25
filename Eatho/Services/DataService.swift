@@ -47,10 +47,12 @@ class DataService {
         guard let row = foods.firstIndex(where: { $0.food!._id == food.food!._id }) else { return }
         
         do {
+            let data = try JSONEncoder().encode(food)
+            
             let body: JSON = [
                 "email": AuthService.instance.userEmail,
                 "token": AuthService.instance.token,
-                "food": try JSON(data: try! JSONEncoder().encode(food))
+                "food": try JSON(data: data)
                 ]
             
             Alamofire.request(URL_AVAILABLE, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
@@ -59,12 +61,12 @@ class DataService {
                     self.foods[row] = food
                     handler(true)
                 case .failure(let err):
-                    debugPrint(err)
+                    debugPrint(" # update food error: \(err)")
                     handler(false)
                 }
             }
         } catch let err {
-            debugPrint(err)
+            debugPrint(" # update food error: \(err)")
             handler(false)
         }
     }
@@ -122,7 +124,7 @@ class DataService {
                 guard let data = response.data else { handler(false); return }
                 let json = JSON(data)
                 let dailyPortion = DailyPortion(min: (foodItem.dailyPortion.min ?? 0), max: (foodItem.dailyPortion.max ?? 0), preferred: (foodItem.dailyPortion.preferred ?? 0))
-                self.addFoodToAvailable(forId: json["id"].stringValue, available: foodItem.availableWeight ?? 0.0, dailyPortion: dailyPortion, handler: handler)
+                self.addFoodToAvailable(forId: json["id"].stringValue, available: foodItem.available ?? 0.0, dailyPortion: dailyPortion, handler: handler)
             case .failure(let error):
                 debugPrint(error)
                 handler(true)

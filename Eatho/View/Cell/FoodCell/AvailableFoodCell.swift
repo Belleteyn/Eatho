@@ -17,7 +17,7 @@ class AvailableFoodCell: FoodCell {
         guard let food = foodItem.food else { return }
         super.updateViews(food: food)
         
-        weightLbl.text = "\(Int(foodItem.availableWeight ?? 0)) \(foodItem.weightMeasure ?? "g")"
+        weightLbl.text = "\(Int(foodItem.available ?? 0)) \(foodItem.weightMeasure ?? "g")"
         info.text = "\(foodItem.food!.nutrition.calories.total ?? 0) kkal (100 g)"
         
         if (foodItem.dailyPortion.min ?? 0) > 0 {
