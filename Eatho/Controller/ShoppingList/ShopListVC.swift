@@ -13,7 +13,10 @@ class ShopListVC: UIViewController {
     // Outlets
     @IBOutlet weak var shopListTabBar: UITabBar!
     @IBOutlet weak var shopListTableView: UITableView!
+    
     @IBOutlet weak var insertionTxt: UITextField!
+    @IBOutlet weak var insertionTxtHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -22,6 +25,7 @@ class ShopListVC: UIViewController {
         // table view
         shopListTableView.delegate = self
         shopListTableView.dataSource = self
+        
         
         // tab bar
         shopListTabBar.delegate = self
@@ -37,10 +41,11 @@ class ShopListVC: UIViewController {
         
         // notifications
         NotificationCenter.default.addObserver(self, selector: #selector(authDataChanged), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(dataUpdateHandle), name: NOTIF_SHOPPING_LIST_DATA_CHAGNED, object: nil)
         
         // init data
-        ShopListService.instance.requestData()
+        ShopListService.instance.requestData { (_) in
+            self.shopListTableView.reloadData()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,11 +64,13 @@ class ShopListVC: UIViewController {
     
     @objc func authDataChanged() {
         if AuthService.instance.isLoggedIn {
-            ShopListService.instance.requestData()
+            ShopListService.instance.requestData { (_) in
+                self.shopListTableView.reloadData()
+            }
         } else {
             ShopListService.instance.clearData()
+            shopListTableView.reloadData()
         }
-        shopListTableView.reloadData()
     }
     
     // Actions
@@ -95,11 +102,16 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
                 let values = list.values
                 let index = keys.index(list.startIndex, offsetBy: indexPath.row)
                 listCell.updateView(name: keys[index], selectionState: values[index])
+                listCell.selectionStyle = UITableViewCell.SelectionStyle.none
                 return listCell
             }
         } else {
             if let mostRecentCell = shopListTableView.dequeueReusableCell(withIdentifier: "recentPurchasesCell") as? RecentPurchasesCell {
                 mostRecentCell.updateView(name: ShopListService.instance.mostRecentList[indexPath.row])
+                
+                let selectedBrndView = UIView()
+                selectedBrndView.backgroundColor = EATHO_YELLOW_OPACITY50
+                mostRecentCell.selectedBackgroundView = selectedBrndView
                 return mostRecentCell
             }
         }
@@ -125,14 +137,30 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
         
         return UISwipeActionsConfiguration(actions: [trashAction])
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if shopListTabBar.selectedItem == shopListTabBar.items?.last {
+            ShopListService.instance.addItem(name: ShopListService.instance.mostRecentList[indexPath.row])
+            ShopListService.instance.removeItemFromRecent(index: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
+        }
+    }
 }
 
 extension ShopListVC: UITabBarDelegate {
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         shopListTableView.reloadData()
-        UIView.animate(withDuration: 0.3, animations:  {
-            self.insertionTxt.isHidden = (self.shopListTabBar.selectedItem != self.shopListTabBar.items?.first)
+        UIView.setAnimationCurve(UIView.AnimationCurve.easeIn)
+        UIView.animate(withDuration: 0.4, animations:  {
+            let hide = (self.shopListTabBar.selectedItem != self.shopListTabBar.items?.first)
+            if hide {
+                self.insertionTxtHeight.constant = 0
+            } else {
+                self.insertionTxtHeight.constant = 40
+            }
+            
             self.view.layoutIfNeeded()
         })
     }

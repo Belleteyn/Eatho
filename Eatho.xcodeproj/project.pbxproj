@@ -56,6 +56,7 @@
 		95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */; };
 		95A5B29F230EDF36002F54F9 /* UserNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5B29E230EDF35002F54F9 /* UserNutrition.swift */; };
 		95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEDA07230728D10094E161 /* EditDetailsVC.swift */; };
+		95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */; };
 		95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD32306A89700685806 /* NutritionChartView.swift */; };
 		95D3DFD62306E37400685806 /* EditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD52306E37400685806 /* EditableCell.swift */; };
 		95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446B230469BA00BAAE01 /* DetailsVC.swift */; };
@@ -144,6 +145,7 @@
 		95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodCell.swift; sourceTree = "<group>"; };
 		95A5B29E230EDF35002F54F9 /* UserNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNutrition.swift; sourceTree = "<group>"; };
 		95AEDA07230728D10094E161 /* EditDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsVC.swift; sourceTree = "<group>"; };
+		95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationNutrientsView.swift; sourceTree = "<group>"; };
 		95D3DFD32306A89700685806 /* NutritionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionChartView.swift; sourceTree = "<group>"; };
 		95D3DFD52306E37400685806 /* EditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCell.swift; sourceTree = "<group>"; };
 		95EF446B230469BA00BAAE01 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				956D437B22F579BF0091C9C4 /* LabeledTextField.swift */,
 				951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */,
 				95D3DFD32306A89700685806 /* NutritionChartView.swift */,
+				95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				95A9984D22F81D85007DE2A4 /* AuthControllers */,
 				95A9984E22F81DA5007DE2A4 /* MainControllers */,
 				95A9984F22F81DD4007DE2A4 /* Available */,
+				95CF82872313DDA50058CC7C /* ShoppingList */,
 				956D436E22F2FEB50091C9C4 /* Settings */,
 				95324E0022DF6149005905FF /* WelcomeVC.swift */,
 			);
@@ -358,7 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				95512ABC22F089790038790F /* RationVC.swift */,
-				95512ABE22F0898A0038790F /* ShopListVC.swift */,
 				95512AC022F089970038790F /* DiaryVC.swift */,
 			);
 			path = MainControllers;
@@ -376,6 +379,14 @@
 				95EF446B230469BA00BAAE01 /* DetailsVC.swift */,
 			);
 			path = Available;
+			sourceTree = "<group>";
+		};
+		95CF82872313DDA50058CC7C /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				95512ABE22F0898A0038790F /* ShopListVC.swift */,
+			);
+			path = ShoppingList;
 			sourceTree = "<group>";
 		};
 		95EF446A2303CEF500BAAE01 /* Cell */ = {
@@ -614,6 +625,7 @@
 				95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */,
 				95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */,
 				952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */,
+				95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */,
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
 				95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */,
 				95A05A2222F86D04002A35B9 /* RationService.swift in Sources */,

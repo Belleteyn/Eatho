@@ -28,13 +28,6 @@ class ShopListService {
         mostRecentList.remove(at: index)
     }
     
-    func selectRecent(name: String) {
-        list[name] = false
-        mostRecentList = mostRecentList.filter { $0 != name }
-        
-        NotificationCenter.default.post(name: NOTIF_SHOPPING_LIST_DATA_CHAGNED, object: nil)
-    }
-    
     func chageSelectionInShoppingList(key: String, value: Bool) {
         list[key] = value
         
@@ -49,7 +42,7 @@ class ShopListService {
         mostRecentList = []
     }
     
-    func requestData() {
+    func requestData(handler: @escaping CompletionHandler) {
         let query = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token
@@ -69,10 +62,11 @@ class ShopListService {
                         self.mostRecentList = recent
                     }
                     
-                    NotificationCenter.default.post(name: NOTIF_SHOPPING_LIST_DATA_CHAGNED, object: nil)
+                    handler(true)
                 }
             case .failure(let error):
                 debugPrint(error)
+                handler(false)
             }
         }
     }

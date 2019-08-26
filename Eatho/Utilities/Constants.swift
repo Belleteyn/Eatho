@@ -66,4 +66,5 @@ let TEXT_COLOR = #colorLiteral(red: 0.3698856235, green: 0.4013975859, blue: 0.4
 let LIGHT_TEXT_COLOR = #colorLiteral(red: 0.6431372549, green: 0.6784313725, blue: 0.7529411765, alpha: 1)
 let EATHO_RED = #colorLiteral(red: 0.9921568627, green: 0.4705882353, blue: 0.4666666667, alpha: 1)
 let EATHO_YELLOW = #colorLiteral(red: 0.9764705882, green: 0.7058823529, blue: 0.4392156863, alpha: 1)
+let EATHO_YELLOW_OPACITY50 = #colorLiteral(red: 0.9764705882, green: 0.7058823529, blue: 0.4392156863, alpha: 0.5)
 let EATHO_LIGHT_PURPLE = #colorLiteral(red: 0.6758870114, green: 0.6235294118, blue: 0.9882352941, alpha: 1)
