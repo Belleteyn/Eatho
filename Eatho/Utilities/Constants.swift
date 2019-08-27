@@ -64,6 +64,7 @@ let UNWIND_TO_WELCOME = "unwindToWelcome"
 let LOGIN_PLACEHOLDER_COLOR = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.604291524)
 let TEXT_COLOR = #colorLiteral(red: 0.3698856235, green: 0.4013975859, blue: 0.4641202092, alpha: 1)
 let LIGHT_TEXT_COLOR = #colorLiteral(red: 0.6431372549, green: 0.6784313725, blue: 0.7529411765, alpha: 1)
+let TEXT_BACKGROUND = #colorLiteral(red: 0.8941176471, green: 0.8980392157, blue: 0.937254902, alpha: 0.53)
 let EATHO_RED = #colorLiteral(red: 0.9921568627, green: 0.4705882353, blue: 0.4666666667, alpha: 1)
 let EATHO_YELLOW = #colorLiteral(red: 0.9764705882, green: 0.7058823529, blue: 0.4392156863, alpha: 1)
 let EATHO_YELLOW_OPACITY50 = #colorLiteral(red: 0.9764705882, green: 0.7058823529, blue: 0.4392156863, alpha: 0.5)

@@ -1176,7 +1176,7 @@
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upw-xm-DFE">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem title="Shopping list" image="bottom_bar_shop_list" id="Kxt-pM-uUj">
                                         <color key="badgeColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1184,32 +1184,15 @@
                                     <tabBarItem systemItem="mostRecent" id="3HE-3T-EKX"/>
                                 </items>
                                 <color key="tintColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="selectedImageTintColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tabBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tjr-J8-yoc">
-                                <rect key="frame" x="16" y="65" width="382" height="40"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add new item" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CEN-Wg-51h">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
-                                        <color key="backgroundColor" red="0.89411764705882346" green="0.89803921568627454" blue="0.93725490196078431" alpha="0.52643407534246578" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="esY-R7-Qed"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                        <connections>
-                                            <action selector="insertionStringHandle:" destination="SNz-WS-W8Y" eventType="editingDidEndOnExit" id="VbT-nL-KFK"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="42" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dza-gx-fBs">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" rowHeight="42" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dza-gx-fBs">
                                 <rect key="frame" x="0.0" y="121" width="414" height="604"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recentPurchasesCell" rowHeight="42" id="svv-lT-v8w" customClass="RecentPurchasesCell" customModule="Eatho" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="42"/>
+                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="svv-lT-v8w" id="VW4-hB-1w2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="41.666666666666664"/>
@@ -1242,7 +1225,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingListCell" rowHeight="42" id="ff0-ex-pJJ" customClass="ShoppingListCell" customModule="Eatho" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="70" width="414" height="42"/>
+                                        <rect key="frame" x="0.0" y="97.333333333333343" width="414" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ff0-ex-pJJ" id="fkq-6x-HjQ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="41.666666666666664"/>
@@ -1285,28 +1268,53 @@
                                 <rect key="frame" x="188.66666666666666" y="385.66666666666669" width="37" height="37"/>
                                 <color key="color" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qan-Ed-zSI">
+                                <rect key="frame" x="0.0" y="49" width="414" height="72"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tjr-J8-yoc">
+                                        <rect key="frame" x="16" y="16" width="382" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add new item" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CEN-Wg-51h">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
+                                                <color key="backgroundColor" red="0.89411764705882346" green="0.89803921568627454" blue="0.93725490196078431" alpha="0.52643407534246578" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Tjr-J8-yoc" firstAttribute="top" secondItem="Qan-Ed-zSI" secondAttribute="top" constant="16" id="JST-6T-Nqr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tjr-J8-yoc" secondAttribute="trailing" constant="16" id="MjV-bP-tK3"/>
+                                    <constraint firstItem="Tjr-J8-yoc" firstAttribute="leading" secondItem="Qan-Ed-zSI" secondAttribute="leading" constant="16" id="THb-Oi-o7h"/>
+                                    <constraint firstAttribute="height" constant="72" id="wPw-Uh-Piq"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tjr-J8-yoc" secondAttribute="bottom" constant="16" id="xwe-lh-kDe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="m7e-9y-ObG" firstAttribute="centerY" secondItem="G3Z-Xj-Kua" secondAttribute="centerY" id="2oA-zj-yKJ"/>
-                            <constraint firstItem="Tjr-J8-yoc" firstAttribute="leading" secondItem="dkC-wh-ET1" secondAttribute="leading" constant="16" id="54T-K5-4qU"/>
                             <constraint firstItem="dza-gx-fBs" firstAttribute="leading" secondItem="dkC-wh-ET1" secondAttribute="leading" id="71Y-KV-Hgn"/>
-                            <constraint firstItem="dkC-wh-ET1" firstAttribute="trailing" secondItem="Tjr-J8-yoc" secondAttribute="trailing" constant="16" id="D90-Ab-PVe"/>
+                            <constraint firstItem="Qan-Ed-zSI" firstAttribute="top" secondItem="upw-xm-DFE" secondAttribute="bottom" id="84S-0V-PAQ"/>
+                            <constraint firstItem="Qan-Ed-zSI" firstAttribute="leading" secondItem="G3Z-Xj-Kua" secondAttribute="leading" id="FeV-Ib-e7R"/>
+                            <constraint firstItem="dza-gx-fBs" firstAttribute="top" secondItem="Qan-Ed-zSI" secondAttribute="bottom" id="HGP-p2-gLh"/>
+                            <constraint firstAttribute="trailing" secondItem="Qan-Ed-zSI" secondAttribute="trailing" id="MMX-fb-Dw4"/>
                             <constraint firstItem="dkC-wh-ET1" firstAttribute="bottom" secondItem="dza-gx-fBs" secondAttribute="bottom" id="MeO-NU-vIY"/>
                             <constraint firstItem="upw-xm-DFE" firstAttribute="top" secondItem="G3Z-Xj-Kua" secondAttribute="top" id="Q3q-kj-ZM3"/>
                             <constraint firstItem="m7e-9y-ObG" firstAttribute="centerX" secondItem="G3Z-Xj-Kua" secondAttribute="centerX" id="RhE-Xt-y41"/>
                             <constraint firstItem="upw-xm-DFE" firstAttribute="leading" secondItem="dkC-wh-ET1" secondAttribute="leading" id="T8c-nu-6oM"/>
                             <constraint firstItem="upw-xm-DFE" firstAttribute="trailing" secondItem="dkC-wh-ET1" secondAttribute="trailing" id="Tr8-EK-NBr"/>
-                            <constraint firstItem="Tjr-J8-yoc" firstAttribute="top" secondItem="upw-xm-DFE" secondAttribute="bottom" constant="16" id="nrh-cI-3Sd"/>
                             <constraint firstItem="dza-gx-fBs" firstAttribute="trailing" secondItem="dkC-wh-ET1" secondAttribute="trailing" id="r5C-Ki-pCn"/>
-                            <constraint firstItem="dza-gx-fBs" firstAttribute="top" secondItem="Tjr-J8-yoc" secondAttribute="bottom" constant="16" id="sIR-SO-KMh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dkC-wh-ET1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shopping List" id="9Vw-I6-L7T"/>
                     <connections>
                         <outlet property="insertionTxt" destination="CEN-Wg-51h" id="a0c-i7-4yV"/>
-                        <outlet property="insertionTxtHeight" destination="esY-R7-Qed" id="zD2-Mg-Xpa"/>
+                        <outlet property="insertionTxtHeight" destination="wPw-Uh-Piq" id="qjH-Pc-LN5"/>
                         <outlet property="shopListTabBar" destination="upw-xm-DFE" id="bsu-kI-xsE"/>
                         <outlet property="shopListTableView" destination="dza-gx-fBs" id="Mqc-k2-GRt"/>
                         <outlet property="spinner" destination="m7e-9y-ObG" id="Kta-Vv-riK"/>
@@ -1314,7 +1322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rg-Hr-1q5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5041" y="767"/>
+            <point key="canvasLocation" x="5040.579710144928" y="766.74107142857144"/>
         </scene>
         <!--Diary-->
         <scene sceneID="fgQ-ey-qiG">

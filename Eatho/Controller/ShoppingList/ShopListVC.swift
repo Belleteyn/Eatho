@@ -26,10 +26,12 @@ class ShopListVC: UIViewController {
         shopListTableView.delegate = self
         shopListTableView.dataSource = self
         
-        
         // tab bar
         shopListTabBar.delegate = self
         shopListTabBar.selectedItem = shopListTabBar.items?.first
+        
+        // text input
+        insertionTxt.delegate = self
         
         // spinner
         spinner.hidesWhenStopped = true
@@ -46,11 +48,6 @@ class ShopListVC: UIViewController {
         ShopListService.instance.requestData { (_) in
             self.shopListTableView.reloadData()
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        ShopListService.instance.uploadData()
     }
     
     // handlers
@@ -72,36 +69,35 @@ class ShopListVC: UIViewController {
             shopListTableView.reloadData()
         }
     }
-    
-    // Actions
-    @IBAction func insertionStringHandle(_ sender: Any) {
-        if (insertionTxt.text != "") {
-            ShopListService.instance.addItem(name: insertionTxt.text!)
-            shopListTableView.reloadData()
-            insertionTxt.text = ""
-        }
-    }
 }
 
 extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if shopListTabBar.selectedItem == shopListTabBar.items?.first {
-            return ShopListService.instance.list.count
+            return ShopListService.instance.shoppingList.count
         } else {
             return ShopListService.instance.mostRecentList.count
         }
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if shopListTabBar.selectedItem == shopListTabBar.items?.first {
+            return "shopping list"
+        } else {
+            return "recent purchases"
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if shopListTabBar.selectedItem == shopListTabBar.items?.first {
-            
             if let listCell = shopListTableView.dequeueReusableCell(withIdentifier: "shoppingListCell") as? ShoppingListCell {
-                let list = ShopListService.instance.list
-                let keys = list.keys
-                let values = list.values
-                let index = keys.index(list.startIndex, offsetBy: indexPath.row)
-                listCell.updateView(name: keys[index], selectionState: values[index])
+                let list = ShopListService.instance.shoppingList
+                listCell.updateView(name: list[indexPath.row].key, selectionState: list[indexPath.row].value)
                 listCell.selectionStyle = UITableViewCell.SelectionStyle.none
                 return listCell
             }
@@ -120,18 +116,29 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let trashAction = UIContextualAction(style: .normal, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let trashAction = UIContextualAction(style: .destructive, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             
             if self.shopListTabBar.selectedItem == self.shopListTabBar.items?.first {
-                let list = ShopListService.instance.list
-                let index = list.index(list.startIndex, offsetBy: indexPath.row)
-                ShopListService.instance.removeItemFromShopList(index: index)
+                self.spinner.startAnimating()
+                
+                ShopListService.instance.removeItemFromShopList(index: indexPath.row) { (updSuccess) in
+                    self.spinner.stopAnimating()
+                    if !updSuccess {
+                        print("shopping list error: failed to remove item to shopping list")
+                    }
+                }
             } else {
-                ShopListService.instance.removeItemFromRecent(index: indexPath.row)
+                self.spinner.startAnimating()
+                ShopListService.instance.removeItemFromRecent(index: indexPath.row) { (updSuccess) in
+                    self.spinner.stopAnimating()
+                    if !updSuccess {
+                        print("shopping list error: failed to remove item from recent purchases")
+                    }
+                }
             }
             
-            self.shopListTableView.reloadData()
             success(true)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         }
         trashAction.backgroundColor = EATHO_RED
         
@@ -140,8 +147,12 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if shopListTabBar.selectedItem == shopListTabBar.items?.last {
-            ShopListService.instance.addItem(name: ShopListService.instance.mostRecentList[indexPath.row])
-            ShopListService.instance.removeItemFromRecent(index: indexPath.row)
+            ShopListService.instance.moveItemFromRecentToShopList(recentIndex: indexPath.row) { (success) in
+                if !success {
+                    print("shopping list error: failed to move item from recent to shopping list")
+                }
+                tableView.reloadData()
+            }
             
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
         }
@@ -158,10 +169,44 @@ extension ShopListVC: UITabBarDelegate {
             if hide {
                 self.insertionTxtHeight.constant = 0
             } else {
-                self.insertionTxtHeight.constant = 40
+                self.insertionTxtHeight.constant = 72
             }
             
             self.view.layoutIfNeeded()
         })
+    }
+}
+
+extension ShopListVC: UITextFieldDelegate {
+    func processText(_ textField: UITextField) {
+        guard let name = textField.text else { return }
+        if name == "" {
+            return
+        }
+        
+        let service = ShopListService.instance
+        
+        spinner.startAnimating()
+        service.addItem(name: name) { (success) in
+            if !success {
+                print("shopping list error: failed to add item to shopping list")
+            }
+            self.spinner.stopAnimating()
+            textField.text = ""
+        }
+        
+        if let index = service.shoppingList.firstIndex(where: { $0.0 == name } ) {
+            shopListTableView.insertRows(at: [IndexPath(row: index, section: 0)], with: UITableView.RowAnimation.automatic)
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        processText(textField)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        processText(textField)
+//        view.endEditing(false)
+        return true
     }
 }

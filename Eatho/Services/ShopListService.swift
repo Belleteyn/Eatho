@@ -13,32 +13,68 @@ import SwiftyJSON
 class ShopListService {
     static let instance = ShopListService()
     
-    private (set) public var list: [String : Bool] = [:]
+    private (set) public var shoppingList: [(key: String, value: Bool)] = []
     private (set) public var mostRecentList: [String] = []
     
-    func addItem(name: String) {
-        list[name] = false
+    private func insert(key: String, value: Bool) {
+        if let greater = shoppingList.firstIndex(where: { $0.0 > key } ) {
+            let insertIndex = shoppingList.index(before: greater + 1)
+            shoppingList.insert((key: key, value: value), at: insertIndex)
+        } else {
+            shoppingList.append((key: key, value: value))
+        }
     }
     
-    func removeItemFromShopList(index: Dictionary<String, Bool>.Index) {
-        list.remove(at: index)
+    func addItem(name: String, handler: @escaping CompletionHandler) {
+        insert(key: name, value: false)
+        uploadData(handler: handler)
     }
     
-    func removeItemFromRecent(index: Int) {
-        mostRecentList.remove(at: index)
+    func removeItemFromShopList(index: Int, handler: @escaping CompletionHandler) {
+        if index < shoppingList.count && index >= 0 {
+            shoppingList.remove(at: index)
+            uploadData(handler: handler)
+        } else {
+            print("error: invalid index \(index) for shopping list array (\(shoppingList.count))")
+        }
     }
     
-    func chageSelectionInShoppingList(key: String, value: Bool) {
-        list[key] = value
+    func removeItemFromRecent(index: Int, handler: @escaping CompletionHandler) {
+        if index < mostRecentList.count && index >= 0 {
+            mostRecentList.remove(at: index)
+            uploadData(handler: handler)
+        }
+    }
+    
+    func moveItemFromRecentToShopList(recentIndex index: Int, handler: @escaping CompletionHandler) {
+        if index < mostRecentList.count && index >= 0 {
+            let key = mostRecentList[index]
+            if let sListIndex = shoppingList.firstIndex(where: { $0.0 == key }) {
+                shoppingList[sListIndex].value = false
+            } else {
+                insert(key: key, value: false)
+            }
+            
+            mostRecentList.remove(at: index)
+            uploadData(handler: handler)
+        }
+    }
+    
+    func chageSelectionInShoppingList(key: String, value: Bool, handler: @escaping CompletionHandler) {
+        if let index = shoppingList.firstIndex(where: { $0.0 == key }) {
+            shoppingList[index].value = value
+        }
         
         if value {
             mostRecentList = mostRecentList.filter { $0 != key } //remove prev occurances if any
             mostRecentList.append(key)
         }
+        
+        uploadData(handler: handler)
     }
     
     func clearData() {
-        list = [:]
+        shoppingList = []
         mostRecentList = []
     }
     
@@ -54,8 +90,10 @@ class ShopListService {
                 if let data =  response.data {
                     let json = JSON(data)
                     
-                    if let shoppingList = json["shoppingList"].dictionaryObject as? [String : Bool] {
-                        self.list = shoppingList
+                    if let shoppingList = json["shoppingList"].arrayObject as? [String] {
+                        shoppingList.forEach({ (name) in
+                            self.insert(key: name, value: false)
+                        })
                     }
                     
                     if let recent = json["recentPurchases"].arrayObject as? [String] {
@@ -71,22 +109,24 @@ class ShopListService {
         }
     }
     
-    func uploadData() {
-        list = list.filter({ !$1 })
+    func uploadData(handler: @escaping CompletionHandler) {
+        var uploadingList: [String] = []
+        shoppingList.forEach { if !$0.1 { uploadingList.append($0.0) } }
         
         let body: [String: Any] = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
-            "shoppingList": list,
+            "shoppingList": uploadingList,
             "recentPurchases": mostRecentList
         ]
         
         Alamofire.request(URL_SHOPPING_LIST_UPD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             switch (response.result) {
             case .success:
-                print("shopping list updated successfully")
+                handler(true)
             case .failure(let error):
                 debugPrint(error)
+                handler(false)
             }
         }
     }
