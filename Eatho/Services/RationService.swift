@@ -89,7 +89,7 @@ class RationService {
                 self.resetData()
                 
                 if let data = response.data {
-                    guard let json = JSON(data).array else { return }
+                    guard let json = JSON(data).array else { handler(false); return }
                     
                     let formatter = ISO8601DateFormatter()
                     let day = 24.0 * 60 * 60

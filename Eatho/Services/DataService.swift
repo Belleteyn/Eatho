@@ -19,11 +19,22 @@ class DataService {
         foods = []
     }
     
-    func removeItem(index: Int) {
-        guard index < foods.count && index >= 0 else { return }
-        guard let food = foods[index].food, let id = food._id else { return }
-        removeFromAvailable(foodId: id)
+    func removeItem(index: Int, handler: CompletionHandler, requestHandler: @escaping CompletionHandler) {
+        print(" # remove \(index), before:")
+        foods.forEach { (food) in
+            print(food.food?.name)
+        }
+        
+        guard index < foods.count && index >= 0 else { handler(false); return }
+        guard let food = foods[index].food, let id = food._id else { handler(false); return }
+        removeFromAvailable(foodId: id, handler: requestHandler)
         foods.remove(at: index)
+        handler(true)
+        
+        print(" # after:")
+        foods.forEach { (food) in
+            print(food.food?.name)
+        }
     }
     
     func setSelected(name: String) {
@@ -170,7 +181,7 @@ class DataService {
         }
     }
     
-    func removeFromAvailable(foodId: String) {
+    func removeFromAvailable(foodId: String, handler: @escaping CompletionHandler) {
         let body = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
@@ -180,9 +191,10 @@ class DataService {
         Alamofire.request(URL_AVAILABLE, method: .delete, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             switch response.result {
             case .success:
-                print("item removed sucessfully from available")
+                handler(true)
             case .failure(let error):
                 debugPrint(error)
+                handler(false)
             }
         }
     }

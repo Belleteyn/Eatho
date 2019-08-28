@@ -112,8 +112,13 @@ extension AviailableVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            DataService.instance.removeItem(index: indexPath.row)
-            success(true)
+            DataService.instance.removeItem(index: indexPath.row, handler: { (localRemoveSucceeded) in
+                success(localRemoveSucceeded)
+                tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+            }, requestHandler: { (remoteRemoveSucceeded) in
+                //todo show error
+                self.loadData()
+            })
         }
         removeAction.backgroundColor = EATHO_RED
         
