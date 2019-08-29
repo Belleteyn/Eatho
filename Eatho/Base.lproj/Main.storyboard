@@ -595,7 +595,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="alH-Nh-Mn3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Eatho!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfk-B4-Maj">
+                                <rect key="frame" x="70.333333333333343" y="150" width="273.66666666666663" height="40.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add here food that you have in your fridge" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mC-KY-XlE">
+                                <rect key="frame" x="30" y="206.66666666666669" width="354" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="alH-Nh-Mn3">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.92157477140426636" green="0.92155748605728149" blue="0.92156922817230225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -632,7 +644,7 @@
                                                             <rect key="frame" x="0.0" y="68" width="398" height="44"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZB2-v5-Q9l">
-                                                                    <rect key="frame" x="51.999999999999986" y="5.9999999999999964" width="249.66666666666666" height="33.666666666666664"/>
+                                                                    <rect key="frame" x="51.999999999999986" y="6" width="249.66666666666666" height="33.666666666666664"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ypr-Sa-OZK">
@@ -792,13 +804,18 @@
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="p1i-s5-upt" firstAttribute="centerY" secondItem="OJo-K7-9ad" secondAttribute="centerY" id="44s-ev-AqK"/>
+                            <constraint firstItem="8mC-KY-XlE" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" constant="30" id="8oR-5f-ihR"/>
                             <constraint firstAttribute="bottom" secondItem="alH-Nh-Mn3" secondAttribute="bottom" id="9wL-QK-889"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="top" secondItem="Fwx-pr-GQ0" secondAttribute="bottom" id="EX1-2p-jhp"/>
                             <constraint firstItem="Fwx-pr-GQ0" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="EzV-ZC-sBZ"/>
+                            <constraint firstItem="8mC-KY-XlE" firstAttribute="top" secondItem="cfk-B4-Maj" secondAttribute="bottom" constant="16" id="JUP-59-B5X"/>
                             <constraint firstItem="Fwx-pr-GQ0" firstAttribute="top" secondItem="7pw-90-dzu" secondAttribute="top" id="NrE-Kz-9sg"/>
+                            <constraint firstItem="cfk-B4-Maj" firstAttribute="top" secondItem="Fwx-pr-GQ0" secondAttribute="bottom" constant="150" id="Q9J-iJ-K7y"/>
                             <constraint firstItem="Fwx-pr-GQ0" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="kJM-jp-cem"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="leading" secondItem="7pw-90-dzu" secondAttribute="leading" id="ktb-id-D8g"/>
+                            <constraint firstItem="cfk-B4-Maj" firstAttribute="centerX" secondItem="OJo-K7-9ad" secondAttribute="centerX" id="lCY-ze-H1C"/>
                             <constraint firstItem="alH-Nh-Mn3" firstAttribute="trailing" secondItem="7pw-90-dzu" secondAttribute="trailing" id="oH6-Gt-3rO"/>
+                            <constraint firstItem="7pw-90-dzu" firstAttribute="trailing" secondItem="8mC-KY-XlE" secondAttribute="trailing" constant="30" id="owE-Jf-yhC"/>
                             <constraint firstItem="p1i-s5-upt" firstAttribute="centerX" secondItem="OJo-K7-9ad" secondAttribute="centerX" id="zKY-h0-fqK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7pw-90-dzu"/>

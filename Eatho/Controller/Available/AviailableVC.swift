@@ -32,7 +32,7 @@ class AviailableVC: FoodVC {
             loadData()
         }
         
-        foodTable.reloadData()
+        reloadTable()
     }
     
     // Configure
@@ -46,7 +46,7 @@ class AviailableVC: FoodVC {
     
     @objc func handleRefresh() {
         DataService.instance.requestAvailableFoodItems(handler: { (success) in
-            self.foodTable.reloadData()
+            self.reloadTable()
             
             // Dismiss the refresh control.
             DispatchQueue.main.async {
@@ -64,16 +64,16 @@ class AviailableVC: FoodVC {
             
             DataService.instance.requestAvailableFoodItems(handler: { (success) in
                 self.spinner.stopAnimating()
-                self.foodTable!.reloadData()
+                self.reloadTable()
             })
         } else {
             DataService.instance.clearData()
-            self.foodTable!.reloadData()
+            self.reloadTable()
         }
     }
     
     @objc private func updateData() {
-        self.foodTable.reloadData()
+        self.reloadTable()
     }
     
     // Funcs
@@ -90,6 +90,11 @@ class AviailableVC: FoodVC {
         
         present(editVC, animated: true, completion: nil)
         editVC.setupView(title: DataService.instance.foods[index].food!.name!, food: DataService.instance.foods[index])
+    }
+    
+    func reloadTable() {
+        foodTable.reloadData()
+        foodTable.isHidden = (DataService.instance.foods.count == 0)
     }
 }
 
