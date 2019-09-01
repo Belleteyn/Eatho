@@ -55,6 +55,7 @@
 		95A05A2222F86D04002A35B9 /* RationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A2122F86D04002A35B9 /* RationService.swift */; };
 		95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */; };
 		95A5B29F230EDF36002F54F9 /* UserNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5B29E230EDF35002F54F9 /* UserNutrition.swift */; };
+		95AED18A2319187A00D7BE97 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95AED1882319187A00D7BE97 /* Model.xcdatamodeld */; };
 		95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEDA07230728D10094E161 /* EditDetailsVC.swift */; };
 		95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */; };
 		95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD32306A89700685806 /* NutritionChartView.swift */; };
@@ -142,8 +143,11 @@
 		95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationFoodCell.swift; sourceTree = "<group>"; };
 		95A05A1D22F84D2B002A35B9 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		95A05A2122F86D04002A35B9 /* RationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationService.swift; sourceTree = "<group>"; };
+		95A5835C231817E70041D797 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		95A5835D231817E80041D797 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		95A5B29C230BAA8D002F54F9 /* SearchFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodCell.swift; sourceTree = "<group>"; };
 		95A5B29E230EDF35002F54F9 /* UserNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNutrition.swift; sourceTree = "<group>"; };
+		95AED1892319187A00D7BE97 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		95AEDA07230728D10094E161 /* EditDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsVC.swift; sourceTree = "<group>"; };
 		95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationNutrientsView.swift; sourceTree = "<group>"; };
 		95D3DFD32306A89700685806 /* NutritionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionChartView.swift; sourceTree = "<group>"; };
@@ -206,7 +210,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		952A6B7222E27B1300FD8D50 /* Services */ = {
+		952A6B7222E27B1300FD8D50 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				958CD81222E971E700DC6EB6 /* AuthService.swift */,
@@ -216,7 +220,7 @@
 				956D438122F6B0B60091C9C4 /* ShopListService.swift */,
 				958195B5230B22E700B08C92 /* SearchService.swift */,
 			);
-			path = Services;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		95324DF222DF6149005905FF = {
@@ -244,8 +248,9 @@
 		95324DFD22DF6149005905FF /* Eatho */ = {
 			isa = PBXGroup;
 			children = (
+				95A5835E23181E160041D797 /* Extension */,
 				958CD81422E977A500DC6EB6 /* Utilities */,
-				952A6B7222E27B1300FD8D50 /* Services */,
+				952A6B7222E27B1300FD8D50 /* Service */,
 				95324E2E22DF616F005905FF /* Controller */,
 				95324E2D22DF6168005905FF /* View */,
 				95324E2C22DF615C005905FF /* Model */,
@@ -254,6 +259,7 @@
 				95324E0522DF614C005905FF /* Assets.xcassets */,
 				95324E0722DF614C005905FF /* LaunchScreen.storyboard */,
 				95324E0A22DF614C005905FF /* Info.plist */,
+				95AED1882319187A00D7BE97 /* Model.xcdatamodeld */,
 			);
 			path = Eatho;
 			sourceTree = "<group>";
@@ -311,13 +317,30 @@
 			isa = PBXGroup;
 			children = (
 				95A9984D22F81D85007DE2A4 /* AuthControllers */,
-				95A9984E22F81DA5007DE2A4 /* MainControllers */,
 				95A9984F22F81DD4007DE2A4 /* Available */,
 				95CF82872313DDA50058CC7C /* ShoppingList */,
+				954F4E44231D42BB0088B6DD /* Ration */,
+				954F4E45231D42CE0088B6DD /* Diary */,
 				956D436E22F2FEB50091C9C4 /* Settings */,
 				95324E0022DF6149005905FF /* WelcomeVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		954F4E44231D42BB0088B6DD /* Ration */ = {
+			isa = PBXGroup;
+			children = (
+				95512ABC22F089790038790F /* RationVC.swift */,
+			);
+			path = Ration;
+			sourceTree = "<group>";
+		};
+		954F4E45231D42CE0088B6DD /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				95512AC022F089970038790F /* DiaryVC.swift */,
+			);
+			path = Diary;
 			sourceTree = "<group>";
 		};
 		956D436E22F2FEB50091C9C4 /* Settings */ = {
@@ -349,6 +372,13 @@
 			path = FoodCell;
 			sourceTree = "<group>";
 		};
+		95A5835E23181E160041D797 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		95A9984D22F81D85007DE2A4 /* AuthControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,15 +386,6 @@
 				958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */,
 			);
 			path = AuthControllers;
-			sourceTree = "<group>";
-		};
-		95A9984E22F81DA5007DE2A4 /* MainControllers */ = {
-			isa = PBXGroup;
-			children = (
-				95512ABC22F089790038790F /* RationVC.swift */,
-				95512AC022F089970038790F /* DiaryVC.swift */,
-			);
-			path = MainControllers;
 			sourceTree = "<group>";
 		};
 		95A9984F22F81DD4007DE2A4 /* Available */ = {
@@ -492,6 +513,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 95324DF222DF6149005905FF;
 			productRefGroup = 95324DFC22DF6149005905FF /* Products */;
@@ -641,6 +663,7 @@
 				958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */,
 				9571892C2305C61E004A3EE3 /* Nutrition.swift in Sources */,
 				95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */,
+				95AED18A2319187A00D7BE97 /* Model.xcdatamodeld in Sources */,
 				952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */,
 				958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */,
 				952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */,
@@ -704,6 +727,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				95324E0322DF6149005905FF /* Base */,
+				95A5835C231817E70041D797 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -712,6 +736,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				95324E0822DF614C005905FF /* Base */,
+				95A5835D231817E80041D797 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -723,6 +748,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -784,6 +810,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -999,6 +1026,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		95AED1882319187A00D7BE97 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				95AED1892319187A00D7BE97 /* Model.xcdatamodel */,
+			);
+			currentVersion = 95AED1892319187A00D7BE97 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 95324DF322DF6149005905FF /* Project object */;
 }
