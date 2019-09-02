@@ -26,7 +26,7 @@ class RationNutrientsView: UIView {
     @IBOutlet weak var proteinsLbl: UILabel!
     @IBOutlet weak var divider: UIView!
     
-    @IBOutlet weak var chartView: NutritionChartView!
+    @IBOutlet weak var chartView: RationChartView!
     
     @IBOutlet weak var expandImg: UIImageView!
     
@@ -51,7 +51,7 @@ class RationNutrientsView: UIView {
         proteinsAmountLbl.text = "\(Int(round(proteins))) g"
         fatsAmountLbl.text = "\(Int(round(fats))) g"
         
-        chartView.initData(nutrition: RationService.instance.nutrition)
+        chartView.initData(nutrition: RationService.instance.nutrition, userNutrition: SettingsService.instance.userInfo.nutrition)
     }
     
     func setupUserData() {

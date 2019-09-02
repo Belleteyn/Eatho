@@ -1167,7 +1167,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8I-yh-XdZ">
                                         <rect key="frame" x="0.0" y="60" width="414" height="0.0"/>
                                         <subviews>
-                                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2B-9I-ETg" customClass="NutritionChartView" customModule="Eatho" customModuleProvider="target">
+                                            <view hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2B-9I-ETg" customClass="RationChartView" customModule="Eatho" customModuleProvider="target">
                                                 <rect key="frame" x="72" y="8" width="270" height="150"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>

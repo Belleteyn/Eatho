@@ -25,6 +25,7 @@
 		95324E1422DF614C005905FF /* EathoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1322DF614C005905FF /* EathoTests.swift */; };
 		95324E1F22DF614C005905FF /* EathoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1E22DF614C005905FF /* EathoUITests.swift */; };
 		95324E3122DFB978005905FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E3022DFB978005905FF /* LoginViewController.swift */; };
+		954F4E47231DA6B30088B6DD /* RationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E46231DA6B30088B6DD /* RationChartView.swift */; };
 		95512ABB22F0883F0038790F /* ScanBarcodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95512ABA22F0883F0038790F /* ScanBarcodeVC.swift */; };
 		95512ABD22F089790038790F /* RationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95512ABC22F089790038790F /* RationVC.swift */; };
 		95512ABF22F0898A0038790F /* ShopListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95512ABE22F0898A0038790F /* ShopListVC.swift */; };
@@ -115,6 +116,7 @@
 		95324E1E22DF614C005905FF /* EathoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoUITests.swift; sourceTree = "<group>"; };
 		95324E2022DF614C005905FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95324E3022DFB978005905FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		954F4E46231DA6B30088B6DD /* RationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationChartView.swift; sourceTree = "<group>"; };
 		95512ABA22F0883F0038790F /* ScanBarcodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarcodeVC.swift; sourceTree = "<group>"; };
 		95512ABC22F089790038790F /* RationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationVC.swift; sourceTree = "<group>"; };
 		95512ABE22F0898A0038790F /* ShopListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListVC.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				956D437B22F579BF0091C9C4 /* LabeledTextField.swift */,
 				951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */,
 				95D3DFD32306A89700685806 /* NutritionChartView.swift */,
+				954F4E46231DA6B30088B6DD /* RationChartView.swift */,
 				95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */,
 			);
 			path = View;
@@ -667,6 +670,7 @@
 				952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */,
 				958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */,
 				952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */,
+				954F4E47231DA6B30088B6DD /* RationChartView.swift in Sources */,
 				958195B6230B22E700B08C92 /* SearchService.swift in Sources */,
 				95512AC522F0D3DA0038790F /* SettingsService.swift in Sources */,
 				95512ABB22F0883F0038790F /* ScanBarcodeVC.swift in Sources */,

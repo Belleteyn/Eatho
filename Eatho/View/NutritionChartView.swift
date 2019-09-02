@@ -29,7 +29,10 @@ class NutritionChartView: PieChartView {
         let entryProteins = PieChartDataEntry(value: nutrition.proteins, label: "Proteins, \(round(nutrition.proteins * 10) / 10)  g")
         let entryCarbs = PieChartDataEntry(value: nutrition.carbs, label: "Carbs, \(round(nutrition.carbs * 10) / 10) g")
         let entryFats = PieChartDataEntry(value: nutrition.fats, label: "Fats, \(round(nutrition.fats * 10) / 10) g")
+        
         let dataSet = PieChartDataSet(entries: [entryProteins, entryCarbs, entryFats], label: "\(round(nutrition.calories * 10) / 10) kcal")
+        dataSet.sliceSpace = 1
+        
         let data = PieChartData(dataSet: dataSet)
         self.data = data
         
