@@ -33,4 +33,22 @@ class NutrientsRelativityView: UIView {
         fatsView.frame = CGRect(x: proteinsView.frame.width + carbsView.frame.width, y: 0, width: viewWidth * CGFloat(f), height: viewHeight)
         self.layoutIfNeeded()
     }
+    
+    func hide() {
+        UIView.animate(withDuration: 0.3) {
+            self.proteinsView.frame = CGRect(x: 0, y: 0, width: self.proteinsView.frame.width, height: 0)
+            self.carbsView.frame = CGRect(x: self.proteinsView.frame.width, y: 0, width: self.carbsView.frame.width, height: 0)
+            self.fatsView.frame = CGRect(x: self.proteinsView.frame.width + self.carbsView.frame.width, y: 0, width: self.fatsView.frame.width, height: 0)
+        }
+    }
+    
+    func reveal() {
+        UIView.animate(withDuration: 0.3) {
+            let viewHeight = self.frame.height
+            
+            self.proteinsView.frame = CGRect(x: 0, y: 0, width: self.proteinsView.frame.width, height: viewHeight)
+            self.carbsView.frame = CGRect(x: self.proteinsView.frame.width, y: 0, width: self.carbsView.frame.width, height: viewHeight)
+            self.fatsView.frame = CGRect(x: self.proteinsView.frame.width + self.carbsView.frame.width, y: 0, width: self.fatsView.frame.width, height: viewHeight)
+        }
+    }
 }

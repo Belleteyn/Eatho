@@ -14,13 +14,10 @@ class RationVC: UIViewController {
     @IBOutlet weak var rationTableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    @IBOutlet weak var nutrientRelativityView: NutrientsRelativityView!
+    @IBOutlet weak var rationInfoView: RationNutrientsView!
+    @IBOutlet weak var rationInfoViewHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var rationCaloriesLbl: UILabel!
-    @IBOutlet weak var expectedCaloriesLbl: UILabel!
-    @IBOutlet weak var carbsLbl: UILabel!
-    @IBOutlet weak var fatsLbl: UILabel!
-    @IBOutlet weak var proteinsLbl: UILabel!
+    var rationInfoViewExpandedState = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,41 +36,22 @@ class RationVC: UIViewController {
                 self.updateView()
             }
         }
+        
+        let rationViewTapHandler = UITapGestureRecognizer(target: self, action: #selector(rationViewTapHandle))
+        rationInfoView.addGestureRecognizer(rationViewTapHandler)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         //to keep updated version in case if user changed calories in settings
-        expectedCaloriesLbl.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) kcal"
+        rationInfoView.setupUserData()
         updateView()
     }
     
     func updateView() {
         rationTableView.reloadData()
-        updateNutrientView()
-    }
-    
-    func updateNutrientView() {
-        let calories = RationService.instance.nutrition.calories
-        let carbs = RationService.instance.nutrition.carbs
-        let proteins = RationService.instance.nutrition.proteins
-        let fats = RationService.instance.nutrition.fats
-        
-        rationCaloriesLbl.text = "\(Int(round(calories))) kcal"
-        carbsLbl.text = "\(Int(round(carbs))) g"
-        fatsLbl.text = "\(Int(round(fats))) g"
-        proteinsLbl.text = "\(Int(round(proteins))) g"
-        
-        if (calories != 0) {
-            let carbsPercent = (carbs * 4.1 / calories)
-            let proteinsPercent = (proteins * 4.1 / calories)
-            let fatsPercent = (fats * 9.29 / calories)
-            
-            nutrientRelativityView.updateView(proteinsPercent: proteinsPercent, carbsPercent: carbsPercent, fatsPercent: fatsPercent)
-        } else {
-            nutrientRelativityView.updateView(proteinsPercent: 0, carbsPercent: 0, fatsPercent: 0)
-        }
+        rationInfoView.setupNutrition()
     }
     
     // handlers
@@ -86,6 +64,21 @@ class RationVC: UIViewController {
     
     @objc func dataChangedHandle() {
         updateView()
+    }
+    
+    @objc func rationViewTapHandle() {
+        rationInfoViewExpandedState = !rationInfoViewExpandedState
+        
+        let animator = UIViewPropertyAnimator(duration: 0.3, curve: UIView.AnimationCurve.easeInOut) {
+            if self.rationInfoViewExpandedState {
+                self.rationInfoViewHeight.constant = 180
+            } else {
+                self.rationInfoViewHeight.constant = 60
+            }
+            self.rationInfoView.changeMode(expanded: self.rationInfoViewExpandedState)
+            self.rationInfoView.layoutIfNeeded()
+        }
+        animator.startAnimation()
     }
 }
 
