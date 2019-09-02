@@ -13,6 +13,7 @@ class RationNutrientsView: UIView {
     @IBOutlet weak var nutrientRelativityView: NutrientsRelativityView!
     
     @IBOutlet weak var collapsedView: UIView!
+    @IBOutlet weak var expandedView: UIView!
     @IBOutlet weak var collapsedViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var totalCaloriesLbl: UILabel!
@@ -24,6 +25,8 @@ class RationNutrientsView: UIView {
     @IBOutlet weak var proteinsAmountLbl: UILabel!
     @IBOutlet weak var proteinsLbl: UILabel!
     @IBOutlet weak var divider: UIView!
+    
+    @IBOutlet weak var chartView: NutritionChartView!
     
     @IBOutlet weak var expandImg: UIImageView!
     
@@ -47,6 +50,8 @@ class RationNutrientsView: UIView {
         carbsAmountLbl.text = "\(Int(round(carbs))) g"
         proteinsAmountLbl.text = "\(Int(round(proteins))) g"
         fatsAmountLbl.text = "\(Int(round(fats))) g"
+        
+        chartView.initData(nutrition: RationService.instance.nutrition)
     }
     
     func setupUserData() {
@@ -84,6 +89,8 @@ class RationNutrientsView: UIView {
         proteinsAmountLbl.isHidden = false
         proteinsLbl.isHidden = false
         divider.isHidden = false
+        
+        chartView.isHidden = true
     }
     
     
@@ -102,6 +109,8 @@ class RationNutrientsView: UIView {
         proteinsAmountLbl.isHidden = true
         proteinsLbl.isHidden = true
         divider.isHidden = true
+        
+        chartView.isHidden = false
     }
     
     /*

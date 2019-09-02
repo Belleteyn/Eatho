@@ -1164,15 +1164,37 @@
                                             <constraint firstAttribute="width" constant="16" id="jUt-g0-fTr"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8I-yh-XdZ">
+                                        <rect key="frame" x="0.0" y="60" width="414" height="0.0"/>
+                                        <subviews>
+                                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2B-9I-ETg" customClass="NutritionChartView" customModule="Eatho" customModuleProvider="target">
+                                                <rect key="frame" x="72" y="8" width="270" height="150"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="j2B-9I-ETg" secondAttribute="height" multiplier="1.8:1" id="Bnd-la-XTh"/>
+                                                    <constraint firstAttribute="height" constant="150" id="QB5-f8-Ykj"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="j2B-9I-ETg" firstAttribute="top" secondItem="t8I-yh-XdZ" secondAttribute="top" constant="8" id="6jP-3Z-oEx"/>
+                                            <constraint firstItem="j2B-9I-ETg" firstAttribute="leading" secondItem="t8I-yh-XdZ" secondAttribute="leading" constant="72" id="BTH-gv-WU8"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="t8I-yh-XdZ" firstAttribute="top" secondItem="CKv-Y9-6iA" secondAttribute="bottom" id="0KE-Vu-1pT"/>
                                     <constraint firstAttribute="height" constant="60" id="1wW-nV-kjM"/>
                                     <constraint firstItem="3D3-aj-jps" firstAttribute="top" secondItem="2Ng-FP-apO" secondAttribute="top" constant="28" id="4dG-VY-KH1"/>
                                     <constraint firstItem="F4L-mP-Z1m" firstAttribute="top" secondItem="2Ng-FP-apO" secondAttribute="top" id="DSj-li-M8Q"/>
                                     <constraint firstItem="CKv-Y9-6iA" firstAttribute="top" secondItem="F4L-mP-Z1m" secondAttribute="bottom" id="WWO-SL-roC"/>
+                                    <constraint firstItem="t8I-yh-XdZ" firstAttribute="leading" secondItem="2Ng-FP-apO" secondAttribute="leading" id="X7b-kp-abf"/>
+                                    <constraint firstAttribute="bottom" secondItem="t8I-yh-XdZ" secondAttribute="bottom" id="bCr-T7-Frv"/>
                                     <constraint firstItem="CKv-Y9-6iA" firstAttribute="leading" secondItem="2Ng-FP-apO" secondAttribute="leading" id="c5K-C6-xK1"/>
                                     <constraint firstAttribute="trailing" secondItem="3D3-aj-jps" secondAttribute="trailing" constant="12" id="dr7-G6-T6U"/>
+                                    <constraint firstAttribute="trailing" secondItem="t8I-yh-XdZ" secondAttribute="trailing" id="lU7-7D-BG5"/>
                                     <constraint firstAttribute="trailing" secondItem="F4L-mP-Z1m" secondAttribute="trailing" id="o8Z-9B-5yo"/>
                                     <constraint firstItem="F4L-mP-Z1m" firstAttribute="leading" secondItem="2Ng-FP-apO" secondAttribute="leading" id="wAA-x1-d7X"/>
                                     <constraint firstAttribute="trailing" secondItem="CKv-Y9-6iA" secondAttribute="trailing" constant="40" id="xYQ-we-MrR"/>
@@ -1180,10 +1202,12 @@
                                 <connections>
                                     <outlet property="carbsAmountLbl" destination="tbT-kM-L11" id="liv-b7-0H8"/>
                                     <outlet property="carbsLbl" destination="e5N-ao-PMW" id="Wr9-pD-7dE"/>
+                                    <outlet property="chartView" destination="j2B-9I-ETg" id="OPh-Ll-gIQ"/>
                                     <outlet property="collapsedView" destination="CKv-Y9-6iA" id="BR3-MN-pod"/>
                                     <outlet property="collapsedViewHeight" destination="InM-YQ-FI1" id="OYh-l4-YJT"/>
                                     <outlet property="divider" destination="FYb-Yk-0Sb" id="if5-2n-twR"/>
                                     <outlet property="expandImg" destination="3D3-aj-jps" id="lZq-it-TME"/>
+                                    <outlet property="expandedView" destination="t8I-yh-XdZ" id="rfA-z9-WPu"/>
                                     <outlet property="expectedCaloriesLbl" destination="CzD-9C-OEA" id="5Kz-vv-VFW"/>
                                     <outlet property="fatsAmountLbl" destination="sGT-mh-PsX" id="xiR-5t-D5Y"/>
                                     <outlet property="fatsLbl" destination="tJ3-9T-gwj" id="itP-T4-H4f"/>
