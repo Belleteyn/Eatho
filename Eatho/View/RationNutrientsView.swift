@@ -15,6 +15,7 @@ class RationNutrientsView: UIView {
     @IBOutlet weak var collapsedView: UIView!
     @IBOutlet weak var expandedView: UIView!
     @IBOutlet weak var collapsedViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var chartHeight: NSLayoutConstraint!
     
     @IBOutlet weak var totalCaloriesLbl: UILabel!
     @IBOutlet weak var expectedCaloriesLbl: UILabel!
@@ -68,7 +69,8 @@ class RationNutrientsView: UIView {
                 self.setupCollapsedView()
             }
             
-            self.nutrientRelativityView.layoutIfNeeded()
+            self.chartView.layoutIfNeeded()
+            self.expandedView.layoutIfNeeded()
             self.collapsedView.layoutIfNeeded()
         }
         
@@ -77,8 +79,8 @@ class RationNutrientsView: UIView {
     func setupCollapsedView() {
         self.expandImg.transform = CGAffineTransform(rotationAngle: 0)
         
-        nutrientRelativityView.reveal()
         collapsedViewHeight.constant = 52
+        chartHeight.constant = 0
         
         totalCaloriesLbl.isHidden = false
         expectedCaloriesLbl.isHidden = false
@@ -97,8 +99,8 @@ class RationNutrientsView: UIView {
     func setupExpandedView() {
         self.expandImg.transform = CGAffineTransform(rotationAngle: .pi)
         
-        nutrientRelativityView.hide()
         collapsedViewHeight.constant = 0
+        chartHeight.constant = 220
         
         totalCaloriesLbl.isHidden = true
         expectedCaloriesLbl.isHidden = true
@@ -112,13 +114,4 @@ class RationNutrientsView: UIView {
         
         chartView.isHidden = false
     }
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

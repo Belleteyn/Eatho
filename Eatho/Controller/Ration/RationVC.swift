@@ -71,7 +71,7 @@ class RationVC: UIViewController {
         
         let animator = UIViewPropertyAnimator(duration: 0.3, curve: UIView.AnimationCurve.easeInOut) {
             if self.rationInfoViewExpandedState {
-                self.rationInfoViewHeight.constant = 180
+                self.rationInfoViewHeight.constant = 230
             } else {
                 self.rationInfoViewHeight.constant = 60
             }

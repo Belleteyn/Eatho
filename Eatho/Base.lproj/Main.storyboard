@@ -1168,18 +1168,18 @@
                                         <rect key="frame" x="0.0" y="60" width="414" height="0.0"/>
                                         <subviews>
                                             <view hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2B-9I-ETg" customClass="RationChartView" customModule="Eatho" customModuleProvider="target">
-                                                <rect key="frame" x="72" y="8" width="270" height="150"/>
+                                                <rect key="frame" x="8" y="8" width="390" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="j2B-9I-ETg" secondAttribute="height" multiplier="1.8:1" id="Bnd-la-XTh"/>
-                                                    <constraint firstAttribute="height" constant="150" id="QB5-f8-Ykj"/>
+                                                    <constraint firstAttribute="height" id="oOY-VR-2A3"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="j2B-9I-ETg" firstAttribute="top" secondItem="t8I-yh-XdZ" secondAttribute="top" constant="8" id="6jP-3Z-oEx"/>
-                                            <constraint firstItem="j2B-9I-ETg" firstAttribute="leading" secondItem="t8I-yh-XdZ" secondAttribute="leading" constant="72" id="BTH-gv-WU8"/>
+                                            <constraint firstItem="j2B-9I-ETg" firstAttribute="leading" secondItem="t8I-yh-XdZ" secondAttribute="leading" constant="8" id="BTH-gv-WU8"/>
+                                            <constraint firstAttribute="trailing" secondItem="j2B-9I-ETg" secondAttribute="trailing" constant="16" id="V5U-kX-Rae"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1191,7 +1191,7 @@
                                     <constraint firstItem="F4L-mP-Z1m" firstAttribute="top" secondItem="2Ng-FP-apO" secondAttribute="top" id="DSj-li-M8Q"/>
                                     <constraint firstItem="CKv-Y9-6iA" firstAttribute="top" secondItem="F4L-mP-Z1m" secondAttribute="bottom" id="WWO-SL-roC"/>
                                     <constraint firstItem="t8I-yh-XdZ" firstAttribute="leading" secondItem="2Ng-FP-apO" secondAttribute="leading" id="X7b-kp-abf"/>
-                                    <constraint firstAttribute="bottom" secondItem="t8I-yh-XdZ" secondAttribute="bottom" id="bCr-T7-Frv"/>
+                                    <constraint firstItem="t8I-yh-XdZ" firstAttribute="bottom" secondItem="2Ng-FP-apO" secondAttribute="bottom" id="bCr-T7-Frv"/>
                                     <constraint firstItem="CKv-Y9-6iA" firstAttribute="leading" secondItem="2Ng-FP-apO" secondAttribute="leading" id="c5K-C6-xK1"/>
                                     <constraint firstAttribute="trailing" secondItem="3D3-aj-jps" secondAttribute="trailing" constant="12" id="dr7-G6-T6U"/>
                                     <constraint firstAttribute="trailing" secondItem="t8I-yh-XdZ" secondAttribute="trailing" id="lU7-7D-BG5"/>
@@ -1202,6 +1202,7 @@
                                 <connections>
                                     <outlet property="carbsAmountLbl" destination="tbT-kM-L11" id="liv-b7-0H8"/>
                                     <outlet property="carbsLbl" destination="e5N-ao-PMW" id="Wr9-pD-7dE"/>
+                                    <outlet property="chartHeight" destination="oOY-VR-2A3" id="YhI-h8-RbY"/>
                                     <outlet property="chartView" destination="j2B-9I-ETg" id="OPh-Ll-gIQ"/>
                                     <outlet property="collapsedView" destination="CKv-Y9-6iA" id="BR3-MN-pod"/>
                                     <outlet property="collapsedViewHeight" destination="InM-YQ-FI1" id="OYh-l4-YJT"/>

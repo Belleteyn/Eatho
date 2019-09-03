@@ -15,9 +15,10 @@ class NutrientsRelativityView: UIView {
     private let proteinsView = UIView()
     
     override func awakeFromNib() {
-        carbsView.backgroundColor = EATHO_RED
-        fatsView.backgroundColor = EATHO_YELLOW
-        proteinsView.backgroundColor = EATHO_LIGHT_PURPLE
+        carbsView.backgroundColor = EATHO_CARBS
+        fatsView.backgroundColor = EATHO_FATS
+        proteinsView.backgroundColor = EATHO_PROTEINS
+        self.backgroundColor = EATHO_MAIN_COLOR_OPACITY50
         
         self.addSubview(carbsView)
         self.addSubview(fatsView)

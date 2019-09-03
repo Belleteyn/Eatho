@@ -24,42 +24,46 @@ class RationChartView: BarChartView {
     func renderChart() {
         guard let nutrition = self.nutrition, let userNutrition = self.userNutrition else { return }
         
-        let p = nutrition.proteins * 4.1, c = nutrition.carbs * 4.1, f = nutrition.fats * 9.29
-        let pUnderDiff = userNutrition.proteins["kcal"]! > p ? userNutrition.proteins["kcal"]! - p : 0
-        let cUnderDiff = userNutrition.carbs["kcal"]! > c ? userNutrition.carbs["kcal"]! - c : 0
-        let fUnderDiff = userNutrition.fats["kcal"]! > f ? userNutrition.fats["kcal"]! - f : 0
+        let p = truncateDoubleTail(nutrition.proteins * 4.1), c = truncateDoubleTail(nutrition.carbs * 4.1), f = truncateDoubleTail(nutrition.fats * 9.29), kcal = truncateDoubleTail(nutrition.calories)
+        let pg = truncateDoubleTail(nutrition.proteins), cg = truncateDoubleTail(nutrition.carbs), fg = truncateDoubleTail(nutrition.fats)
         
-        let pOverDiff = userNutrition.proteins["kcal"]! < p ? p - userNutrition.proteins["kcal"]! : 0
-        let cOverDiff = userNutrition.carbs["kcal"]! < c ? c - userNutrition.carbs["kcal"]! : 0
-        let fOverDiff = userNutrition.fats["kcal"]! < f ? f - userNutrition.fats["kcal"]! : 0
+        let up = truncateDoubleTail(userNutrition.proteins["kcal"]!), uc = truncateDoubleTail(userNutrition.carbs["kcal"]!), uf = truncateDoubleTail(userNutrition.fats["kcal"]!), ukcal = truncateDoubleTail(userNutrition.calories)
+        let upg = truncateDoubleTail(userNutrition.proteins["g"]!), ucg = truncateDoubleTail(userNutrition.carbs["g"]!), ufg = truncateDoubleTail(userNutrition.fats["g"]!)
         
-        let vals = [
-            BarChartDataEntry(x: 0.0, yValues: [p, pUnderDiff, pOverDiff]),
-            BarChartDataEntry(x: 1.0, yValues: [c, cUnderDiff, cOverDiff]),
-            BarChartDataEntry(x: 2.0, yValues: [f, fUnderDiff, fOverDiff])
+        let pUnderDiff = up > p ? up - p : 0
+        let cUnderDiff = uc > c ? uc - c : 0
+        let fUnderDiff = uf > f ? uf - f : 0
+        let kcalUnderDiff = userNutrition.calories > nutrition.calories ? ukcal - kcal : 0
+        
+        let pOverDiff = up < p ? p - up : 0
+        let cOverDiff = uc < c ? c - uc : 0
+        let fOverDiff = uf < f ? f - uf : 0
+        let kcalOverDiff = userNutrition.calories < nutrition.calories ? kcal - ukcal : 0
+
+        let dataSet = [
+            BarChartDataSet(entries: [BarChartDataEntry(x: 0.0, yValues: [p, pUnderDiff, pOverDiff])], label: "Proteins: \(pg) of \(upg) g"),
+            BarChartDataSet(entries: [BarChartDataEntry(x: 1.0, yValues: [c, cUnderDiff, cOverDiff])], label: "Carbs: \(cg) of \(ucg) g"),
+            BarChartDataSet(entries: [BarChartDataEntry(x: 2.0, yValues: [f, fUnderDiff, fOverDiff])], label: "Fats: \(fg) of \(ufg) g"),
+            BarChartDataSet(entries: [BarChartDataEntry(x: 3.0, yValues: [nutrition.calories, kcalUnderDiff, kcalOverDiff])], label: "Calories: \(kcal) of \(ukcal)")
         ]
         
-        let dataSet = BarChartDataSet(entries: vals, label: "Ration nutrition")
-        dataSet.colors = [
-            EATHO_LIGHT_PURPLE, EATHO_LIGHT_PURPLE_OPACITY50, EATHO_LIGHT_PURPLE_DARK,
-            EATHO_YELLOW, EATHO_YELLOW_OPACITY50, EATHO_YELLOW_DARK,
-            EATHO_RED, EATHO_RED_OPACITY50, EATHO_RED_DARK
-        ]
-        dataSet.stackLabels = ["Ration value", "Under value", "Over value"]
-        
-        let data = BarChartData(dataSet: dataSet)
+        dataSet[0].colors = [EATHO_PROTEINS, EATHO_PROTEINS_LIGHT, EATHO_PROTEINS_DARK]
+        dataSet[1].colors = [EATHO_CARBS, EATHO_CARBS_LIGHT, EATHO_CARBS_DARK]
+        dataSet[2].colors = [EATHO_FATS, EATHO_FATS_LIGHT, EATHO_FATS_DARK]
+        dataSet[3].colors = [EATHO_MAIN_COLOR, EATHO_MAIN_COLOR_OPACITY50, EATHO_MAIN_COLOR_DARK]
+
+        let data = BarChartData(dataSets: dataSet)
+        data.setValueFont(.systemFont(ofSize: 10, weight: .light))
         self.data = data
         
         //All other additions to this function will go here
-        self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
         self.legend.horizontalAlignment = .right
         self.legend.verticalAlignment = .center
         self.legend.orientation = .vertical
-        self.legend.font = NSUIFont(name: "Avenir", size: 14)!
+        self.legend.font = NSUIFont(descriptor: UIFont.systemFont(ofSize: 14).fontDescriptor, size: 14)
         self.legend.textColor = TEXT_COLOR
         
-        self.data?.setValueTextColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+        self.data?.setValueTextColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0))
         
         self.tintColor = TEXT_COLOR
         
