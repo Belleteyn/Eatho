@@ -22,13 +22,12 @@ class AviailableVC: FoodVC {
         
         configureRefreshControl()
 //        registerForPreviewing(with: self, sourceView: foodTable)
-        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (AuthService.instance.isLoggedIn && DataService.instance.foods.count == 0) {
+        if (AuthService.instance.isLoggedIn && FoodService.instance.foods.count == 0) {
             loadData()
         }
         
@@ -45,7 +44,7 @@ class AviailableVC: FoodVC {
     // Handlers
     
     @objc func handleRefresh() {
-        DataService.instance.requestAvailableFoodItems(handler: { (success) in
+        FoodService.instance.getFood(handler: { (success) in
             self.reloadTable()
             
             // Dismiss the refresh control.
@@ -58,22 +57,26 @@ class AviailableVC: FoodVC {
     @objc private func loadData() {
         if AuthService.instance.isLoggedIn {
             
-            if DataService.instance.foods.count == 0 {
+            if FoodService.instance.foods.count == 0 {
                 spinner.startAnimating()
             }
             
-            DataService.instance.requestAvailableFoodItems(handler: { (success) in
+            FoodService.instance.getFood(handler: { (success) in
                 self.spinner.stopAnimating()
                 self.reloadTable()
             })
         } else {
-            DataService.instance.clearData()
+            FoodService.instance.clearData()
             self.reloadTable()
         }
     }
     
-    @objc private func updateData() {
-        self.reloadTable()
+    @objc private func updateData(_ notification: Notification) {
+        if let info = notification.userInfo {
+            self.foodTable.reloadRows(at: [IndexPath(row: info["index"] as! Int, section: 0)], with: .automatic)
+        } else {
+            self.reloadTable()
+        }
     }
     
     // Funcs
@@ -82,32 +85,32 @@ class AviailableVC: FoodVC {
         guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as? DetailsVC else { return }
         
         present(detailsVC, animated: true, completion: nil)
-        detailsVC.initData(food: DataService.instance.foods[index])
+        detailsVC.initData(food: FoodService.instance.foods[index])
     }
     
     func openUpdateVC(index: Int) {
         guard let editVC = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
         
         present(editVC, animated: true, completion: nil)
-        editVC.setupView(title: DataService.instance.foods[index].food!.name!, food: DataService.instance.foods[index])
+        editVC.setupView(title: FoodService.instance.foods[index].food!.name!, food: FoodService.instance.foods[index])
     }
     
     func reloadTable() {
         foodTable.reloadData()
-        foodTable.isHidden = (DataService.instance.foods.count == 0)
+        foodTable.isHidden = (FoodService.instance.foods.count == 0)
     }
 }
 
 
 extension AviailableVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataService.instance.foods.count
+        return FoodService.instance.foods.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell") as? AvailableFoodCell {
-            if (indexPath.row < DataService.instance.foods.count) {
-                let food = DataService.instance.foods[indexPath.row]
+            if (indexPath.row < FoodService.instance.foods.count) {
+                let food = FoodService.instance.foods[indexPath.row]
                 cell.updateViews(foodItem: food)
                 return cell
             }
@@ -117,7 +120,7 @@ extension AviailableVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            DataService.instance.removeItem(index: indexPath.row, handler: { (localRemoveSucceeded) in
+            FoodService.instance.removeItem(index: indexPath.row, handler: { (localRemoveSucceeded) in
                 success(localRemoveSucceeded)
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             }, requestHandler: { (remoteRemoveSucceeded) in

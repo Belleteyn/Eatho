@@ -1,8 +1,8 @@
 //
-//  DataService.swift
+//  FoodServiceNetworkExtension.swift
 //  Eatho
 //
-//  Created by Серафима Зыкова on 20/07/2019.
+//  Created by Серафима Зыкова on 03/09/2019.
 //  Copyright © 2019 Серафима Зыкова. All rights reserved.
 //
 
@@ -10,79 +10,9 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class DataService {
-    static let instance = DataService()
+extension FoodService {
     
-    private(set) public var foods: [FoodItem] = []
-    
-    func clearData() {
-        foods = []
-    }
-    
-    func removeItem(index: Int, handler: CompletionHandler, requestHandler: @escaping CompletionHandler) {
-        print(" # remove \(index), before:")
-        foods.forEach { (food) in
-            print(food.food?.name)
-        }
-        
-        guard index < foods.count && index >= 0 else { handler(false); return }
-        guard let food = foods[index].food, let id = food._id else { handler(false); return }
-        removeFromAvailable(foodId: id, handler: requestHandler)
-        foods.remove(at: index)
-        handler(true)
-        
-        print(" # after:")
-        foods.forEach { (food) in
-            print(food.food?.name)
-        }
-    }
-    
-    func setSelected(name: String) {
-        if let row = foods.firstIndex(where: { $0.food!.name == name }) {
-            let daily = foods[row].dailyPortion
-            
-            if daily.min == nil || daily.min! == 0 {
-                if let delta = foods[row].delta {
-                    foods[row].dailyPortion.min = Int(delta)
-                } else {
-                    foods[row].dailyPortion.min = 1
-                }
-            } else {
-                foods[row].dailyPortion.min = 0
-            }
-        }
-        NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
-    }
-    
-    func updateFood(food: FoodItem, handler: @escaping CompletionHandler) {
-        guard let row = foods.firstIndex(where: { $0.food!._id == food.food!._id }) else { return }
-        
-        do {
-            let data = try JSONEncoder().encode(food)
-            
-            let body: JSON = [
-                "email": AuthService.instance.userEmail,
-                "token": AuthService.instance.token,
-                "food": try JSON(data: data)
-                ]
-            
-            Alamofire.request(URL_AVAILABLE, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-                switch response.result {
-                case .success:
-                    self.foods[row] = food
-                    handler(true)
-                case .failure(let err):
-                    debugPrint(" # update food error: \(err)")
-                    handler(false)
-                }
-            }
-        } catch let err {
-            debugPrint(" # update food error: \(err)")
-            handler(false)
-        }
-    }
-    
-    func requestAvailableFoodItems(handler: @escaping CompletionHandler) {
+    func get(appendHandler: @escaping (_: FoodItem) -> (), handler: @escaping CompletionHandler) {
         let params = AuthService.instance.credentials
         
         Alamofire.request(URL_AVAILABLE, method: .get, parameters: params.dictionaryObject, encoding: URLEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
@@ -92,11 +22,9 @@ class DataService {
                     guard let data = response.data else { return }
                     
                     if let jsonArr = try JSON(data: data).array {
-                        self.foods = [] //clear before append
-                        
                         for item in jsonArr {
                             let food = FoodItem(json: item)
-                            self.foods.append(food)
+                            appendHandler(food)
                         }
                         
                         handler(true)
@@ -113,8 +41,8 @@ class DataService {
         }
     }
     
-    func addNewFood(foodItem: FoodItem, handler: @escaping CompletionHandler) {
-        guard let food = foodItem.food else { return }
+    func insertFoodRequest(foodItem: FoodItem, handler: @escaping (_: JSON?) -> ()) {
+        guard let food = foodItem.food else { handler(false); return }
         let body: [String: Any] = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
@@ -132,18 +60,19 @@ class DataService {
         Alamofire.request(URL_ADD_FOOD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
             switch response.result {
             case .success:
-                guard let data = response.data else { handler(false); return }
-                let json = JSON(data)
-                let dailyPortion = DailyPortion(min: (foodItem.dailyPortion.min ?? 0), max: (foodItem.dailyPortion.max ?? 0), preferred: (foodItem.dailyPortion.preferred ?? 0))
-                self.addFoodToAvailable(forId: json["id"].stringValue, available: foodItem.available ?? 0.0, dailyPortion: dailyPortion, handler: handler)
+                if let data = response.data {
+                    handler(JSON(data))
+                } else {
+                    handler(nil)
+                }
             case .failure(let error):
                 debugPrint(error)
-                handler(true)
+                handler(nil)
             }
         }
     }
     
-    func addFoodToAvailable(forId id: String, available: Double, dailyPortion: DailyPortion, handler: @escaping CompletionHandler) {
+    func insertRequest(forId id: String, available: Double, dailyPortion: DailyPortion, appendHandler: @escaping (_ : FoodItem) -> (), handler: @escaping CompletionHandler) {
         let body: [String: Any] = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
@@ -160,11 +89,12 @@ class DataService {
             switch response.result {
             case .success:
                 guard let data = response.data else { handler(false); return }
+                
                 do {
                     if let json = try JSON(data: data).array {
                         for item in json {
                             let food = FoodItem(json: item)
-                            self.foods.append(food)
+                            appendHandler(food)
                         }
                     }
                     
@@ -176,12 +106,30 @@ class DataService {
                 }
             case.failure(let error):
                 debugPrint(error)
-                handler(true)
+                handler(false)
             }
         }
     }
     
-    func removeFromAvailable(foodId: String, handler: @escaping CompletionHandler) {
+    func updateRequest(data: JSON, handler: @escaping CompletionHandler) {
+        let body: JSON = [
+            "email": AuthService.instance.userEmail,
+            "token": AuthService.instance.token,
+            "food": data
+        ]
+        
+        Alamofire.request(URL_AVAILABLE, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+            switch response.result {
+            case .success:
+                handler(true)
+            case .failure(let err):
+                debugPrint(" # update food error: \(err)")
+                handler(false)
+            }
+        }
+    }
+    
+    func deleteRequest(foodId: String, handler: @escaping CompletionHandler) {
         let body = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,

@@ -28,6 +28,6 @@ class AvailableFoodCell: FoodCell {
     }
 
     @IBAction func onAddBtnClicked(_ sender: Any) {
-        DataService.instance.setSelected(name: super.name.text!)
+        FoodService.instance.setSelected(name: super.name.text!)
     }
 }

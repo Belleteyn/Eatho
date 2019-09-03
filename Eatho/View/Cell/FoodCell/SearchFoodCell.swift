@@ -23,7 +23,8 @@ class SearchFoodCell: FoodCell {
 
     @IBAction func addBtnPressed(_ sender: Any) {
         NotificationCenter.default.post(name: NOTIF_SEARCH_FOOD_ADD, object: nil)
-        DataService.instance.addFoodToAvailable(forId: id!, available: 0, dailyPortion: DailyPortion(min: 0, max: 0, preferred: 0)) { (success) in
+        
+        FoodService.instance.insert(forId: id!, available: 0, dailyPortion: DailyPortion(min: 0, max: 0, preferred: 0)) { (success) in
             NotificationCenter.default.post(name: NOTIF_SEARCH_FOOD_ADD_DONE, object: nil, userInfo: ["success": success])
         }
     }

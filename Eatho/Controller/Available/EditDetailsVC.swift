@@ -62,7 +62,7 @@ class EditDetailsVC: UIViewController {
         }
         
         spinner.startAnimating()
-        DataService.instance.updateFood(food: food!) {(success) in
+        FoodService.instance.updateFood(food: food!) {(success) in
             self.spinner.stopAnimating()
             if (success) {
                 self.dismiss(animated: true, completion: nil)

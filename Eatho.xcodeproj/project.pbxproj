@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		20EAFAAAEB8C00A73E7F3CA3 /* Pods_EathoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */; };
 		2A1DAB6A1374B9867D349312 /* Pods_Eatho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */; };
+		951460C6231E97A100B5C04D /* FoodServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951460C5231E97A100B5C04D /* FoodServiceNetworkExtension.swift */; };
 		951D215A22F9627200A8CDB9 /* NutrientsRelativityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */; };
 		95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95231CB7230AD917009EDCB7 /* SearchVC.swift */; };
 		95278CFC22FC729B00B015F7 /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95278CFB22FC729A00B015F7 /* DiaryCell.swift */; };
 		95278CFE22FC8EF300B015F7 /* Ration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95278CFD22FC8EF300B015F7 /* Ration.swift */; };
 		952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B6E22E246C700FD8D50 /* AvailableFoodCell.swift */; };
 		952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7022E2480200FD8D50 /* FoodItem.swift */; };
-		952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7322E27B2700FD8D50 /* DataService.swift */; };
+		952A6B7422E27B2700FD8D50 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7322E27B2700FD8D50 /* FoodService.swift */; };
 		952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */; };
 		95324DFF22DF6149005905FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324DFE22DF6149005905FF /* AppDelegate.swift */; };
 		95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E0022DF6149005905FF /* WelcomeVC.swift */; };
@@ -95,13 +96,14 @@
 		3FECFA2A60F5B417A9CB9D8B /* Pods-EathoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EathoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EathoTests/Pods-EathoTests.release.xcconfig"; sourceTree = "<group>"; };
 		41FFFBAE1CF841C989C04427 /* Pods-Eatho.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatho.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatho/Pods-Eatho.release.xcconfig"; sourceTree = "<group>"; };
 		43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EathoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		951460C5231E97A100B5C04D /* FoodServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsRelativityView.swift; sourceTree = "<group>"; };
 		95231CB7230AD917009EDCB7 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		95278CFB22FC729A00B015F7 /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
 		95278CFD22FC8EF300B015F7 /* Ration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ration.swift; sourceTree = "<group>"; };
 		952A6B6E22E246C700FD8D50 /* AvailableFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableFoodCell.swift; sourceTree = "<group>"; };
 		952A6B7022E2480200FD8D50 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
-		952A6B7322E27B2700FD8D50 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		952A6B7322E27B2700FD8D50 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
 		952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AviailableVC.swift; sourceTree = "<group>"; };
 		95324DFB22DF6149005905FF /* Eatho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eatho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95324DFE22DF6149005905FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -217,8 +219,9 @@
 		952A6B7222E27B1300FD8D50 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				954F4E4D231E96CC0088B6DD /* Network */,
 				958CD81222E971E700DC6EB6 /* AuthService.swift */,
-				952A6B7322E27B2700FD8D50 /* DataService.swift */,
+				952A6B7322E27B2700FD8D50 /* FoodService.swift */,
 				95A05A2122F86D04002A35B9 /* RationService.swift */,
 				95512AC422F0D3DA0038790F /* SettingsService.swift */,
 				956D438122F6B0B60091C9C4 /* ShopListService.swift */,
@@ -346,6 +349,14 @@
 				95512AC022F089970038790F /* DiaryVC.swift */,
 			);
 			path = Diary;
+			sourceTree = "<group>";
+		};
+		954F4E4D231E96CC0088B6DD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				951460C5231E97A100B5C04D /* FoodServiceNetworkExtension.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		956D436E22F2FEB50091C9C4 /* Settings */ = {
@@ -660,6 +671,7 @@
 				95A05A2222F86D04002A35B9 /* RationService.swift in Sources */,
 				9571892E2305CB9C004A3EE3 /* Nutrient.swift in Sources */,
 				956D437822F377820091C9C4 /* NutritionFacts.swift in Sources */,
+				951460C6231E97A100B5C04D /* FoodServiceNetworkExtension.swift in Sources */,
 				95A05A1F22F84D2B002A35B9 /* FoodCell.swift in Sources */,
 				95278CFC22FC729B00B015F7 /* DiaryCell.swift in Sources */,
 				958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */,
@@ -673,7 +685,7 @@
 				95AED18A2319187A00D7BE97 /* Model.xcdatamodeld in Sources */,
 				952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */,
 				958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */,
-				952A6B7422E27B2700FD8D50 /* DataService.swift in Sources */,
+				952A6B7422E27B2700FD8D50 /* FoodService.swift in Sources */,
 				954F4E47231DA6B30088B6DD /* RationChartView.swift in Sources */,
 				958195B6230B22E700B08C92 /* SearchService.swift in Sources */,
 				95512AC522F0D3DA0038790F /* SettingsService.swift in Sources */,
