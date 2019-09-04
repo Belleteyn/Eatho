@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import SwiftyJSON
 
 class RationService {
@@ -77,66 +76,27 @@ class RationService {
     }
     
     func requestRation(handler: @escaping CompletionHandler) {
-        let query: [String : Any] = [
-            "email": AuthService.instance.userEmail,
-            "token": AuthService.instance.token,
-            "count": 10
-        ]
-        
-        Alamofire.request(URL_RATION, method: .get, parameters: query, encoding: URLEncoding.default).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
-                self.resetData()
-                
-                if let data = response.data {
-                    guard let json = JSON(data).array else { handler(false); return }
-                    
-                    let formatter = ISO8601DateFormatter()
-                    let day = 24.0 * 60 * 60
-                    
-                    for item in json {
-                        guard let dateStr = item["date"].string, let date = formatter.date(from: dateStr) else { continue }
-                        
-                        let ration = Ration(json: item)
-                        self.diary.append(ration)
-                        
-                        let interval = date.timeIntervalSinceNow
-                        if interval < 0 && day + interval >= 0 {
-                            self.nutrition.set(nutrition: ration.nutrition)
-                            self.currentRation = ration.ration
-                        }
-                    }
-                    
-                    handler(true)
-                }
-            case .failure(let err):
-                debugPrint(err)
-                handler(false)
+        get(handler: handler) { (json) in
+            guard let dateStr = json["date"].string else { return }
+            
+            let formatter = ISO8601DateFormatter()
+            guard let date = formatter.date(from: dateStr) else { return }
+            
+            let ration = Ration(json: json)
+            self.diary.append(ration)
+            
+            let day = 24.0 * 60 * 60
+            let interval = date.timeIntervalSinceNow
+            if interval < 0 && day + interval >= 0 {
+                self.nutrition.set(nutrition: ration.nutrition)
+                self.currentRation = ration.ration
             }
         }
     }
     
     func prepRation(forDays days: Int, handler: @escaping CompletionHandler) {
-        let body: [String : Any] = [
-            "email": AuthService.instance.userEmail,
-            "token": AuthService.instance.token,
-            "count": days
-        ]
-        
-        Alamofire.request(URL_RATION, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            
-            do {
-                guard let data = response.data, let json = try JSON(data: data).array else { handler(false); return }
-                self.diary = []
-                for item in json {
-                    self.diary.append(Ration(json: item))
-                }
-                
-                handler(true)
-            } catch let err {
-                debugPrint(err)
-                handler(false)
-            }
+        prepRequest(days: days, handler: handler) { (json) in
+            self.diary.append(Ration(json: json))
         }
     }
 }
