@@ -51,6 +51,8 @@ let NOTIF_USER_ACTIVITY_LEVEL_CHANGED = Notification.Name("userActivityLevelChan
 let NOTIF_SEARCH_FOOD_ADD = Notification.Name("searchFoodAdd")
 let NOTIF_SEARCH_FOOD_ADD_DONE = Notification.Name("searchFoodAddDone")
 
+let NOTIF_PRESENT_RATION_COMPLEMENT_MODAL = Notification.Name("presentRationComplementModal")
+
 // headers
 let JSON_HEADER: [String : String] = ["Content-Type": "application/json; charset=utf-8"]
 

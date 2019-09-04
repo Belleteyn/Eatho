@@ -1,82 +1,52 @@
 //
-//  AviailableVC.swift
+//  RationComplementVC.swift
 //  Eatho
 //
-//  Created by Серафима Зыкова on 20/07/2019.
+//  Created by Серафима Зыкова on 03/09/2019.
 //  Copyright © 2019 Серафима Зыкова. All rights reserved.
 //
 
 import UIKit
 
-class AviailableVC: FoodVC {
+class RationComplementVC: FoodVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         foodTable.dataSource = self
         
-        navigationItem.largeTitleDisplayMode = .never
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NOTIF_FOOD_DATA_CHANGED, object: nil)
-        
-        configureRefreshControl()
-//        registerForPreviewing(with: self, sourceView: foodTable)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentModalView(_:)), name: NOTIF_PRESENT_RATION_COMPLEMENT_MODAL, object: nil)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        foodTable.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    @objc func presentModalView(_ notification: Notification) {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "complementParamsModalVC") else { return }
+        let navController = UINavigationController(rootViewController: vc)
+        navController.navigationBar.isHidden = true
+        navController.modalPresentationStyle = .custom
         
-        if (AuthService.instance.isLoggedIn && FoodService.instance.foods.count == 0) {
-            super.loadData()
-        }
-        
-        super.reloadTable()
-    }
-    
-    // Configure
-    
-    func configureRefreshControl() {
-        foodTable.refreshControl = UIRefreshControl()
-        foodTable.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-    }
-    
-    // Handlers
-    
-    @objc func handleRefresh() {
-        FoodService.instance.getFood(handler: { (success) in
-            self.reloadTable()
-            
-            // Dismiss the refresh control.
-            DispatchQueue.main.async {
-                self.foodTable.refreshControl?.endRefreshing()
-            }
-        })
-    }
-    
-    @objc private func updateData(_ notification: Notification) {
-        if let info = notification.userInfo {
-            self.foodTable.reloadRows(at: [IndexPath(row: info["index"] as! Int, section: 0)], with: .automatic)
-        } else {
-            self.reloadTable()
-        }
+        self.navigationController?.present(navController, animated: true, completion: nil)
     }
 }
 
-
-extension AviailableVC: UITableViewDataSource {
+extension RationComplementVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FoodService.instance.foods.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell") as? AvailableFoodCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "RationInsertionFoodCell") as? RationInsertionFoodCell {
             if (indexPath.row < FoodService.instance.foods.count) {
                 let food = FoodService.instance.foods[indexPath.row]
                 cell.updateViews(foodItem: food)
                 return cell
             }
         }
-        return AvailableFoodCell()
+        return RationInsertionFoodCell()
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -86,13 +56,13 @@ extension AviailableVC: UITableViewDataSource {
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             }, requestHandler: { (remoteRemoveSucceeded) in
                 //todo show error
-                self.loadData()
+                super.loadData()
             })
         }
         removeAction.backgroundColor = EATHO_RED
         
         let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Details") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            self.openDetails(index: indexPath.row)
+            super.openDetails(index: indexPath.row)
             success(true)
         }
         

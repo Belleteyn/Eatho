@@ -62,7 +62,7 @@ class SearchVC: FoodVC {
         searchController.isActive = true
     }
     
-    func openDetails(index: Int) {
+    override func openDetails(index: Int) {
         guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as? DetailsVC else { return }
         
         present(detailsVC, animated: true, completion: nil)

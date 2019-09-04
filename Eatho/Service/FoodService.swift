@@ -21,9 +21,7 @@ class FoodService {
     
     func getFood (handler: @escaping CompletionHandler) {
         foods = []
-        print("foods cleared")
         get(appendHandler: { (food) in
-            print("append \(food.food?.name!)")
             self.foods.append(food)
         }, handler: handler)
     }
