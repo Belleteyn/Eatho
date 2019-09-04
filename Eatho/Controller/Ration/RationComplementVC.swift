@@ -24,12 +24,16 @@ class RationComplementVC: FoodVC {
     }
     
     @objc func presentModalView(_ notification: Notification) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "complementParamsModalVC") else { return }
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "complementParamsModalVC") as? ComplementParamsModalVC else { return }
+        guard let food = notification.userInfo?["food"] as? FoodItem else { return }
+        
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.isHidden = true
         navController.modalPresentationStyle = .custom
         
-        self.navigationController?.present(navController, animated: true, completion: nil)
+        self.navigationController?.present(navController, animated: true) {
+            vc.setupView(foodItem: food)
+        }
     }
 }
 
