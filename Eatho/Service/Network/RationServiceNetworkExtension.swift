@@ -40,6 +40,30 @@ extension RationService {
         }
     }
     
+    func update(ration: Ration, handler: @escaping CompletionHandler) {
+        do {
+            let json = try JSON(data: JSONEncoder().encode(ration))
+            let body: JSON = [
+                "email": AuthService.instance.userEmail,
+                "token": AuthService.instance.token,
+                "ration": json
+            ]
+            
+            Alamofire.request(URL_RATION, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+                switch response.result {
+                case .success:
+                    handler(true)
+                case .failure(let err):
+                    debugPrint(err)
+                    handler(false)
+                }
+            }
+        } catch let err {
+            debugPrint(err)
+            handler(false)
+        }
+    }
+    
     func prepRequest(days: Int, handler: @escaping CompletionHandler, dataHandler: @escaping (_: JSON) -> ()) {
         let body: [String : Any] = [
             "email": AuthService.instance.userEmail,

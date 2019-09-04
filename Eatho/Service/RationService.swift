@@ -15,11 +15,13 @@ class RationService {
     public private(set) var diary = [Ration]()
     public private(set) var nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
     public private(set) var currentRation: [FoodItem] = []
+    public private(set) var currentRationIndex = -1
     
     func resetData() {
         diary = []
         nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
         currentRation = []
+        currentRationIndex = -1
     }
     
     func removeItem(index: Int) {
@@ -40,38 +42,58 @@ class RationService {
     
     func incPortion(name: String) {
         if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
-            let food = currentRation[row]
-            let delta = food.delta ?? 0
-            let available = food.available ?? 0
-            let portion = food.portion ?? 0
-            
-            updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: false)
-            if portion + delta < (available) {
-                currentRation[row].updateWeight(delta: delta)
-            } else {
-                currentRation[row].updateWeight(delta: (available - portion))
+            //todo: upd ration in diary, not only currentRation
+            update(ration: diary[currentRationIndex]) { (success) in
+                if success {
+                    let food = self.currentRation[row]
+                    let delta = food.delta ?? 0
+                    let available = food.available ?? 0
+                    let portion = food.portion ?? 0
+                    
+                    self.updateNutrition(delta: food.food!.nutrition, portion: food.portion!, inc: false)
+                    if portion + delta < (available) {
+                        self.currentRation[row].updateWeight(delta: delta)
+                    } else {
+                        self.currentRation[row].updateWeight(delta: (available - portion))
+                    }
+                    self.updateNutrition(delta: self.currentRation[row].food!.nutrition, portion: self.currentRation[row].portion!, inc: true)
+                    
+                    NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+                }
             }
-            updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: true)
-            
-            NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
         }
     }
     
     func decPortion(name: String) {
         if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
-            let food = currentRation[row]
-            let delta = food.delta ?? 0
-            let portion = food.portion ?? 0
-            
-            updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: false)
-            if portion - delta >= 0 {
-                currentRation[row].updateWeight(delta: -delta)
-            } else {
-                currentRation[row].updateWeight(delta: -portion)
+            //todo: upd ration in diary, not only currentRation
+            update(ration: diary[currentRationIndex]) { (success) in
+                if success {
+                    let food = self.currentRation[row]
+                    let delta = food.delta ?? 0
+                    let portion = food.portion ?? 0
+                    
+                    self.updateNutrition(delta: self.currentRation[row].food!.nutrition, portion: self.currentRation[row].portion!, inc: false)
+                    if portion - delta >= 0 {
+                        self.currentRation[row].updateWeight(delta: -delta)
+                    } else {
+                        self.currentRation[row].updateWeight(delta: -portion)
+                    }
+                    self.updateNutrition(delta: self.currentRation[row].food!.nutrition, portion: self.currentRation[row].portion!, inc: true)
+                    
+                    NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+                }
             }
-            updateNutrition(delta: currentRation[row].food!.nutrition, portion: currentRation[row].portion!, inc: true)
-            
-            NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+        }
+    }
+    
+    func addToRation(food: FoodItem, handler: @escaping CompletionHandler) {
+        //todo: upd ration in diary, not only currentRation
+        update(ration: diary[currentRationIndex]) { (success) in
+            if success {
+                self.currentRation.append(food)
+            }
+            handler(success)
         }
     }
     
@@ -90,6 +112,7 @@ class RationService {
             if interval < 0 && day + interval >= 0 {
                 self.nutrition.set(nutrition: ration.nutrition)
                 self.currentRation = ration.ration
+                self.currentRationIndex = self.diary.count - 1
             }
         }
     }

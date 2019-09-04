@@ -21,13 +21,19 @@ class ComplementParamsModalVC: UIViewController {
     @IBOutlet weak var chartViewHeight: NSLayoutConstraint!
     @IBOutlet weak var buttonStackHeight: NSLayoutConstraint!
     
-    var food: Food?
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    var food: FoodItem?
+    var portion = 0.0
+    
     var macro = [Nutrient]()
     var minerals = [Nutrient]()
     var vitamins = [Nutrient]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        spinner.hidesWhenStopped = true
         
         viewHeight.constant = view.bounds.height - 200
         
@@ -45,7 +51,7 @@ class ComplementParamsModalVC: UIViewController {
     
     func setupView(foodItem: FoodItem) {
         guard let food = foodItem.food else { return }
-        self.food = food
+        self.food = foodItem
         
         name.text = food.name!
         typeIcon.image = UIImage(named: food.icon)
@@ -55,7 +61,7 @@ class ComplementParamsModalVC: UIViewController {
     }
     
     private func updateTable(portion: Double) {
-        guard let food = food else { return }
+        guard let food = food?.food else { return }
         
         macro = food.nutrition.getMacro(portion: portion)
         minerals = food.nutrition.getMinerals(portion: portion)
@@ -93,7 +99,27 @@ class ComplementParamsModalVC: UIViewController {
     }
     
     @IBAction func closeButtonPressed(_ sender: Any) {
+        view.endEditing(true)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        view.endEditing(true)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        spinner.startAnimating()
+        view.endEditing(true)
+        
+        food?.portion = portion
+        food?.delta = portion
+        RationService.instance.addToRation(food: food!) { (success) in
+            self.spinner.stopAnimating()
+            if success {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 }
 
@@ -120,6 +146,7 @@ extension ComplementParamsModalVC: UITextViewDelegate {
         }
         
         guard let portion = Double(textView.text!) else { return }
+        self.portion = portion
         updateTable(portion: portion)
     }
 }

@@ -2398,12 +2398,18 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HhM-Ul-oVp">
+                                <rect key="frame" x="188.66666666666666" y="429.66666666666669" width="37" height="37"/>
+                                <color key="color" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="EwW-Sg-Hzh" firstAttribute="trailing" secondItem="Afr-SG-BJS" secondAttribute="trailing" constant="20" id="8ly-wY-qPF"/>
                             <constraint firstItem="Afr-SG-BJS" firstAttribute="top" secondItem="EwW-Sg-Hzh" secondAttribute="top" constant="70" id="B65-m4-wIv"/>
+                            <constraint firstItem="HhM-Ul-oVp" firstAttribute="centerX" secondItem="aFc-r3-qN1" secondAttribute="centerX" id="hLU-fb-Hx6"/>
                             <constraint firstItem="Afr-SG-BJS" firstAttribute="leading" secondItem="EwW-Sg-Hzh" secondAttribute="leading" constant="20" id="vyp-Y3-mKD"/>
+                            <constraint firstItem="HhM-Ul-oVp" firstAttribute="centerY" secondItem="aFc-r3-qN1" secondAttribute="centerY" id="wHM-bX-oxQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EwW-Sg-Hzh"/>
                     </view>
@@ -2416,6 +2422,7 @@
                         <outlet property="input" destination="HPo-uG-Dwy" id="72s-3Z-5DB"/>
                         <outlet property="name" destination="VAb-Q6-aP4" id="9xq-B2-FdJ"/>
                         <outlet property="nutritionTableView" destination="tPv-zx-sRP" id="OuI-ou-itE"/>
+                        <outlet property="spinner" destination="HhM-Ul-oVp" id="gI9-eH-Uki"/>
                         <outlet property="typeIcon" destination="LVa-Wn-DyL" id="ns6-oD-5xj"/>
                         <outlet property="viewHeight" destination="bFU-EP-UAz" id="npD-FX-Ga9"/>
                     </connections>
