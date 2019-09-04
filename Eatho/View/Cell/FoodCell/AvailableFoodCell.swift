@@ -10,7 +10,6 @@ import UIKit
 
 class AvailableFoodCell: FoodCell {
 
-    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var weightLbl: UILabel!
     
     func updateViews(foodItem: FoodItem) {
@@ -19,15 +18,5 @@ class AvailableFoodCell: FoodCell {
         
         weightLbl.text = "\(Int(foodItem.available ?? 0)) \(foodItem.weightMeasure ?? "g")"
         info.text = "\(foodItem.food!.nutrition.calories.total ?? 0) kkal (100 g)"
-        
-        if (foodItem.dailyPortion.min ?? 0) > 0 {
-            addButton.setImage(UIImage(named: "content_item_checked.png"), for: .normal)
-        } else {
-            addButton.setImage(UIImage(named: "content_item_add_to_ration.png"), for: .normal)
-        }
-    }
-
-    @IBAction func onAddBtnClicked(_ sender: Any) {
-        FoodService.instance.setSelected(name: super.name.text!)
     }
 }
