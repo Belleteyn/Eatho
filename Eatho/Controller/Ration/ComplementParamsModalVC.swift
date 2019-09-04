@@ -35,6 +35,7 @@ class ComplementParamsModalVC: UIViewController {
         nutritionTableView.delegate = self
         
         input.delegate = self
+        input.textColor = LIGHT_TEXT_COLOR
         
         let tapHandle = UITapGestureRecognizer(target: self, action: #selector(finishEditing))
         self.view.addGestureRecognizer(tapHandle)
@@ -99,10 +100,25 @@ class ComplementParamsModalVC: UIViewController {
 extension ComplementParamsModalVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = ""
+        if textView.text == "weight" {
+            textView.text = ""
+            textView.textColor = TEXT_COLOR
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.count == 0 {
+            textView.textColor = LIGHT_TEXT_COLOR
+            textView.text = "weight"
+        }
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        if textView.text.count > 4 {
+            textView.text = "\(textView.text.dropLast(1))"
+            return
+        }
+        
         guard let portion = Double(textView.text!) else { return }
         updateTable(portion: portion)
     }
