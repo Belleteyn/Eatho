@@ -2067,12 +2067,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afr-SG-BJS">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afr-SG-BJS" customClass="ShadowView" customModule="Eatho" customModuleProvider="target">
                                 <rect key="frame" x="20" y="114" width="374" height="678"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opy-eW-yw9">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opy-eW-yw9" customClass="ShadowView" customModule="Eatho" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="66"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5W-V4-7lM">
+                                                <rect key="frame" x="0.0" y="56" width="374" height="10"/>
+                                                <color key="backgroundColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="10" id="SwR-hd-Zo2"/>
+                                                </constraints>
+                                            </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content_item_cheese" translatesAutoresizingMaskIntoConstraints="NO" id="LVa-Wn-DyL">
                                                 <rect key="frame" x="20" y="46" width="40" height="40"/>
                                                 <constraints>
@@ -2083,7 +2090,7 @@
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAb-Q6-aP4">
                                                 <rect key="frame" x="68" y="40.666666666666657" width="286" height="23.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                                <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPO-4w-344">
@@ -2092,23 +2099,38 @@
                                                     <constraint firstAttribute="height" constant="16" id="ejD-Hq-ugw"/>
                                                     <constraint firstAttribute="width" secondItem="lPO-4w-344" secondAttribute="height" multiplier="1:1" id="yQ4-9X-cvZ"/>
                                                 </constraints>
-                                                <state key="normal" image="content_close"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="close_white"/>
                                                 <connections>
                                                     <action selector="closeButtonPressed:" destination="7Qh-qn-TwG" eventType="touchUpInside" id="5ia-rb-iYV"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="lPO-4w-344" secondAttribute="trailing" constant="16" id="1to-ip-CU0"/>
                                             <constraint firstAttribute="height" constant="66" id="7tL-5b-hZw"/>
+                                            <constraint firstAttribute="bottom" secondItem="R5W-V4-7lM" secondAttribute="bottom" id="J2r-ro-vAf"/>
                                             <constraint firstAttribute="trailing" secondItem="VAb-Q6-aP4" secondAttribute="trailing" constant="20" id="JBd-oo-Wks"/>
                                             <constraint firstItem="lPO-4w-344" firstAttribute="top" secondItem="opy-eW-yw9" secondAttribute="top" constant="12" id="P9A-MO-bvM"/>
+                                            <constraint firstItem="R5W-V4-7lM" firstAttribute="leading" secondItem="opy-eW-yw9" secondAttribute="leading" id="VGc-fu-bNP"/>
+                                            <constraint firstAttribute="trailing" secondItem="R5W-V4-7lM" secondAttribute="trailing" id="X9k-eN-Q6k"/>
                                             <constraint firstItem="VAb-Q6-aP4" firstAttribute="leading" secondItem="LVa-Wn-DyL" secondAttribute="trailing" constant="8" id="ZLf-3b-Hje"/>
                                             <constraint firstAttribute="bottom" secondItem="VAb-Q6-aP4" secondAttribute="bottom" constant="2" id="cLz-oB-Iyw"/>
                                             <constraint firstItem="LVa-Wn-DyL" firstAttribute="leading" secondItem="opy-eW-yw9" secondAttribute="leading" constant="20" id="nH9-xn-536"/>
                                             <constraint firstAttribute="bottom" secondItem="LVa-Wn-DyL" secondAttribute="bottom" constant="-20" id="nru-oQ-ncE"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="yOffset">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="8SJ-2K-OdZ">
                                         <rect key="frame" x="68" y="94" width="290" height="30"/>
@@ -2299,7 +2321,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXm-Qc-ZOn" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="0.0"/>
-                                                <color key="backgroundColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -2311,10 +2333,13 @@
                                                         <real key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="7Qh-qn-TwG" eventType="touchUpInside" id="zNL-cP-W3s"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAO-Qs-N5e" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
                                                 <rect key="frame" x="187" y="0.0" width="187" height="0.0"/>
-                                                <color key="backgroundColor" red="0.67588701139999996" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.83529411760000005" green="0.62352941179999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Save">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -2326,6 +2351,9 @@
                                                         <real key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="saveButtonPressed:" destination="7Qh-qn-TwG" eventType="touchUpInside" id="oFs-ee-7U4"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -2358,9 +2386,20 @@
                                     <constraint firstItem="qem-Fg-liv" firstAttribute="leading" secondItem="Afr-SG-BJS" secondAttribute="leading" id="rY7-3q-yIR"/>
                                     <constraint firstAttribute="bottom" secondItem="qem-Fg-liv" secondAttribute="bottom" id="v4l-mX-dPe"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="yOffset">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="EwW-Sg-Hzh" firstAttribute="trailing" secondItem="Afr-SG-BJS" secondAttribute="trailing" constant="20" id="8ly-wY-qPF"/>
                             <constraint firstItem="Afr-SG-BJS" firstAttribute="top" secondItem="EwW-Sg-Hzh" secondAttribute="top" constant="70" id="B65-m4-wIv"/>
@@ -3363,8 +3402,8 @@
         <image name="bottom_bar_ingestions" width="24" height="18.666666030883789"/>
         <image name="bottom_bar_settings" width="21.333333969116211" height="21.333333969116211"/>
         <image name="bottom_bar_shop_list" width="24" height="18.666666030883789"/>
+        <image name="close_white" width="33.333332061767578" height="33.333332061767578"/>
         <image name="content_barcode" width="20" height="16"/>
-        <image name="content_close" width="16" height="16"/>
         <image name="content_item_1" width="42.666667938232422" height="42.666667938232422"/>
         <image name="content_item_add_to_ration" width="26.666666030883789" height="26.666666030883789"/>
         <image name="content_item_cheese" width="32" height="32"/>
