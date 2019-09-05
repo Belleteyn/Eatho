@@ -13,86 +13,98 @@ class RationService {
     static let instance = RationService()
     
     public private(set) var diary = [Ration]()
-    public private(set) var nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
-    public private(set) var currentRation: [FoodItem] = []
-    public private(set) var currentRationIndex = -1
+    public private(set) var presentedRationIndex = -1
+    
+    var nutrition: Nutrition? {
+        get {
+            if presentedRationIndex == -1 { return nil }
+            return diary[presentedRationIndex].nutrition
+        }
+    }
+    
+    var currentRation: [FoodItem]? {
+        get {
+            if presentedRationIndex == -1 { return nil }
+            return diary[presentedRationIndex].ration
+        }
+    }
     
     func resetData() {
         diary = []
-        nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
-        currentRation = []
-        currentRationIndex = -1
+        presentedRationIndex = -1
     }
     
-    func removeItem(index: Int) {
-        updateNutrition(delta: currentRation[index].food!.nutrition, portion: currentRation[index].portion!, inc: false)
-        currentRation.remove(at: index)
+    func removeItem(index: Int, completion: @escaping CompletionHandler) {
+        if presentedRationIndex == -1 { return }
+        let curRation = diary[presentedRationIndex]
         
-        NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
-    }
-    
-    private func updateNutrition(delta: NutritionFacts, portion: Double, inc: Bool) {
-        let kcal = delta.calories.total! * portion / 100, c = delta.carbs.total! * portion / 100, f = delta.fats.total! * portion / 100, p = delta.proteins! * portion / 100
+        self.updateNutrition(forRation: curRation, nutritionFacts: curRation.ration[index].food!.nutrition, portion: -curRation.ration[index].portion!)
         
-        nutrition.calories += inc ? kcal : -kcal
-        nutrition.carbs += inc ? c : -c
-        nutrition.fats += inc ? f : -f
-        nutrition.proteins += inc ? p : -p
+        delete(date: curRation.date, completion: completion)
+        
+        curRation.ration.remove(at: index)
     }
     
     func incPortion(name: String) {
-        if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
-            //todo: upd ration in diary, not only currentRation
-            update(ration: diary[presentedRationIndex]) { (success, err) in
-                if success {
-                    let food = self.currentRation[row]
-                    let delta = food.delta ?? 0
-                    let available = food.available ?? 0
-                    let portion = food.portion ?? 0
-                    
-                    self.updateNutrition(delta: food.food!.nutrition, portion: food.portion!, inc: false)
-                    if portion + delta < (available) {
-                        self.currentRation[row].updateWeight(delta: delta)
-                    } else {
-                        self.currentRation[row].updateWeight(delta: (available - portion))
-                    }
-                    self.updateNutrition(delta: self.currentRation[row].food!.nutrition, portion: self.currentRation[row].portion!, inc: true)
-                    
-                    NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
-                }
+        if presentedRationIndex == -1 { return }
+        let curRation = diary[presentedRationIndex]
+        
+        if let row = curRation.ration.firstIndex(where: { $0.food!.name == name }) {
+            let food = curRation.ration[row]
+            let delta = food.delta ?? 0
+            let available = food.available ?? 0
+            let portion = food.portion ?? 0
+            
+            var deltaWeight = 0.0
+            if portion + delta < available {
+                deltaWeight = delta
+            } else {
+                deltaWeight = available - portion
+            }
+            
+            curRation.ration[row].updateWeight(delta: deltaWeight)
+            self.updateNutrition(forRation: curRation, nutritionFacts: food.food!.nutrition, portion: deltaWeight)
+            NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+            
+            update(ration: curRation) { (success, err) in
+                //todo
             }
         }
     }
     
     func decPortion(name: String) {
-        if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
-            //todo: upd ration in diary, not only currentRation
-            update(ration: diary[presentedRationIndex]) { (success, err) in
-                if success {
-                    let food = self.currentRation[row]
-                    let delta = food.delta ?? 0
-                    let portion = food.portion ?? 0
-                    
-                    self.updateNutrition(delta: self.currentRation[row].food!.nutrition, portion: self.currentRation[row].portion!, inc: false)
-                    if portion - delta >= 0 {
-                        self.currentRation[row].updateWeight(delta: -delta)
-                    } else {
-                        self.currentRation[row].updateWeight(delta: -portion)
-                    }
-                    self.updateNutrition(delta: self.currentRation[row].food!.nutrition, portion: self.currentRation[row].portion!, inc: true)
-                    
-                    NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
-                }
+        if presentedRationIndex == -1 { return }
+        let curRation = diary[presentedRationIndex]
+        
+        if let row = curRation.ration.firstIndex(where: { $0.food!.name == name }) {
+            let food = curRation.ration[row]
+            let delta = food.delta ?? 0
+            let portion = food.portion ?? 0
+            
+            var deltaWeight = 0.0
+            if portion - delta >= 0 {
+                deltaWeight = -delta
+            } else {
+                deltaWeight = -portion
+            }
+            
+            curRation.ration[row].updateWeight(delta: deltaWeight)
+            self.updateNutrition(forRation: curRation, nutritionFacts: food.food!.nutrition, portion: deltaWeight)
+            NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+            
+            update(ration: curRation) { (success, err) in
+                //todo
             }
         }
     }
     
     func addToRation(food: FoodItem, handler: @escaping CompletionHandler) {
-        //todo: upd ration in diary, not only currentRation
-        update(ration: diary[presentedRationIndex]) { (success, err) in
-            if success {
-                self.currentRation.append(food)
-            }
+        if presentedRationIndex == -1 { return }
+        let curRation = diary[presentedRationIndex]
+        curRation.ration.append(food)
+        
+        NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+        update(ration: curRation) { (success, err) in
             handler(success, err)
         }
     }
@@ -111,7 +123,6 @@ class RationService {
                 let day = 24.0 * 60 * 60
                 let interval = date.timeIntervalSinceNow
                 if interval < 0 && day + interval >= 0 {
-                    self.currentRation = ration.ration
                     self.presentedRationIndex = self.diary.count - 1
                 }
             } catch let err {
@@ -129,5 +140,17 @@ class RationService {
                 print(err)
             }
         }
+    }
+    
+    
+    private func updateNutrition(forRation ration: Ration, nutritionFacts: NutritionFacts, portion: Double) {
+        guard let kcal = nutritionFacts.calories.total, let proteins = nutritionFacts.proteins, let carbs = nutritionFacts.carbs.total, let fats = nutritionFacts.fats.total else { return }
+        
+        let pkcal = kcal * portion / 100, pp = proteins * portion / 100, pc = carbs * portion / 100, pf = fats * portion / 100
+        
+        ration.nutrition.calories += pkcal
+        ration.nutrition.proteins += pp
+        ration.nutrition.carbs += pc
+        ration.nutrition.fats += pf
     }
 }

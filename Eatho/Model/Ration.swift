@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Ration {
+class Ration {
     var date = ""
     var nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
     var error = Dictionary<String, Double>()
@@ -34,6 +34,13 @@ struct Ration {
                 self.ration.append(FoodItem(json: item))
             }
         }
+    }
+    
+    init(_ other: Ration) {
+        self.date = other.date
+        self.nutrition = other.nutrition
+        self.error = other.error
+        self.ration = other.ration
     }
     
     func toJson() -> JSON {

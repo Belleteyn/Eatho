@@ -84,13 +84,15 @@ class RationVC: UIViewController {
 
 extension RationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RationService.instance.currentRation.count
+        guard let ration = RationService.instance.currentRation else { return 0 }
+        return ration.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell") as? RationFoodCell {
-            if (indexPath.row < RationService.instance.currentRation.count) {
-                cell.updateViews(foodItem: RationService.instance.currentRation[indexPath.row])
+            guard let ration = RationService.instance.currentRation else { return RationFoodCell() }
+            if (indexPath.row < ration.count) {
+                cell.updateViews(foodItem: ration[indexPath.row])
                 return cell
             }
         }
@@ -99,7 +101,13 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            RationService.instance.removeItem(index: indexPath.row)
+            
+            RationService.instance.removeItem(index: indexPath.row) { (success, error) in
+                if let error = error {
+                    print(error)
+                }
+            }
+            
             success(true)
             self.rationTableView.reloadData()
         }

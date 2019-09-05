@@ -32,10 +32,11 @@ class RationNutrientsView: UIView {
     @IBOutlet weak var expandImg: UIImageView!
     
     func setupNutrition() {
-        let calories = RationService.instance.nutrition.calories
-        let carbs = RationService.instance.nutrition.carbs
-        let proteins = RationService.instance.nutrition.proteins
-        let fats = RationService.instance.nutrition.fats
+        guard let nutrition = RationService.instance.nutrition else { return }
+        let calories = nutrition.calories
+        let carbs = nutrition.carbs
+        let proteins = nutrition.proteins
+        let fats = nutrition.fats
         
         if (calories != 0) {
             let carbsPercent = (carbs * 4.1 / calories)
@@ -52,7 +53,7 @@ class RationNutrientsView: UIView {
         proteinsAmountLbl.text = "\(Int(round(proteins))) g"
         fatsAmountLbl.text = "\(Int(round(fats))) g"
         
-        chartView.initData(nutrition: RationService.instance.nutrition, userNutrition: SettingsService.instance.userInfo.nutrition)
+        chartView.initData(nutrition: nutrition, userNutrition: SettingsService.instance.userInfo.nutrition)
     }
     
     func setupUserData() {
