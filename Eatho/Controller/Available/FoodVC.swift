@@ -30,7 +30,7 @@ class FoodVC: UIViewController {
                 spinner.startAnimating()
             }
             
-            FoodService.instance.getFood(handler: { (success) in
+            FoodService.instance.getFood(handler: { (success, error) in
                 self.spinner.stopAnimating()
                 self.reloadTable()
             })

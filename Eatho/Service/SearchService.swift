@@ -35,16 +35,16 @@ class SearchService {
                             self.foods.append(food)
                         }
                         
-                        handler(true)
+                        handler(true, nil)
                     }
                 } catch let error {
                     debugPrint("search foods json parsing error:", error)
-                    handler(false)
+                    handler(false, error)
                 }
                 
             case .failure(let error):
                 debugPrint(error as Any)
-                handler(false)
+                handler(false, error)
             }
         }
     }

@@ -34,7 +34,7 @@ class RegisterVC: UIViewController {
         guard let pass = registerPasswordTxt.text, registerPasswordTxt.text != "" && confirmationPasswordTxt.text == registerPasswordTxt.text else { return }
         self.view.endEditing(false)
         
-        AuthService.instance.register(email: email, password: pass) { (success) in
+        AuthService.instance.register(email: email, password: pass) { (success, error) in
             if (success) {
                 self.performSegue(withIdentifier: UNWIND_TO_WELCOME, sender: nil)
             } else {

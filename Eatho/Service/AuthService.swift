@@ -71,10 +71,10 @@ class AuthService {
             switch response.result {
             case .success:
                 self.handleResponse(result: response.result)
-                handler(true)
+                handler(true, nil)
             case .failure(let error):
                 debugPrint(error)
-                handler(false)
+                handler(false, error)
             }
         })
     }
@@ -90,10 +90,10 @@ class AuthService {
             switch response.result {
             case .success:
                 self.handleResponse(result: response.result)
-                handler(true)
+                handler(true, nil)
             case .failure(let error):
                 debugPrint(error)
-                handler(false)
+                handler(false, error)
             }
         })
     }

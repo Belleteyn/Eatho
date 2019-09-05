@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-typealias CompletionHandler = (_ success: Bool) -> ()
+typealias CompletionHandler = (_ success: Bool, _ error: Error? ) -> ()
 typealias DataCompletionHandler = (_ food: FoodItem?) -> ()
 
 // URLs

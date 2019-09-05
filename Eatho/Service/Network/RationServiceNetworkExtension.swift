@@ -25,17 +25,20 @@ extension RationService {
                 self.resetData()
                 
                 if let data = response.data {
-                    guard let json = JSON(data).array else { handler(false); return }
+                    guard let json = JSON(data).array else {
+                        handler(false, nil)
+                        return
+                    }
                     
                     for item in json {
                         dataHandler(item)
                     }
                     
-                    handler(true)
+                    handler(true, nil)
                 }
             case .failure(let err):
                 debugPrint(err)
-                handler(false)
+                handler(false, err)
             }
         }
     }
@@ -52,15 +55,11 @@ extension RationService {
             Alamofire.request(URL_RATION, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
                 switch response.result {
                 case .success:
-                    handler(true)
-                case .failure(let err):
-                    debugPrint(err)
-                    handler(false)
-                }
+                handler(true, nil)
+            case .failure(let err):
+                debugPrint(err)
+                handler(false, err)
             }
-        } catch let err {
-            debugPrint(err)
-            handler(false)
         }
     }
     
@@ -74,16 +73,16 @@ extension RationService {
         Alamofire.request(URL_RATION, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             
             do {
-                guard let data = response.data, let json = try JSON(data: data).array else { handler(false); return }
+                guard let data = response.data, let json = try JSON(data: data).array else { handler(false, nil); return }
                 
                 for item in json {
                     dataHandler(item)
                 }
                 
-                handler(true)
+                handler(true, nil)
             } catch let err {
                 debugPrint(err)
-                handler(false)
+                handler(false, err)
             }
         }
     }

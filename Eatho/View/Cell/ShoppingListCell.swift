@@ -37,7 +37,7 @@ class ShoppingListCell: UITableViewCell {
     @IBAction func selectionButtonClicked(_ sender: Any) {
         selectionState = !selectionState
         
-        ShopListService.instance.chageSelectionInShoppingList(key: self.name.text!, value: selectionState) { (_) in
+        ShopListService.instance.chageSelectionInShoppingList(key: self.name.text!, value: selectionState) { (_, _) in
             
         }
         selectionStateChangedHandle()

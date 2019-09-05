@@ -32,7 +32,7 @@ class RationVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
         
         if RationService.instance.diary.count == 0 {
-            RationService.instance.requestRation { (success) in
+            RationService.instance.requestRation { (success, error) in
                 self.updateView()
             }
         }

@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
         self.view.endEditing(false)
         
         spinner.startAnimating()
-        AuthService.instance.login(email: email, password: pass) { (success) in
+        AuthService.instance.login(email: email, password: pass) { (success,  error) in
             if (success) {
                 self.dismiss(animated: true, completion: nil)
             } else {

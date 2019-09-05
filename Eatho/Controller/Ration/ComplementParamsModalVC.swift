@@ -114,7 +114,7 @@ class ComplementParamsModalVC: UIViewController {
         
         food?.portion = portion
         food?.delta = portion
-        RationService.instance.addToRation(food: food!) { (success) in
+        RationService.instance.addToRation(food: food!) { (success, error) in
             self.spinner.stopAnimating()
             if success {
                 self.dismiss(animated: true, completion: nil)

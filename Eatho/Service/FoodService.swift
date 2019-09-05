@@ -33,7 +33,7 @@ class FoodService {
                 
                 self.insert(forId: json["id"].stringValue, available: foodItem.available ?? 0.0, dailyPortion: dailyPortion, handler: handler)
             } else {
-                handler(false)
+                handler(false, nil)
             }
         }
     }
@@ -50,11 +50,11 @@ class FoodService {
             print(food.food?.name)
         }
         
-        guard index < foods.count && index >= 0 else { handler(false); return }
-        guard let food = foods[index].food, let id = food._id else { handler(false); return }
+        guard index < foods.count && index >= 0 else { handler(false, nil); return }
+        guard let food = foods[index].food, let id = food._id else { handler(false, nil); return }
         deleteRequest(foodId: id, handler: requestHandler)
         foods.remove(at: index)
-        handler(true)
+        handler(true, nil)
         
         print(" # after:")
         foods.forEach { (food) in
@@ -79,7 +79,7 @@ class FoodService {
                 let data = try JSONEncoder().encode(foods[row])
                 let json = try JSON(data: data)
                 
-                updateRequest(data: json) { (success) in
+                updateRequest(data: json) { (success, error) in
                     NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil, userInfo: ["index": row])
                 }
             } catch let err {
@@ -95,15 +95,15 @@ class FoodService {
             let data = try JSONEncoder().encode(food)
             let json = try JSON(data: data)
             
-            updateRequest(data: json) { (success) in
+            updateRequest(data: json) { (success, error) in
                 if success {
                     self.foods[row] = food
                 }
-                handler(success)
+                handler(success, error)
             }
         } catch let err {
             debugPrint(" # update food error: \(err)")
-            handler(false)
+            handler(false, err)
         }
     }
 }

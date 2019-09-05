@@ -94,7 +94,7 @@ extension SearchVC: UISearchResultsUpdating {
             foodTable.reloadData()
         } else {
             spinner.startAnimating()
-            SearchService.instance.requestSearch(searchArg: searchText) { (success) in
+            SearchService.instance.requestSearch(searchArg: searchText) { (success, error) in
                 self.spinner.stopAnimating()
                 self.foodTable.reloadData()
             }

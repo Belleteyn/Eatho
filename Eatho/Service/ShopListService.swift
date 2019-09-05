@@ -100,11 +100,11 @@ class ShopListService {
                         self.mostRecentList = recent
                     }
                     
-                    handler(true)
+                    handler(true, nil)
                 }
             case .failure(let error):
                 debugPrint(error)
-                handler(false)
+                handler(false, error)
             }
         }
     }
@@ -123,10 +123,10 @@ class ShopListService {
         Alamofire.request(URL_SHOPPING_LIST_UPD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             switch (response.result) {
             case .success:
-                handler(true)
+                handler(true, nil)
             case .failure(let error):
                 debugPrint(error)
-                handler(false)
+                handler(false, error)
             }
         }
     }

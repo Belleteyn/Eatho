@@ -27,7 +27,7 @@ class DiaryVC: UIViewController {
         
         configureRefreshControl()
         
-        RationService.instance.requestRation { (success) in
+        RationService.instance.requestRation { (success, error) in
             self.diaryTableView.reloadData()
         }
     }
@@ -38,7 +38,7 @@ class DiaryVC: UIViewController {
     }
     
     @objc func handleRefresh() {
-        RationService.instance.requestRation { (success) in
+        RationService.instance.requestRation { (success, error) in
             self.diaryTableView.reloadData()
             
             DispatchQueue.main.async {
@@ -49,7 +49,7 @@ class DiaryVC: UIViewController {
     
     @IBAction func advancePrepPressed(_ sender: Any) {
         spinner.startAnimating()
-        RationService.instance.prepRation(forDays: daysPicker.selectedRow(inComponent: 0)) { (success) in
+        RationService.instance.prepRation(forDays: daysPicker.selectedRow(inComponent: 0)) { (success, error) in
             self.spinner.stopAnimating()
             if success {
                 self.diaryTableView.reloadData()

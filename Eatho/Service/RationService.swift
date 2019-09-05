@@ -43,7 +43,7 @@ class RationService {
     func incPortion(name: String) {
         if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
             //todo: upd ration in diary, not only currentRation
-            update(ration: diary[currentRationIndex]) { (success) in
+            update(ration: diary[presentedRationIndex]) { (success, err) in
                 if success {
                     let food = self.currentRation[row]
                     let delta = food.delta ?? 0
@@ -67,7 +67,7 @@ class RationService {
     func decPortion(name: String) {
         if let row = self.currentRation.firstIndex(where: { $0.food!.name == name }) {
             //todo: upd ration in diary, not only currentRation
-            update(ration: diary[currentRationIndex]) { (success) in
+            update(ration: diary[presentedRationIndex]) { (success, err) in
                 if success {
                     let food = self.currentRation[row]
                     let delta = food.delta ?? 0
@@ -89,11 +89,11 @@ class RationService {
     
     func addToRation(food: FoodItem, handler: @escaping CompletionHandler) {
         //todo: upd ration in diary, not only currentRation
-        update(ration: diary[currentRationIndex]) { (success) in
+        update(ration: diary[presentedRationIndex]) { (success, err) in
             if success {
                 self.currentRation.append(food)
             }
-            handler(success)
+            handler(success, err)
         }
     }
     

@@ -27,16 +27,16 @@ extension FoodService {
                             appendHandler(food)
                         }
                         
-                        handler(true)
+                        handler(true, nil)
                     }
                 } catch let error {
                     debugPrint("available foods json parsing error:", error)
-                    handler(false)
+                    handler(false, error)
                 }
                 
             case .failure(let error):
                 debugPrint(error as Any)
-                handler(false)
+                handler(false, error)
             }
         }
     }
@@ -88,7 +88,7 @@ extension FoodService {
         Alamofire.request(URL_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             switch response.result {
             case .success:
-                guard let data = response.data else { handler(false); return }
+                guard let data = response.data else { handler(false, DataParseError.corruptedData); return }
                 
                 do {
                     if let json = try JSON(data: data).array {
@@ -99,14 +99,14 @@ extension FoodService {
                     }
                     
                     NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
-                    handler(true)
+                    handler(true, nil)
                 } catch let err {
                     debugPrint(err)
-                    handler(false)
+                    handler(false, err)
                 }
             case.failure(let error):
                 debugPrint(error)
-                handler(false)
+                handler(false, error)
             }
         }
     }
@@ -121,10 +121,10 @@ extension FoodService {
         Alamofire.request(URL_AVAILABLE, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             switch response.result {
             case .success:
-                handler(true)
+                handler(true, nil)
             case .failure(let err):
                 debugPrint(" # update food error: \(err)")
-                handler(false)
+                handler(false, err)
             }
         }
     }
@@ -139,10 +139,10 @@ extension FoodService {
         Alamofire.request(URL_AVAILABLE, method: .delete, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             switch response.result {
             case .success:
-                handler(true)
+                handler(true, nil)
             case .failure(let error):
                 debugPrint(error)
-                handler(false)
+                handler(false, error)
             }
         }
     }
