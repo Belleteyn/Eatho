@@ -69,18 +69,43 @@ extension RationService {
         ]
         
         Alamofire.request(URL_RATION, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            
-            do {
-                guard let data = response.data, let json = try JSON(data: data).array else { handler(false, nil); return }
-                
-                for item in json {
-                    dataHandler(item)
+            switch response.result {
+            case .success:
+                do {
+                    guard let data = response.data, let json = try JSON(data: data).array else {
+                        handler(false, nil)
+                        return
+                    }
+                    
+                    for item in json {
+                        dataHandler(item)
+                    }
+                    
+                    handler(true, nil)
+                } catch let err {
+                    debugPrint(err)
+                    handler(false, err)
                 }
-                
-                handler(true, nil)
-            } catch let err {
+            case .failure(let err):
                 debugPrint(err)
                 handler(false, err)
+            }
+        }
+    }
+    
+    func delete(date: String, completion: @escaping CompletionHandler) {
+        let body = [
+            "email": AuthService.instance.userEmail,
+            "token": AuthService.instance.token,
+            "date": date
+        ]
+        
+        Alamofire.request(URL_RATION, method: .delete, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+            switch response.result {
+            case .success:
+                completion(true, nil)
+            case .failure(let err):
+                completion(false, err)
             }
         }
     }
