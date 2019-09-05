@@ -948,13 +948,13 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="food name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJe-a6-FvT">
-                                                            <rect key="frame" x="64" y="11.999999999999998" width="206" height="20.333333333333329"/>
+                                                            <rect key="frame" x="64" y="11.999999999999998" width="196" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LLK-B2-wdF">
-                                                            <rect key="frame" x="278" y="22" width="104" height="20"/>
+                                                            <rect key="frame" x="268" y="22" width="114" height="20"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbs-AV-Bpa">
                                                                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -967,17 +967,17 @@
                                                                         <action selector="decreaseBtnClick:" destination="jki-Ls-huJ" eventType="touchUpInside" id="zVl-ho-W1w"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEK-SM-afl">
-                                                                    <rect key="frame" x="30" y="0.0" width="44" height="20"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200.0 g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEK-SM-afl">
+                                                                    <rect key="frame" x="30" y="0.0" width="54" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="44" id="uvc-5f-r19"/>
+                                                                        <constraint firstAttribute="width" constant="54" id="uvc-5f-r19"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKM-pK-ROi">
-                                                                    <rect key="frame" x="84" y="0.0" width="20" height="20"/>
+                                                                    <rect key="frame" x="94" y="0.0" width="20" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="KUK-Fy-mxR"/>
                                                                         <constraint firstAttribute="width" constant="20" id="faN-RM-SuG"/>

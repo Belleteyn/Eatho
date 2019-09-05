@@ -50,8 +50,12 @@ class RationVC: UIViewController {
     }
     
     func updateView() {
-        rationTableView.reloadData()
-        rationInfoView.setupNutrition()
+        if let date = RationService.instance.currentDate {
+            guard let formattedDate = EathoDateFormatter.instance.format(isoDate: date) else { return }
+            rationTableView.reloadData()
+            rationInfoView.setupNutrition()
+            navigationItem.title = formattedDate
+        }
     }
     
     // handlers

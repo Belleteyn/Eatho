@@ -29,6 +29,13 @@ class RationService {
         }
     }
     
+    var currentDate: String? {
+        get {
+            if presentedRationIndex == -1 { return nil }
+            return diary[presentedRationIndex].date
+        }
+    }
+    
     func resetData() {
         diary = []
         presentedRationIndex = -1

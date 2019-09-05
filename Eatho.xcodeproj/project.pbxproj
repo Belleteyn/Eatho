@@ -31,6 +31,7 @@
 		9549B1C92320201300A53AAB /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1C82320201300A53AAB /* ShadowView.swift */; };
 		9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */; };
 		9549B1CD23210AE000A53AAB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CC23210AE000A53AAB /* Errors.swift */; };
+		9549B1CF2321714E00A53AAB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CE2321714E00A53AAB /* DateFormatter.swift */; };
 		954F4E47231DA6B30088B6DD /* RationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E46231DA6B30088B6DD /* RationChartView.swift */; };
 		954F4E4A231E39270088B6DD /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E49231E39270088B6DD /* MathUtils.swift */; };
 		954F4E4C231E90C50088B6DD /* RationComplementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E4B231E90C40088B6DD /* RationComplementVC.swift */; };
@@ -130,6 +131,7 @@
 		9549B1C82320201300A53AAB /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		9549B1CC23210AE000A53AAB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		9549B1CE2321714E00A53AAB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		954F4E46231DA6B30088B6DD /* RationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationChartView.swift; sourceTree = "<group>"; };
 		954F4E49231E39270088B6DD /* MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtils.swift; sourceTree = "<group>"; };
 		954F4E4B231E90C40088B6DD /* RationComplementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationComplementVC.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				958CD81522E977BA00DC6EB6 /* Constants.swift */,
 				954F4E49231E39270088B6DD /* MathUtils.swift */,
 				9549B1CC23210AE000A53AAB /* Errors.swift */,
+				9549B1CE2321714E00A53AAB /* DateFormatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				954F4E4A231E39270088B6DD /* MathUtils.swift in Sources */,
 				95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */,
 				95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */,
+				9549B1CF2321714E00A53AAB /* DateFormatter.swift in Sources */,
 				95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */,
 				95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */,
 				952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */,

@@ -20,13 +20,9 @@ class DiaryCell: UITableViewCell {
     }
     
     func updateView(ration: Ration) {
-        let isoFormatter = ISO8601DateFormatter()
-        guard let date = isoFormatter.date(from: "\(ration.date)") else { return }
+        guard let date = EathoDateFormatter.instance.date(fromString: ration.date) else { return }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd") // set template after setting locale
-        dateLbl.text = dateFormatter.string(from: date)
+        dateLbl.text = EathoDateFormatter.instance.format(isoDate: date)
         
         let interval = date.timeIntervalSinceNow //in seconds
         let day = 24.0 * 60 * 60
