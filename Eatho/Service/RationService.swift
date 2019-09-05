@@ -104,22 +104,30 @@ class RationService {
             let formatter = ISO8601DateFormatter()
             guard let date = formatter.date(from: dateStr) else { return }
             
-            let ration = Ration(json: json)
-            self.diary.append(ration)
-            
-            let day = 24.0 * 60 * 60
-            let interval = date.timeIntervalSinceNow
-            if interval < 0 && day + interval >= 0 {
-                self.nutrition.set(nutrition: ration.nutrition)
-                self.currentRation = ration.ration
-                self.currentRationIndex = self.diary.count - 1
+            do {
+                let ration = try Ration(json: json)
+                self.diary.append(ration)
+                
+                let day = 24.0 * 60 * 60
+                let interval = date.timeIntervalSinceNow
+                if interval < 0 && day + interval >= 0 {
+                    self.currentRation = ration.ration
+                    self.presentedRationIndex = self.diary.count - 1
+                }
+            } catch let err {
+                print(err)
             }
         }
     }
     
     func prepRation(forDays days: Int, handler: @escaping CompletionHandler) {
         prepRequest(days: days, handler: handler) { (json) in
-            self.diary.append(Ration(json: json))
+            do {
+                let ration = try Ration(json: json)
+                self.diary.append(ration)
+            } catch let err {
+                print(err)
+            }
         }
     }
 }

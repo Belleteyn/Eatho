@@ -44,17 +44,15 @@ extension RationService {
     }
     
     func update(ration: Ration, handler: @escaping CompletionHandler) {
-        do {
-            let json = try JSON(data: JSONEncoder().encode(ration))
-            let body: JSON = [
-                "email": AuthService.instance.userEmail,
-                "token": AuthService.instance.token,
-                "ration": json
-            ]
-            
-            Alamofire.request(URL_RATION, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-                switch response.result {
-                case .success:
+        let body: JSON = [
+            "email": AuthService.instance.userEmail,
+            "token": AuthService.instance.token,
+            "ration": ration.toJson()
+        ]
+        
+        Alamofire.request(URL_RATION, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
+            switch response.result {
+            case .success:
                 handler(true, nil)
             case .failure(let err):
                 debugPrint(err)

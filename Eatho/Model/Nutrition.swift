@@ -14,6 +14,22 @@ struct Nutrition {
     var carbs = 0.0
     var fats = 0.0
     
+    init(calories kcal: Double, proteins p: Double, carbs c: Double, fats f: Double) {
+        self.calories = kcal
+        self.proteins = p
+        self.carbs = c
+        self.fats = f
+    }
+    
+    init(_ n: NutritionFacts) throws {
+        guard let kcal = n.calories.total, let p = n.proteins, let c = n.carbs.total, let f = n.fats.total else { throw DataParseError.corruptedData }
+        
+        self.calories = kcal
+        self.proteins = p
+        self.carbs = c
+        self.fats = f
+    }
+    
     mutating func addPortion(food: FoodItem) {
         guard let portion = food.portion else { return }
         guard let food = food.food else { return }
