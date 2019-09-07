@@ -47,9 +47,8 @@ class RationService {
         
         self.updateNutrition(forRation: curRation, nutritionFacts: curRation.ration[index].food!.nutrition, portion: -curRation.ration[index].portion!)
         
-        delete(date: curRation.date, completion: completion)
-        
         curRation.ration.remove(at: index)
+        update(ration: curRation, handler: completion)
     }
     
     func incPortion(name: String) {
