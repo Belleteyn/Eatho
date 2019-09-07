@@ -62,7 +62,7 @@ class RationService {
             let portion = food.portion ?? 0
             
             var deltaWeight = 0.0
-            if portion + delta < available {
+            if portion + delta <= available {
                 deltaWeight = delta
             } else {
                 deltaWeight = available - portion
