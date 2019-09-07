@@ -49,7 +49,7 @@ class DiaryVC: UIViewController {
     
     @IBAction func advancePrepPressed(_ sender: Any) {
         spinner.startAnimating()
-        RationService.instance.prepRation(forDays: daysPicker.selectedRow(inComponent: 0)) { (success, error) in
+        RationService.instance.prepRation(forDays: daysPicker.selectedRow(inComponent: 0) + 1) { (success, error) in
             self.spinner.stopAnimating()
             if success {
                 self.diaryTableView.reloadData()
