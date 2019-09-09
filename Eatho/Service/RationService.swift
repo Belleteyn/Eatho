@@ -154,6 +154,7 @@ class RationService {
     }
     
     func prepRation(forDays days: Int, handler: @escaping CompletionHandler) {
+        diary = []
         prepRequest(days: days, handler: handler) { (json) in
             do {
                 let ration = try Ration(json: json)
