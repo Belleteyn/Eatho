@@ -41,6 +41,12 @@ class RationService {
         presentedRationIndex = -1
     }
     
+    func setCurrent(forDate date: String) {
+        presentedRationIndex = diary.firstIndex(where: { (ration) -> Bool in
+            return ration.date == date
+        }) ?? -1
+    }
+    
     func removeItem(index: Int, completion: @escaping CompletionHandler) {
         if presentedRationIndex == -1 { return }
         let curRation = diary[presentedRationIndex]

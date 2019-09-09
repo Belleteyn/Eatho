@@ -53,6 +53,8 @@ let NOTIF_SEARCH_FOOD_ADD_DONE = Notification.Name("searchFoodAddDone")
 
 let NOTIF_PRESENT_RATION_COMPLEMENT_MODAL = Notification.Name("presentRationComplementModal")
 
+let NOTIF_DIARY_OPEN = Notification.Name("openDiary")
+
 // headers
 let JSON_HEADER: [String : String] = ["Content-Type": "application/json; charset=utf-8"]
 

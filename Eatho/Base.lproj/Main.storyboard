@@ -1461,7 +1461,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fJX-FB-wQQ">
-                                <rect key="frame" x="0.0" y="78" width="414" height="647"/>
+                                <rect key="frame" x="0.0" y="78" width="414" height="639"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="diaryCell" rowHeight="72" id="yCy-1w-POl" customClass="DiaryCell" customModule="Eatho" customModuleProvider="target">
@@ -1482,13 +1482,13 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month, Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knn-1c-Z4Q">
-                                                            <rect key="frame" x="60.000000000000007" y="11.999999999999998" width="87.666666666666686" height="20.333333333333329"/>
+                                                            <rect key="frame" x="60" y="11.999999999999998" width="318" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1289 kcal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4K-ga-3zf">
-                                                            <rect key="frame" x="60.000000000000007" y="34" width="65.666666666666686" height="18"/>
+                                                            <rect key="frame" x="60" y="34" width="318" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.75294117650000003" green="0.75686274509999996" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1500,6 +1500,8 @@
                                                         <constraint firstAttribute="bottom" secondItem="8DG-EA-SPX" secondAttribute="bottom" constant="12" id="7fd-ys-BsH"/>
                                                         <constraint firstItem="8DG-EA-SPX" firstAttribute="top" secondItem="1K6-0Q-fOS" secondAttribute="top" constant="12" id="IXH-fu-MkH"/>
                                                         <constraint firstItem="knn-1c-Z4Q" firstAttribute="top" secondItem="8DG-EA-SPX" secondAttribute="top" id="Src-i4-nDb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="knn-1c-Z4Q" secondAttribute="trailing" constant="20" id="bnT-Aj-lq1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="C4K-ga-3zf" secondAttribute="trailing" constant="20" id="jVf-X2-kyc"/>
                                                         <constraint firstItem="knn-1c-Z4Q" firstAttribute="leading" secondItem="8DG-EA-SPX" secondAttribute="trailing" constant="8" id="tNg-NZ-TqG"/>
                                                         <constraint firstItem="C4K-ga-3zf" firstAttribute="leading" secondItem="knn-1c-Z4Q" secondAttribute="leading" id="wZh-JR-MBk"/>
                                                         <constraint firstItem="8DG-EA-SPX" firstAttribute="leading" secondItem="1K6-0Q-fOS" secondAttribute="leading" constant="12" id="wab-gi-jr0"/>
@@ -1538,7 +1540,7 @@
                             <constraint firstItem="0Rs-Bu-qcV" firstAttribute="leading" secondItem="icO-kA-uzD" secondAttribute="leading" id="lGK-OP-UE0"/>
                             <constraint firstItem="fJX-FB-wQQ" firstAttribute="top" secondItem="0Rs-Bu-qcV" secondAttribute="bottom" constant="8" id="qPs-ai-07m"/>
                             <constraint firstItem="0Rs-Bu-qcV" firstAttribute="trailing" secondItem="icO-kA-uzD" secondAttribute="trailing" id="s18-n6-OtC"/>
-                            <constraint firstItem="icO-kA-uzD" firstAttribute="bottom" secondItem="fJX-FB-wQQ" secondAttribute="bottom" id="v8S-p4-boF"/>
+                            <constraint firstItem="icO-kA-uzD" firstAttribute="bottom" secondItem="fJX-FB-wQQ" secondAttribute="bottom" constant="8" id="v8S-p4-boF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="icO-kA-uzD"/>
                     </view>
@@ -3074,10 +3076,10 @@
             </objects>
             <point key="canvasLocation" x="3171" y="-16"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Eatho Tab Bar Controller-->
         <scene sceneID="tJm-g7-fyI">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8rb-GV-EhW" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8rb-GV-EhW" customClass="EathoTabBarController" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="IwN-gb-sfn">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

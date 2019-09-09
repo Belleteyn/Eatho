@@ -14,13 +14,18 @@ class DiaryCell: UITableViewCell {
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var caloriesInfo: UILabel!
     
+    var date: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedHandle))
+        self.addGestureRecognizer(tap)
     }
     
     func updateView(ration: Ration) {
         guard let date = EathoDateFormatter.instance.date(fromString: ration.date) else { return }
+        self.date = ration.date
         
         dateLbl.text = EathoDateFormatter.instance.format(isoDate: date)
         
@@ -34,6 +39,16 @@ class DiaryCell: UITableViewCell {
         } else {
             imgView.image = UIImage(named: "content_item_1.png")
         }
+    }
+    
+    @objc func tappedHandle() {
+        guard let date = self.date else { return }
+        
+        if RationService.instance.currentDate != date {
+            RationService.instance.setCurrent(forDate: date)
+        }
+        
+        NotificationCenter.default.post(name: NOTIF_DIARY_OPEN, object: nil)
     }
 
 }
