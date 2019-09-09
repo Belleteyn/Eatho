@@ -30,6 +30,8 @@ class DiaryVC: UIViewController {
         RationService.instance.requestRation { (success, error) in
             self.diaryTableView.reloadData()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
     }
     
     func configureRefreshControl() {
@@ -45,6 +47,10 @@ class DiaryVC: UIViewController {
                 self.diaryTableView.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    @objc func dataChangedHandle() {
+        diaryTableView.reloadData()
     }
     
     @IBAction func advancePrepPressed(_ sender: Any) {
