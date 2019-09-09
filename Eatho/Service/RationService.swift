@@ -14,6 +14,7 @@ class RationService {
     
     public private(set) var diary = [Ration]()
     public private(set) var presentedRationIndex = -1
+    private var todayRationIndex = -1
     
     var nutrition: Nutrition? {
         get {
@@ -34,6 +35,10 @@ class RationService {
             if presentedRationIndex == -1 { return nil }
             return diary[presentedRationIndex].date
         }
+    }
+
+    func isCurrentRationEditable() -> Bool {
+        return presentedRationIndex <= todayRationIndex
     }
     
     func resetData() {
@@ -135,7 +140,8 @@ class RationService {
                 let day = 24.0 * 60 * 60
                 let interval = date.timeIntervalSinceNow
                 if interval < 0 && day + interval >= 0 {
-                    self.presentedRationIndex = self.diary.count - 1
+                    self.todayRationIndex = self.diary.count - 1
+                    self.presentedRationIndex = self.todayRationIndex
                 }
             } catch let err {
                 print(err)

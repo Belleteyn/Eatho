@@ -14,19 +14,29 @@ class RationFoodCell: FoodCell {
     @IBOutlet weak var increaseBtn: UIButton!
     @IBOutlet weak var portionTxt: UILabel!
     
-    func updateViews(foodItem: FoodItem) {
+    func updateViews(foodItem: FoodItem, editable: Bool) {
         guard let food = foodItem.food else { return }
         
         super.updateViews(food: food)
         
         let portion = foodItem.portion ?? 0
-        portionTxt.text = "\(foodItem.delta ?? 0) g"
         
         let caloriesPerPortion = round(portion * (food.nutrition.calories.total ?? 0) / 100)
         super.info.text = "\(Int(portion)) g (\(Int(caloriesPerPortion)) kcal)"
         
-        increaseBtn.isEnabled = ((foodItem.available ?? 0) > portion)
-        decreaseBtn.isEnabled = (portion > 0)
+        if editable {
+            portionTxt.text = "\(foodItem.delta ?? 0) g"
+            increaseBtn.isEnabled = ((foodItem.available ?? 0) > portion)
+            decreaseBtn.isEnabled = (portion > 0)
+            
+            portionTxt.isHidden = false
+            increaseBtn.isHidden = false
+            decreaseBtn.isHidden = false
+        } else {
+            portionTxt.isHidden = true
+            increaseBtn.isHidden = true
+            decreaseBtn.isHidden = true
+        }
     }
 
     @IBAction func decreaseBtnClick(_ sender: Any) {

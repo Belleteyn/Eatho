@@ -96,7 +96,7 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell") as? RationFoodCell {
             guard let ration = RationService.instance.currentRation else { return RationFoodCell() }
             if (indexPath.row < ration.count) {
-                cell.updateViews(foodItem: ration[indexPath.row])
+                cell.updateViews(foodItem: ration[indexPath.row], editable: RationService.instance.isCurrentRationEditable())
                 return cell
             }
         }
@@ -104,6 +104,11 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        if !RationService.instance.isCurrentRationEditable() {
+            return UISwipeActionsConfiguration(actions: [])
+        }
+        
         let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             
             RationService.instance.removeItem(index: indexPath.row) { (success, error) in
