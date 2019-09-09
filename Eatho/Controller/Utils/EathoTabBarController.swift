@@ -35,4 +35,14 @@ class EathoTabBarController: UITabBarController, UITabBarControllerDelegate {
     @objc func openRationHandler(_ notification: Notification) {
         switchTab(to: 2)
     }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let controllers = viewControllers else { return false }
+        
+        if viewController == controllers[2] { //user selects Ration -> expects to see today ration
+            RationService.instance.setCurrent(forDate: nil)
+        }
+        
+        return true
+    }
 }
