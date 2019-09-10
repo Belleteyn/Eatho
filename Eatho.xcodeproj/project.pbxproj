@@ -363,7 +363,6 @@
 			isa = PBXGroup;
 			children = (
 				9549B1C82320201300A53AAB /* ShadowView.swift */,
-				956D437322F316E20091C9C4 /* KeyboardBindedView.swift */,
 				9572F90D22E5AD7E009C7B7B /* GradientView.swift */,
 				958CD81722E9CEA600DC6EB6 /* EathoButton.swift */,
 				956D437B22F579BF0091C9C4 /* LabeledTextField.swift */,
@@ -446,6 +445,7 @@
 		95A5835E23181E160041D797 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				956D437322F316E20091C9C4 /* KeyboardBindedView.swift */,
 				9540020A2327E7C300AED17B /* ShadowExtension.swift */,
 			);
 			path = Extension;
