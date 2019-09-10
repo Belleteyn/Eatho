@@ -55,12 +55,6 @@ class SettingsVC: UIViewController {
 //        carbsMassTxt.delegate = self
 //        carbsPercentTxt.delegate = self
         
-        // keyboard
-        view.bindToKeyboard()
-        
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
-//        self.view.addGestureRecognizer(tap)
-        
         // notifications
         NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: NOTIF_USER_DATA_CHANGED, object: nil)

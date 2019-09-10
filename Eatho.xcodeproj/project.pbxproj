@@ -33,6 +33,8 @@
 		954002062327DAE000AED17B /* LocalizationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002052327DAE000AED17B /* LocalizationSettingsVC.swift */; };
 		954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */; };
 		9540020B2327E7C300AED17B /* ShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9540020A2327E7C300AED17B /* ShadowExtension.swift */; };
+		9540020F2328264800AED17B /* UserNutritionPrefsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9540020E2328264800AED17B /* UserNutritionPrefsCell.swift */; };
+		954002112328265B00AED17B /* AutoNutritionPrefsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002102328265B00AED17B /* AutoNutritionPrefsCell.swift */; };
 		9549B1C92320201300A53AAB /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1C82320201300A53AAB /* ShadowView.swift */; };
 		9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */; };
 		9549B1CD23210AE000A53AAB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CC23210AE000A53AAB /* Errors.swift */; };
@@ -139,6 +141,8 @@
 		954002052327DAE000AED17B /* LocalizationSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSettingsVC.swift; sourceTree = "<group>"; };
 		954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListSettingsVC.swift; sourceTree = "<group>"; };
 		9540020A2327E7C300AED17B /* ShadowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowExtension.swift; sourceTree = "<group>"; };
+		9540020E2328264800AED17B /* UserNutritionPrefsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNutritionPrefsCell.swift; sourceTree = "<group>"; };
+		954002102328265B00AED17B /* AutoNutritionPrefsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoNutritionPrefsCell.swift; sourceTree = "<group>"; };
 		9549B1C82320201300A53AAB /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		9549B1CC23210AE000A53AAB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -491,6 +495,8 @@
 				95278CFB22FC729A00B015F7 /* DiaryCell.swift */,
 				95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */,
 				95D3DFD52306E37400685806 /* EditableCell.swift */,
+				9540020E2328264800AED17B /* UserNutritionPrefsCell.swift */,
+				954002102328265B00AED17B /* AutoNutritionPrefsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -719,6 +725,7 @@
 				954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */,
 				95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */,
 				95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */,
+				9540020F2328264800AED17B /* UserNutritionPrefsCell.swift in Sources */,
 				9549B1CF2321714E00A53AAB /* DateFormatter.swift in Sources */,
 				95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */,
 				95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */,
@@ -769,6 +776,7 @@
 				95512ABF22F0898A0038790F /* ShopListVC.swift in Sources */,
 				95501B6D232675E400225108 /* EathoTabBarController.swift in Sources */,
 				956D438222F6B0B60091C9C4 /* ShopListService.swift in Sources */,
+				954002112328265B00AED17B /* AutoNutritionPrefsCell.swift in Sources */,
 				952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */,
 				95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */,
 				95512ABD22F089790038790F /* RationVC.swift in Sources */,
