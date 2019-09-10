@@ -11,6 +11,8 @@ import UIKit
 class SettingsVC: UIViewController {
 
     //Outlets
+    @IBOutlet weak var settingsTableView: UITableView!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBOutlet weak var caloriesTxt: UITextField!
@@ -33,11 +35,15 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var warningLbl: UILabel!
     
     var activityIndex: Int = 0
+    private var settingsList = [ "Nutritional preferences", "Localization preferences", "Shopping list preferences" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         spinner.hidesWhenStopped = true
+        
+        settingsTableView.delegate = self
+        settingsTableView.dataSource = self
         
         // text field delegates
         caloriesTxt.delegate = self
@@ -215,4 +221,52 @@ extension SettingsVC: UITextFieldDelegate {
             warningLbl.isHidden = info.nutrition.isValid
         }
     }
+}
+
+extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return settingsList.count
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 80
+        default:
+            return 46
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
+            cell.textLabel?.text = AuthService.instance.userEmail
+            cell.textLabel?.textColor = TEXT_COLOR
+            cell.detailTextLabel?.text = "account settings"
+            cell.detailTextLabel?.textColor = TEXT_COLOR
+            cell.imageView?.image = UIImage(named: "logo.png")
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
+            cell.textLabel?.textColor = TEXT_COLOR
+            cell.textLabel?.text = settingsList[indexPath.row]
+            return cell
+        default:
+            return UITableViewCell()
+        }
+    }
+    
+    
 }
