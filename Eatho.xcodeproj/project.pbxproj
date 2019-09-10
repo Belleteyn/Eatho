@@ -32,6 +32,7 @@
 		954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002032327CAE800AED17B /* AccountSettingsVC.swift */; };
 		954002062327DAE000AED17B /* LocalizationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002052327DAE000AED17B /* LocalizationSettingsVC.swift */; };
 		954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */; };
+		9540020B2327E7C300AED17B /* ShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9540020A2327E7C300AED17B /* ShadowExtension.swift */; };
 		9549B1C92320201300A53AAB /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1C82320201300A53AAB /* ShadowView.swift */; };
 		9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */; };
 		9549B1CD23210AE000A53AAB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CC23210AE000A53AAB /* Errors.swift */; };
@@ -137,6 +138,7 @@
 		954002032327CAE800AED17B /* AccountSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsVC.swift; sourceTree = "<group>"; };
 		954002052327DAE000AED17B /* LocalizationSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSettingsVC.swift; sourceTree = "<group>"; };
 		954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListSettingsVC.swift; sourceTree = "<group>"; };
+		9540020A2327E7C300AED17B /* ShadowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowExtension.swift; sourceTree = "<group>"; };
 		9549B1C82320201300A53AAB /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		9549B1CC23210AE000A53AAB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -331,17 +333,13 @@
 		95324E2D22DF6168005905FF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				954002092327E73F00AED17B /* Basic */,
 				95EF446A2303CEF500BAAE01 /* Cell */,
-				9572F90D22E5AD7E009C7B7B /* GradientView.swift */,
-				958CD81722E9CEA600DC6EB6 /* EathoButton.swift */,
 				95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */,
-				956D437322F316E20091C9C4 /* KeyboardBindedView.swift */,
-				956D437B22F579BF0091C9C4 /* LabeledTextField.swift */,
 				951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */,
 				95D3DFD32306A89700685806 /* NutritionChartView.swift */,
 				954F4E46231DA6B30088B6DD /* RationChartView.swift */,
 				95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */,
-				9549B1C82320201300A53AAB /* ShadowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -359,6 +357,18 @@
 				95324E0022DF6149005905FF /* WelcomeVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		954002092327E73F00AED17B /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				9549B1C82320201300A53AAB /* ShadowView.swift */,
+				956D437322F316E20091C9C4 /* KeyboardBindedView.swift */,
+				9572F90D22E5AD7E009C7B7B /* GradientView.swift */,
+				958CD81722E9CEA600DC6EB6 /* EathoButton.swift */,
+				956D437B22F579BF0091C9C4 /* LabeledTextField.swift */,
+			);
+			path = Basic;
 			sourceTree = "<group>";
 		};
 		954F4E44231D42BB0088B6DD /* Ration */ = {
@@ -436,6 +446,7 @@
 		95A5835E23181E160041D797 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9540020A2327E7C300AED17B /* ShadowExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -734,6 +745,7 @@
 				95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */,
 				95AED18A2319187A00D7BE97 /* Model.xcdatamodeld in Sources */,
 				952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */,
+				9540020B2327E7C300AED17B /* ShadowExtension.swift in Sources */,
 				958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */,
 				9549B1CD23210AE000A53AAB /* Errors.swift in Sources */,
 				9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */,
