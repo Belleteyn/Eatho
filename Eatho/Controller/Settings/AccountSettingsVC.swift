@@ -10,21 +10,19 @@ import UIKit
 
 class AccountSettingsVC: UIViewController {
 
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var signOutButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        userNameLabel.text = AuthService.instance.userEmail
+        signOutButton.addShadow(color: UIColor.black, opacity: 0.1, offset: CGSize(width: 0, height: 0))
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func signOutButtonPressed(_ sender: Any) {
+        AuthService.instance.logOut()
+        navigationController?.popViewController(animated: true)
     }
-    */
-
 }

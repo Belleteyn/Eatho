@@ -149,12 +149,6 @@ class SettingsVC: UIViewController {
     }
     
     // Actions
-    
-    @IBAction func logOutPressed() {
-        AuthService.instance.logOut()
-        dismiss(animated: true, completion: nil)
-    }
-
     @IBAction func autoSwitchChanged(_ sender: Any) {
 //        if autoSwitch.isOn {
 //            genderSwitch.isHidden = false
