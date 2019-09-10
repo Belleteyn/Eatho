@@ -16,6 +16,7 @@ class RationComplementVC: FoodVC {
         foodTable.dataSource = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(presentModalView(_:)), name: NOTIF_PRESENT_RATION_COMPLEMENT_MODAL, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NOTIF_RATION_DATA_CHANGED, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -34,6 +35,10 @@ class RationComplementVC: FoodVC {
         self.navigationController?.present(navController, animated: true) {
             vc.setupView(foodItem: food)
         }
+    }
+    
+    @objc func refresh() {
+        foodTable.reloadData()
     }
 }
 

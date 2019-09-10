@@ -56,14 +56,38 @@ class RationService {
         }
     }
     
+    func isFoodContainedInCurrentRation(id: String) -> Bool {
+        guard presentedRationIndex != -1 else { return false }
+        
+        let res = diary[presentedRationIndex].ration.filter { (food) -> Bool in
+            return food.food?._id == id
+        }
+        return res.count > 0
+    }
+    
     func removeItem(index: Int, completion: @escaping CompletionHandler) {
-        if presentedRationIndex == -1 { return }
+        guard presentedRationIndex != -1 else { return }
         let curRation = diary[presentedRationIndex]
         
         self.updateNutrition(forRation: curRation, nutritionFacts: curRation.ration[index].food!.nutrition, portion: -curRation.ration[index].portion!)
         
         curRation.ration.remove(at: index)
         update(ration: curRation, handler: completion)
+    }
+    
+    func removeItem(id: String) {
+        guard presentedRationIndex != -1 else { return }
+        
+        let index = diary[presentedRationIndex].ration.firstIndex { (food) -> Bool in
+            food.food?._id == id
+        }
+        
+        if let idx = index {
+            removeItem(index: idx) { (success, error) in
+                
+            }
+            NotificationCenter.default.post(name: NOTIF_RATION_DATA_CHANGED, object: nil)
+        }
     }
     
     func incPortion(name: String) {
