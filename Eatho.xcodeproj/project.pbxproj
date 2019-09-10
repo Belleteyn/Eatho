@@ -28,6 +28,10 @@
 		95324E1422DF614C005905FF /* EathoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1322DF614C005905FF /* EathoTests.swift */; };
 		95324E1F22DF614C005905FF /* EathoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1E22DF614C005905FF /* EathoUITests.swift */; };
 		95324E3122DFB978005905FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E3022DFB978005905FF /* LoginViewController.swift */; };
+		954002022327CA9B00AED17B /* NutritionalSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002012327CA9B00AED17B /* NutritionalSettingsVC.swift */; };
+		954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002032327CAE800AED17B /* AccountSettingsVC.swift */; };
+		954002062327DAE000AED17B /* LocalizationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002052327DAE000AED17B /* LocalizationSettingsVC.swift */; };
+		954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */; };
 		9549B1C92320201300A53AAB /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1C82320201300A53AAB /* ShadowView.swift */; };
 		9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */; };
 		9549B1CD23210AE000A53AAB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CC23210AE000A53AAB /* Errors.swift */; };
@@ -129,6 +133,10 @@
 		95324E1E22DF614C005905FF /* EathoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoUITests.swift; sourceTree = "<group>"; };
 		95324E2022DF614C005905FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95324E3022DFB978005905FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		954002012327CA9B00AED17B /* NutritionalSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionalSettingsVC.swift; sourceTree = "<group>"; };
+		954002032327CAE800AED17B /* AccountSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsVC.swift; sourceTree = "<group>"; };
+		954002052327DAE000AED17B /* LocalizationSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSettingsVC.swift; sourceTree = "<group>"; };
+		954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListSettingsVC.swift; sourceTree = "<group>"; };
 		9549B1C82320201300A53AAB /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		9549B1CC23210AE000A53AAB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -394,6 +402,10 @@
 				95512AC222F089A80038790F /* SettingsVC.swift */,
 				956D436F22F2FEE00091C9C4 /* ActivityPickerVC.swift */,
 				956D437022F2FEE00091C9C4 /* ActivityPickerVC.xib */,
+				954002032327CAE800AED17B /* AccountSettingsVC.swift */,
+				954002012327CA9B00AED17B /* NutritionalSettingsVC.swift */,
+				954002052327DAE000AED17B /* LocalizationSettingsVC.swift */,
+				954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -693,6 +705,7 @@
 				95512AC322F089A80038790F /* SettingsVC.swift in Sources */,
 				95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */,
 				954F4E4A231E39270088B6DD /* MathUtils.swift in Sources */,
+				954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */,
 				95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */,
 				95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */,
 				9549B1CF2321714E00A53AAB /* DateFormatter.swift in Sources */,
@@ -701,6 +714,7 @@
 				952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */,
 				95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */,
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
+				954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */,
 				95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */,
 				95A05A2222F86D04002A35B9 /* RationService.swift in Sources */,
 				9571892E2305CB9C004A3EE3 /* Nutrient.swift in Sources */,
@@ -725,11 +739,13 @@
 				9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */,
 				952A6B7422E27B2700FD8D50 /* FoodService.swift in Sources */,
 				954F4E47231DA6B30088B6DD /* RationChartView.swift in Sources */,
+				954002062327DAE000AED17B /* LocalizationSettingsVC.swift in Sources */,
 				958195B6230B22E700B08C92 /* SearchService.swift in Sources */,
 				95512AC522F0D3DA0038790F /* SettingsService.swift in Sources */,
 				95512ABB22F0883F0038790F /* ScanBarcodeVC.swift in Sources */,
 				95A5B29F230EDF36002F54F9 /* UserNutrition.swift in Sources */,
 				95324E3122DFB978005905FF /* LoginViewController.swift in Sources */,
+				954002022327CA9B00AED17B /* NutritionalSettingsVC.swift in Sources */,
 				95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */,
 				958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */,
 				956D437422F316E20091C9C4 /* KeyboardBindedView.swift in Sources */,
