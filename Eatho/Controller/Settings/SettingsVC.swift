@@ -13,8 +13,6 @@ class SettingsVC: UIViewController {
     //Outlets
     @IBOutlet weak var settingsTableView: UITableView!
     
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
 //    @IBOutlet weak var caloriesTxt: UITextField!
 //    @IBOutlet weak var proteinsMassTxt: UITextField!
 //    @IBOutlet weak var proteinsPercentTxt: UITextField!
@@ -44,8 +42,6 @@ class SettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        spinner.hidesWhenStopped = true
         
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
