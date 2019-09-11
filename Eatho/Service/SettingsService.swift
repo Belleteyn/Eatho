@@ -51,6 +51,7 @@ class SettingsService {
                 defaults.setValue(encodedData, forKey: USER_INFO)
                 isConfigured = true
                 
+                NotificationCenter.default.post(name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
                 uploadUserData(data: encodedData)
             } catch let err {
                 debugPrint("writing UserInfo error: \(err)")

@@ -33,7 +33,6 @@
 		954002062327DAE000AED17B /* LocalizationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002052327DAE000AED17B /* LocalizationSettingsVC.swift */; };
 		954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */; };
 		9540020B2327E7C300AED17B /* ShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9540020A2327E7C300AED17B /* ShadowExtension.swift */; };
-		9540020F2328264800AED17B /* UserNutritionPrefsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9540020E2328264800AED17B /* UserNutritionPrefsCell.swift */; };
 		954002112328265B00AED17B /* AutoNutritionPrefsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002102328265B00AED17B /* AutoNutritionPrefsCell.swift */; };
 		9549B1C92320201300A53AAB /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1C82320201300A53AAB /* ShadowView.swift */; };
 		9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */; };
@@ -78,6 +77,8 @@
 		95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */; };
 		95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD32306A89700685806 /* NutritionChartView.swift */; };
 		95D3DFD62306E37400685806 /* EditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD52306E37400685806 /* EditableCell.swift */; };
+		95DB28BE2328D9A6004511DD /* SingleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BD2328D9A6004511DD /* SingleInputCell.swift */; };
+		95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BF232928C0004511DD /* DoubleInputCell.swift */; };
 		95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446B230469BA00BAAE01 /* DetailsVC.swift */; };
 		95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */; };
 		95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711C22EE438600BD6B87 /* CreationVC.swift */; };
@@ -141,7 +142,6 @@
 		954002052327DAE000AED17B /* LocalizationSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSettingsVC.swift; sourceTree = "<group>"; };
 		954002072327DAF100AED17B /* ShoppingListSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListSettingsVC.swift; sourceTree = "<group>"; };
 		9540020A2327E7C300AED17B /* ShadowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowExtension.swift; sourceTree = "<group>"; };
-		9540020E2328264800AED17B /* UserNutritionPrefsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNutritionPrefsCell.swift; sourceTree = "<group>"; };
 		954002102328265B00AED17B /* AutoNutritionPrefsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoNutritionPrefsCell.swift; sourceTree = "<group>"; };
 		9549B1C82320201300A53AAB /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationServiceNetworkExtension.swift; sourceTree = "<group>"; };
@@ -188,6 +188,8 @@
 		95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationNutrientsView.swift; sourceTree = "<group>"; };
 		95D3DFD32306A89700685806 /* NutritionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionChartView.swift; sourceTree = "<group>"; };
 		95D3DFD52306E37400685806 /* EditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCell.swift; sourceTree = "<group>"; };
+		95DB28BD2328D9A6004511DD /* SingleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputCell.swift; sourceTree = "<group>"; };
+		95DB28BF232928C0004511DD /* DoubleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleInputCell.swift; sourceTree = "<group>"; };
 		95EF446B230469BA00BAAE01 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsCell.swift; sourceTree = "<group>"; };
 		95F9711C22EE438600BD6B87 /* CreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationVC.swift; sourceTree = "<group>"; };
@@ -486,16 +488,25 @@
 			path = ShoppingList;
 			sourceTree = "<group>";
 		};
+		95DB28BC2328D959004511DD /* InputCell */ = {
+			isa = PBXGroup;
+			children = (
+				95DB28BD2328D9A6004511DD /* SingleInputCell.swift */,
+				95DB28BF232928C0004511DD /* DoubleInputCell.swift */,
+			);
+			path = InputCell;
+			sourceTree = "<group>";
+		};
 		95EF446A2303CEF500BAAE01 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				95DB28BC2328D959004511DD /* InputCell */,
 				95A05A1C22F84D16002A35B9 /* FoodCell */,
 				956D437D22F6ADD40091C9C4 /* RecentPurchasesCell.swift */,
 				956D437F22F6ADF10091C9C4 /* ShoppingListCell.swift */,
 				95278CFB22FC729A00B015F7 /* DiaryCell.swift */,
 				95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */,
 				95D3DFD52306E37400685806 /* EditableCell.swift */,
-				9540020E2328264800AED17B /* UserNutritionPrefsCell.swift */,
 				954002102328265B00AED17B /* AutoNutritionPrefsCell.swift */,
 			);
 			path = Cell;
@@ -719,13 +730,14 @@
 			files = (
 				951460C8231EB55500B5C04D /* RationInsertionFoodCell.swift in Sources */,
 				956D437122F2FEE00091C9C4 /* ActivityPickerVC.swift in Sources */,
+				95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */,
+				95DB28BE2328D9A6004511DD /* SingleInputCell.swift in Sources */,
 				95512AC322F089A80038790F /* SettingsVC.swift in Sources */,
 				95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */,
 				954F4E4A231E39270088B6DD /* MathUtils.swift in Sources */,
 				954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */,
 				95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */,
 				95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */,
-				9540020F2328264800AED17B /* UserNutritionPrefsCell.swift in Sources */,
 				9549B1CF2321714E00A53AAB /* DateFormatter.swift in Sources */,
 				95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */,
 				95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */,

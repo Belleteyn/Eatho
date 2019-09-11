@@ -12,14 +12,6 @@ class SettingsVC: UIViewController {
 
     //Outlets
     @IBOutlet weak var settingsTableView: UITableView!
-    
-//    @IBOutlet weak var caloriesTxt: UITextField!
-//    @IBOutlet weak var proteinsMassTxt: UITextField!
-//    @IBOutlet weak var proteinsPercentTxt: UITextField!
-//    @IBOutlet weak var fatsMassTxt: UITextField!
-//    @IBOutlet weak var fatsPercentTxt: UITextField!
-//    @IBOutlet weak var carbsMassTxt: UITextField!
-//    @IBOutlet weak var carbsPercentTxt: UITextField!
 //
 //    @IBOutlet weak var autoSwitch: UISwitch!
 //    @IBOutlet weak var genderSwitch: UISegmentedControl!
@@ -46,15 +38,6 @@ class SettingsVC: UIViewController {
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         
-        // text field delegates
-//        caloriesTxt.delegate = self
-//        proteinsMassTxt.delegate = self
-//        proteinsPercentTxt.delegate = self
-//        fatsMassTxt.delegate = self
-//        fatsPercentTxt.delegate = self
-//        carbsMassTxt.delegate = self
-//        carbsPercentTxt.delegate = self
-        
         // notifications
         NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: NOTIF_USER_DATA_CHANGED, object: nil)
@@ -77,21 +60,20 @@ class SettingsVC: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.identifier)
-        if segue.identifier == "toAppSettingsSegue"
-        , let index = settingsTableView.indexPathForSelectedRow?.row {
-            switch index {
-            case 0:
-                print("nutrition")
-            case 1:
-                print("localization")
-            case 2:
-                print("shop list")
-            default: ()
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toAppSettingsSegue"
+//        , let index = settingsTableView.indexPathForSelectedRow?.row {
+//            switch index {
+//            case 0:
+//                print("nutrition")
+//            case 1:
+//                print("localization")
+//            case 2:
+//                print("shop list")
+//            default: ()
+//            }
+//        }
+//    }
     
     // Handlers
     
@@ -116,14 +98,6 @@ class SettingsVC: UIViewController {
     
     @objc func setupData() {
 //        let info = SettingsService.instance.userInfo
-//
-//        caloriesTxt.text = "\(info.nutrition.calories)"
-//        proteinsMassTxt.text = "\(round(info.nutrition.proteins["g"]! * 10) / 10)"
-//        proteinsPercentTxt.text = "\(round(info.nutrition.proteins["percent"]! * 10) / 10)"
-//        carbsMassTxt.text = "\(round(info.nutrition.carbs["g"]! * 10) / 10)"
-//        carbsPercentTxt.text = "\(round(info.nutrition.carbs["percent"]! * 10) / 10)"
-//        fatsMassTxt.text = "\(round(info.nutrition.fats["g"]! * 10) / 10)"
-//        fatsPercentTxt.text = "\(round(info.nutrition.fats["percent"]! * 10) / 10)"
 //
 //        autoSwitch.isOn = info.setupNutrientsFlag
 //        genderSwitch.selectedSegmentIndex = info.gender
@@ -197,38 +171,9 @@ class SettingsVC: UIViewController {
     }
 }
 
-extension SettingsVC: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if let text = textField.text, let val = Double(text) {
-//            var info = SettingsService.instance.userInfo
-//            
-//            switch textField {
-//            case caloriesTxt:
-//                info.nutrition.setCalories(kcal: val, updGrams: true)
-//            case proteinsPercentTxt:
-//                info.nutrition.setProteins(grams: nil, percent: val, updCalories: true)
-//            case proteinsMassTxt:
-//                info.nutrition.setProteins(grams: val, percent: nil, updCalories: true)
-//            case carbsPercentTxt:
-//                info.nutrition.setCarbs(grams: nil, percent: val, updCalories: true)
-//            case carbsMassTxt:
-//                info.nutrition.setCarbs(grams: val, percent: nil, updCalories: true)
-//            case fatsPercentTxt:
-//                info.nutrition.setFats(grams: nil, percent: val, updCalories: true)
-//            case fatsMassTxt:
-//                info.nutrition.setFats(grams: val, percent: nil, updCalories: true)
-//            default:
-//                print(textField)
-//            }
-//            
-//            // update in storage and on server
-//            SettingsService.instance.userInfo = info
-//            warningLbl.isHidden = info.nutrition.isValid
-//        }
-    }
-}
 
 extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
+    
     func addBadgeToCell(cell: UITableViewCell) {
         if isConfigureBadgeVisible {
             let size: CGFloat = cell.frame.height / 2
