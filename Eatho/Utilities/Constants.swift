@@ -48,6 +48,7 @@ let NOTIF_SHOPPING_LIST_DATA_CHAGNED = Notification.Name("shoppingListDataChange
 
 let NOTIF_USER_ACTIVITY_LEVEL_CHANGED = Notification.Name("userActivityLevelChanged")
 let NOTIF_USER_NUTRITION_CHANGED = Notification.Name("userNutritionChanged")
+let NOTIF_SETTINGS_AUTO_CALCULATION_CHANGED = Notification.Name("autoCalculationModeChanged")
 
 let NOTIF_SEARCH_FOOD_ADD = Notification.Name("searchFoodAdd")
 let NOTIF_SEARCH_FOOD_ADD_DONE = Notification.Name("searchFoodAddDone")
@@ -81,6 +82,7 @@ let EATHO_RED_DARK = #colorLiteral(red: 0.8434460616, green: 0.400053468, blue: 
 let EATHO_YELLOW = #colorLiteral(red: 0.9386120694, green: 0.6785147489, blue: 0.4221869549, alpha: 1)
 let EATHO_YELLOW_OPACITY50 = #colorLiteral(red: 0.9764705882, green: 0.7058823529, blue: 0.4392156863, alpha: 0.5)
 let EATHO_YELLOW_DARK = #colorLiteral(red: 0.8470044949, green: 0.6122924059, blue: 0.3809819415, alpha: 1)
+let EATHO_PURPLE = #colorLiteral(red: 0.5568627451, green: 0.5490196078, blue: 0.9137254902, alpha: 1)
 let EATHO_LIGHT_PURPLE = #colorLiteral(red: 0.6745098039, green: 0.6235294118, blue: 0.9882352941, alpha: 1)
 let EATHO_LIGHT_PURPLE_OPACITY50 = #colorLiteral(red: 0.6745098039, green: 0.6235294118, blue: 0.9882352941, alpha: 0.5)
 let EATHO_LIGHT_PURPLE_DARK = #colorLiteral(red: 0.4353762117, green: 0.4024698701, blue: 0.6378767753, alpha: 1)

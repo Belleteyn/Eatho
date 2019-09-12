@@ -36,16 +36,35 @@ class ActivityPickerVC: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         return 5
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return SettingsService.instance.activityPickerData[row]
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 46
     }
     
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: SettingsService.instance.activityPickerData[row], attributes: [NSAttributedString.Key.foregroundColor : TEXT_COLOR, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10)])
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.frame.width, height: 46))
+        let typeLabel = UILabel(frame: CGRect(x: 0, y: 6, width: pickerView.frame.width, height: 17))
+        let infoLabel = UILabel(frame: CGRect(x: 0, y: 23, width: pickerView.frame.width, height: 15))
+        
+        typeLabel.textColor = TEXT_COLOR
+        infoLabel.textColor = LIGHT_TEXT_COLOR
+        
+        typeLabel.text = SettingsService.instance.activityPickerData[row][0]
+        infoLabel.text = SettingsService.instance.activityPickerData[row][1]
+        
+        typeLabel.font = UIFont.systemFont(ofSize: 17)
+        infoLabel.font = UIFont.systemFont(ofSize: 14)
+        
+        typeLabel.textAlignment = .center
+        infoLabel.textAlignment = .center
+        
+        view.addSubview(typeLabel)
+        view.addSubview(infoLabel)
+        return view
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         NotificationCenter.default.post(name: NOTIF_USER_ACTIVITY_LEVEL_CHANGED, object: nil, userInfo: ["activityIndex": row])
+        self.dismiss(animated: true, completion: nil)
     }
     
     // tap handle

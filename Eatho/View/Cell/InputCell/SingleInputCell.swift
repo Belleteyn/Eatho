@@ -16,6 +16,7 @@ class SingleInputCell: UITableViewCell, UITextViewDelegate {
     
     var placeholder = ""
     var inputType: NutritionInputType?
+    var userInputType: UserInfoInputType?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +37,31 @@ class SingleInputCell: UITableViewCell, UITextViewDelegate {
         }
     }
     
+    func setupValues(inputType: UserInfoInputType) {
+        self.userInputType = inputType
+        
+        switch inputType {
+        case .Age:
+            self.placeholder = "\(SettingsService.instance.userInfo.age)"
+            leftLabel.text = "Age"
+            rightLabel.text = "years"
+        case .Height:
+            self.placeholder = "\(SettingsService.instance.userInfo.height)"
+            leftLabel.text = "Height"
+            rightLabel.text = "cm"
+        case .Weight:
+            self.placeholder = "\(SettingsService.instance.userInfo.weight)"
+            leftLabel.text = "Weight"
+            rightLabel.text = "kg"
+        case .CaloriesShortage:
+            self.placeholder = "\(SettingsService.instance.userInfo.caloriesShortage)"
+            leftLabel.text = "Calories shortage"
+            rightLabel.text = "kcal"
+        }
+        
+        textView.text = placeholder
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == placeholder {
             textView.text = ""
@@ -46,18 +72,34 @@ class SingleInputCell: UITableViewCell, UITextViewDelegate {
         if textView.text == "" {
             textView.text = placeholder
         }
+        
+        guard let text = textView.text, let val = Double(text) else { return }
+        guard let type = userInputType else { return }
+        var info = SettingsService.instance.userInfo
+        
+        switch type {
+        case .Age:
+            info.age = Int(val)
+        case .Height:
+            info.height = val
+        case .Weight:
+            info.weight = val
+        case .CaloriesShortage:
+            info.caloriesShortage = val
+        }
+        
+        SettingsService.instance.userInfo = info
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        guard let inputType = inputType, let text = textView.text, let val = Double(text) else { return }
+        guard let text = textView.text, let val = Double(text) else { return }
+        guard let type = inputType else { return }
+        
         var info = SettingsService.instance.userInfo
-        
-        switch inputType {
-        case .Calories:
+        if type == .Calories {
             info.nutrition.setCalories(kcal: val, updGrams: true)
-        default: ()
         }
-        
+
         // update in storage and on server
         SettingsService.instance.userInfo = info
     }
