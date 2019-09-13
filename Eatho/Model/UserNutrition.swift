@@ -98,10 +98,6 @@ struct UserNutrition: Codable {
             carbs["percent"] = carbs["kcal"]! * 100 / calories
             fats["percent"] = fats["kcal"]! * 100 / calories
             proteins["percent"] = proteins["kcal"]! * 100 / calories
-        } else {
-            carbs["percent"] = 0
-            fats["percent"] = 0
-            proteins["percent"] = 0
         }
     }
 }

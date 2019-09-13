@@ -45,6 +45,8 @@ struct UserInfo: Codable {
         nutrition.setFats(grams: round(f * 10) / 10)
         nutrition.setCarbs(grams: round(c * 10) / 10)
         nutrition.setProteins(grams: round(p * 10) / 10)
+        
+        NotificationCenter.default.post(name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
     }
     
     private func leanMass(weightKg w: Double, heightM h: Double, age: Double, gender: Int) -> Double {

@@ -50,8 +50,16 @@ class NutritionalSettingsVC: UIViewController {
         tableView.reloadData()
     }
     
-    @objc func userNutritionChangedHandler() {
+    @objc func userNutritionChangedHandler(_ notification: Notification) {
         tableView.beginUpdates()
+        
+        if let info = notification.userInfo, let indices = info["reloadIndices"] as? [Int] {
+            var indexArray: [IndexPath] = []
+            for index in indices {
+                indexArray.append(IndexPath(row: index, section: 0))
+            }
+            tableView.reloadRows(at: indexArray, with: UITableView.RowAnimation.none)
+        }
         
         if let footer = tableView.footerView(forSection: 0) {
             footer.textLabel?.text = SettingsService.instance.userInfo.nutrition.isValid ? "" : "Please set appropriate values"

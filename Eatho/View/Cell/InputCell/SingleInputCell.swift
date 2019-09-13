@@ -102,5 +102,8 @@ class SingleInputCell: UITableViewCell, UITextViewDelegate {
 
         // update in storage and on server
         SettingsService.instance.userInfo = info
+        if type == .Calories {
+            NotificationCenter.default.post(name: NOTIF_USER_NUTRITION_CHANGED, object: nil, userInfo: ["reloadIndices" : [1,2,3]])
+        }
     }
 }
