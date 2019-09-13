@@ -79,6 +79,7 @@
 		95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BF232928C0004511DD /* DoubleInputCell.swift */; };
 		95DB28C223298640004511DD /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28C123298640004511DD /* SwitchCell.swift */; };
 		95DB28C6232A4952004511DD /* PickerSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28C5232A4952004511DD /* PickerSelectionCell.swift */; };
+		95DB28C8232BDE8C004511DD /* SwitchSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28C7232BDE8C004511DD /* SwitchSelectionCell.swift */; };
 		95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446B230469BA00BAAE01 /* DetailsVC.swift */; };
 		95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */; };
 		95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711C22EE438600BD6B87 /* CreationVC.swift */; };
@@ -190,6 +191,7 @@
 		95DB28BF232928C0004511DD /* DoubleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleInputCell.swift; sourceTree = "<group>"; };
 		95DB28C123298640004511DD /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		95DB28C5232A4952004511DD /* PickerSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectionCell.swift; sourceTree = "<group>"; };
+		95DB28C7232BDE8C004511DD /* SwitchSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSelectionCell.swift; sourceTree = "<group>"; };
 		95EF446B230469BA00BAAE01 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsCell.swift; sourceTree = "<group>"; };
 		95F9711C22EE438600BD6B87 /* CreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationVC.swift; sourceTree = "<group>"; };
@@ -339,13 +341,9 @@
 		95324E2D22DF6168005905FF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				95549B98232BDFFD002CD157 /* Charts */,
 				954002092327E73F00AED17B /* Basic */,
 				95EF446A2303CEF500BAAE01 /* Cell */,
-				95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */,
-				951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */,
-				95D3DFD32306A89700685806 /* NutritionChartView.swift */,
-				954F4E46231DA6B30088B6DD /* RationChartView.swift */,
-				95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -368,6 +366,7 @@
 		954002092327E73F00AED17B /* Basic */ = {
 			isa = PBXGroup;
 			children = (
+				95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */,
 				9549B1C82320201300A53AAB /* ShadowView.swift */,
 				9572F90D22E5AD7E009C7B7B /* GradientView.swift */,
 				958CD81722E9CEA600DC6EB6 /* EathoButton.swift */,
@@ -409,6 +408,17 @@
 				95501B6C232675E400225108 /* EathoTabBarController.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		95549B98232BDFFD002CD157 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */,
+				95D3DFD32306A89700685806 /* NutritionChartView.swift */,
+				954F4E46231DA6B30088B6DD /* RationChartView.swift */,
+				95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		956D436E22F2FEB50091C9C4 /* Settings */ = {
@@ -494,6 +504,7 @@
 				95DB28BF232928C0004511DD /* DoubleInputCell.swift */,
 				95DB28C123298640004511DD /* SwitchCell.swift */,
 				95DB28C5232A4952004511DD /* PickerSelectionCell.swift */,
+				95DB28C7232BDE8C004511DD /* SwitchSelectionCell.swift */,
 			);
 			path = InputCell;
 			sourceTree = "<group>";
@@ -737,6 +748,7 @@
 				954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */,
 				95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */,
 				95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */,
+				95DB28C8232BDE8C004511DD /* SwitchSelectionCell.swift in Sources */,
 				9549B1CF2321714E00A53AAB /* DateFormatter.swift in Sources */,
 				95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */,
 				95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */,
