@@ -117,7 +117,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
         case 1:
             return 1
         case 2:
-            return 6
+            return 7
         default:
             return 0
         }
@@ -192,6 +192,11 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                     return cell
                 }
             } else if indexPath.row == 5 {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell", for: indexPath) as? SegmentedControlCell {
+                    cell.setupView(activeSegmentedControlIndex: SettingsService.instance.userInfo.gender)
+                    return cell
+                }
+            } else if indexPath.row == 6 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
                 cell.textLabel?.textAlignment = .center
                 cell.textLabel?.text = "Calculate nutrition values"

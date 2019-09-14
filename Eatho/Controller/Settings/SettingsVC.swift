@@ -12,9 +12,6 @@ class SettingsVC: UIViewController {
 
     //Outlets
     @IBOutlet weak var settingsTableView: UITableView!
-//
-//    @IBOutlet weak var genderSwitch: UISegmentedControl!
-//    @IBOutlet weak var calculateBtn: EathoButton!
     
     private var settingsList = [ "Nutritional preferences", "Localization preferences", "Shopping list preferences" ]
     private var isConfigureBadgeVisible: Bool {
@@ -44,21 +41,6 @@ class SettingsVC: UIViewController {
             self.tabBarController?.tabBar.items?[4].badgeValue = "!"
         }
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toAppSettingsSegue"
-//        , let index = settingsTableView.indexPathForSelectedRow?.row {
-//            switch index {
-//            case 0:
-//                print("nutrition")
-//            case 1:
-//                print("localization")
-//            case 2:
-//                print("shop list")
-//            default: ()
-//            }
-//        }
-//    }
     
     // Handlers
     
