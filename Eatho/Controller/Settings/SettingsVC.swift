@@ -16,7 +16,7 @@ class SettingsVC: UIViewController {
     private var settingsList = [ "Nutritional preferences", "Localization preferences", "Shopping list preferences" ]
     private var isConfigureBadgeVisible: Bool {
         get {
-            return !AuthService.instance.isLoggedIn || !SettingsService.instance.isConfigured
+            return !AuthService.instance.isLoggedIn || !SettingsService.instance.isConfigured || !SettingsService.instance.userInfo.nutrition.isValid
         }
     }
     
@@ -28,6 +28,7 @@ class SettingsVC: UIViewController {
         
         // notifications
         NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
         
         // data
         if AuthService.instance.isLoggedIn {
@@ -51,6 +52,14 @@ class SettingsVC: UIViewController {
     @objc func loginHandler() {
         if !AuthService.instance.isLoggedIn {
             SettingsService.instance.isConfigured = false
+        }
+    }
+    
+    @objc func userNutritionChangedHandler() {
+        if isConfigureBadgeVisible {
+            self.tabBarController?.tabBar.items?[4].badgeValue = "!"
+        } else {
+            self.tabBarController?.tabBar.items?[4].badgeValue = nil
         }
     }
 }

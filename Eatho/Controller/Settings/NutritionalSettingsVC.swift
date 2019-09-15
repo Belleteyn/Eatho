@@ -234,7 +234,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 3 {
             performSegue(withIdentifier: "toActivityLevelSegue", sender: self)
-        } else if indexPath.row == 5 {
+        } else if indexPath.row == 6 {
             var info = SettingsService.instance.userInfo
             info.recalculateNutrition()
             SettingsService.instance.userInfo = info
