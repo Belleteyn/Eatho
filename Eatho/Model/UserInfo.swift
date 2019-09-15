@@ -17,6 +17,7 @@ struct UserInfo: Codable {
     var caloriesShortage = 0.0
     var activityIndex = 0
     var nutrition = UserNutrition()
+    var isShoppingListAutomated = true
     
     mutating func recalculateNutrition() {
         let lean = leanMass(weightKg: weight, heightM: height, age: Double(age), gender: gender)
