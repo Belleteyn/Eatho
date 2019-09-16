@@ -17,7 +17,8 @@ class SegmentedControlCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    func setupView(activeSegmentedControlIndex active: Int) {
+    func setupView(title: String, activeSegmentedControlIndex active: Int) {
+        mainLabel.text = title
         control.selectedSegmentIndex = active
     }
 }

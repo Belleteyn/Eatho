@@ -195,7 +195,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                 }
             } else if indexPath.row == 5 {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell", for: indexPath) as? SegmentedControlCell {
-                    cell.setupView(activeSegmentedControlIndex: SettingsService.instance.userInfo.gender)
+                    cell.setupView(title: "Gender", activeSegmentedControlIndex: SettingsService.instance.userInfo.gender)
                     return cell
                 }
             } else if indexPath.row == 6 {
