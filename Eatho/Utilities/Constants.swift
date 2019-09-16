@@ -48,7 +48,6 @@ let NOTIF_SHOPPING_LIST_DATA_CHAGNED = Notification.Name("shoppingListDataChange
 
 let NOTIF_USER_ACTIVITY_LEVEL_CHANGED = Notification.Name("userActivityLevelChanged")
 let NOTIF_USER_NUTRITION_CHANGED = Notification.Name("userNutritionChanged")
-let NOTIF_SETTINGS_AUTO_CALCULATION_CHANGED = Notification.Name("autoCalculationModeChanged")
 
 let NOTIF_SEARCH_FOOD_ADD = Notification.Name("searchFoodAdd")
 let NOTIF_SEARCH_FOOD_ADD_DONE = Notification.Name("searchFoodAddDone")

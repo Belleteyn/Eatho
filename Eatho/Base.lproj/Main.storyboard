@@ -2108,6 +2108,9 @@
                                                         <segment title="lb, oz"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.5568627451" green="0.54901960780000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="segmentedControlValueChanged:" destination="W95-KF-zNU" eventType="valueChanged" id="EAy-Ap-Gx7"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -3825,6 +3828,9 @@
                                                         <segment title="Male"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.55686274509803924" green="0.5490196078431373" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="segmentedControlValueChanged:" destination="D67-IU-cTf" eventType="valueChanged" id="Ohb-5Z-gjM"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>

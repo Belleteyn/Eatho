@@ -39,7 +39,6 @@ class NutritionalSettingsVC: UIViewController {
         view.addGestureRecognizer(tap)
         
         NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(autoCalculationSwitchChangedHandle(_:)), name: NOTIF_SETTINGS_AUTO_CALCULATION_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(pickerValueHandler(_:)), name: NOTIF_USER_ACTIVITY_LEVEL_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NOTIF_USER_DATA_CHANGED, object: nil)
     }
@@ -70,26 +69,6 @@ class NutritionalSettingsVC: UIViewController {
         tableView.endUpdates()
     }
     
-    @objc func autoCalculationSwitchChangedHandle(_ notification: Notification) {
-        guard let info = notification.userInfo, let isOn = info["isOn"] as? Bool else { return }
-        var userInfo = SettingsService.instance.userInfo
-        userInfo.setupNutrientsFlag = isOn
-    
-        tableView.beginUpdates()
-        if isOn {
-            tableView.insertSections(IndexSet(integer: 2), with: UITableView.RowAnimation.bottom)
-            sectionsCount = 3
-            
-        } else {
-            tableView.deleteSections(IndexSet(integer: 2), with: UITableView.RowAnimation.top)
-            sectionsCount = 2
-            
-        }
-        tableView.endUpdates()
-        
-        SettingsService.instance.userInfo = userInfo
-    }
-    
     @objc func pickerValueHandler(_ notification: Notification) {
         if let activityLevelIndex = notification.userInfo?["activityIndex"] as? Int {
             var info = SettingsService.instance.userInfo
@@ -103,6 +82,25 @@ class NutritionalSettingsVC: UIViewController {
             tableView.reloadRows(at: [IndexPath(row: 3, section: 2)], with: UITableView.RowAnimation.automatic)
             tableView.endUpdates()
         }
+    }
+    
+    func autoCalculationSwitchChangedHandle(isOn: Bool) {
+        var userInfo = SettingsService.instance.userInfo
+        userInfo.setupNutrientsFlag = isOn
+        
+        tableView.beginUpdates()
+        if isOn {
+            tableView.insertSections(IndexSet(integer: 2), with: UITableView.RowAnimation.bottom)
+            sectionsCount = 3
+            
+        } else {
+            tableView.deleteSections(IndexSet(integer: 2), with: UITableView.RowAnimation.top)
+            sectionsCount = 2
+            
+        }
+        tableView.endUpdates()
+        
+        SettingsService.instance.userInfo = userInfo
     }
 }
 
@@ -183,7 +181,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
             }
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as? SwitchCell {
-                cell.setupView(defaultSwitchPosition: SettingsService.instance.userInfo.setupNutrientsFlag)
+                cell.setupView(defaultSwitchPosition: SettingsService.instance.userInfo.setupNutrientsFlag, handler: autoCalculationSwitchChangedHandle(isOn:))
                 return cell
             }
         case 2:
@@ -195,7 +193,11 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                 }
             } else if indexPath.row == 5 {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell", for: indexPath) as? SegmentedControlCell {
-                    cell.setupView(title: "Gender", activeSegmentedControlIndex: SettingsService.instance.userInfo.gender)
+                    cell.setupView(title: "Gender", activeSegmentedControlIndex: SettingsService.instance.userInfo.gender) { (selectedIndex) in
+                        var info = SettingsService.instance.userInfo
+                        info.gender = selectedIndex
+                        SettingsService.instance.userInfo = info
+                    }
                     return cell
                 }
             } else if indexPath.row == 6 {

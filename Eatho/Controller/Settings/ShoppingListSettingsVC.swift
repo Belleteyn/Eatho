@@ -28,7 +28,11 @@ extension ShoppingListSettingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as? SwitchCell {
-            cell.setupView(defaultSwitchPosition: SettingsService.instance.userInfo.isShoppingListAutomated)
+            cell.setupView(defaultSwitchPosition: SettingsService.instance.userInfo.isShoppingListAutomated) { (isOn) in
+                var info = SettingsService.instance.userInfo
+                info.isShoppingListAutomated = isOn
+                SettingsService.instance.userInfo = info
+            }
             return cell
         }
         return UITableViewCell()

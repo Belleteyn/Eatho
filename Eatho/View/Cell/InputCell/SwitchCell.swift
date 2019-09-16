@@ -13,15 +13,19 @@ class SwitchCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var switchItem: UISwitch!
     
+    var handler: ((_: Bool) -> ())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func setupView(defaultSwitchPosition: Bool) {
+    func setupView(defaultSwitchPosition: Bool, handler: @escaping (_: Bool) -> ()) {
         switchItem.setOn(defaultSwitchPosition, animated: true)
+        self.handler = handler
     }
     
     @IBAction func switchChanged(_ sender: Any) {
-        NotificationCenter.default.post(name: NOTIF_SETTINGS_AUTO_CALCULATION_CHANGED, object: nil, userInfo: ["isOn": switchItem.isOn])
+        guard let handler = handler else { return }
+        handler(switchItem.isOn)
     }
 }
