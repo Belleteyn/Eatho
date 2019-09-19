@@ -23,12 +23,25 @@ class CreationVC: UIViewController {
     @IBOutlet weak var maxTxt: UITextField!
     @IBOutlet weak var preferredTxt: UITextField!
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    private let nFactsNames = ["Calories", "from fat", "Proteins", "Carbs", "dietary fiber", "sugars", "Fats", "trans", "saturated", "monounsaturated", "polyunsaturated"]
+    private func isEnclosedCell(index: Int) -> Bool {
+        return !(index == 0 || index == 2 || index == 3 || index == 6)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.bindHeightToKeyboard()
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
     }
     
@@ -69,5 +82,79 @@ class CreationVC: UIViewController {
                 //todo show error
             }
         }
+    }
+}
+
+extension CreationVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 1:
+            return "Nutrition facts"
+        case 2:
+            return "Other parameters"
+        default:
+            return ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 2
+        case 1:
+            return 11
+        case 2:
+            return 3
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 1 && isEnclosedCell(index: indexPath.row) {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCellExtra", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
+            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: "per 100g", placeholder: "0")
+            cell.leftLabel.font = UIFont.systemFont(ofSize: 13)
+            return cell
+        }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
+        
+        switch indexPath.section {
+        case 0:
+            if indexPath.row == 0 {
+                cell.setupView(title: "Name", additionalDesc: "", placeholder: "enter food name")
+            } else {
+                cell.setupView(title: "Type", additionalDesc: "", placeholder: "choose food type")
+            }
+            cell.textField.keyboardType = .default
+        case 1:
+            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: "per 100g", placeholder: "0")
+        case 2:
+            switch indexPath.row {
+            case 0:
+                cell.setupView(title: "Available", additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0")
+            case 1:
+                cell.setupView(title: "Minimum portion", additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0")
+            case 2:
+                cell.setupView(title: "Maximum portion", additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0")
+            default: ()
+            }
+            
+        default: ()
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 && isEnclosedCell(index: indexPath.row) {
+            return 37
+        }
+        return 41
     }
 }
