@@ -26,11 +26,12 @@ struct NutritionFacts: Codable {
         micronutrients = Micronutrients(json: json)
     }
     
-    init(calories: Double, proteins: Double, carbs: Double, fats: Double) {
-        self.calories = Calories(calories: calories)
+    init(calories: Double, proteins: Double, carbs: Double, fats: Double, caloriesFromFat: Double? = nil, fiber: Double? = nil, sugars: Double? = nil, trans: Double? = nil, saturated: Double? = nil, monounsaturated: Double? = nil, polyunsaturated: Double? = nil, gi: Double? = nil) {
+        self.calories = Calories(calories: calories, fromFat: caloriesFromFat)
         self.proteins = proteins
-        self.carbs = Carbs(carbs: carbs)
-        self.fats = Fats(fats: fats)
+        self.carbs = Carbs(carbs: carbs, fiber: fiber, sugar: sugars)
+        self.fats = Fats(fats: fats, trans: trans, saturated: saturated, polyunsaturated: polyunsaturated, monounsaturated: monounsaturated)
+        self.gi = gi
     }
     
     
@@ -160,8 +161,9 @@ struct Calories: Codable {
         self.fromFat = json["fromFat"].double
     }
     
-    init(calories: Double) {
+    init(calories: Double, fromFat: Double?) {
         self.total = calories
+        self.fromFat = fromFat
     }
 }
 
@@ -176,8 +178,10 @@ struct Carbs: Codable {
         self.sugars = json["sugars"].double
     }
     
-    init(carbs: Double) {
+    init(carbs: Double, fiber: Double? = nil, sugar: Double? = nil) {
         self.total = carbs
+        self.dietaryFiber = fiber
+        self.sugars = sugar
     }
 }
 
@@ -196,8 +200,12 @@ struct Fats: Codable {
         self.monounsaturated = json["monounsaturated"].double
     }
     
-    init(fats: Double) {
+    init(fats: Double, trans: Double? = nil, saturated: Double? = nil, polyunsaturated: Double? = nil, monounsaturated: Double? = nil) {
         self.total = fats
+        self.trans = trans
+        self.saturated = saturated
+        self.polyunsaturated = polyunsaturated
+        self.monounsaturated = monounsaturated
     }
 }
 
