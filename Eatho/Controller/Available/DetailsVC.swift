@@ -96,11 +96,20 @@ class DetailsVC: UIViewController {
 
 extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2 + (minerals.count == 0 ? 0 : 1) + (vitamins.count == 0 ? 0 : 1)
+        if userData.isEmpty {
+            return 1 + (minerals.count == 0 ? 0 : 1) + (vitamins.count == 0 ? 0 : 1)
+        } else {
+            return 2 + (minerals.count == 0 ? 0 : 1) + (vitamins.count == 0 ? 0 : 1)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
+        var sect = section
+        if userData.isEmpty {
+            sect = section + 1
+        }
+        
+        switch sect {
         case 0:
             return userData.count
         case 1:
@@ -115,7 +124,12 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
+        var sect = indexPath.section
+        if userData.isEmpty {
+            sect = indexPath.section + 1
+        }
+        
+        switch sect {
         case 0:
             if let cell = fullInfoTableView.dequeueReusableCell(withIdentifier: "foodDetailsCell", for: indexPath) as? FoodDetailsCell {
                 cell.initData(nutrient: userData[indexPath.row])
@@ -150,7 +164,12 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
+        var sect = section
+        if userData.isEmpty {
+            sect = section + 1
+        }
+        
+        switch sect {
         case 0:
             return "User info"
         case 1:
@@ -165,7 +184,12 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        var sect = indexPath.section
+        if userData.isEmpty {
+            sect = indexPath.section + 1
+        }
+        
+        if sect == 1 {
             if macro[indexPath.row].type == .enclosed {
                 return 33
             }
