@@ -64,11 +64,25 @@ class DetailsVC: UIViewController {
     }
     
     func getUserData(food: FoodItem) -> [Nutrient] {
+        var available = food.available ?? 0
+        var min = food.dailyPortion.min != nil ? Double(food.dailyPortion.min!) : 0
+        var max = food.dailyPortion.min != nil ? Double(food.dailyPortion.max!) : 0
+        var delta = food.delta ?? 0
+        var measureLabelText = "g"
+        
+        if SettingsService.instance.userInfo.lbsMetrics {
+            available = truncateDoubleTail(convertMetrics(g: available))
+            min = truncateDoubleTail(convertMetrics(g: min))
+            max = truncateDoubleTail(convertMetrics(g: max))
+            delta = truncateDoubleTail(convertMetrics(g: delta))
+            measureLabelText = "lbs"
+        }
+        
         var data = [Nutrient]()
-        data.append(Nutrient(name: "Available", perPorition: nil, per100g: food.available ?? 0, measure: "g", type: .main))
-        data.append(Nutrient(name: "Daily min portion", perPorition: nil, per100g: Double(food.dailyPortion.min ?? 0), measure: "g", type: .main))
-        data.append(Nutrient(name: "Daily max portion", perPorition: nil, per100g: Double(food.dailyPortion.max ?? 0), measure: "g", type: .main))
-        data.append(Nutrient(name: "Delta portion", perPorition: nil, per100g: food.delta ?? 0, measure: "g", type: .main))
+        data.append(Nutrient(name: "Available", perPorition: nil, per100g: available, measure: measureLabelText, type: .main))
+        data.append(Nutrient(name: "Daily min portion", perPorition: nil, per100g: min, measure: measureLabelText, type: .main))
+        data.append(Nutrient(name: "Daily max portion", perPorition: nil, per100g: max, measure: measureLabelText, type: .main))
+        data.append(Nutrient(name: "Delta portion", perPorition: nil, per100g: delta, measure: measureLabelText, type: .main))
         
         return data
     }

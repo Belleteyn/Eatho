@@ -480,11 +480,11 @@
 			children = (
 				952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */,
 				95F9711C22EE438600BD6B87 /* CreationVC.swift */,
-				95512ABA22F0883F0038790F /* ScanBarcodeVC.swift */,
+				95EF446B230469BA00BAAE01 /* DetailsVC.swift */,
 				95AEDA07230728D10094E161 /* EditDetailsVC.swift */,
 				95231CB7230AD917009EDCB7 /* SearchVC.swift */,
 				958195B3230ADD4D00B08C92 /* FoodVC.swift */,
-				95EF446B230469BA00BAAE01 /* DetailsVC.swift */,
+				95512ABA22F0883F0038790F /* ScanBarcodeVC.swift */,
 			);
 			path = Available;
 			sourceTree = "<group>";
