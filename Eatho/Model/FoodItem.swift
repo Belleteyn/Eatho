@@ -15,9 +15,6 @@ struct FoodItem: Codable {
     var available: Double?
     var delta: Double?
     var portion: Double?
-    
-    private (set) public var weightMeasure: String?
-
     var dailyPortion: DailyPortion
     
     init(json: JSON) {
@@ -26,21 +23,18 @@ struct FoodItem: Codable {
         self.available = json["available"].double
         self.delta = json["delta"].double
         self.portion = json["portion"].double
-        self.weightMeasure = json["measure"].string
         
         self.dailyPortion = DailyPortion(json: json["dailyPortion"])
     }
     
     init(name: String, type: String,
          availableWeight: Double,
-         nutrition: NutritionFacts, gi: Int = 0,
-         dailyPortion: DailyPortion,
-         weightMeasure: String = "g") {
+         nutrition: NutritionFacts,
+         dailyPortion: DailyPortion) {
 
-        self.food = Food(name: name, type: type, nutrition: nutrition, gi: gi)
+        self.food = Food(name: name, type: type, nutrition: nutrition)
         self.available = availableWeight
         self.dailyPortion = dailyPortion
-        self.weightMeasure = weightMeasure
     }
     
     mutating func updateWeight(delta: Double) {

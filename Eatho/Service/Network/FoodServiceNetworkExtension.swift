@@ -52,8 +52,7 @@ extension FoodService {
                 "calories": food.nutrition.calories.total!,
                 "carbs": food.nutrition.carbs.total!,
                 "fats": food.nutrition.fats.total!,
-                "proteins": food.nutrition.proteins!,
-                "gi": food.gi!
+                "proteins": food.nutrition.proteins!
             ]
         ]
         
