@@ -60,9 +60,15 @@ class CreationVC: UIViewController {
         guard let name = name else { return }
         let type = self.type ?? ""
         
-        let available = userDataValues[0] != -1 ? userDataValues[0] : 0
-        let min = userDataValues[1] != -1 ? userDataValues[1] : 0
-        let max = userDataValues[2] != -1 ? userDataValues[2] : 0
+        var available = userDataValues[0] != -1 ? userDataValues[0] : 0
+        var min = userDataValues[1] != -1 ? userDataValues[1] : 0
+        var max = userDataValues[2] != -1 ? userDataValues[2] : 0
+        
+        if SettingsService.instance.userInfo.lbsMetrics {
+            available = convertMetrics(lbs: available)
+            min = convertMetrics(lbs: min)
+            max = convertMetrics(lbs: max)
+        }
         
         spinner.startAnimating()
         let nutrition = NutritionFacts(calories: nutritionalValues[0], proteins: nutritionalValues[1], carbs: nutritionalValues[3], fats:  nutritionalValues[6], caloriesFromFat:  nutritionalValues[2], fiber:  nutritionalValues[4], sugars: nutritionalValues[5], trans: nutritionalValues[7], saturated: nutritionalValues[8], monounsaturated: nutritionalValues[9], polyunsaturated: nutritionalValues[10], gi: nutritionalValues[11])
