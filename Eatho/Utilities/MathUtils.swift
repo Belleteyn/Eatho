@@ -12,3 +12,20 @@ func truncateDoubleTail(_ x: Double) -> Double {
     return (round(x * 10) / 10)
 }
 
+func convertMetrics(kg x: Double) -> Double {
+    //1 pound = 0.45359237 kg
+    return x / 0.45359237
+}
+
+func convertMetrics(g x: Double) -> Double {
+    //1 pound = 453.59237 g
+    return x / 453.59237
+}
+
+func convertMetrics(lbs x: Double) -> Double {
+    return x * 453.59237
+}
+
+func kcalPerLb(kcalPerG: Double) -> Double {
+    return kcalPerG / 100 * 453.59237
+}
