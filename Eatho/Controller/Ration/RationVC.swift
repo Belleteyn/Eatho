@@ -71,6 +71,9 @@ class RationVC: UIViewController {
     }
     
     @objc func rationViewTapHandle() {
+        //disable mode change if nutrition not set (nothing to show anyway)
+        guard RationService.instance.nutrition != nil else { return }
+        
         rationInfoViewExpandedState = !rationInfoViewExpandedState
         
         let animator = UIViewPropertyAnimator(duration: 0.3, curve: UIView.AnimationCurve.easeInOut) {
