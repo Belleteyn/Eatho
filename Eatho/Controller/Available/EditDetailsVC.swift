@@ -11,28 +11,49 @@ import UIKit
 class EditDetailsVC: UIViewController {
 
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    @IBOutlet weak var availableTxtField: UITextField!
-    @IBOutlet weak var minTxtField: UITextField!
-    @IBOutlet weak var maxTxtField: UITextField!
-    @IBOutlet weak var deltaTxtField: UITextField!
-    
+    let titles = ["Available", "Minimal portion", "Maximal portion", "Delta portion" ]
+    var values = Array(repeating: 0.0, count: 4)
     var food: FoodItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.hidesWhenStopped = true
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
     
     func setupView(title: String, food: FoodItem) {
         titleLbl.text = title
         self.food = food
         
-        availableTxtField.text = "\(food.available ?? 0)"
-        minTxtField.text = "\(food.dailyPortion.min ?? 0)"
-        maxTxtField.text = "\(food.dailyPortion.max ?? 0)"
-        deltaTxtField.text = "\(food.delta ?? 0)"
+        var available = food.available ?? 0
+        var min = food.dailyPortion.min != nil ? Double(food.dailyPortion.min!) : 0
+        var max = food.dailyPortion.min != nil ? Double(food.dailyPortion.max!) : 0
+        var delta = food.delta ?? 0
+        
+        if SettingsService.instance.userInfo.lbsMetrics {
+            available = truncateDoubleTail(convertMetrics(g: available))
+            min = truncateDoubleTail(convertMetrics(g: min))
+            max = truncateDoubleTail(convertMetrics(g: max))
+            delta = truncateDoubleTail(convertMetrics(g: delta))
+        }
+        
+        values[0] = available
+        values[1] = min
+        values[2] = max
+        values[3] = delta
+    }
+    
+    @objc func tapHandler() {
+        self.view.endEditing(false)
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
@@ -40,29 +61,22 @@ class EditDetailsVC: UIViewController {
     }
     
     @IBAction func savePressed(_ sender: Any) {
-        if let availText = availableTxtField.text {
-            if let availVal = Double(availText) {
-                food?.available = availVal
-            }
-        }
-        if let minText = minTxtField.text {
-            if let minVal = Int(minText) {
-                food?.dailyPortion.min = minVal
-            }
-        }
-        if let maxText = maxTxtField.text {
-            if let maxVal = Int(maxText) {
-                food?.dailyPortion.max = maxVal
-            }
-        }
-        if let deltaText = deltaTxtField.text {
-            if let deltaVal = Double(deltaText) {
-                food?.delta = deltaVal
-            }
+        guard var food = food else { return }
+        
+        if SettingsService.instance.userInfo.lbsMetrics {
+            food.available = convertMetrics(lbs: values[0])
+            food.dailyPortion.min = convertMetrics(lbs: values[1])
+            food.dailyPortion.max = convertMetrics(lbs: values[2])
+            food.delta = convertMetrics(lbs: values[3])
+        } else {
+            food.available = values[0]
+            food.dailyPortion.min = values[1]
+            food.dailyPortion.max = values[2]
+            food.delta = values[3]
         }
         
         spinner.startAnimating()
-        FoodService.instance.updateFood(food: food!) {(success, error) in
+        FoodService.instance.updateFood(food: food) {(success, error) in
             self.spinner.stopAnimating()
             if (success) {
                 self.dismiss(animated: true, completion: nil)
@@ -70,5 +84,26 @@ class EditDetailsVC: UIViewController {
                 print("failed to update user data")
             }
         }
+    }
+}
+
+
+extension EditDetailsVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
+        
+        cell.setupView(title: titles[indexPath.row], additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0", text: values[indexPath.row] > 0 ? "\(values[indexPath.row])" : nil)
+        cell.textField.keyboardType = .decimalPad
+        
+        cell.inpuFinishedDecimalHandler = {
+            (_ val: Double) in
+            self.values[indexPath.row] = val
+        }
+        
+        return cell
     }
 }
