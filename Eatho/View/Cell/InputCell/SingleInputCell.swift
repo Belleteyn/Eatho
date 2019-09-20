@@ -8,30 +8,52 @@
 
 import UIKit
 
-class SingleInputCell: UITableViewCell, UITextViewDelegate {
+typealias StringHandler = ((_: String) -> ())
+typealias NumberHandler = ((_: Double) -> ())
 
-    @IBOutlet weak var textView: UITextView!
+class SingleInputCell: UITableViewCell {
+
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var rightLabel: UILabel!
     
-    var placeholder = ""
     var inputType: NutritionInputType?
     var userInputType: UserInfoInputType?
+    
+    var inputChangedHandle: StringHandler?
+    var inputFinishedHandle: StringHandler?
+    var inputChangedDecimalHandler: NumberHandler?
+    var inpuFinishedDecimalHandler: NumberHandler?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        textView.delegate = self
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
+    
+    /** also clears all optional values */
+    func setupView(title: String, additionalDesc desc: String, placeholder: String, text: String?) {
+        self.leftLabel.text = title
+        self.rightLabel.text = desc
+        self.textField.placeholder = placeholder
+        self.textField.text = text
+        
+        self.inputFinishedHandle = nil
+        self.inputChangedHandle = nil
+        self.inpuFinishedDecimalHandler = nil
+        self.inputChangedDecimalHandler = nil
+        self.inputType = nil
+        self.userInputType = nil
     }
     
     func setupValues(inputType: NutritionInputType) {
         self.inputType = inputType
         switch inputType {
         case .Calories:
-            self.placeholder = "\(truncateDoubleTail(SettingsService.instance.userInfo.nutrition.calories))"
             leftLabel.text = "Calories"
             rightLabel.text = "kcal"
-            textView.text = placeholder
+            textField.text = "\(truncateDoubleTail(SettingsService.instance.userInfo.nutrition.calories))"
         default:
             return
         }
@@ -42,38 +64,42 @@ class SingleInputCell: UITableViewCell, UITextViewDelegate {
         
         switch inputType {
         case .Age:
-            self.placeholder = "\(SettingsService.instance.userInfo.age)"
+            textField.text = "\(SettingsService.instance.userInfo.age)"
             leftLabel.text = "Age"
             rightLabel.text = "years"
         case .Height:
-            self.placeholder = "\(SettingsService.instance.userInfo.height)"
+            textField.text = "\(SettingsService.instance.userInfo.height)"
             leftLabel.text = "Height"
             rightLabel.text = "cm"
         case .Weight:
-            self.placeholder = "\(SettingsService.instance.userInfo.weight)"
+            textField.text = "\(SettingsService.instance.userInfo.weight)"
             leftLabel.text = "Weight"
             rightLabel.text = "kg"
         case .CaloriesShortage:
-            self.placeholder = "\(SettingsService.instance.userInfo.caloriesShortage)"
+            textField.text = "\(SettingsService.instance.userInfo.caloriesShortage)"
             leftLabel.text = "Calories shortage"
             rightLabel.text = "kcal"
         }
-        
-        textView.text = placeholder
     }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == placeholder {
-            textView.text = ""
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
-            textView.text = placeholder
+}
+
+
+extension SingleInputCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        if let inputDoneHandle = inputFinishedHandle {
+            inputDoneHandle(text)
+            return
         }
         
-        guard let text = textView.text, let val = Double(text) else { return }
+        guard let val = Double(text) else { return }
+        if let inpuFinishedDecimalHandler = inpuFinishedDecimalHandler {
+            inpuFinishedDecimalHandler(val)
+            return
+        }
+        
+        //TODO: remove !!!
+        
         guard let type = userInputType else { return }
         var info = SettingsService.instance.userInfo
         
@@ -90,16 +116,28 @@ class SingleInputCell: UITableViewCell, UITextViewDelegate {
         
         SettingsService.instance.userInfo = info
     }
+
     
-    func textViewDidChange(_ textView: UITextView) {
-        guard let text = textView.text, let val = Double(text) else { return }
+    @objc func textFieldDidChange(_ textField: UITextView) {
+        guard let text = textField.text else { return }
+        if let inputChangedHandle = inputChangedHandle {
+            inputChangedHandle(text)
+            return
+        }
+        
+        guard let val = Double(text) else { return }
+        if let inputChangedDecimalHandler = inputChangedDecimalHandler {
+            inputChangedDecimalHandler(val)
+            return
+        }
+
         guard let type = inputType else { return }
         
         var info = SettingsService.instance.userInfo
         if type == .Calories {
             info.nutrition.setCalories(kcal: val, updGrams: true)
         }
-
+        
         // update in storage and on server
         SettingsService.instance.userInfo = info
         if type == .Calories {
