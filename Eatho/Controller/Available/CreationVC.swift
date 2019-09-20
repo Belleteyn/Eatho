@@ -26,11 +26,18 @@ class CreationVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    private let nFactsNames = ["Calories", "from fat", "Proteins", "Carbs", "dietary fiber", "sugars", "Fats", "trans", "saturated", "monounsaturated", "polyunsaturated"]
+    
+    private let nFactsNames = ["Calories", "from fat *", "Proteins", "Carbs", "dietary fiber *", "sugars *", "Fats", "trans *", "saturated *", "monounsaturated *", "polyunsaturated *", "Glycemic index *"]
+    private let userDataSectionNames = ["Available *", "Minimal portion *", "Maximal portion *"]
     private func isEnclosedCell(index: Int) -> Bool {
-        return !(index == 0 || index == 2 || index == 3 || index == 6)
+        return !(index == 0 || index == 2 || index == 3 || index == 6 || index == 11)
     }
     
+    
+    private var name: String?
+    private var type: String?
+    private var nutritionalValues = Array(repeating: -1.0, count: 12)
+    private var userDataValues = Array(repeating: -1.0, count: 3)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,12 +108,20 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section != 0 {
+            return "* marked optional fields"
+        }
+        
+        return ""
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 2
         case 1:
-            return 11
+            return 12
         case 2:
             return 3
         default:
@@ -115,34 +130,59 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        /* singleInputCellExtra: encosed (gray) cells in Nutrition Facts section */
         if indexPath.section == 1 && isEnclosedCell(index: indexPath.row) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCellExtra", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
-            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: "per 100g", placeholder: "0")
+            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: "per 100g", placeholder: "0", text: nutritionalValues[indexPath.row] != -1 ?  "\(truncateDoubleTail(nutritionalValues[indexPath.row]))" : nil)
             cell.leftLabel.font = UIFont.systemFont(ofSize: 13)
+            cell.inpuFinishedDecimalHandler = {
+                (_ val: Double) in
+                print("set val \(val) for row \(indexPath.row)")
+                self.nutritionalValues[indexPath.row] = val
+            }
             return cell
         }
         
+        /* common cells for all sections */
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
         
         switch indexPath.section {
+        /* desc section */
         case 0:
             if indexPath.row == 0 {
-                cell.setupView(title: "Name", additionalDesc: "", placeholder: "enter food name")
+                cell.setupView(title: "Name", additionalDesc: "", placeholder: "enter food name", text: name)
+                cell.inputFinishedHandle = {
+                    (_ val: String) in
+                    self.name = val
+                }
             } else {
-                cell.setupView(title: "Type", additionalDesc: "", placeholder: "choose food type")
+                cell.setupView(title: "Type", additionalDesc: "", placeholder: "choose food type", text: type)
+                cell.inputFinishedHandle = {
+                    (_ val: String) in
+                    self.type = val
+                }
             }
             cell.textField.keyboardType = .default
+           
+        /* nutritional facts section */
         case 1:
-            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: "per 100g", placeholder: "0")
+            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: "per 100g", placeholder: "0", text: nutritionalValues[indexPath.row] != -1 ? "\(truncateDoubleTail(nutritionalValues[indexPath.row]))" : nil)
+            cell.textField.keyboardType = .decimalPad
+            cell.inpuFinishedDecimalHandler = {
+                (_ val: Double) in
+                print("set val \(val) for row \(indexPath.row)")
+                self.nutritionalValues[indexPath.row] = val
+            }
+         
+        /* user's data section */
         case 2:
-            switch indexPath.row {
-            case 0:
-                cell.setupView(title: "Available", additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0")
-            case 1:
-                cell.setupView(title: "Minimum portion", additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0")
-            case 2:
-                cell.setupView(title: "Maximum portion", additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0")
-            default: ()
+            cell.setupView(title: userDataSectionNames[indexPath.row], additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0", text: userDataValues[indexPath.row] != -1 ? "\(truncateDoubleTail(userDataValues[indexPath.row]))" : nil)
+            cell.textField.keyboardType = .decimalPad
+            cell.inpuFinishedDecimalHandler = {
+                (_ val: Double) in
+                print("set users val \(val) for row \(indexPath.row)")
+                self.userDataValues[indexPath.row] = val
             }
             
         default: ()
