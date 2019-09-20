@@ -46,10 +46,10 @@ class EditDetailsVC: UIViewController {
             delta = truncateDoubleTail(convertMetrics(g: delta))
         }
         
-        values[0] = available
-        values[1] = min
-        values[2] = max
-        values[3] = delta
+        values[0] = truncateDoubleTail(available)
+        values[1] = truncateDoubleTail(min)
+        values[2] = truncateDoubleTail(max)
+        values[3] = truncateDoubleTail(delta)
     }
     
     @objc func tapHandler() {

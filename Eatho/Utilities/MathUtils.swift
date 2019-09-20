@@ -9,7 +9,7 @@
 import Foundation
 
 func truncateDoubleTail(_ x: Double) -> Double {
-    return (round(x * 10) / 10)
+    return (round(x * 100) / 100)
 }
 
 func convertMetrics(kg x: Double) -> Double {

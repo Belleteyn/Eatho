@@ -21,7 +21,7 @@ class AvailableFoodCell: FoodCell {
         if SettingsService.instance.userInfo.lbsMetrics {
             weightLbl.text = "\(truncateDoubleTail(convertMetrics(g: foodItem.available ?? 0))) lbs"
         } else {
-            weightLbl.text = "\(Int(foodItem.available ?? 0)) g)"
+            weightLbl.text = "\(Int(foodItem.available ?? 0)) g"
         }
     }
 }

@@ -65,8 +65,8 @@ class DetailsVC: UIViewController {
     
     func getUserData(food: FoodItem) -> [Nutrient] {
         var available = food.available ?? 0
-        var min = food.dailyPortion.min != nil ? Double(food.dailyPortion.min!) : 0
-        var max = food.dailyPortion.min != nil ? Double(food.dailyPortion.max!) : 0
+        var min = food.dailyPortion.min ?? 0
+        var max = food.dailyPortion.max ?? 0
         var delta = food.delta ?? 0
         var measureLabelText = "g"
         
@@ -76,6 +76,11 @@ class DetailsVC: UIViewController {
             max = truncateDoubleTail(convertMetrics(g: max))
             delta = truncateDoubleTail(convertMetrics(g: delta))
             measureLabelText = "lbs"
+        } else {
+            available = truncateDoubleTail(available)
+            min = truncateDoubleTail(min)
+            max = truncateDoubleTail(max)
+            delta = truncateDoubleTail(delta)
         }
         
         var data = [Nutrient]()

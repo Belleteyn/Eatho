@@ -37,34 +37,34 @@ struct NutritionFacts: Codable {
     
     func getMacro(portion p: Double?) -> [Nutrient] {
         var macro = [Nutrient]()
-        macro.append(Nutrient(name: "Calories", perPorition: p != nil ? calories.total! * p! / 100 : nil, per100g: calories.total!, measure: "kcal", type: .main))
+        macro.append(Nutrient(name: "Calories", perPorition: p != nil ? truncateDoubleTail(calories.total! * p! / 100) : nil, per100g: truncateDoubleTail(calories.total!), measure: "kcal", type: .main))
         
         if calories.fromFat != nil {
-            macro.append(Nutrient(name: "from fat", perPorition: p != nil ? calories.fromFat! * p! / 100 : nil, per100g: calories.fromFat!, measure: "kcal", type: .enclosed))
+            macro.append(Nutrient(name: "from fat", perPorition: p != nil ? truncateDoubleTail(calories.fromFat! * p! / 100) : nil, per100g: truncateDoubleTail(calories.fromFat!), measure: "kcal", type: .enclosed))
         }
         
-        macro.append(Nutrient(name: "Proteins", perPorition: p != nil ? proteins! * p! / 100 : nil, per100g: proteins!, measure: "g", type: .main))
+        macro.append(Nutrient(name: "Proteins", perPorition: p != nil ? truncateDoubleTail(proteins! * p! / 100) : nil, per100g: truncateDoubleTail(proteins!), measure: "g", type: .main))
         
-        macro.append(Nutrient(name: "Carbs", perPorition: p != nil ? carbs.total! * p! / 100 : nil, per100g: carbs.total!, measure: "g", type: .main))
+        macro.append(Nutrient(name: "Carbs", perPorition: p != nil ? truncateDoubleTail(carbs.total! * p! / 100) : nil, per100g: truncateDoubleTail(carbs.total!), measure: "g", type: .main))
         if carbs.dietaryFiber != nil {
-            macro.append(Nutrient(name: "dietary fiber", perPorition: p != nil ? carbs.dietaryFiber! * p! / 100 : nil, per100g: carbs.dietaryFiber!, measure: "g", type: .enclosed))
+            macro.append(Nutrient(name: "dietary fiber", perPorition: p != nil ? truncateDoubleTail(carbs.dietaryFiber! * p! / 100) : nil, per100g: truncateDoubleTail(carbs.dietaryFiber!), measure: "g", type: .enclosed))
         }
         if carbs.sugars != nil {
-            macro.append(Nutrient(name: "sugars", perPorition: p != nil ? carbs.sugars! * p! / 100 : nil, per100g: carbs.sugars!, measure: "g", type: .enclosed))
+            macro.append(Nutrient(name: "sugars", perPorition: p != nil ? truncateDoubleTail(carbs.sugars! * p! / 100) : nil, per100g: truncateDoubleTail(carbs.sugars!), measure: "g", type: .enclosed))
         }
         
-        macro.append(Nutrient(name: "Fats", perPorition: p != nil ? fats.total! * p! / 100 : nil, per100g: fats.total!, measure: "g", type: .main))
+        macro.append(Nutrient(name: "Fats", perPorition: p != nil ? truncateDoubleTail(fats.total! * p! / 100) : nil, per100g: truncateDoubleTail(fats.total!), measure: "g", type: .main))
         if fats.trans != nil {
-            macro.append(Nutrient(name: "trans", perPorition: p != nil ? fats.trans! * p! / 100 : nil, per100g: fats.trans!, measure: "g", type: .enclosed))
+            macro.append(Nutrient(name: "trans", perPorition: p != nil ? truncateDoubleTail(fats.trans! * p! / 100) : nil, per100g: truncateDoubleTail(fats.trans!), measure: "g", type: .enclosed))
         }
         if fats.saturated != nil {
-            macro.append(Nutrient(name: "saturated", perPorition: p != nil ? fats.saturated! * p! / 100 : nil, per100g: fats.saturated!, measure: "g", type: .enclosed))
+            macro.append(Nutrient(name: "saturated", perPorition: p != nil ? truncateDoubleTail(fats.saturated! * p! / 100) : nil, per100g: truncateDoubleTail(fats.saturated!), measure: "g", type: .enclosed))
         }
         if fats.monounsaturated != nil {
-            macro.append(Nutrient(name: "monounsaturated", perPorition: p != nil ? fats.monounsaturated! * p! / 100 : nil, per100g: fats.monounsaturated!, measure: "g", type: .enclosed))
+            macro.append(Nutrient(name: "monounsaturated", perPorition: p != nil ? truncateDoubleTail(fats.monounsaturated! * p! / 100) : nil, per100g: truncateDoubleTail(fats.monounsaturated!), measure: "g", type: .enclosed))
         }
         if fats.polyunsaturated != nil {
-            macro.append(Nutrient(name: "polyunsaturated", perPorition: p != nil ? fats.polyunsaturated! * p! / 100 : nil, per100g: fats.polyunsaturated!, measure: "g", type: .enclosed))
+            macro.append(Nutrient(name: "polyunsaturated", perPorition: p != nil ? truncateDoubleTail(fats.polyunsaturated! * p! / 100) : nil, per100g: truncateDoubleTail(fats.polyunsaturated!), measure: "g", type: .enclosed))
         }
         
         if gi != nil {
