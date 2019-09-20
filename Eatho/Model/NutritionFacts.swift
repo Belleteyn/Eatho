@@ -37,10 +37,10 @@ struct NutritionFacts: Codable {
     
     func getMacro(portion p: Double?) -> [Nutrient] {
         var macro = [Nutrient]()
-        macro.append(Nutrient(name: "Calories", perPorition: p != nil ? calories.total! * p! / 100 : nil, per100g: calories.total!, measure: "g", type: .main))
+        macro.append(Nutrient(name: "Calories", perPorition: p != nil ? calories.total! * p! / 100 : nil, per100g: calories.total!, measure: "kcal", type: .main))
         
         if calories.fromFat != nil {
-            macro.append(Nutrient(name: "from fat", perPorition: p != nil ? calories.fromFat! * p! / 100 : nil, per100g: calories.fromFat!, measure: "g", type: .enclosed))
+            macro.append(Nutrient(name: "from fat", perPorition: p != nil ? calories.fromFat! * p! / 100 : nil, per100g: calories.fromFat!, measure: "kcal", type: .enclosed))
         }
         
         macro.append(Nutrient(name: "Proteins", perPorition: p != nil ? proteins! * p! / 100 : nil, per100g: proteins!, measure: "g", type: .main))
