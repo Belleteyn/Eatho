@@ -33,8 +33,16 @@ class FoodCell: UITableViewCell {
     }
     
     func updateViews(food: Food) {
-        icon.image = UIImage(named: food.icon)
+        guard let calories = food.nutrition.calories.total else { return }
+        
         name.text = food.name
+        icon.image = UIImage(named: food.icon)
+        
+        if SettingsService.instance.userInfo.lbsMetrics {
+            info.text = "\(truncateDoubleTail(kcalPerLb(kcalPerG: calories))) kkal (1 lb)"
+        } else {
+            info.text = "\(calories) kkal (100 g)"
+        }
         
         proteins.text = "\(food.nutrition.proteins ?? 0) g"
         carbs.text = "\(food.nutrition.carbs.total ?? 0) g"

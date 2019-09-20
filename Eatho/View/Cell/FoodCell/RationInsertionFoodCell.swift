@@ -21,8 +21,11 @@ class RationInsertionFoodCell: FoodCell {
         guard let food = foodItem.food else { return }
         super.updateViews(food: food)
         
-        weightLbl.text = "\(Int(foodItem.available ?? 0)) \(foodItem.weightMeasure ?? "g")"
-        info.text = "\(foodItem.food!.nutrition.calories.total ?? 0) kcal (100 g)"
+        if SettingsService.instance.userInfo.lbsMetrics {
+            weightLbl.text = "\(truncateDoubleTail(convertMetrics(g: foodItem.available ?? 0))) lbs"
+        } else {
+            weightLbl.text = "\(Int(foodItem.available ?? 0)) g)"
+        }
         
         if RationService.instance.isFoodContainedInCurrentRation(id: food._id!) {
             addButton.setImage(UIImage(named: "content_item_checked.png"), for: .normal)

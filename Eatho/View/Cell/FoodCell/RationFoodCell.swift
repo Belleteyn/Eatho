@@ -22,10 +22,21 @@ class RationFoodCell: FoodCell {
         let portion = foodItem.portion ?? 0
         
         let caloriesPerPortion = round(portion * (food.nutrition.calories.total ?? 0) / 100)
-        super.info.text = "\(Int(portion)) g (\(Int(caloriesPerPortion)) kcal)"
+        if SettingsService.instance.userInfo.lbsMetrics {
+            super.info.text = "\(truncateDoubleTail(convertMetrics(g: portion))) lbs (\(Int(caloriesPerPortion)) kcal)"
+        } else {
+            super.info.text = "\(Int(portion)) g (\(Int(caloriesPerPortion)) kcal)"
+        }
+        
         
         if editable {
-            portionTxt.text = "\(foodItem.delta ?? 0) g"
+            let delta = foodItem.delta ?? 0
+            if SettingsService.instance.userInfo.lbsMetrics {
+                portionTxt.text = "\(truncateDoubleTail(convertMetrics(g: delta))) lbs"
+            } else {
+                portionTxt.text = "\(delta) g"
+            }
+            
             increaseBtn.isEnabled = ((foodItem.available ?? 0) > portion)
             decreaseBtn.isEnabled = (portion > 0)
             

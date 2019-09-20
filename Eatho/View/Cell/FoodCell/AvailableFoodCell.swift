@@ -14,9 +14,14 @@ class AvailableFoodCell: FoodCell {
     
     func updateViews(foodItem: FoodItem) {
         guard let food = foodItem.food else { return }
+        
+        
         super.updateViews(food: food)
         
-        weightLbl.text = "\(Int(foodItem.available ?? 0)) \(foodItem.weightMeasure ?? "g")"
-        info.text = "\(foodItem.food!.nutrition.calories.total ?? 0) kkal (100 g)"
+        if SettingsService.instance.userInfo.lbsMetrics {
+            weightLbl.text = "\(truncateDoubleTail(convertMetrics(g: foodItem.available ?? 0))) lbs"
+        } else {
+            weightLbl.text = "\(Int(foodItem.available ?? 0)) g)"
+        }
     }
 }
