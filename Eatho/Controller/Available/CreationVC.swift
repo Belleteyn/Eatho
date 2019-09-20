@@ -11,33 +11,26 @@ import UIKit
 class CreationVC: UIViewController {
 
     // Outlets
-    @IBOutlet weak var nameTxt: UITextField!
-    @IBOutlet weak var typeTxt: UITextField!
-    @IBOutlet weak var caloriesTxt: UITextField!
-    @IBOutlet weak var carbsTxt: UITextField!
-    @IBOutlet weak var proteinsTxt: UITextField!
-    @IBOutlet weak var fatsTxt: UITextField!
-    @IBOutlet weak var giTxt: UITextField!
-    @IBOutlet weak var availableTxt: UITextField!
-    @IBOutlet weak var minTxt: UITextField!
-    @IBOutlet weak var maxTxt: UITextField!
-    @IBOutlet weak var preferredTxt: UITextField!
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    
+    // Representation values
     private let nFactsNames = ["Calories", "from fat *", "Proteins", "Carbs", "dietary fiber *", "sugars *", "Fats", "trans *", "saturated *", "monounsaturated *", "polyunsaturated *", "Glycemic index *"]
     private let userDataSectionNames = ["Available *", "Minimal portion *", "Maximal portion *"]
+    
     private func isEnclosedCell(index: Int) -> Bool {
         return !(index == 0 || index == 2 || index == 3 || index == 6 || index == 11)
     }
+    private func isRequiredFieldsFilled() -> Bool {
+        return nutritionalValues[0] != -1 && nutritionalValues[2] != -1 && nutritionalValues[3] != -1 && nutritionalValues[6] != -1
+    }
     
-    
+    // Input values
     private var name: String?
     private var type: String?
     private var nutritionalValues = Array(repeating: -1.0, count: 12)
     private var userDataValues = Array(repeating: -1.0, count: 3)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,28 +51,23 @@ class CreationVC: UIViewController {
 
     // Actions
     @IBAction func saveClicked(_ sender: Any) {
-        guard let name = nameTxt.text, nameTxt.text != "" else { return }
-        guard let calories = caloriesTxt.text, caloriesTxt.text != "" else { return }
-        guard let carbs = carbsTxt.text, carbsTxt.text != "" else { return }
-        guard let proteins = proteinsTxt.text, proteinsTxt.text != "" else { return }
-        guard let fats = fatsTxt.text, fatsTxt.text != "" else { return }
+        if !isRequiredFieldsFilled() || name == nil {
+            print("not all required fields were filled")
+            //TODO: show error
+            return
+        }
         
-        let caloriesVal = Double(calories) ?? 0
-        let carbsVal = Double(carbs) ?? 0
-        let proteinsVal = Double(proteins) ?? 0
-        let fatsVal = Double(fats) ?? 0
+        guard let name = name else { return }
+        let type = self.type ?? ""
         
-        let type = typeTxt.text ?? ""
-        let gi = Int(giTxt.text!) ?? 0
-        let available = Double(availableTxt.text!) ?? 0
-        let min = Int(minTxt.text!) ?? 0
-        let max = Int(maxTxt.text!) ?? 0
-        let preferred = Int(preferredTxt.text!) ?? 0
+        let available = userDataValues[0] != -1 ? userDataValues[0] : 0
+        let min = userDataValues[1] != -1 ? userDataValues[1] : 0
+        let max = userDataValues[2] != -1 ? userDataValues[2] : 0
         
         spinner.startAnimating()
-        let nutrition = NutritionFacts(calories: caloriesVal, proteins: proteinsVal, carbs: carbsVal, fats: fatsVal)
-        let daily = DailyPortion(min: min, max: max, preferred: preferred)
-        let food = FoodItem(name: name, type: type, availableWeight: available, nutrition: nutrition, gi: gi, dailyPortion: daily)
+        let nutrition = NutritionFacts(calories: nutritionalValues[0], proteins: nutritionalValues[1], carbs: nutritionalValues[3], fats:  nutritionalValues[6], caloriesFromFat:  nutritionalValues[2], fiber:  nutritionalValues[4], sugars: nutritionalValues[5], trans: nutritionalValues[7], saturated: nutritionalValues[8], monounsaturated: nutritionalValues[9], polyunsaturated: nutritionalValues[10], gi: nutritionalValues[11])
+        let daily = DailyPortion(min: Int(min), max: Int(max), preferred: 0)
+        let food = FoodItem(name: name, type: type, availableWeight: available, nutrition: nutrition, dailyPortion: daily)
         
         FoodService.instance.createNewFood(foodItem: food) { (success, error) in
             self.spinner.stopAnimating()
@@ -138,7 +126,6 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
             cell.leftLabel.font = UIFont.systemFont(ofSize: 13)
             cell.inpuFinishedDecimalHandler = {
                 (_ val: Double) in
-                print("set val \(val) for row \(indexPath.row)")
                 self.nutritionalValues[indexPath.row] = val
             }
             return cell
@@ -171,7 +158,6 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
             cell.textField.keyboardType = .decimalPad
             cell.inpuFinishedDecimalHandler = {
                 (_ val: Double) in
-                print("set val \(val) for row \(indexPath.row)")
                 self.nutritionalValues[indexPath.row] = val
             }
          
@@ -181,7 +167,6 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
             cell.textField.keyboardType = .decimalPad
             cell.inpuFinishedDecimalHandler = {
                 (_ val: Double) in
-                print("set users val \(val) for row \(indexPath.row)")
                 self.userDataValues[indexPath.row] = val
             }
             
