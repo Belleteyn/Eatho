@@ -79,8 +79,7 @@ extension FoodService {
                 "id": id,
                 "available": available,
                 "min": dailyPortion.min!,
-                "max": dailyPortion.max!,
-                "preferred": dailyPortion.preferred!
+                "max": dailyPortion.max!
             ]
         ]
         

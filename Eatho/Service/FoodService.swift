@@ -29,7 +29,7 @@ class FoodService {
     func createNewFood (foodItem: FoodItem, handler: @escaping CompletionHandler) {
         insertFoodRequest(foodItem: foodItem) { (json) in
             if let json = json {
-                let dailyPortion = DailyPortion(min: (foodItem.dailyPortion.min ?? 0), max: (foodItem.dailyPortion.max ?? 0), preferred: (foodItem.dailyPortion.preferred ?? 0))
+                let dailyPortion = DailyPortion(min: (foodItem.dailyPortion.min ?? 0), max: (foodItem.dailyPortion.max ?? 0))
                 
                 self.insert(forId: json["id"].stringValue, available: foodItem.available ?? 0.0, dailyPortion: dailyPortion, handler: handler)
             } else {
@@ -67,7 +67,7 @@ class FoodService {
             let daily = foods[row].dailyPortion
             if daily.min == nil || daily.min! == 0 {
                 if let delta = foods[row].delta, delta > 0 {
-                    foods[row].dailyPortion.min = Int(delta)
+                    foods[row].dailyPortion.min = delta
                 } else {
                     foods[row].dailyPortion.min = 1
                 }

@@ -72,7 +72,7 @@ class CreationVC: UIViewController {
         
         spinner.startAnimating()
         let nutrition = NutritionFacts(calories: nutritionalValues[0], proteins: nutritionalValues[1], carbs: nutritionalValues[3], fats:  nutritionalValues[6], caloriesFromFat:  nutritionalValues[2], fiber:  nutritionalValues[4], sugars: nutritionalValues[5], trans: nutritionalValues[7], saturated: nutritionalValues[8], monounsaturated: nutritionalValues[9], polyunsaturated: nutritionalValues[10], gi: nutritionalValues[11])
-        let daily = DailyPortion(min: Int(min), max: Int(max), preferred: 0)
+        let daily = DailyPortion(min: min, max: max)
         let food = FoodItem(name: name, type: type, availableWeight: available, nutrition: nutrition, dailyPortion: daily)
         
         FoodService.instance.createNewFood(foodItem: food) { (success, error) in

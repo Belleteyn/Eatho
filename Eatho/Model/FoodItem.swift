@@ -47,19 +47,16 @@ struct FoodItem: Codable {
 }
 
 struct DailyPortion: Codable {
-    var min: Int?
-    var max: Int?
-    var preferred: Int?
+    var min: Double?
+    var max: Double?
     
     init(json: JSON) {
-        self.min = json["min"].int
-        self.max = json["max"].int
-        self.preferred = json["preferred"].int
+        self.min = json["min"].double
+        self.max = json["max"].double
     }
     
-    init(min: Int, max: Int, preferred: Int) {
+    init(min: Double, max: Double) {
         self.min = min
         self.max = max
-        self.preferred = preferred
     }
 }
