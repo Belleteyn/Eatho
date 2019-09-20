@@ -159,10 +159,19 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
+        // Nutritional values user input
         case 0:
             if indexPath.row == 0 {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell {
-                    cell.setupValues(inputType: .Calories)
+                    cell.setupView(title: "Calories", additionalDesc: "kcal", placeholder: nil, text: "\(truncateDoubleTail(SettingsService.instance.userInfo.nutrition.calories))")
+                    cell.inputChangedDecimalHandler = {
+                        (_ val: Double) in
+                        var info = SettingsService.instance.userInfo
+                        info.nutrition.setCalories(kcal: val, updGrams: true)
+                        SettingsService.instance.userInfo = info
+                        
+                        NotificationCenter.default.post(name: NOTIF_USER_NUTRITION_CHANGED, object: nil, userInfo: ["reloadIndices" : [1,2,3]])
+                    }
                     return cell
                 }
             } else {
@@ -179,11 +188,15 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                     return cell
                 }
             }
+            
+        // Enable auto calculation
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as? SwitchCell {
                 cell.setupView(defaultSwitchPosition: SettingsService.instance.userInfo.setupNutrientsFlag, handler: autoCalculationSwitchChangedHandle(isOn:))
                 return cell
             }
+            
+        // User data for nutritional calculation
         case 2:
             if indexPath.row == 3 {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "pickerSelectionCell", for: indexPath) as? PickerSelectionCell {
@@ -211,13 +224,37 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell {
                     switch indexPath.row {
                     case 0:
-                        cell.setupValues(inputType: .Weight)
+                        cell.setupView(title: "Weight", additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "kg", placeholder: "0", text: "\(SettingsService.instance.userInfo.weight)")
+                        cell.inpuFinishedDecimalHandler = {
+                            (_ val: Double) in
+                            var info = SettingsService.instance.userInfo
+                            info.weight = val
+                            SettingsService.instance.userInfo = info
+                        }
                     case 1:
-                        cell.setupValues(inputType: .Height)
+                        cell.setupView(title: "Height", additionalDesc: "cm", placeholder: "0", text: "\(SettingsService.instance.userInfo.height)")
+                        cell.inpuFinishedDecimalHandler = {
+                            (_ val: Double) in
+                            var info = SettingsService.instance.userInfo
+                            info.height = val
+                            SettingsService.instance.userInfo = info
+                        }
                     case 2:
-                        cell.setupValues(inputType: .Age)
+                        cell.setupView(title: "Age", additionalDesc: "years", placeholder: "0", text: "\(SettingsService.instance.userInfo.age)")
+                        cell.inpuFinishedDecimalHandler = {
+                            (_ val: Double) in
+                            var info = SettingsService.instance.userInfo
+                            info.age = Int(val)
+                            SettingsService.instance.userInfo = info
+                        }
                     case 4:
-                        cell.setupValues(inputType: .CaloriesShortage)
+                        cell.setupView(title: "Calories shortage", additionalDesc: "kcal", placeholder: "0", text: "\(SettingsService.instance.userInfo.caloriesShortage)")
+                        cell.inpuFinishedDecimalHandler = {
+                            (_ val: Double) in
+                            var info = SettingsService.instance.userInfo
+                            info.caloriesShortage = val
+                            SettingsService.instance.userInfo = info
+                        }
                     default: ()
                     }
                     
