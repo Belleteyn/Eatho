@@ -10,6 +10,7 @@ import UIKit
 
 class SearchFoodCell: FoodCell {
 
+    @IBOutlet weak var insertionButton: UIButton!
     var id: String?
     
     override func awakeFromNib() {
@@ -19,6 +20,10 @@ class SearchFoodCell: FoodCell {
     override func updateViews(food: Food) {
         super.updateViews(food: food)
         self.id = food._id ?? ""
+        
+        if FoodService.instance.foods.contains(where: { $0.food?._id == food._id } ) {
+            insertionButton.setImage(UIImage(named: "content_item_checked.png"), for: UIControl.State.normal)
+        }
     }
 
     @IBAction func addBtnPressed(_ sender: Any) {
