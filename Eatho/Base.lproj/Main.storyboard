@@ -3087,6 +3087,68 @@
             </objects>
             <point key="canvasLocation" x="5041" y="-753"/>
         </scene>
+        <!--AlertVC-->
+        <scene sceneID="KjP-dm-6j1">
+            <objects>
+                <viewController storyboardIdentifier="alertVC" id="vcv-Ae-9L1" customClass="AlertVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mS5-5g-IVa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PS4-g6-q7i" customClass="ShadowView" customModule="Eatho" customModuleProvider="target">
+                                <rect key="frame" x="20" y="752" width="374" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vc4-OJ-fi8">
+                                        <rect key="frame" x="8" y="15.999999999999998" width="358" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error description, may be long enough to occupy several lines " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f75-RV-kba">
+                                        <rect key="frame" x="8" y="40.333333333333371" width="358" height="33.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.87566761931232895" green="0.77734469433424658" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="f75-RV-kba" firstAttribute="top" secondItem="vc4-OJ-fi8" secondAttribute="bottom" constant="4" id="1Rj-yP-nfK"/>
+                                    <constraint firstItem="f75-RV-kba" firstAttribute="leading" secondItem="PS4-g6-q7i" secondAttribute="leadingMargin" id="2ki-7p-ptU"/>
+                                    <constraint firstAttribute="height" constant="100" id="4ch-Jw-uEk"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="vc4-OJ-fi8" secondAttribute="trailing" id="Av5-Xj-kd9"/>
+                                    <constraint firstItem="vc4-OJ-fi8" firstAttribute="top" secondItem="PS4-g6-q7i" secondAttribute="topMargin" constant="8" id="KQL-7s-GVX"/>
+                                    <constraint firstItem="vc4-OJ-fi8" firstAttribute="leading" secondItem="PS4-g6-q7i" secondAttribute="leadingMargin" id="UIH-Ec-Aoh"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="f75-RV-kba" secondAttribute="trailing" id="e5y-D9-Vyz"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PS4-g6-q7i" firstAttribute="leading" secondItem="e0O-wr-wdl" secondAttribute="leading" constant="20" id="8Ii-SG-Jh1"/>
+                            <constraint firstItem="PS4-g6-q7i" firstAttribute="bottom" secondItem="e0O-wr-wdl" secondAttribute="bottom" id="Y1g-RD-A9E"/>
+                            <constraint firstItem="e0O-wr-wdl" firstAttribute="trailing" secondItem="PS4-g6-q7i" secondAttribute="trailing" constant="20" id="zAG-2Q-SKP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="e0O-wr-wdl"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="PS4-g6-q7i" id="jwd-rX-UPF"/>
+                        <outlet property="descriptionLabel" destination="f75-RV-kba" id="FFp-9v-vq1"/>
+                        <outlet property="titleLabel" destination="vc4-OJ-fi8" id="lOC-0h-S79"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v6k-DB-rfs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6013.04347826087" y="-753.34821428571422"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="38A-Q9-BMJ">
             <objects>
