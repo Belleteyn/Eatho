@@ -52,8 +52,6 @@ let NOTIF_USER_NUTRITION_CHANGED = Notification.Name("userNutritionChanged")
 let NOTIF_SEARCH_FOOD_ADD = Notification.Name("searchFoodAdd")
 let NOTIF_SEARCH_FOOD_ADD_DONE = Notification.Name("searchFoodAddDone")
 
-let NOTIF_PRESENT_RATION_COMPLEMENT_MODAL = Notification.Name("presentRationComplementModal")
-
 let NOTIF_DIARY_OPEN = Notification.Name("openDiary")
 
 // headers

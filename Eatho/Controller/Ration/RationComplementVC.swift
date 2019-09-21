@@ -15,7 +15,6 @@ class RationComplementVC: FoodVC {
 
         foodTable.dataSource = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(presentModalView(_:)), name: NOTIF_PRESENT_RATION_COMPLEMENT_MODAL, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NOTIF_RATION_DATA_CHANGED, object: nil)
     }
 
@@ -24,9 +23,8 @@ class RationComplementVC: FoodVC {
         foodTable.reloadData()
     }
     
-    @objc func presentModalView(_ notification: Notification) {
+    func presentModalView(food: FoodItem) {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "complementParamsModalVC") as? ComplementParamsModalVC else { return }
-        guard let food = notification.userInfo?["food"] as? FoodItem else { return }
         
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.isHidden = true
@@ -51,7 +49,14 @@ extension RationComplementVC: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "RationInsertionFoodCell") as? RationInsertionFoodCell {
             if (indexPath.row < FoodService.instance.foods.count) {
                 let food = FoodService.instance.foods[indexPath.row]
-                cell.updateViews(foodItem: food)
+                cell.updateViews(foodItem: food, removeHandler: { (id) in
+                    RationService.instance.removeItem(id: id, completion: { (success, error) in
+                        //todo: error
+                    })
+                }) { (foodItem) in
+                    self.presentModalView(food: foodItem)
+                }
+                
                 return cell
             }
         }

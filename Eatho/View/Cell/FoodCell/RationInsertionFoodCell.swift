@@ -16,8 +16,14 @@ class RationInsertionFoodCell: FoodCell {
     var foodItem: FoodItem?
     var addBtnState = false //not checked
     
-    func updateViews(foodItem: FoodItem) {
+    var openModalHandler: ((_: FoodItem) -> ())?
+    var removeHandler: ((_: String) -> ())?
+    
+    func updateViews(foodItem: FoodItem, removeHandler: @escaping (_ id: String) -> (), openModalHandler: @escaping (_: FoodItem) -> ()) {
         self.foodItem = foodItem
+        self.removeHandler = removeHandler
+        self.openModalHandler = openModalHandler
+        
         guard let food = foodItem.food else { return }
         super.updateViews(food: food)
         
@@ -37,12 +43,16 @@ class RationInsertionFoodCell: FoodCell {
     }
     
     @IBAction func onAddBtnClicked(_ sender: Any) {
-        guard let food = foodItem else { return }
+        guard let foodItem = foodItem, let food = foodItem.food, let id = food._id else { return }
         
         if addBtnState {
-            RationService.instance.removeItem(id: (foodItem?.food?._id)!)
+            if let removeHandler = removeHandler {
+                removeHandler(id)
+            }
         } else {
-            NotificationCenter.default.post(name: NOTIF_PRESENT_RATION_COMPLEMENT_MODAL, object: nil, userInfo: ["food": food])
+            if let openModalHandler = openModalHandler {
+                openModalHandler(foodItem)
+            }
         }
     }
 }

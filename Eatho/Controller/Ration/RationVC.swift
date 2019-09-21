@@ -98,8 +98,18 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell") as? RationFoodCell {
             guard let ration = RationService.instance.currentRation else { return RationFoodCell() }
-            if (indexPath.row < ration.count) {
-                cell.updateViews(foodItem: ration[indexPath.row], editable: RationService.instance.isCurrentRationEditable())
+            if indexPath.row < ration.count {
+                
+                let isEditable = RationService.instance.isCurrentRationEditable()
+                cell.updateViews(foodItem: ration[indexPath.row], editable: isEditable, incPortionHandler: { (id) in
+                    RationService.instance.incPortion(id: id, completion: { (success, error) in
+                        //todo: error
+                    })
+                }) { (id) in
+                    RationService.instance.decPortion(id: id, completion: { (success, error) in
+                        //todo: error
+                    })
+                }
                 return cell
             }
         }

@@ -14,9 +14,14 @@ class RationFoodCell: FoodCell {
     @IBOutlet weak var increaseBtn: UIButton!
     @IBOutlet weak var portionTxt: UILabel!
     
-    func updateViews(foodItem: FoodItem, editable: Bool) {
+    var incPortionHandler: ((_: String) -> ())?
+    var decPortionHandler: ((_: String) -> ())?
+    
+    func updateViews(foodItem: FoodItem, editable: Bool, incPortionHandler: @escaping ((_: String) -> ()), decPortionHandler: @escaping ((_: String) -> ())) {
         guard let food = foodItem.food else { return }
         
+        self.decPortionHandler = decPortionHandler
+        self.incPortionHandler = incPortionHandler
         super.updateViews(food: food)
         
         let portion = foodItem.portion ?? 0
@@ -51,10 +56,14 @@ class RationFoodCell: FoodCell {
     }
 
     @IBAction func decreaseBtnClick(_ sender: Any) {
-        RationService.instance.decPortion(name: super.name.text!)
+        if let handler = decPortionHandler, let id = super.id {
+            handler(id)
+        }
     }
     
     @IBAction func increaseBtnClick(_ sender: Any) {
-        RationService.instance.incPortion(name: super.name.text!)
+        if let handler = incPortionHandler, let id = super.id {
+            handler(id)
+        }
     }
 }
