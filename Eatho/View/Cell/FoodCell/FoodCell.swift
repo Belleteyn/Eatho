@@ -21,6 +21,8 @@ class FoodCell: UITableViewCell {
     @IBOutlet weak var fats: UILabel!
     @IBOutlet weak var carbs: UILabel!
     
+    var id: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
@@ -33,6 +35,7 @@ class FoodCell: UITableViewCell {
     }
     
     func updateViews(food: Food) {
+        id = food._id
         guard let calories = food.nutrition.calories.total else { return }
         
         name.text = food.name
