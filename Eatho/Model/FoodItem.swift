@@ -37,6 +37,22 @@ struct FoodItem: Codable {
         self.dailyPortion = dailyPortion
     }
     
+    func toJson() -> JSON? {
+        do {
+            guard let food = self.food, let name = food.name else { return nil }
+            
+            let data = try JSONEncoder().encode(self)
+            var json = try JSON(data: data)
+            
+            //TODO: name localization
+            json["food"]["name"] = ["en": name]
+            return json
+        } catch let err {
+            print(err)
+            return nil
+        }
+    }
+    
     mutating func updateWeight(delta: Double) {
         if portion != nil {
             portion! += delta

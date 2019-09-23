@@ -30,9 +30,9 @@ class DetailsVC: UIViewController {
     }
     
     func initData(food: FoodItem) {
-        guard let foodInfo = food.food else { return }
+        guard let foodInfo = food.food, let name = foodInfo.name else { return }
         self.food = food
-        titleLbl.text = foodInfo.name!
+        titleLbl.text = name
         
         userData = getUserData(food: food)
         macro = foodInfo.nutrition.getMacro(portion: food.delta)
