@@ -55,7 +55,7 @@ class FoodService {
                 
                 self.insert(forId: json["id"].stringValue, available: foodItem.available ?? 0.0, dailyPortion: dailyPortion, handler: handler)
             } else {
-                handler(false, RequestError(message: "got empty data from server"))
+                handler(false, RequestError(localizedDescription: "got empty data from server"))
             }
         }
     }
@@ -86,12 +86,12 @@ class FoodService {
     
     func removeItem (index: Int, handler: CompletionHandler, requestHandler: @escaping CompletionHandler) {
         guard index < foods.count && index >= 0 else {
-            handler(false, LocalDataError(errDesc: "Invalid index to remove food item", failedIndex: index))
+            handler(false, LocalDataError(localizedDescription: "Invalid index to remove food item \(index)"))
             return
         }
         
         guard let food = foods[index].food, let id = food._id else {
-            handler(false, LocalDataError(errDesc: "Failed to fetch food id, food will not be removed", failedIndex: index))
+            handler(false, LocalDataError(localizedDescription: "Failed to fetch food id at index \(index), food will not be removed"))
             return
         }
         
@@ -111,7 +111,7 @@ class FoodService {
     
     func updateFood(food: FoodItem, handler: @escaping CompletionHandler) {
         guard let row = foods.firstIndex(where: { $0.food!._id == food.food!._id }) else {
-            handler(false, LocalDataError(errDesc: "Failed to find food with id \(String(describing: food.food?._id)) to update", failedIndex: nil))
+            handler(false, LocalDataError(localizedDescription: "Failed to find food with id \(String(describing: food.food?._id)) to update"))
             return
         }
         

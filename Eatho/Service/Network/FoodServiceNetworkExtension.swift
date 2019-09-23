@@ -19,7 +19,10 @@ extension FoodService {
             switch response.result {
             case .success:
                 do {
-                    guard let data = response.data else { handler(false, LocalDataError(errDesc: "failed to encode data to json", failedIndex: nil)); return }
+                    guard let data = response.data else {
+                        handler(false, LocalDataError(localizedDescription: ERROR_MSG_FAILED_JSON_ENCODE))
+                        return
+                    }
                     
                     var foodArr = [FoodItem]()
                     if let jsonArr = try JSON(data: data).array {
@@ -43,7 +46,7 @@ extension FoodService {
     
     func insertFoodRequest(foodItem: FoodItem, handler: @escaping (_: JSON?, _: Error?) -> ()) {
         guard let foodJson = foodItem.toJson(), let jsonDict = foodJson.dictionaryObject else {
-            handler(false, LocalDataError(errDesc: "food to json conversion failed", failedIndex: nil))
+            handler(false, LocalDataError(localizedDescription: ERROR_MSG_FAILED_JSON_ENCODE))
             return
         }
         
@@ -59,7 +62,7 @@ extension FoodService {
                 if let data = response.data {
                     handler(JSON(data), nil)
                 } else {
-                    handler(nil, RequestError(message: ERROR_MSG_EMPTY_RESPONSE))
+                    handler(nil, RequestError(localizedDescription: ERROR_MSG_EMPTY_RESPONSE))
                 }
             case .failure(let error):
                 debugPrint(error)
@@ -91,7 +94,7 @@ extension FoodService {
             switch response.result {
             case .success:
                 guard let data = response.data else {
-                    handler(false, RequestError(message: ERROR_MSG_EMPTY_RESPONSE))
+                    handler(false, RequestError(localizedDescription: ERROR_MSG_EMPTY_RESPONSE))
                     return
                 }
                 

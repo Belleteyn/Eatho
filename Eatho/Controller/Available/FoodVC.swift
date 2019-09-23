@@ -34,11 +34,7 @@ class FoodVC: UIViewController {
                 self.spinner.stopAnimating()
                 
                 if let error = error {
-                    if let error = error as? LocalDataError {
-                        self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.errDesc)
-                    } else {
-                        self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.localizedDescription)
-                    }
+                    self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.localizedDescription)
                     return
                 }
                 

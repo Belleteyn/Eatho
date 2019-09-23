@@ -13,7 +13,7 @@ enum DataParseError: Error {
 }
 
 struct RequestError: Error {
-    let message: String
+    let localizedDescription: String
 }
 
 struct ParsingError: Error {
@@ -21,8 +21,7 @@ struct ParsingError: Error {
 }
 
 struct LocalDataError: Error {
-    let errDesc: String
-    let failedIndex: Int?
+    let localizedDescription: String
 }
 
 // Error messages

@@ -49,11 +49,7 @@ class AviailableVC: FoodVC {
             }
             
             if let error = error {
-                if let localDataErr = error as? LocalDataError {
-                    self.showErrorAlert(title: "Refresh failed", message: "\(ERROR_MSG_FAILED_JSON_ENCODE)\n\(localDataErr.errDesc)")
-                } else {
-                    self.showErrorAlert(title: "Refresh failed", message: error.localizedDescription)
-                }
+                self.showErrorAlert(title: "Refresh failed", message: error.localizedDescription)
             } else {
                 self.reloadTable()
             }
@@ -96,11 +92,7 @@ extension AviailableVC: UITableViewDataSource {
             FoodService.instance.removeItem(index: indexPath.row, handler: { (localRemoveSucceeded, error) in
                 
                 if let error = error {
-                    if let localDataErr = error as? LocalDataError {
-                        self.showErrorAlert(title: "Unable to remove data", message: localDataErr.errDesc)
-                    } else {
-                        self.showErrorAlert(title: "Unable to remove data", message: error.localizedDescription)
-                    }
+                    self.showErrorAlert(title: "Unable to remove data", message: error.localizedDescription)
                     return
                 }
                 
@@ -108,11 +100,7 @@ extension AviailableVC: UITableViewDataSource {
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             }, requestHandler: { (remoteRemoveSucceeded, error) in
                 if let error = error {
-                    if let localDataErr = error as? LocalDataError {
-                        self.showErrorAlert(title: "Remove failed", message: localDataErr.errDesc)
-                    } else {
-                        self.showErrorAlert(title: "Remove failed", message: error.localizedDescription)
-                    }
+                    self.showErrorAlert(title: "Remove failed", message: error.localizedDescription)
                     return
                 }
                 

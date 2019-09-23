@@ -81,11 +81,7 @@ class EditDetailsVC: UIViewController {
         FoodService.instance.updateFood(food: food) {(success, error) in
             self.spinner.stopAnimating()
             if let error = error {
-                if let err = error as? LocalDataError {
-                    self.showErrorAlert(title: "Update failed", message: err.errDesc)
-                } else {
-                    self.showErrorAlert(title: "Update failed", message: error.localizedDescription)
-                }
+                self.showErrorAlert(title: "Update failed", message: error.localizedDescription)
                 return
             }
             

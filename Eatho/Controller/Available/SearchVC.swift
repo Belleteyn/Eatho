@@ -100,11 +100,7 @@ extension SearchVC: UISearchResultsUpdating {
                 self.spinner.stopAnimating()
                 
                 if let error = error {
-                    if let error = error as? RequestError {
-                        self.showErrorAlert(title: ERROR_TITLE_SEARCH_FAILED, message: error.message)
-                    } else {
-                        self.showErrorAlert(title: ERROR_TITLE_SEARCH_FAILED, message: error.localizedDescription)
-                    }
+                    self.showErrorAlert(title: ERROR_TITLE_SEARCH_FAILED, message: error.localizedDescription)
                 }
                 
                 self.foodTable.reloadData()

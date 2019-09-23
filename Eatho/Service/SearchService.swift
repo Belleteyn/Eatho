@@ -34,7 +34,7 @@ class SearchService {
             case .success:
                 do {
                     guard let data = response.data else {
-                        handler(false, RequestError(message: ERROR_MSG_SEARCH_FAILED))
+                        handler(false, RequestError(localizedDescription: ERROR_MSG_SEARCH_FAILED))
                         return
                     }
                     

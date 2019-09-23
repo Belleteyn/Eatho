@@ -113,13 +113,7 @@ class CreationVC: UIViewController {
         FoodService.instance.createNewFood(foodItem: food) { (success, error) in
             self.spinner.stopAnimating()
             if let error = error {
-                if let err = error as? LocalDataError {
-                    self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: err.errDesc)
-                } else if let err = error as? RequestError {
-                    self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: err.message)
-                } else {
-                    self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: error.localizedDescription)
-                }
+                self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: error.localizedDescription)
                 return
             }
             
