@@ -41,7 +41,6 @@ extension UIView {
         
         UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIView.KeyframeAnimationOptions(rawValue: curve), animations: {
             self.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: self.frame.width, height: self.frame.height + deltaY)
-            print(self.frame.height)
         }) { (true) in
             self.layoutIfNeeded()
         }
