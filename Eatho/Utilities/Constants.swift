@@ -82,6 +82,7 @@ let EATHO_YELLOW_DARK = #colorLiteral(red: 0.8470044949, green: 0.6122924059, bl
 let EATHO_PURPLE = #colorLiteral(red: 0.5568627451, green: 0.5490196078, blue: 0.9137254902, alpha: 1)
 let EATHO_LIGHT_PURPLE = #colorLiteral(red: 0.6745098039, green: 0.6235294118, blue: 0.9882352941, alpha: 1)
 let EATHO_LIGHT_PURPLE_OPACITY50 = #colorLiteral(red: 0.6745098039, green: 0.6235294118, blue: 0.9882352941, alpha: 0.5)
+let EATHO_LIGHT_PURPLE_OPACITY30 = #colorLiteral(red: 0.6745098039, green: 0.6235294118, blue: 0.9882352941, alpha: 0.3)
 let EATHO_LIGHT_PURPLE_DARK = #colorLiteral(red: 0.4353762117, green: 0.4024698701, blue: 0.6378767753, alpha: 1)
 
 let EATHO_PROTEINS = #colorLiteral(red: 0.6745098039, green: 0.6235294118, blue: 0.9882352941, alpha: 1)
