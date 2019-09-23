@@ -21,8 +21,16 @@ class CreationVC: UIViewController {
     private func isEnclosedCell(index: Int) -> Bool {
         return !(index == 0 || index == 2 || index == 3 || index == 6 || index == 11)
     }
+    
+    private let requiredCellsIndices = [0, 2, 3, 6]
     private func isRequiredFieldsFilled() -> Bool {
-        return nutritionalValues[0] != -1 && nutritionalValues[2] != -1 && nutritionalValues[3] != -1 && nutritionalValues[6] != -1
+        for index in requiredCellsIndices {
+            if nutritionalValues[index] == -1 {
+                return false
+            }
+        }
+        
+        return true
     }
     
     // Input values
@@ -46,15 +54,31 @@ class CreationVC: UIViewController {
         self.view.addGestureRecognizer(tap)
     }
     
+    func highlightRequiredRows() {
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SingleInputCell {
+            cell.highlight()
+        }
+        
+        for index in requiredCellsIndices {
+            if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 1)) as? SingleInputCell {
+                cell.highlight()
+            }
+        }
+    }
+    
     @objc func tapHandler() {
         self.view.endEditing(false)
     }
 
     // Actions
     @IBAction func saveClicked(_ sender: Any) {
+        for cell in tableView.visibleCells {
+            (cell as! SingleInputCell).reset()
+        }
+        
         if !isRequiredFieldsFilled() || name == nil {
-            print("not all required fields were filled")
-            //TODO: show error
+            highlightRequiredRows()
+            showInfoAlert(title: "Please enter data", message: "All required fields must be filled")
             return
         }
         
@@ -142,6 +166,7 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
         
         switch indexPath.section {
+            
         /* desc section */
         case 0:
             if indexPath.row == 0 {
