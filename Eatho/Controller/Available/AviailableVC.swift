@@ -20,7 +20,6 @@ class AviailableVC: FoodVC {
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NOTIF_FOOD_DATA_CHANGED, object: nil)
         
         configureRefreshControl()
-//        registerForPreviewing(with: self, sourceView: foodTable)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,18 +43,26 @@ class AviailableVC: FoodVC {
     
     @objc func handleRefresh() {
         FoodService.instance.getFood(handler: { (success, error) in
-            self.reloadTable()
-            
             // Dismiss the refresh control.
             DispatchQueue.main.async {
                 self.foodTable.refreshControl?.endRefreshing()
+            }
+            
+            if let error = error {
+                if let localDataErr = error as? LocalDataError {
+                    self.showErrorAlert(title: "Refresh failed", message: "\(ERROR_MSG_FAILED_JSON_ENCODE)\n\(localDataErr.errDesc)")
+                } else {
+                    self.showErrorAlert(title: "Refresh failed", message: error.localizedDescription)
+                }
+            } else {
+                self.reloadTable()
             }
         })
     }
     
     @objc private func updateData(_ notification: Notification) {
-        if let info = notification.userInfo {
-            self.foodTable.reloadRows(at: [IndexPath(row: info["index"] as! Int, section: 0)], with: .automatic)
+        if let info = notification.userInfo, let index = info["index"] as? Int {
+            self.foodTable.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         } else {
             self.reloadTable()
         }
@@ -69,23 +76,46 @@ extension AviailableVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell") as? AvailableFoodCell {
-            if (indexPath.row < FoodService.instance.foods.count) {
-                let food = FoodService.instance.foods[indexPath.row]
-                cell.updateViews(foodItem: food)
-                return cell
-            }
-        }
-        return AvailableFoodCell()
+        guard indexPath.row < FoodService.instance.foods.count else { return AvailableFoodCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FoodCell") as? AvailableFoodCell else { return AvailableFoodCell() }
+        
+        let food = FoodService.instance.foods[indexPath.row]
+        cell.updateViews(foodItem: food)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            
+            guard indexPath.row < FoodService.instance.foods.count else {
+                self.showErrorAlert(title: "Remove failed", message: "Failed to remove row \(indexPath.row): value is too big")
+                success(false)
+                return
+            }
+            
             FoodService.instance.removeItem(index: indexPath.row, handler: { (localRemoveSucceeded, error) in
+                
+                if let error = error {
+                    if let localDataErr = error as? LocalDataError {
+                        self.showErrorAlert(title: "Unable to remove data", message: localDataErr.errDesc)
+                    } else {
+                        self.showErrorAlert(title: "Unable to remove data", message: error.localizedDescription)
+                    }
+                    return
+                }
+                
                 success(localRemoveSucceeded)
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             }, requestHandler: { (remoteRemoveSucceeded, error) in
-                //todo show error
+                if let error = error {
+                    if let localDataErr = error as? LocalDataError {
+                        self.showErrorAlert(title: "Remove failed", message: localDataErr.errDesc)
+                    } else {
+                        self.showErrorAlert(title: "Remove failed", message: error.localizedDescription)
+                    }
+                    return
+                }
+                
                 self.loadData()
             })
         }

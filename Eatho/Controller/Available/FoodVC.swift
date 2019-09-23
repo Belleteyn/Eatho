@@ -32,6 +32,16 @@ class FoodVC: UIViewController {
             
             FoodService.instance.getFood(handler: { (success, error) in
                 self.spinner.stopAnimating()
+                
+                if let error = error {
+                    if let error = error as? LocalDataError {
+                        self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.errDesc)
+                    } else {
+                        self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.localizedDescription)
+                    }
+                    return
+                }
+                
                 self.reloadTable()
             })
         } else {
@@ -56,7 +66,10 @@ class FoodVC: UIViewController {
         guard let editVC = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
         
         present(editVC, animated: true, completion: nil)
-        editVC.setupView(title: FoodService.instance.foods[index].food!.name!, food: FoodService.instance.foods[index])
+        
+        let foodItem = FoodService.instance.foods[index]
+        guard let food = foodItem.food, let name = food.name else { return }
+        editVC.setupView(title: name, food: foodItem)
     }
 }
 

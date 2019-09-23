@@ -80,11 +80,16 @@ class EditDetailsVC: UIViewController {
         spinner.startAnimating()
         FoodService.instance.updateFood(food: food) {(success, error) in
             self.spinner.stopAnimating()
-            if (success) {
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                print("failed to update user data")
+            if let error = error {
+                if let err = error as? LocalDataError {
+                    self.showErrorAlert(title: "Update failed", message: err.errDesc)
+                } else {
+                    self.showErrorAlert(title: "Update failed", message: error.localizedDescription)
+                }
+                return
             }
+            
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
