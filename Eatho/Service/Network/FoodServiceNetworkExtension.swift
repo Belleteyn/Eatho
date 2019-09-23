@@ -12,81 +12,88 @@ import SwiftyJSON
 
 extension FoodService {
     
-    func get(appendHandler: @escaping (_: FoodItem) -> (), handler: @escaping CompletionHandler) {
+    func get(dataHandler: @escaping (_: [FoodItem]) -> (), handler: @escaping CompletionHandler) {
         let params = AuthService.instance.credentials
         
         Alamofire.request(URL_AVAILABLE, method: .get, parameters: params.dictionaryObject, encoding: URLEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
             switch response.result {
             case .success:
                 do {
-                    guard let data = response.data else { return }
+                    guard let data = response.data else { handler(false, LocalDataError(errDesc: "failed to encode data to json", failedIndex: nil)); return }
                     
+                    var foodArr = [FoodItem]()
                     if let jsonArr = try JSON(data: data).array {
                         for item in jsonArr {
                             let food = FoodItem(json: item)
-                            appendHandler(food)
+                            foodArr.append(food)
                         }
                         
+                        dataHandler(foodArr.reversed())
                         handler(true, nil)
                     }
                 } catch let error {
-                    debugPrint("available foods json parsing error:", error)
                     handler(false, error)
                 }
                 
             case .failure(let error):
-                debugPrint(error as Any)
                 handler(false, error)
             }
         }
     }
     
-    func insertFoodRequest(foodItem: FoodItem, handler: @escaping (_: JSON?) -> ()) {
-        guard let food = foodItem.food else { handler(false); return }
+    func insertFoodRequest(foodItem: FoodItem, handler: @escaping (_: JSON?, _: Error?) -> ()) {
+        guard let foodJson = foodItem.toJson(), let jsonDict = foodJson.dictionaryObject else {
+            handler(false, LocalDataError(errDesc: "food to json conversion failed", failedIndex: nil))
+            return
+        }
+        
         let body: [String: Any] = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
-            "food": [
-                "name": food.name!,
-                "type": food.type!,
-                "calories": food.nutrition.calories.total!,
-                "carbs": food.nutrition.carbs.total!,
-                "fats": food.nutrition.fats.total!,
-                "proteins": food.nutrition.proteins!
-            ]
+            "food": jsonDict
         ]
         
         Alamofire.request(URL_ADD_FOOD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
             switch response.result {
             case .success:
                 if let data = response.data {
-                    handler(JSON(data))
+                    handler(JSON(data), nil)
                 } else {
-                    handler(nil)
+                    handler(nil, RequestError(message: ERROR_MSG_EMPTY_RESPONSE))
                 }
             case .failure(let error):
                 debugPrint(error)
-                handler(nil)
+                handler(nil, error)
             }
         }
     }
     
     func insertRequest(forId id: String, available: Double, dailyPortion: DailyPortion, appendHandler: @escaping (_ : FoodItem) -> (), handler: @escaping CompletionHandler) {
+        
+        var info: [String: Any] = [
+            "id": id,
+            "available": available
+        ]
+        if let min = dailyPortion.min {
+            info["min"] = min
+        }
+        if let max = dailyPortion.max {
+            info["max"] = max
+        }
+        
         let body: [String: Any] = [
             "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
-            "info": [
-                "id": id,
-                "available": available,
-                "min": dailyPortion.min!,
-                "max": dailyPortion.max!
-            ]
+            "info": info
         ]
         
         Alamofire.request(URL_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             switch response.result {
             case .success:
-                guard let data = response.data else { handler(false, DataParseError.corruptedData); return }
+                guard let data = response.data else {
+                    handler(false, RequestError(message: ERROR_MSG_EMPTY_RESPONSE))
+                    return
+                }
                 
                 do {
                     if let json = try JSON(data: data).array {
@@ -99,11 +106,9 @@ extension FoodService {
                     NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
                     handler(true, nil)
                 } catch let err {
-                    debugPrint(err)
                     handler(false, err)
                 }
             case.failure(let error):
-                debugPrint(error)
                 handler(false, error)
             }
         }
@@ -121,7 +126,6 @@ extension FoodService {
             case .success:
                 handler(true, nil)
             case .failure(let err):
-                debugPrint(" # update food error: \(err)")
                 handler(false, err)
             }
         }
@@ -139,7 +143,6 @@ extension FoodService {
             case .success:
                 handler(true, nil)
             case .failure(let error):
-                debugPrint(error)
                 handler(false, error)
             }
         }
