@@ -38,6 +38,10 @@ class AlertVC: UIViewController {
         self.descriptionVal = description
     }
     
+    func setTransparentBackground() {
+        self.view.backgroundColor = UIColor.clear
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         animateClose()
@@ -48,7 +52,7 @@ class AlertVC: UIViewController {
         UIView.animate(withDuration: 0.4, animations: { () -> Void in
             self.backgroundView.frame.origin.y = self.backgroundView.frame.origin.y - 50
             
-            Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.close), userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(self.close), userInfo: nil, repeats: false)
         })
     }
     
