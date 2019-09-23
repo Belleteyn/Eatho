@@ -25,6 +25,8 @@ class DetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        subscribeToSettingsError()
     }
     
     func initData(food: FoodItem) {

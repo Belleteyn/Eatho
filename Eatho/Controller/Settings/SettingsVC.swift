@@ -26,6 +26,8 @@ class SettingsVC: UIViewController {
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         
+        subscribeToSettingsError()
+        
         // notifications
         NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_NUTRITION_CHANGED, object: nil)

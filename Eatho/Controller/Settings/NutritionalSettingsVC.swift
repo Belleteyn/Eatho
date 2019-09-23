@@ -29,6 +29,7 @@ class NutritionalSettingsVC: UIViewController {
         tableView.dataSource = self
         
         view.bindHeightToKeyboard()
+        subscribeToSettingsError()
         
         if !SettingsService.instance.userInfo.setupNutrientsFlag {
             sectionsCount = 2

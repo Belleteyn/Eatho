@@ -25,6 +25,8 @@ class EditDetailsVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        subscribeToSettingsError()
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
