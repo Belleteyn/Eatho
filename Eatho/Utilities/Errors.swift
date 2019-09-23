@@ -32,6 +32,8 @@ let ERROR_MSG_FOOD_GET_FAILED = "Failed to get food list"
 let ERROR_MSG_SEARCH_FAILED = "Food search failed"
 
 let ERROR_TITLE_SEARCH_FAILED = "Food search failed"
+let ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED = "Shopping list fetching failed"
+let ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED = "Shopping list fetching failed"
 
 // Debug errors
 let ERROR_MSG_EMPTY_RESPONSE = "Empty server response"

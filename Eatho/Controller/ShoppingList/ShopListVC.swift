@@ -45,7 +45,11 @@ class ShopListVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(authDataChanged), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         
         // init data
-        ShopListService.instance.requestData { (_, _)  in
+        ShopListService.instance.requestData { (_, error)  in
+            if let error = error {
+                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.localizedDescription)
+                return
+            }
             self.shopListTableView.reloadData()
         }
     }
@@ -61,7 +65,12 @@ class ShopListVC: UIViewController {
     
     @objc func authDataChanged() {
         if AuthService.instance.isLoggedIn {
-            ShopListService.instance.requestData { (_, _) in
+            ShopListService.instance.requestData { (_, error) in
+                if let error = error {
+                    self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.localizedDescription)
+                    return
+                }
+                
                 self.shopListTableView.reloadData()
             }
         } else {
@@ -121,18 +130,20 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
             if self.shopListTabBar.selectedItem == self.shopListTabBar.items?.first {
                 self.spinner.startAnimating()
                 
-                ShopListService.instance.removeItemFromShopList(index: indexPath.row) { (updSuccess, error) in
+                ShopListService.instance.removeItemFromShopList(index: indexPath.row) { (_, error) in
                     self.spinner.stopAnimating()
-                    if !updSuccess {
-                        print("shopping list error: failed to remove item to shopping list")
+                    if let error = error {
+                        self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.localizedDescription)
+                        return
                     }
                 }
             } else {
                 self.spinner.startAnimating()
-                ShopListService.instance.removeItemFromRecent(index: indexPath.row) { (updSuccess, error) in
+                ShopListService.instance.removeItemFromRecent(index: indexPath.row) { (_, error) in
                     self.spinner.stopAnimating()
-                    if !updSuccess {
-                        print("shopping list error: failed to remove item from recent purchases")
+                    if let error = error {
+                        self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.localizedDescription)
+                        return
                     }
                 }
             }
@@ -147,9 +158,10 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if shopListTabBar.selectedItem == shopListTabBar.items?.last {
-            ShopListService.instance.moveItemFromRecentToShopList(recentIndex: indexPath.row) { (success, error) in
-                if !success {
-                    print("shopping list error: failed to move item from recent to shopping list")
+            ShopListService.instance.moveItemFromRecentToShopList(recentIndex: indexPath.row) { (_, error) in
+                if let error = error {
+                    self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.localizedDescription)
+                    return
                 }
                 tableView.reloadData()
             }
@@ -187,11 +199,14 @@ extension ShopListVC: UITextFieldDelegate {
         let service = ShopListService.instance
         
         spinner.startAnimating()
-        service.addItem(name: name) { (success, error) in
-            if !success {
-                print("shopping list error: failed to add item to shopping list")
-            }
+        service.addItem(name: name) { (_, error) in
             self.spinner.stopAnimating()
+            
+            if let error = error {
+                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.localizedDescription)
+                return
+            }
+            
             textField.text = ""
         }
         

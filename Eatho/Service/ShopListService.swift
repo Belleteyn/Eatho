@@ -78,6 +78,13 @@ class ShopListService {
         mostRecentList = []
     }
     
+    /**
+     requests shopping list
+     
+     possible errors:
+     - server error
+     - RequestError
+     */
     func requestData(handler: @escaping CompletionHandler) {
         let query = [
             "email": AuthService.instance.userEmail,
@@ -87,28 +94,36 @@ class ShopListService {
         Alamofire.request(URL_SHOPPING_LIST_GET, method: .get, parameters: query, encoding: URLEncoding.default).validate().responseJSON { (response) in
             switch (response.result) {
             case .success:
-                if let data =  response.data {
-                    let json = JSON(data)
-                    
-                    if let shoppingList = json["shoppingList"].arrayObject as? [String] {
-                        shoppingList.forEach({ (name) in
-                            self.insert(key: name, value: false)
-                        })
-                    }
-                    
-                    if let recent = json["recentPurchases"].arrayObject as? [String] {
-                        self.mostRecentList = recent
-                    }
-                    
-                    handler(true, nil)
+                guard let data = response.data else {
+                    handler(false, RequestError(localizedDescription: ERROR_MSG_EMPTY_RESPONSE))
+                    return
                 }
+                
+                let json = JSON(data)
+                
+                if let shoppingList = json["shoppingList"].arrayObject as? [String] {
+                    shoppingList.forEach({ (name) in
+                        self.insert(key: name, value: false)
+                    })
+                }
+                
+                if let recent = json["recentPurchases"].arrayObject as? [String] {
+                    self.mostRecentList = recent
+                }
+                
+                handler(true, nil)
             case .failure(let error):
-                debugPrint(error)
                 handler(false, error)
             }
         }
     }
     
+    /**
+     requests food list with names containing `searchArg`
+     
+     possible errors:
+     - server error
+     */
     func uploadData(handler: @escaping CompletionHandler) {
         var uploadingList: [String] = []
         shoppingList.forEach { if !$0.1 { uploadingList.append($0.0) } }
