@@ -95,18 +95,35 @@ class CreationVC: UIViewController {
             max = convertMetrics(lbs: max)
         }
         
+        let calories = nutritionalValues[0], p = nutritionalValues[2], c = nutritionalValues[3], f = nutritionalValues[6]
+        let cFromFat = nutritionalValues[2] != -1 ? nutritionalValues[2] : nil
+        let fiber = nutritionalValues[4] != -1 ? nutritionalValues[4] : nil
+        let sugars = nutritionalValues[5] != -1 ? nutritionalValues[5] : nil
+        let trans = nutritionalValues[7] != -1 ? nutritionalValues[7] : nil
+        let sat = nutritionalValues[8] != -1 ? nutritionalValues[8] : nil
+        let mono = nutritionalValues[9] != -1 ? nutritionalValues[9] : nil
+        let poly = nutritionalValues[10] != -1 ? nutritionalValues[10] : nil
+        let gi = nutritionalValues[11] != -1 ? nutritionalValues[11] : nil
+        
         spinner.startAnimating()
-        let nutrition = NutritionFacts(calories: nutritionalValues[0], proteins: nutritionalValues[1], carbs: nutritionalValues[3], fats:  nutritionalValues[6], caloriesFromFat:  nutritionalValues[2], fiber:  nutritionalValues[4], sugars: nutritionalValues[5], trans: nutritionalValues[7], saturated: nutritionalValues[8], monounsaturated: nutritionalValues[9], polyunsaturated: nutritionalValues[10], gi: nutritionalValues[11])
+        let nutrition = NutritionFacts(calories: calories, proteins: p, carbs: c, fats: f, caloriesFromFat: cFromFat, fiber: fiber, sugars: sugars, trans: trans, saturated: sat, monounsaturated: mono, polyunsaturated: poly, gi: gi)
         let daily = DailyPortion(min: min, max: max)
         let food = FoodItem(name: name, type: type, availableWeight: available, nutrition: nutrition, dailyPortion: daily)
         
         FoodService.instance.createNewFood(foodItem: food) { (success, error) in
             self.spinner.stopAnimating()
-            if success {
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                //todo show error
+            if let error = error {
+                if let err = error as? LocalDataError {
+                    self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: err.errDesc)
+                } else if let err = error as? RequestError {
+                    self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: err.message)
+                } else {
+                    self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: error.localizedDescription)
+                }
+                return
             }
+            
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
