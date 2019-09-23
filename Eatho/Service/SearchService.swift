@@ -19,6 +19,13 @@ class SearchService {
         foods = []
     }
     
+    /**
+     requests food list with names containing `searchArg`
+     
+     possible errors:
+     - server error
+     - RequestError
+     */
     func requestSearch(searchArg: String, handler: @escaping CompletionHandler) {
         let params = [ "args": searchArg ]
         
@@ -26,7 +33,10 @@ class SearchService {
             switch response.result {
             case .success:
                 do {
-                    guard let data = response.data else { return }
+                    guard let data = response.data else {
+                        handler(false, RequestError(message: ERROR_MSG_SEARCH_FAILED))
+                        return
+                    }
                     
                     if let jsonArr = try JSON(data: data).array {
                         self.foods = [] //clear before
@@ -38,12 +48,10 @@ class SearchService {
                         handler(true, nil)
                     }
                 } catch let error {
-                    debugPrint("search foods json parsing error:", error)
                     handler(false, error)
                 }
                 
             case .failure(let error):
-                debugPrint(error as Any)
                 handler(false, error)
             }
         }

@@ -29,7 +29,9 @@ struct LocalDataError: Error {
 let ERROR_MSG_NETWORK_UNREACHABLE = "Sorry! App cannot get your data without internet connection 😢. \nPlease try again later 💜"
 let ERROR_MSG_FOOD_CREATION_FAILED = "Food creation error"
 let ERROR_MSG_FOOD_GET_FAILED = "Failed to get food list"
+let ERROR_MSG_SEARCH_FAILED = "Food search failed"
 
+let ERROR_TITLE_SEARCH_FAILED = "Food search failed"
 
 // Debug errors
 let ERROR_MSG_EMPTY_RESPONSE = "Empty server response"

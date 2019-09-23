@@ -88,14 +88,25 @@ class SearchVC: FoodVC {
 
 extension SearchVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text!
+        guard let searchText = searchController.searchBar.text else { return }
+        
         if searchText.isEmpty {
             SearchService.instance.clearData()
             foodTable.reloadData()
         } else {
             spinner.startAnimating()
             SearchService.instance.requestSearch(searchArg: searchText) { (success, error) in
+                
                 self.spinner.stopAnimating()
+                
+                if let error = error {
+                    if let error = error as? RequestError {
+                        self.showErrorAlert(title: ERROR_TITLE_SEARCH_FAILED, message: error.message)
+                    } else {
+                        self.showErrorAlert(title: ERROR_TITLE_SEARCH_FAILED, message: error.localizedDescription)
+                    }
+                }
+                
                 self.foodTable.reloadData()
             }
         }
