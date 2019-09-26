@@ -47,13 +47,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func openMain() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateInitialViewController()
-        self.window?.rootViewController = vc
+        
+        if let keyWindow = UIApplication.shared.keyWindow {
+            UIView.transition(with: keyWindow, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+                let oldState = UIView.areAnimationsEnabled
+                UIView.setAnimationsEnabled(false)
+                UIApplication.shared.keyWindow?.rootViewController = vc
+                UIView.setAnimationsEnabled(oldState)
+            })
+        } else {
+            self.window?.rootViewController = vc
+        }
     }
     
     private func openAuth() {
         let storyboard = UIStoryboard(name: "LoginScreen", bundle: Bundle.main)
         let vc = storyboard.instantiateInitialViewController()
-        self.window?.rootViewController = vc
+        
+        if let keyWindow = UIApplication.shared.keyWindow {
+            UIView.transition(with: keyWindow, duration: 0.4, options: .transitionFlipFromRight, animations: {
+                let oldState = UIView.areAnimationsEnabled
+                UIView.setAnimationsEnabled(false)
+                UIApplication.shared.keyWindow?.rootViewController = vc
+                UIView.setAnimationsEnabled(oldState)
+            })
+        } else {
+            self.window?.rootViewController = vc
+        }
+        
     }
     
     @objc private func authChangedHandle() {
