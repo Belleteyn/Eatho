@@ -26,6 +26,7 @@ class RegisterVC: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
