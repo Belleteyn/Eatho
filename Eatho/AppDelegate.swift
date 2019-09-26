@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(authChangedHandle), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+        authChangedHandle()
+        
         return true
     }
 
@@ -41,6 +44,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    private func openMain() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateInitialViewController()
+        self.window?.rootViewController = vc
+    }
+    
+    private func openAuth() {
+        let storyboard = UIStoryboard(name: "LoginScreen", bundle: Bundle.main)
+        let vc = storyboard.instantiateInitialViewController()
+        self.window?.rootViewController = vc
+    }
+    
+    @objc private func authChangedHandle() {
+        if AuthService.instance.isLoggedIn {
+            openMain()
+        } else {
+            openAuth()
+        }
+    }
 }
 

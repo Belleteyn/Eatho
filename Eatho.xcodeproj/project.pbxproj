@@ -21,13 +21,13 @@
 		952A6B7422E27B2700FD8D50 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7322E27B2700FD8D50 /* FoodService.swift */; };
 		952A6B7622E27CEC00FD8D50 /* AviailableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */; };
 		95324DFF22DF6149005905FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324DFE22DF6149005905FF /* AppDelegate.swift */; };
-		95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E0022DF6149005905FF /* WelcomeVC.swift */; };
 		95324E0422DF6149005905FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95324E0222DF6149005905FF /* Main.storyboard */; };
 		95324E0622DF614C005905FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95324E0522DF614C005905FF /* Assets.xcassets */; };
 		95324E0922DF614C005905FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95324E0722DF614C005905FF /* LaunchScreen.storyboard */; };
 		95324E1422DF614C005905FF /* EathoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1322DF614C005905FF /* EathoTests.swift */; };
 		95324E1F22DF614C005905FF /* EathoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1E22DF614C005905FF /* EathoUITests.swift */; };
 		95324E3122DFB978005905FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E3022DFB978005905FF /* LoginViewController.swift */; };
+		953B181E233CD55400220CE6 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 953B181D233CD55400220CE6 /* LoginScreen.storyboard */; };
 		954002022327CA9B00AED17B /* NutritionalSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002012327CA9B00AED17B /* NutritionalSettingsVC.swift */; };
 		954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002032327CAE800AED17B /* AccountSettingsVC.swift */; };
 		954002062327DAE000AED17B /* LocalizationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002052327DAE000AED17B /* LocalizationSettingsVC.swift */; };
@@ -66,6 +66,7 @@
 		958CD81622E977BA00DC6EB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81522E977BA00DC6EB6 /* Constants.swift */; };
 		958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81722E9CEA600DC6EB6 /* EathoButton.swift */; };
 		958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */; };
+		95952853233A525600707D3C /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95952852233A525600707D3C /* BaseVC.swift */; };
 		95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */; };
 		95A05A1F22F84D2B002A35B9 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A1D22F84D2B002A35B9 /* FoodCell.swift */; };
 		95A05A2222F86D04002A35B9 /* RationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A05A2122F86D04002A35B9 /* RationService.swift */; };
@@ -128,7 +129,6 @@
 		952A6B7522E27CEC00FD8D50 /* AviailableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AviailableVC.swift; sourceTree = "<group>"; };
 		95324DFB22DF6149005905FF /* Eatho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eatho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95324DFE22DF6149005905FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		95324E0022DF6149005905FF /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		95324E0322DF6149005905FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95324E0522DF614C005905FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95324E0822DF614C005905FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -140,6 +140,7 @@
 		95324E1E22DF614C005905FF /* EathoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoUITests.swift; sourceTree = "<group>"; };
 		95324E2022DF614C005905FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95324E3022DFB978005905FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		953B181D233CD55400220CE6 /* LoginScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginScreen.storyboard; sourceTree = "<group>"; };
 		954002012327CA9B00AED17B /* NutritionalSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionalSettingsVC.swift; sourceTree = "<group>"; };
 		954002032327CAE800AED17B /* AccountSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsVC.swift; sourceTree = "<group>"; };
 		954002052327DAE000AED17B /* LocalizationSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSettingsVC.swift; sourceTree = "<group>"; };
@@ -178,6 +179,7 @@
 		958CD81522E977BA00DC6EB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		958CD81722E9CEA600DC6EB6 /* EathoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoButton.swift; sourceTree = "<group>"; };
 		958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		95952852233A525600707D3C /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		95A05A1A22F84CC2002A35B9 /* RationFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationFoodCell.swift; sourceTree = "<group>"; };
 		95A05A1D22F84D2B002A35B9 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		95A05A2122F86D04002A35B9 /* RationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationService.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				95324E0222DF6149005905FF /* Main.storyboard */,
 				95324E0522DF614C005905FF /* Assets.xcassets */,
 				95324E0722DF614C005905FF /* LaunchScreen.storyboard */,
+				953B181D233CD55400220CE6 /* LoginScreen.storyboard */,
 				95324E0A22DF614C005905FF /* Info.plist */,
 				95AED1882319187A00D7BE97 /* Model.xcdatamodeld */,
 			);
@@ -362,7 +365,7 @@
 				954F4E45231D42CE0088B6DD /* Diary */,
 				956D436E22F2FEB50091C9C4 /* Settings */,
 				95501B6B232675AE00225108 /* Utils */,
-				95324E0022DF6149005905FF /* WelcomeVC.swift */,
+				95952852233A525600707D3C /* BaseVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 			files = (
 				95324E0922DF614C005905FF /* LaunchScreen.storyboard in Resources */,
 				95324E0622DF614C005905FF /* Assets.xcassets in Resources */,
+				953B181E233CD55400220CE6 /* LoginScreen.storyboard in Resources */,
 				95324E0422DF6149005905FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -750,7 +754,6 @@
 				95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */,
 				95DB28BE2328D9A6004511DD /* SingleInputCell.swift in Sources */,
 				95512AC322F089A80038790F /* SettingsVC.swift in Sources */,
-				95324E0122DF6149005905FF /* WelcomeVC.swift in Sources */,
 				954F4E4A231E39270088B6DD /* MathUtils.swift in Sources */,
 				954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */,
 				95A05A1B22F84CC2002A35B9 /* RationFoodCell.swift in Sources */,
@@ -759,6 +762,7 @@
 				95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */,
 				95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */,
 				952A6B6F22E246C700FD8D50 /* AvailableFoodCell.swift in Sources */,
+				95952853233A525600707D3C /* BaseVC.swift in Sources */,
 				95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */,
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
 				954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */,
