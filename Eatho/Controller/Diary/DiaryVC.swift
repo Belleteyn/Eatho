@@ -41,11 +41,15 @@ class DiaryVC: BaseVC {
     
     @objc func handleRefresh() {
         RationService.instance.requestRation { (success, error) in
-            self.diaryTableView.reloadData()
-            
             DispatchQueue.main.async {
                 self.diaryTableView.refreshControl?.endRefreshing()
             }
+            
+            if let error = error {
+                self.showErrorAlert(title: ERROR_TITLE_DIARY_REQUEST_FAILED, message: error.localizedDescription)
+                return
+            }
+            self.diaryTableView.reloadData()
         }
     }
     
@@ -57,9 +61,13 @@ class DiaryVC: BaseVC {
         spinner.startAnimating()
         RationService.instance.prepRation(forDays: daysPicker.selectedRow(inComponent: 0) + 1) { (success, error) in
             self.spinner.stopAnimating()
-            if success {
-                self.diaryTableView.reloadData()
+            
+            if let error = error {
+                self.showErrorAlert(title: ERROR_TITLE_DIARY_PREP_FAILED, message: error.localizedDescription)
+                return
             }
+            
+            self.diaryTableView.reloadData()
         }
     }
     
