@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "5aL-WA-Wyj"; */
+"5aL-WA-Wyj.normalTitle" = "LOGIN";
+
+/* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "MB3-hn-qzg"; */
+"MB3-hn-qzg.normalTitle" = "REGISTER";
+
+/* Class = "UITextField"; placeholder = "Confirm password"; ObjectID = "SRr-v7-Ceq"; */
+"SRr-v7-Ceq.placeholder" = "Confirm password";
+
+/* Class = "UILabel"; text = "Click here to register"; ObjectID = "aNk-nG-tTs"; */
+"aNk-nG-tTs.text" = "Click here to register";
+
+/* Class = "UILabel"; text = "Don't have an account?"; ObjectID = "h7L-L4-1D8"; */
+"h7L-L4-1D8.text" = "Don't have an account?";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "kiq-OW-hEb"; */
+"kiq-OW-hEb.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "r8L-k1-d1I"; */
+"r8L-k1-d1I.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "rub-pS-bVS"; */
+"rub-pS-bVS.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "sff-3E-nXc"; */
+"sff-3E-nXc.placeholder" = "Password";

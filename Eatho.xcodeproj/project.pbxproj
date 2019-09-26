@@ -27,7 +27,6 @@
 		95324E1422DF614C005905FF /* EathoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1322DF614C005905FF /* EathoTests.swift */; };
 		95324E1F22DF614C005905FF /* EathoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E1E22DF614C005905FF /* EathoUITests.swift */; };
 		95324E3122DFB978005905FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95324E3022DFB978005905FF /* LoginViewController.swift */; };
-		953B181E233CD55400220CE6 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 953B181D233CD55400220CE6 /* LoginScreen.storyboard */; };
 		954002022327CA9B00AED17B /* NutritionalSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002012327CA9B00AED17B /* NutritionalSettingsVC.swift */; };
 		954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002032327CAE800AED17B /* AccountSettingsVC.swift */; };
 		954002062327DAE000AED17B /* LocalizationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954002052327DAE000AED17B /* LocalizationSettingsVC.swift */; };
@@ -59,6 +58,8 @@
 		9571892C2305C61E004A3EE3 /* Nutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571892B2305C61E004A3EE3 /* Nutrition.swift */; };
 		9571892E2305CB9C004A3EE3 /* Nutrient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571892D2305CB9C004A3EE3 /* Nutrient.swift */; };
 		9572F90E22E5AD7E009C7B7B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9572F90D22E5AD7E009C7B7B /* GradientView.swift */; };
+		957E7EAC233CE45C00904D4B /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957E7EAE233CE45C00904D4B /* LoginScreen.storyboard */; };
+		957E7EB3233CE80A00904D4B /* PasswordRecoveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E7EB2233CE80A00904D4B /* PasswordRecoveryVC.swift */; };
 		958195B4230ADD4D00B08C92 /* FoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958195B3230ADD4D00B08C92 /* FoodVC.swift */; };
 		958195B6230B22E700B08C92 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958195B5230B22E700B08C92 /* SearchService.swift */; };
 		958195B8230B2DA100B08C92 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958195B7230B2DA100B08C92 /* Food.swift */; };
@@ -140,7 +141,6 @@
 		95324E1E22DF614C005905FF /* EathoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EathoUITests.swift; sourceTree = "<group>"; };
 		95324E2022DF614C005905FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95324E3022DFB978005905FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		953B181D233CD55400220CE6 /* LoginScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginScreen.storyboard; sourceTree = "<group>"; };
 		954002012327CA9B00AED17B /* NutritionalSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionalSettingsVC.swift; sourceTree = "<group>"; };
 		954002032327CAE800AED17B /* AccountSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsVC.swift; sourceTree = "<group>"; };
 		954002052327DAE000AED17B /* LocalizationSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSettingsVC.swift; sourceTree = "<group>"; };
@@ -172,6 +172,9 @@
 		9571892B2305C61E004A3EE3 /* Nutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrition.swift; sourceTree = "<group>"; };
 		9571892D2305CB9C004A3EE3 /* Nutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
 		9572F90D22E5AD7E009C7B7B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		957E7EAD233CE45C00904D4B /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
+		957E7EAF233CE46100904D4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
+		957E7EB2233CE80A00904D4B /* PasswordRecoveryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryVC.swift; sourceTree = "<group>"; };
 		958195B3230ADD4D00B08C92 /* FoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodVC.swift; sourceTree = "<group>"; };
 		958195B5230B22E700B08C92 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		958195B7230B2DA100B08C92 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -305,7 +308,7 @@
 				95324E0222DF6149005905FF /* Main.storyboard */,
 				95324E0522DF614C005905FF /* Assets.xcassets */,
 				95324E0722DF614C005905FF /* LaunchScreen.storyboard */,
-				953B181D233CD55400220CE6 /* LoginScreen.storyboard */,
+				957E7EAE233CE45C00904D4B /* LoginScreen.storyboard */,
 				95324E0A22DF614C005905FF /* Info.plist */,
 				95AED1882319187A00D7BE97 /* Model.xcdatamodeld */,
 			);
@@ -480,6 +483,7 @@
 			children = (
 				95324E3022DFB978005905FF /* LoginViewController.swift */,
 				958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */,
+				957E7EB2233CE80A00904D4B /* PasswordRecoveryVC.swift */,
 			);
 			path = AuthControllers;
 			sourceTree = "<group>";
@@ -643,7 +647,7 @@
 			files = (
 				95324E0922DF614C005905FF /* LaunchScreen.storyboard in Resources */,
 				95324E0622DF614C005905FF /* Assets.xcassets in Resources */,
-				953B181E233CD55400220CE6 /* LoginScreen.storyboard in Resources */,
+				957E7EAC233CE45C00904D4B /* LoginScreen.storyboard in Resources */,
 				95324E0422DF6149005905FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -800,6 +804,7 @@
 				95A5B29F230EDF36002F54F9 /* UserNutrition.swift in Sources */,
 				95324E3122DFB978005905FF /* LoginViewController.swift in Sources */,
 				954002022327CA9B00AED17B /* NutritionalSettingsVC.swift in Sources */,
+				957E7EB3233CE80A00904D4B /* PasswordRecoveryVC.swift in Sources */,
 				95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */,
 				958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */,
 				956D437422F316E20091C9C4 /* KeyboardBindedView.swift in Sources */,
@@ -871,6 +876,15 @@
 				95A5835D231817E80041D797 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		957E7EAE233CE45C00904D4B /* LoginScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				957E7EAD233CE45C00904D4B /* ru */,
+				957E7EAF233CE46100904D4B /* Base */,
+			);
+			name = LoginScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
