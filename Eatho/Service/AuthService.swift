@@ -42,7 +42,10 @@ class AuthService {
     
     var userEmail: String {
         get {
-            return defaults.string(forKey: USER_LOGIN_EMAIL)!
+            if let email = defaults.string(forKey: USER_LOGIN_EMAIL) {
+                return email
+            }
+            return ""
         }
         
         set {
@@ -65,8 +68,7 @@ class AuthService {
             "password": password
         ]
         
-        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER)
-            .responseJSON(completionHandler: {
+        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON(completionHandler: {
             (response) in
             switch response.result {
             case .success:
@@ -84,15 +86,32 @@ class AuthService {
             "email": email,
             "password": password
         ]
-        Alamofire.request(URL_LOGIN, method: .get, parameters: params, encoding: URLEncoding.default, headers: JSON_HEADER)
-            .responseJSON(completionHandler: {
+        
+        Alamofire.request(URL_LOGIN, method: .get, parameters: params, encoding: URLEncoding.default, headers: JSON_HEADER).validate().responseJSON(completionHandler: {
             (response) in
             switch response.result {
             case .success:
                 self.handleResponse(result: response.result)
                 handler(true, nil)
             case .failure(let error):
-                debugPrint(error)
+                do {
+                    if let data = response.data {
+                        let errJson = try JSON(data: data)
+                        print(errJson)
+                        if let code = errJson["code"].int {
+                            if code == 1 {
+                                handler(false, AuthError.login)
+                            } else {
+                                handler(false, AuthError.password)
+                            }
+                            return
+                        }
+                    }
+                } catch {
+                    print("login response: json parsing failed")
+                }
+                
+                
                 handler(false, error)
             }
         })
@@ -100,24 +119,26 @@ class AuthService {
     
     func logOut() {
         self.token = ""
+        self.userEmail = ""
         self.isLoggedIn = false
+        
+        // clear saved data on sign out
+        defaults.set(false, forKey: LOGGED_IN_KEY)
+        defaults.set(nil, forKey: TOKEN_KEY)
+        defaults.set(nil, forKey: USER_LOGIN_EMAIL)
+        defaults.set(nil, forKey: IS_CONFIGURED)
+        defaults.set(nil, forKey: USER_INFO)
+        
+        NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
     }
     
     private func handleResponse(result: Result<Any>) {
         if let json = result.value as? Dictionary<String, Any> {
-            if let receivedToken = json["token"] as? String {
+            if let receivedToken = json["token"] as? String, let receivedEmail = json["email"] as? String {
                 self.token = receivedToken
-            } else {
-                return
-            }
-            
-            if let receivedEmail = json["email"] as? String {
                 self.userEmail = receivedEmail
-            } else {
-                return
+                self.isLoggedIn = true
             }
-            
-            self.isLoggedIn = true
         }
     }
 }
