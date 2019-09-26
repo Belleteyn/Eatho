@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RationVC: UIViewController {
+class RationVC: BaseVC {
     
     // Outlets
     @IBOutlet weak var rationTableView: UITableView!

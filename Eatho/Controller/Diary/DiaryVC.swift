@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiaryVC: UIViewController {
+class DiaryVC: BaseVC {
 
     @IBOutlet weak var daysPicker: UIPickerView!
     @IBOutlet weak var diaryTableView: UITableView!

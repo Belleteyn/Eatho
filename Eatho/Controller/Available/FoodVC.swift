@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FoodVC: UIViewController {
+class FoodVC: BaseVC {
 
     @IBOutlet weak var foodTable: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!

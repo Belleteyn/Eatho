@@ -16,7 +16,7 @@ enum UserInfoInputType {
     case Weight, Height, Age, CaloriesShortage
 }
 
-class NutritionalSettingsVC: UIViewController {
+class NutritionalSettingsVC: BaseVC {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,7 +29,6 @@ class NutritionalSettingsVC: UIViewController {
         tableView.dataSource = self
         
         view.bindHeightToKeyboard()
-        subscribeToSettingsError()
         
         if !SettingsService.instance.userInfo.setupNutrientsFlag {
             sectionsCount = 2

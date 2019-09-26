@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountSettingsVC: UIViewController {
+class AccountSettingsVC: BaseVC {
 
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!

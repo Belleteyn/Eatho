@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocalizationSettingsVC: UIViewController {
+class LocalizationSettingsVC: BaseVC {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,8 +17,6 @@ class LocalizationSettingsVC: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        subscribeToSettingsError()
     }
     
 }

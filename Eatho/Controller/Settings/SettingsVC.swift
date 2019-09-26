@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsVC: UIViewController {
+class SettingsVC: BaseVC {
 
     //Outlets
     @IBOutlet weak var settingsTableView: UITableView!
@@ -25,8 +25,6 @@ class SettingsVC: UIViewController {
         
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
-        
-        subscribeToSettingsError()
         
         // notifications
         NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_AUTH_DATA_CHANGED, object: nil)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailsVC: UIViewController {
+class DetailsVC: BaseVC {
 
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -25,8 +25,6 @@ class DetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        subscribeToSettingsError()
     }
     
     func initData(food: FoodItem) {

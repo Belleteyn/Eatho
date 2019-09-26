@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScanBarcodeVC: UIViewController {
+class ScanBarcodeVC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()

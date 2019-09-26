@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShopListVC: UIViewController {
+class ShopListVC: BaseVC {
 
     // Outlets
     @IBOutlet weak var shopListTabBar: UITabBar!

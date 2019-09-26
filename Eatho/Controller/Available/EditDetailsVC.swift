@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditDetailsVC: UIViewController {
+class EditDetailsVC: BaseVC {
 
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -24,8 +24,6 @@ class EditDetailsVC: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        
-        subscribeToSettingsError()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         tap.cancelsTouchesInView = false

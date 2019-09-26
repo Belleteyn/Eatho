@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreationVC: UIViewController {
+class CreationVC: BaseVC {
 
     // Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -47,7 +47,6 @@ class CreationVC: UIViewController {
         tableView.dataSource = self
         
         tableView.bindHeightToKeyboard()
-        subscribeToSettingsError()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         tap.cancelsTouchesInView = false

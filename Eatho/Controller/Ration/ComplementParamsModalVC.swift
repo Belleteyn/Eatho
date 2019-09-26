@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComplementParamsModalVC: UIViewController {
+class ComplementParamsModalVC: BaseVC {
 
     @IBOutlet weak var typeIcon: UIImageView!
     @IBOutlet weak var name: UILabel!
