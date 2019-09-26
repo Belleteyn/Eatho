@@ -78,6 +78,7 @@
 		95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */; };
 		95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD32306A89700685806 /* NutritionChartView.swift */; };
 		95D3DFD62306E37400685806 /* EditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD52306E37400685806 /* EditableCell.swift */; };
+		95D7768E233D0EBE00CD72BA /* RegisterNextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D7768D233D0EBE00CD72BA /* RegisterNextVC.swift */; };
 		95DB28BE2328D9A6004511DD /* SingleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BD2328D9A6004511DD /* SingleInputCell.swift */; };
 		95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BF232928C0004511DD /* DoubleInputCell.swift */; };
 		95DB28C223298640004511DD /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28C123298640004511DD /* SwitchCell.swift */; };
@@ -195,6 +196,7 @@
 		95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationNutrientsView.swift; sourceTree = "<group>"; };
 		95D3DFD32306A89700685806 /* NutritionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionChartView.swift; sourceTree = "<group>"; };
 		95D3DFD52306E37400685806 /* EditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCell.swift; sourceTree = "<group>"; };
+		95D7768D233D0EBE00CD72BA /* RegisterNextVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNextVC.swift; sourceTree = "<group>"; };
 		95DB28BD2328D9A6004511DD /* SingleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputCell.swift; sourceTree = "<group>"; };
 		95DB28BF232928C0004511DD /* DoubleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleInputCell.swift; sourceTree = "<group>"; };
 		95DB28C123298640004511DD /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 			children = (
 				95324E3022DFB978005905FF /* LoginViewController.swift */,
 				958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */,
+				95D7768D233D0EBE00CD72BA /* RegisterNextVC.swift */,
 				957E7EB2233CE80A00904D4B /* PasswordRecoveryVC.swift */,
 			);
 			path = AuthControllers;
@@ -714,12 +717,16 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Eatho/Pods-Eatho-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,6 +817,7 @@
 				956D437422F316E20091C9C4 /* KeyboardBindedView.swift in Sources */,
 				958195B8230B2DA100B08C92 /* Food.swift in Sources */,
 				956D438022F6ADF10091C9C4 /* ShoppingListCell.swift in Sources */,
+				95D7768E233D0EBE00CD72BA /* RegisterNextVC.swift in Sources */,
 				95F7C80D23362D9F003BEE5B /* AlertVC.swift in Sources */,
 				95F9711F22EE45AE00BD6B87 /* BarcodeButton.swift in Sources */,
 				956D437C22F579BF0091C9C4 /* LabeledTextField.swift in Sources */,

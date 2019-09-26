@@ -76,7 +76,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registerPressed(_ sender: Any) {
-        performSegue(withIdentifier: TO_REGISTER_SEGUE, sender: nil)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "RegisterVC") as? RegisterVC {
+            vc.parentVC = self
+            present(vc, animated: true)
+        }
+    }
+    
+    @IBAction func pwdRecoveryPressed(_ sender: Any) {
+        performSegue(withIdentifier: TO_PWD_RECOVERY_SEGUE, sender: nil)
     }
     
     @objc func handleTap() {

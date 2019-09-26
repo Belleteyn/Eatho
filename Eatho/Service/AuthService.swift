@@ -75,7 +75,21 @@ class AuthService {
                 self.handleResponse(result: response.result)
                 handler(true, nil)
             case .failure(let error):
-                debugPrint(error)
+                handler(false, error)
+            }
+        })
+    }
+    
+    func checkEmailToRegistration(email: String, handler: @escaping CompletionHandler) {
+        let body: [String : Any] = [ "email": email ]
+        
+        Alamofire.request(URL_CHECK_EMAIL, method: .get, parameters: body, encoding: URLEncoding.default).validate().responseJSON(completionHandler: {
+            (response) in
+            switch response.result {
+            case .success:
+                self.handleResponse(result: response.result)
+                handler(true, nil)
+            case .failure(let error):
                 handler(false, error)
             }
         })
@@ -110,7 +124,6 @@ class AuthService {
                 } catch {
                     print("login response: json parsing failed")
                 }
-                
                 
                 handler(false, error)
             }

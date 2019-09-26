@@ -17,6 +17,7 @@ let URL_BASE = "http://127.0.0.1:3001"
 let URL_API = "http://127.0.0.1:3001/api"
 
 let URL_REGISTER = "\(URL_BASE)/auth/register"
+let URL_CHECK_EMAIL = "\(URL_BASE)/auth/emailCheck"
 let URL_LOGIN = "\(URL_BASE)/auth/login"
 
 let URL_AVAILABLE = "\(URL_API)/available"
@@ -61,7 +62,9 @@ let JSON_HEADER: [String : String] = ["Content-Type": "application/json; charset
 // segues
 let TO_LOGIN_SEGUE = "toLoginSegue"
 let TO_REGISTER_SEGUE = "toRegisterSegue"
+let TO_PWD_RECOVERY_SEGUE = "toPwdRecoverySegue"
 let TO_AVAILABLE_SEGUE = "toAvailableSegue"
+let TO_REG_PASSWORD = "toRegPasswordSegue"
 let UNWIND_TO_WELCOME = "unwindToWelcome"
 
 //  colors
