@@ -9,57 +9,128 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import KeychainAccess
 
 class AuthService {
     static let instance = AuthService()
     
     let defaults = UserDefaults.standard
     
+    var token: String?
+    
+    private var email: String?
+    private var pwd: String?
+    
     var isLoggedIn: Bool {
         get {
-            return defaults.bool(forKey: LOGGED_IN_KEY)
-        }
-        
-        set {
-            let oldValue = defaults.bool(forKey: LOGGED_IN_KEY)
-            defaults.set(newValue, forKey: LOGGED_IN_KEY)
-            
-            if (newValue != oldValue) {
-                NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
-            }
-        }
-    }
-    
-    var token: String {
-        get {
-            return defaults.string(forKey: TOKEN_KEY)!
-        }
-        
-        set {
-            defaults.setValue(newValue, forKey: TOKEN_KEY)
+            return email != nil && pwd != nil
         }
     }
     
     var userEmail: String {
         get {
-            if let email = defaults.string(forKey: USER_LOGIN_EMAIL) {
-                return email
-            }
-            return ""
+            return email ?? ""
         }
         
         set {
-            defaults.setValue(newValue, forKey: USER_LOGIN_EMAIL)
+            email = newValue
         }
     }
     
     var credentials: JSON {
         get {
             return [
-                "email": AuthService.instance.userEmail,
-                "token": AuthService.instance.token
+                "token": AuthService.instance.token ?? ""
             ]
         }
+    }
+    
+    init() {
+        readKeychain()
+    }
+    
+    private func readKeychain() {
+        let keychain = Keychain(service: KEYCHAIN_SERVICE)
+        let keys = keychain.allKeys()
+        
+        if !keys.isEmpty {
+            let email = keys[0]
+            let pwd = keychain[email]
+            
+            self.email = email
+            self.pwd = pwd
+        }
+        
+        print("READ \(email) \(pwd)")
+    }
+    
+    private func writeKeychain(email: String, password: String?) {
+        let keychain = Keychain(service: KEYCHAIN_SERVICE)
+        keychain[email] = password
+        
+        self.email = email
+        self.pwd = password
+        
+        print("WRITE \(email) \(pwd)")
+    }
+    
+    func login(completion: @escaping CompletionHandler) {
+        guard let email = email, let pwd = pwd else {
+            completion(false, AuthError.login)
+            return
+        }
+        
+        print("DEFAULT LOGIN AS ", email, pwd)
+        login(email: email, password: pwd, handler: completion)
+    }
+    
+    func login(email: String, password: String, handler: @escaping CompletionHandler) {
+        loginOnServer(email: email, password: password) { (success, error) in
+            if error == nil {
+                self.writeKeychain(email: email, password: password)
+            }
+            
+            print("token: \(self.token)")
+            handler(success, error)
+        }
+    }
+    
+    func logOut() {
+        guard let email = email else { return }
+        guard let pwd = pwd else { return }
+        
+        // invalidate token on server
+        invalidateToken(email: email, password: pwd) { (_, _) in
+            //todo: try again?
+        }
+        
+        // remove password from keychain
+        writeKeychain(email: email, password: nil)
+        
+        self.token = nil
+        self.email = nil
+        self.pwd = nil
+        
+        // clear saved data on sign out
+        defaults.set(nil, forKey: IS_CONFIGURED)
+        defaults.set(nil, forKey: USER_INFO)
+        
+        NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+    }
+    
+    func checkEmailToRegistration(email: String, handler: @escaping CompletionHandler) {
+        let body: [String : Any] = [ "email": email ]
+        
+        Alamofire.request(URL_CHECK_EMAIL, method: .get, parameters: body, encoding: URLEncoding.default).validate().responseJSON(completionHandler: {
+            (response) in
+            switch response.result {
+            case .success:
+                self.updateLocalToken(result: response.result)
+                handler(true, nil)
+            case .failure(let error):
+                handler(false, error)
+            }
+        })
     }
     
     func register(email: String, password: String, handler: @escaping CompletionHandler) {
@@ -72,85 +143,21 @@ class AuthService {
             (response) in
             switch response.result {
             case .success:
-                self.handleResponse(result: response.result)
-                handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
-            }
-        })
-    }
-    
-    func checkEmailToRegistration(email: String, handler: @escaping CompletionHandler) {
-        let body: [String : Any] = [ "email": email ]
-        
-        Alamofire.request(URL_CHECK_EMAIL, method: .get, parameters: body, encoding: URLEncoding.default).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-                self.handleResponse(result: response.result)
-                handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
-            }
-        })
-    }
-    
-    func login(email: String, password: String, handler: @escaping CompletionHandler) {
-        let params: [String : Any] = [
-            "email": email,
-            "password": password
-        ]
-        
-        Alamofire.request(URL_LOGIN, method: .get, parameters: params, encoding: URLEncoding.default, headers: JSON_HEADER).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-                self.handleResponse(result: response.result)
-                handler(true, nil)
-            case .failure(let error):
-                do {
-                    if let data = response.data {
-                        let errJson = try JSON(data: data)
-                        print(errJson)
-                        if let code = errJson["code"].int {
-                            if code == 1 {
-                                handler(false, AuthError.login)
-                            } else {
-                                handler(false, AuthError.password)
-                            }
-                            return
-                        }
-                    }
-                } catch {
-                    print("login response: json parsing failed")
-                }
                 
+                
+                self.updateLocalToken(result: response.result)
+                handler(true, nil)
+            case .failure(let error):
                 handler(false, error)
             }
         })
     }
     
-    func logOut() {
-        self.token = ""
-        self.userEmail = ""
-        self.isLoggedIn = false
-        
-        // clear saved data on sign out
-        defaults.set(false, forKey: LOGGED_IN_KEY)
-        defaults.set(nil, forKey: TOKEN_KEY)
-        defaults.set(nil, forKey: USER_LOGIN_EMAIL)
-        defaults.set(nil, forKey: IS_CONFIGURED)
-        defaults.set(nil, forKey: USER_INFO)
-        
-        NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
-    }
-    
-    private func handleResponse(result: Result<Any>) {
+    func updateLocalToken(result: Result<Any>) {
         if let json = result.value as? Dictionary<String, Any> {
             if let receivedToken = json["token"] as? String, let receivedEmail = json["email"] as? String {
                 self.token = receivedToken
                 self.userEmail = receivedEmail
-                self.isLoggedIn = true
             }
         }
     }

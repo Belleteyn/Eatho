@@ -11,6 +11,8 @@ target 'Eatho' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'Charts'
+  pod 'KeychainAccess'
+  pod 'CryptoSwift'
 
   target 'EathoTests' do
     inherit! :search_paths

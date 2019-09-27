@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 
+// Type
 typealias CompletionHandler = (_ success: Bool, _ error: Error? ) -> ()
 typealias DataCompletionHandler = (_ food: FoodItem?) -> ()
+
+// Keychain
+let KEYCHAIN_SERVICE = "EathoService"
 
 // URLs
 let URL_BASE = "http://127.0.0.1:3001"
@@ -19,6 +23,7 @@ let URL_API = "http://127.0.0.1:3001/api"
 let URL_REGISTER = "\(URL_BASE)/auth/register"
 let URL_CHECK_EMAIL = "\(URL_BASE)/auth/emailCheck"
 let URL_LOGIN = "\(URL_BASE)/auth/login"
+let URL_INVALIDATE_TOKEN = "\(URL_BASE)/auth/invalidateToken"
 
 let URL_AVAILABLE = "\(URL_API)/available"
 

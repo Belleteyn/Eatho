@@ -79,6 +79,7 @@
 		95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD32306A89700685806 /* NutritionChartView.swift */; };
 		95D3DFD62306E37400685806 /* EditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD52306E37400685806 /* EditableCell.swift */; };
 		95D7768E233D0EBE00CD72BA /* RegisterNextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D7768D233D0EBE00CD72BA /* RegisterNextVC.swift */; };
+		95D77690233E2F2900CD72BA /* AuthServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D7768F233E2F2900CD72BA /* AuthServiceNetworkExtension.swift */; };
 		95DB28BE2328D9A6004511DD /* SingleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BD2328D9A6004511DD /* SingleInputCell.swift */; };
 		95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BF232928C0004511DD /* DoubleInputCell.swift */; };
 		95DB28C223298640004511DD /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28C123298640004511DD /* SwitchCell.swift */; };
@@ -197,6 +198,7 @@
 		95D3DFD32306A89700685806 /* NutritionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionChartView.swift; sourceTree = "<group>"; };
 		95D3DFD52306E37400685806 /* EditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCell.swift; sourceTree = "<group>"; };
 		95D7768D233D0EBE00CD72BA /* RegisterNextVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNextVC.swift; sourceTree = "<group>"; };
+		95D7768F233E2F2900CD72BA /* AuthServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		95DB28BD2328D9A6004511DD /* SingleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputCell.swift; sourceTree = "<group>"; };
 		95DB28BF232928C0004511DD /* DoubleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleInputCell.swift; sourceTree = "<group>"; };
 		95DB28C123298640004511DD /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 		954F4E4D231E96CC0088B6DD /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				95D7768F233E2F2900CD72BA /* AuthServiceNetworkExtension.swift */,
 				951460C5231E97A100B5C04D /* FoodServiceNetworkExtension.swift */,
 				9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */,
 			);
@@ -778,6 +781,7 @@
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
 				954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */,
 				95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */,
+				95D77690233E2F2900CD72BA /* AuthServiceNetworkExtension.swift in Sources */,
 				95A05A2222F86D04002A35B9 /* RationService.swift in Sources */,
 				9571892E2305CB9C004A3EE3 /* Nutrient.swift in Sources */,
 				956D437822F377820091C9C4 /* NutritionFacts.swift in Sources */,

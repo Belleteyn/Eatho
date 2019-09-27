@@ -79,6 +79,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     @objc private func authChangedHandle() {
         if AuthService.instance.isLoggedIn {
+            AuthService.instance.login { (_, error) in
+                if let error = error {
+                    print(error)
+                    //TODO: critical alert message
+                }
+            }
             openMain()
         } else {
             openAuth()

@@ -9,7 +9,7 @@
 import Foundation
 
 enum AuthError: Error {
-    case login, password
+    case login, password, keychain
 }
 
 enum DataParseError: Error {

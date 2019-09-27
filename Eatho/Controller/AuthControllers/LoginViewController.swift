@@ -53,7 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(false)
         
         spinner.startAnimating()
-        AuthService.instance.login(email: email, password: pass) { (success,  error) in
+        AuthService.instance.login(email: email, password: pass, handler: { (_, error) in
             self.spinner.stopAnimating()
             
             if let error = error {
@@ -65,14 +65,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     case AuthError.password:
                         self.passwordErrorMsg.text = ERROR_MSG_INCORRECT_PASSWORD
                         self.passwordSeparator.backgroundColor = EATHO_RED
+                    case AuthError.keychain:
+                        self.showErrorAlert(title: "Auth error", message: "Cannot save credentials in keychain")
                     }
                 } else {
                     self.showErrorAlert(title: ERROR_TITLE_NETWORK_UNREACHABLE, message: ERROR_MSG_NETWORK_UNREACHABLE)
                 }
             } else {
-                self.dismiss(animated: true, completion: nil)
+                NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
             }
-        }
+        })
     }
     
     @IBAction func registerPressed(_ sender: Any) {
