@@ -12,138 +12,44 @@ import SwiftyJSON
 
 extension AuthService {
     
-    private func parseErrorCode(response: DataResponse<Any>) -> Int? {
-        do {
-            if let data = response.data {
-                let errJson = try JSON(data: data)
-                if let code = errJson["code"].int {
-                    return code
-                }
-            }
-        } catch {
-            print("response json parsing failed")
+    func requestToken(email: String, password: String, handler: @escaping RequestCompletion) {
+        let params: [String : Any] = [
+            "email": email,
+            "password": password
+        ]
+        
+        Network.instance.get(url: URL_LOGIN, query: params) { (response, error) in
+            handler(response, error)
         }
-        
-        return nil
     }
     
-    
-    func requestToken(email: String, password: String, handler: @escaping CompletionHandler) {
+    func invalidateToken(email: String, password: String, handler: @escaping RequestCompletion) {
         let params: [String : Any] = [
             "email": email,
             "password": password
         ]
         
-        Alamofire.request(URL_LOGIN, method: .get, parameters: params, encoding: URLEncoding.default, headers: JSON_HEADER).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-                self.updateLocalToken(result: response.result)
-                handler(true, nil)
-            case .failure(let error):
-                if let code = self.parseErrorCode(response: response) {
-                    if code == 1 {
-                        handler(false, AuthError.login)
-                    } else {
-                        handler(false, AuthError.password)
-                    }
-                    
-                } else {
-                    handler(false, error)
-                }
-            }
-        })
+        Network.instance.delete(url: URL_TOKEN, query: params) { (response, error) in
+            handler(response, error)
+        }
     }
     
-    func invalidateToken(email: String, password: String, handler: @escaping CompletionHandler) {
-        let params: [String : Any] = [
-            "email": email,
-            "password": password
-        ]
+    func checkEmailToRegistration(email: String, handler: @escaping RequestCompletion) {
+        let query: [String : Any] = [ "email": email ]
         
-        Alamofire.request(URL_INVALIDATE_TOKEN, method: .delete, parameters: params, encoding: URLEncoding.default).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-                handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
-            }
-        })
+        Network.instance.get(url: URL_CHECK_EMAIL, query: query) { (response, error) in
+            handler(response, error)
+        }
     }
     
-    func loginOnServer(email: String, password: String, handler: @escaping CompletionHandler) {
-        let params: [String : Any] = [
-            "email": email,
-            "password": password
-        ]
-        
-        Alamofire.request(URL_LOGIN, method: .get, parameters: params, encoding: URLEncoding.default, headers: JSON_HEADER).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-                self.updateLocalToken(result: response.result)
-                handler(true, nil)
-            case .failure(let error):
-                do {
-                    if let data = response.data {
-                        let errJson = try JSON(data: data)
-                        print(errJson)
-                        if let code = errJson["code"].int {
-                            if code == 1 {
-                                handler(false, AuthError.login)
-                            } else {
-                                handler(false, AuthError.password)
-                            }
-                            return
-                        }
-                    }
-                } catch {
-                    print("login response: json parsing failed")
-                }
-                
-                handler(false, error)
-            }
-        })
-    }
-    
-    func checkEmailToRegistrationRequest(email: String, handler: @escaping CompletionHandler) {
-        let body: [String : Any] = [ "email": email ]
-        
-        Alamofire.request(URL_CHECK_EMAIL, method: .get, parameters: body, encoding: URLEncoding.default).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-                self.updateLocalToken(result: response.result)
-                handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
-            }
-        })
-    }
-    
-    func registerOnErver(email: String, password: String, handler: @escaping CompletionHandler) {
+    func registrationRequest(email: String, password: String, handler: @escaping RequestCompletion) {
         let body: [String : Any] = [
             "email": email,
             "password": password
         ]
         
-        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-//                let keychain = Keychain(service: KEYCHAIN_SERVICE)
-//                do {
-//                    try keychain.set(password, key: KEYCHAIN_SERVICE)
-//                } catch let err {
-//                    print(err)
-//                }
-                
-                self.updateLocalToken(result: response.result)
-                handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
-            }
-        })
+        Network.instance.post(url: URL_REGISTER, body: body) { (response, error) in
+            handler(response, error)
+        }
     }
 }

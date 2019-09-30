@@ -8,6 +8,15 @@
 
 import Foundation
 
+struct InvalidResponse {
+    let localizedDescription: String
+}
+
+struct ResponseError {
+    let code: Int
+    let error: String
+}
+
 enum AuthError: Error {
     case login, password, keychain
 }
