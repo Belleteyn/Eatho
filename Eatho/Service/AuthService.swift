@@ -18,24 +18,8 @@ class AuthService {
     
     var token: String?
     
-    private var email: String?
-    private var pwd: String?
-    
-    var isLoggedIn: Bool {
-        get {
-            return email != nil && pwd != nil
-        }
-    }
-    
-    var userEmail: String {
-        get {
-            return email ?? ""
-        }
-        
-        set {
-            email = newValue
-        }
-    }
+    private(set) var email: String?
+    private var password: String?
     
     var credentials: JSON {
         get {
@@ -45,23 +29,14 @@ class AuthService {
         }
     }
     
-    init() {
-        readKeychain()
-    }
-    
     private func readKeychain() {
         let keychain = Keychain(service: KEYCHAIN_SERVICE)
         let keys = keychain.allKeys()
         
         if !keys.isEmpty {
-            let email = keys[0]
-            let pwd = keychain[email]
-            
-            self.email = email
-            self.pwd = pwd
+            self.email = keys[0]
+            self.password = keychain[email!]
         }
-        
-        print("READ \(email) \(pwd)")
     }
     
     private func writeKeychain(email: String, password: String?) {
@@ -69,47 +44,79 @@ class AuthService {
         keychain[email] = password
         
         self.email = email
-        self.pwd = password
-        
-        print("WRITE \(email) \(pwd)")
+        self.password = password
     }
     
     func login(completion: @escaping CompletionHandler) {
-        guard let email = email, let pwd = pwd else {
+        readKeychain()
+        
+        guard let email = email, let password = password else {
             completion(false, AuthError.login)
             return
         }
         
-        print("DEFAULT LOGIN AS ", email, pwd)
-        login(email: email, password: pwd, handler: completion)
+        requestToken(email: email, password: password) { (response, error) in
+            if let response = response {
+                self.updateLocalToken(result: response.result)
+                completion(true, nil)
+                return
+            }
+            
+            if let error = error {
+                switch error.code {
+                case 1:
+                    completion(false, AuthError.login)
+                case 2:
+                    completion(false, AuthError.password)
+                default:
+                    completion(false, error as? Error)
+                }
+            }
+        }
     }
     
     func login(email: String, password: String, handler: @escaping CompletionHandler) {
-        loginOnServer(email: email, password: password) { (success, error) in
-            if error == nil {
+        requestToken(email: email, password: password) { (response, error) in
+            if let response = response {
+                self.updateLocalToken(result: response.result)
                 self.writeKeychain(email: email, password: password)
+                handler(true, nil)
+                return
             }
             
-            print("token: \(self.token)")
-            handler(success, error)
+            if let error = error {
+                switch error.code {
+                case 1:
+                    handler(false, AuthError.login)
+                case 2:
+                    handler(false, AuthError.password)
+                default:
+                    handler(false, error as? Error)
+                }
+            }
         }
     }
     
-    func logOut() {
+    func invalidateToken() {
         guard let email = email else { return }
-        guard let pwd = pwd else { return }
+        guard let password = password else { return }
         
         // invalidate token on server
-        invalidateToken(email: email, password: pwd) { (_, _) in
-            //todo: try again?
+        invalidateToken(email: email, password: password) { (_, _) in
+            //todo: on error try again?
         }
+        
+        self.token = nil
+    }
+    
+    func logOut() {
+        invalidateToken()
+        
+        guard let email = email else { return }
         
         // remove password from keychain
         writeKeychain(email: email, password: nil)
-        
-        self.token = nil
-        self.email = nil
-        self.pwd = nil
+        self.email = nil //password was reset on writing keychain
         
         // clear saved data on sign out
         defaults.set(nil, forKey: IS_CONFIGURED)
@@ -118,46 +125,22 @@ class AuthService {
         NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
     }
     
-    func checkEmailToRegistration(email: String, handler: @escaping CompletionHandler) {
-        let body: [String : Any] = [ "email": email ]
-        
-        Alamofire.request(URL_CHECK_EMAIL, method: .get, parameters: body, encoding: URLEncoding.default).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-                self.updateLocalToken(result: response.result)
-                handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
-            }
-        })
-    }
-    
     func register(email: String, password: String, handler: @escaping CompletionHandler) {
-        let body: [String : Any] = [
-            "email": email,
-            "password": password
-        ]
-        
-        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON(completionHandler: {
-            (response) in
-            switch response.result {
-            case .success:
-                
-                
+        registrationRequest(email: email, password: password) { (response, error) in
+            if let response = response {
                 self.updateLocalToken(result: response.result)
+                self.writeKeychain(email: email, password: password)
                 handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
+            } else {
+                handler(false, error as? Error)
             }
-        })
+        }
     }
     
     func updateLocalToken(result: Result<Any>) {
         if let json = result.value as? Dictionary<String, Any> {
-            if let receivedToken = json["token"] as? String, let receivedEmail = json["email"] as? String {
+            if let receivedToken = json["token"] as? String {
                 self.token = receivedToken
-                self.userEmail = receivedEmail
             }
         }
     }

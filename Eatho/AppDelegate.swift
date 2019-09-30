@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(authChangedHandle), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
-        authChangedHandle()
+        NotificationCenter.default.addObserver(self, selector: #selector(openAppInDesiredMode), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+        openAppInDesiredMode()
         
         return true
     }
@@ -28,11 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        AuthService.instance.invalidateToken()
+        
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        openAppInDesiredMode()
+        
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 
@@ -77,17 +81,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    @objc private func authChangedHandle() {
-        if AuthService.instance.isLoggedIn {
-            AuthService.instance.login { (_, error) in
-                if let error = error {
-                    print(error)
-                    //TODO: critical alert message
-                }
+    @objc private func openAppInDesiredMode() {
+        AuthService.instance.login { (_, error) in
+            if let error = error {
+                print(error) //TODO: critical alert message
+                self.openAuth()
+                return
+            } else {
+                self.openMain()
             }
-            openMain()
-        } else {
-            openAuth()
         }
     }
 }

@@ -23,7 +23,7 @@ let URL_API = "http://127.0.0.1:3001/api"
 let URL_REGISTER = "\(URL_BASE)/auth/register"
 let URL_CHECK_EMAIL = "\(URL_BASE)/auth/emailCheck"
 let URL_LOGIN = "\(URL_BASE)/auth/login"
-let URL_INVALIDATE_TOKEN = "\(URL_BASE)/auth/invalidateToken"
+let URL_TOKEN = "\(URL_BASE)/auth/token"
 
 let URL_AVAILABLE = "\(URL_API)/available"
 

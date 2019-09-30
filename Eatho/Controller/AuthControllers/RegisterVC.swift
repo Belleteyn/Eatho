@@ -43,18 +43,18 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         self.view.endEditing(false)
         spinner.startAnimating()
         
-        AuthService.instance.checkEmailToRegistration(email: email) { (success, error) in
+        AuthService.instance.checkEmailToRegistration(email: email) { (response, error) in
             self.spinner.stopAnimating()
             
-            if let error = error { //todo: may be network error
-                self.errorLabel.text = ERROR_MSG_ALREADY_REGISTERED
-                self.separatorView.backgroundColor = EATHO_RED
-                self.toRecoverButton.isHidden = false
-            } else {
+            if response != nil {
                 if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterNextVC") as? RegisterNextVC {
                     vc.email = email
                     self.present(vc, animated: true)
                 }
+            } else if error != nil {
+                self.errorLabel.text = ERROR_MSG_ALREADY_REGISTERED
+                self.separatorView.backgroundColor = EATHO_RED
+                self.toRecoverButton.isHidden = false
             }
         }
     }

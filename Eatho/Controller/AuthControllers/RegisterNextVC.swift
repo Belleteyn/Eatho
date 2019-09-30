@@ -50,7 +50,7 @@ class RegisterNextVC: UIViewController, UITextFieldDelegate {
                 self.errorLabel.text = ERROR_MSG_REGISTRATION_FAILED
                 self.separatorView.backgroundColor = EATHO_RED
             } else {
-                self.backButtonPressed(self)
+                NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
             }
         }
     }
