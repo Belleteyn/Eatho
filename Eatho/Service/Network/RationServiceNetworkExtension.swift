@@ -12,94 +12,76 @@ import SwiftyJSON
 
 extension RationService {
     
-    func get(handler: @escaping CompletionHandler, dataHandler: @escaping (_: JSON) -> ()) {
+    func get(completion: @escaping RequestCompletion, dataHandler: @escaping (_: JSON) -> ()) {
         let query: [String : Any] = [
-            "token": AuthService.instance.token,
+            "email": AuthService.instance.email ?? "",
+            "token": AuthService.instance.token ?? "",
             "count": 10
         ]
         
-        Alamofire.request(URL_RATION, method: .get, parameters: query, encoding: URLEncoding.default).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
-                self.resetData()
-                
-                if let data = response.data {
-                    guard let json = JSON(data).array else {
-                        handler(false, nil)
-                        return
-                    }
-                    
-                    for item in json {
-                        dataHandler(item)
-                    }
-                    
-                    handler(true, nil)
+        Network.get(url: URL_RATION, query: query) { (response, error) in
+            if let data = response?.data {
+                guard let json = JSON(data).array else {
+                    completion(nil, ResponseError(code: -1, message: ERROR_MSG_INVALID_RESPONSE))
+                    return
                 }
-            case .failure(let err):
-                debugPrint(err)
-                handler(false, err)
+                
+                for item in json {
+                    dataHandler(item)
+                }
             }
+            
+            completion(response, error)
         }
     }
     
-    func update(ration: Ration, handler: @escaping CompletionHandler) {
+    func update(ration: Ration, completion: @escaping RequestCompletion) {
         let body: JSON = [
-            "token": AuthService.instance.token,
+            "email": AuthService.instance.email ?? "",
+            "token": AuthService.instance.token ?? "",
             "ration": ration.toJson()
         ]
         
-        Alamofire.request(URL_RATION, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
-                handler(true, nil)
-            case .failure(let err):
-                handler(false, err)
-            }
+        Network.put(url: URL_RATION, body: body.dictionaryObject) { (response, error) in
+            completion(response, error)
         }
     }
     
-    func prepRequest(days: Int, handler: @escaping CompletionHandler, dataHandler: @escaping (_: JSON) -> ()) {
+    func prepRequest(days: Int, completion: @escaping RequestCompletion, dataHandler: @escaping (_: JSON) -> ()) {
         let body: [String : Any] = [
-            "token": AuthService.instance.token,
-            "count": days
+            "email": AuthService.instance.email ?? "",
+            "token": AuthService.instance.token ?? "",
+            "prepCount": days,
+            "diaryCount": 10
         ]
         
-        Alamofire.request(URL_RATION, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
+        Network.post(url: URL_RATION, body: body) { (response, error) in
+            if let data = response?.data {
                 do {
-                    guard let data = response.data, let json = try JSON(data: data).array else {
-                        handler(false, nil)
-                        return
+                    if let json = try JSON(data: data).array {
+                        for item in json {
+                            dataHandler(item)
+                        }
                     }
-                    
-                    for item in json {
-                        dataHandler(item)
-                    }
-                    
-                    handler(true, nil)
                 } catch let err {
-                    handler(false, err)
+                    completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE)\n\(err.localizedDescription)"))
+                    return
                 }
-            case .failure(let err):
-                handler(false, err)
             }
+            
+            completion(response, error)
         }
     }
     
-    func delete(date: String, completion: @escaping CompletionHandler) {
+    func delete(date: String, completion: @escaping RequestCompletion) {
         let body = [
-            "token": AuthService.instance.token,
+            "email": AuthService.instance.email ?? "",
+            "token": AuthService.instance.token ?? "",
             "date": date
         ]
         
-        Alamofire.request(URL_RATION, method: .delete, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
-                completion(true, nil)
-            case .failure(let err):
-                completion(false, err)
-            }
+        Network.delete(url: URL_RATION, query: body) { (response, error) in
+            completion(response, error)
         }
     }
 }

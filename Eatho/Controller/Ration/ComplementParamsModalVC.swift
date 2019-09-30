@@ -114,10 +114,12 @@ class ComplementParamsModalVC: BaseVC {
         
         food?.portion = portion
         food?.delta = portion
-        RationService.instance.addToRation(food: food!) { (success, error) in
+        RationService.instance.addToRation(food: food!) { (_, error) in
             self.spinner.stopAnimating()
-            if success {
+            if error == nil {
                 self.dismiss(animated: true, completion: nil)
+            } else {
+                self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error!.message)
             }
         }
     }

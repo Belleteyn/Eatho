@@ -31,8 +31,12 @@ class RationVC: BaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
         
         if RationService.instance.diary.count == 0 {
-            RationService.instance.requestRation { (success, error) in
-                self.updateView()
+            RationService.instance.requestRation { (_, error) in
+                if let error = error {
+                    self.showErrorAlert(title: ERROR_TITLE_DIARY_REQUEST_FAILED, message: error.message)
+                } else {
+                    self.updateView()
+                }
             }
         }
         
@@ -95,12 +99,16 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
                 
                 let isEditable = RationService.instance.isCurrentRationEditable()
                 cell.updateViews(foodItem: ration[indexPath.row], editable: isEditable, incPortionHandler: { (id) in
-                    RationService.instance.incPortion(id: id, completion: { (success, error) in
-                        //todo: error
+                    RationService.instance.incPortion(id: id, completion: { (_, error) in
+                        if let error = error {
+                            self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error.message)
+                        }
                     })
                 }) { (id) in
                     RationService.instance.decPortion(id: id, completion: { (success, error) in
-                        //todo: error
+                        if let error = error {
+                            self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error.message)
+                        }
                     })
                 }
                 return cell
@@ -117,9 +125,9 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
         
         let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             
-            RationService.instance.removeItem(index: indexPath.row) { (success, error) in
+            RationService.instance.removeItem(index: indexPath.row) { (_, error) in
                 if let error = error {
-                    print(error)
+                    self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error.message)
                 }
             }
             

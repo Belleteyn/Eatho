@@ -27,8 +27,12 @@ class DiaryVC: BaseVC {
         
         configureRefreshControl()
         
-        RationService.instance.requestRation { (success, error) in
-            self.diaryTableView.reloadData()
+        RationService.instance.requestRation { (_, error) in
+            if let error = error {
+                self.showErrorAlert(title: ERROR_TITLE_DIARY_REQUEST_FAILED, message: error.message)
+            } else {
+                self.diaryTableView.reloadData()
+            }
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
@@ -40,16 +44,16 @@ class DiaryVC: BaseVC {
     }
     
     @objc func handleRefresh() {
-        RationService.instance.requestRation { (success, error) in
+        RationService.instance.requestRation { (_, error) in
             DispatchQueue.main.async {
                 self.diaryTableView.refreshControl?.endRefreshing()
             }
             
             if let error = error {
-                self.showErrorAlert(title: ERROR_TITLE_DIARY_REQUEST_FAILED, message: error.localizedDescription)
-                return
+                self.showErrorAlert(title: ERROR_TITLE_DIARY_REQUEST_FAILED, message: error.message)
+            } else {
+                self.diaryTableView.reloadData()
             }
-            self.diaryTableView.reloadData()
         }
     }
     
@@ -59,15 +63,14 @@ class DiaryVC: BaseVC {
     
     @IBAction func advancePrepPressed(_ sender: Any) {
         spinner.startAnimating()
-        RationService.instance.prepRation(forDays: daysPicker.selectedRow(inComponent: 0) + 1) { (success, error) in
+        RationService.instance.prepRation(forDays: daysPicker.selectedRow(inComponent: 0) + 1) { (_, error) in
             self.spinner.stopAnimating()
             
             if let error = error {
-                self.showErrorAlert(title: ERROR_TITLE_DIARY_PREP_FAILED, message: error.localizedDescription)
-                return
+                self.showErrorAlert(title: ERROR_TITLE_DIARY_PREP_FAILED, message: error.message)
+            } else {
+                self.diaryTableView.reloadData()
             }
-            
-            self.diaryTableView.reloadData()
         }
     }
     

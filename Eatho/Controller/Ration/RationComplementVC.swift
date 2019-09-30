@@ -50,8 +50,10 @@ extension RationComplementVC: UITableViewDataSource {
             if (indexPath.row < FoodService.instance.foods.count) {
                 let food = FoodService.instance.foods[indexPath.row]
                 cell.updateViews(foodItem: food, removeHandler: { (id) in
-                    RationService.instance.removeItem(id: id, completion: { (success, error) in
-                        //todo: error
+                    RationService.instance.removeItem(id: id, completion: { (_, error) in
+                        if let error = error {
+                            self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error.message)
+                        }
                     })
                 }) { (foodItem) in
                     self.presentModalView(food: foodItem)
