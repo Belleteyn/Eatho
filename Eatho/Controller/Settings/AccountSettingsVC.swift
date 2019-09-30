@@ -23,7 +23,7 @@ class AccountSettingsVC: BaseVC {
     }
     
     @objc func updateLogin() {
-        userNameLabel.text = AuthService.instance.userEmail
+        userNameLabel.text = AuthService.instance.email
     }
 
     @IBAction func signOutButtonPressed(_ sender: Any) {

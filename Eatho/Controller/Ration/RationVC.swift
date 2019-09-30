@@ -28,7 +28,6 @@ class RationVC: BaseVC {
         spinner.hidesWhenStopped = true
         
         // Notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(authChangedHandle), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
         
         if RationService.instance.diary.count == 0 {
@@ -59,12 +58,6 @@ class RationVC: BaseVC {
     }
     
     // handlers
-    @objc func authChangedHandle() {
-        if !AuthService.instance.isLoggedIn {
-            RationService.instance.resetData()
-            self.rationTableView.reloadData()
-        }
-    }
     
     @objc func dataChangedHandle() {
         updateView()

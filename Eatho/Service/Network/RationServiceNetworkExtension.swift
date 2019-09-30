@@ -14,7 +14,6 @@ extension RationService {
     
     func get(handler: @escaping CompletionHandler, dataHandler: @escaping (_: JSON) -> ()) {
         let query: [String : Any] = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "count": 10
         ]
@@ -45,7 +44,6 @@ extension RationService {
     
     func update(ration: Ration, handler: @escaping CompletionHandler) {
         let body: JSON = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "ration": ration.toJson()
         ]
@@ -55,7 +53,6 @@ extension RationService {
             case .success:
                 handler(true, nil)
             case .failure(let err):
-                debugPrint(err)
                 handler(false, err)
             }
         }
@@ -63,7 +60,6 @@ extension RationService {
     
     func prepRequest(days: Int, handler: @escaping CompletionHandler, dataHandler: @escaping (_: JSON) -> ()) {
         let body: [String : Any] = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "count": days
         ]
@@ -83,11 +79,9 @@ extension RationService {
                     
                     handler(true, nil)
                 } catch let err {
-                    debugPrint(err)
                     handler(false, err)
                 }
             case .failure(let err):
-                debugPrint(err)
                 handler(false, err)
             }
         }
@@ -95,7 +89,6 @@ extension RationService {
     
     func delete(date: String, completion: @escaping CompletionHandler) {
         let body = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "date": date
         ]

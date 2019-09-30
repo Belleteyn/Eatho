@@ -24,26 +24,20 @@ class FoodVC: BaseVC {
     }
     
     @objc func loadData() {
-        if AuthService.instance.isLoggedIn {
+        if FoodService.instance.foods.count == 0 {
+            spinner.startAnimating()
+        }
+        
+        FoodService.instance.getFood(handler: { (success, error) in
+            self.spinner.stopAnimating()
             
-            if FoodService.instance.foods.count == 0 {
-                spinner.startAnimating()
+            if let error = error {
+                self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.localizedDescription)
+                return
             }
             
-            FoodService.instance.getFood(handler: { (success, error) in
-                self.spinner.stopAnimating()
-                
-                if let error = error {
-                    self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.localizedDescription)
-                    return
-                }
-                
-                self.reloadTable()
-            })
-        } else {
-            FoodService.instance.clearData()
             self.reloadTable()
-        }
+        })
     }
     
     func reloadTable() {

@@ -16,7 +16,7 @@ class SettingsVC: BaseVC {
     private var settingsList = [ "Nutritional preferences", "Localization preferences", "Shopping list preferences" ]
     private var isConfigureBadgeVisible: Bool {
         get {
-            return !AuthService.instance.isLoggedIn || !SettingsService.instance.isConfigured || !SettingsService.instance.userInfo.nutrition.isValid
+            return !SettingsService.instance.isConfigured || !SettingsService.instance.userInfo.nutrition.isValid
         }
     }
     
@@ -27,13 +27,10 @@ class SettingsVC: BaseVC {
         settingsTableView.dataSource = self
         
         // notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(loginHandler), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
         
         // data
-        if AuthService.instance.isLoggedIn {
-            SettingsService.instance.downloadUserData()
-        }
+        SettingsService.instance.downloadUserData()
     }
     
     override func awakeFromNib() {
@@ -47,12 +44,6 @@ class SettingsVC: BaseVC {
     
     @objc func tapHandler() {
         self.view.endEditing(false)
-    }
-    
-    @objc func loginHandler() {
-        if !AuthService.instance.isLoggedIn {
-            SettingsService.instance.isConfigured = false
-        }
     }
     
     @objc func userNutritionChangedHandler() {
@@ -112,7 +103,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
-            cell.textLabel?.text = AuthService.instance.userEmail
+            cell.textLabel?.text = AuthService.instance.email
             cell.textLabel?.textColor = TEXT_COLOR
             cell.detailTextLabel?.text = "account settings"
             cell.detailTextLabel?.textColor = TEXT_COLOR

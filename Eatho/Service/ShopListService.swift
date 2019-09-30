@@ -87,7 +87,6 @@ class ShopListService {
      */
     func requestData(handler: @escaping CompletionHandler) {
         let query = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token
         ]
         
@@ -129,7 +128,6 @@ class ShopListService {
         shoppingList.forEach { if !$0.1 { uploadingList.append($0.0) } }
         
         let body: [String: Any] = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "shoppingList": uploadingList,
             "recentPurchases": mostRecentList

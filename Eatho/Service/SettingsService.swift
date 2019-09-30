@@ -71,7 +71,6 @@ class SettingsService {
     func uploadUserData(data: Data) {
         do {
             var json: JSON = [
-                "email": AuthService.instance.userEmail,
                 "token": AuthService.instance.token
             ]
             json["userData"] = try JSON(data: data)
@@ -92,7 +91,6 @@ class SettingsService {
     
     func downloadUserData() {
         let json: JSON = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token
         ]
         

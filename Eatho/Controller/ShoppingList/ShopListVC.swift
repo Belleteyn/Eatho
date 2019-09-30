@@ -64,18 +64,13 @@ class ShopListVC: BaseVC {
     }
     
     @objc func authDataChanged() {
-        if AuthService.instance.isLoggedIn {
-            ShopListService.instance.requestData { (_, error) in
-                if let error = error {
-                    self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.localizedDescription)
-                    return
-                }
-                
-                self.shopListTableView.reloadData()
+        ShopListService.instance.requestData { (_, error) in
+            if let error = error {
+                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.localizedDescription)
+                return
             }
-        } else {
-            ShopListService.instance.clearData()
-            shopListTableView.reloadData()
+            
+            self.shopListTableView.reloadData()
         }
     }
 }

@@ -25,7 +25,7 @@ class AviailableVC: FoodVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (AuthService.instance.isLoggedIn && FoodService.instance.foods.count == 0) {
+        if (FoodService.instance.foods.count == 0) {
             super.loadData()
         }
         

@@ -51,7 +51,6 @@ extension FoodService {
         }
         
         let body: [String: Any] = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "food": jsonDict
         ]
@@ -85,7 +84,6 @@ extension FoodService {
         }
         
         let body: [String: Any] = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "info": info
         ]
@@ -119,7 +117,6 @@ extension FoodService {
     
     func updateRequest(data: JSON, handler: @escaping CompletionHandler) {
         let body: JSON = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "food": data
         ]
@@ -136,7 +133,6 @@ extension FoodService {
     
     func deleteRequest(foodId: String, handler: @escaping CompletionHandler) {
         let body = [
-            "email": AuthService.instance.userEmail,
             "token": AuthService.instance.token,
             "foodId": foodId
         ]
