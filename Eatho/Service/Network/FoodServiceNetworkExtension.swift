@@ -61,7 +61,7 @@ extension FoodService {
                 if let data = response.data {
                     handler(JSON(data), nil)
                 } else {
-                    handler(nil, RequestError(localizedDescription: ERROR_MSG_EMPTY_RESPONSE))
+                    handler(nil, RequestError(localizedDescription: ERROR_MSG_INVALID_RESPONSE))
                 }
             case .failure(let error):
                 debugPrint(error)
@@ -92,7 +92,7 @@ extension FoodService {
             switch response.result {
             case .success:
                 guard let data = response.data else {
-                    handler(false, RequestError(localizedDescription: ERROR_MSG_EMPTY_RESPONSE))
+                    handler(false, RequestError(localizedDescription: ERROR_MSG_INVALID_RESPONSE))
                     return
                 }
                 

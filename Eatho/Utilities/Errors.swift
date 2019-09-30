@@ -14,7 +14,7 @@ struct InvalidResponse {
 
 struct ResponseError {
     let code: Int
-    let error: String
+    let message: String
 }
 
 enum AuthError: Error {

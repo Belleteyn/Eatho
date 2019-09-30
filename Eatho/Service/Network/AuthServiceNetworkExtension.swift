@@ -18,7 +18,7 @@ extension AuthService {
             "password": password
         ]
         
-        Network.instance.get(url: URL_LOGIN, query: params) { (response, error) in
+        Network.get(url: URL_LOGIN, query: params) { (response, error) in
             handler(response, error)
         }
     }
@@ -29,7 +29,7 @@ extension AuthService {
             "password": password
         ]
         
-        Network.instance.delete(url: URL_TOKEN, query: params) { (response, error) in
+        Network.delete(url: URL_TOKEN, query: params) { (response, error) in
             handler(response, error)
         }
     }
@@ -37,7 +37,7 @@ extension AuthService {
     func checkEmailToRegistration(email: String, handler: @escaping RequestCompletion) {
         let query: [String : Any] = [ "email": email ]
         
-        Network.instance.get(url: URL_CHECK_EMAIL, query: query) { (response, error) in
+        Network.get(url: URL_CHECK_EMAIL, query: query) { (response, error) in
             handler(response, error)
         }
     }
@@ -48,7 +48,7 @@ extension AuthService {
             "password": password
         ]
         
-        Network.instance.post(url: URL_REGISTER, body: body) { (response, error) in
+        Network.post(url: URL_REGISTER, body: body) { (response, error) in
             handler(response, error)
         }
     }

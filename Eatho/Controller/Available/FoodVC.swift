@@ -32,12 +32,14 @@ class FoodVC: BaseVC {
             self.spinner.stopAnimating()
             
             if let error = error {
-                self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.localizedDescription)
+                self.showErrorAlert(title: ERROR_MSG_FOOD_GET_FAILED, message: error.message)
                 return
             }
             
             self.reloadTable()
         })
+        
+        
     }
     
     func reloadTable() {

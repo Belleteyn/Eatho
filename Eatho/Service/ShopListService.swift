@@ -94,7 +94,7 @@ class ShopListService {
             switch (response.result) {
             case .success:
                 guard let data = response.data else {
-                    handler(false, RequestError(localizedDescription: ERROR_MSG_EMPTY_RESPONSE))
+                    handler(false, RequestError(localizedDescription: ERROR_MSG_INVALID_RESPONSE))
                     return
                 }
                 

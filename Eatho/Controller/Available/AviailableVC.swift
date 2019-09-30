@@ -49,7 +49,7 @@ class AviailableVC: FoodVC {
             }
             
             if let error = error {
-                self.showErrorAlert(title: "Refresh failed", message: error.localizedDescription)
+                self.showErrorAlert(title: "Refresh failed", message: error.message)
             } else {
                 self.reloadTable()
             }
