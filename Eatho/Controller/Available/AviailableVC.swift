@@ -42,7 +42,7 @@ class AviailableVC: FoodVC {
     // Handlers
     
     @objc func handleRefresh() {
-        FoodService.instance.getFood(handler: { (success, error) in
+        FoodService.instance.getFood(completion: { (_, error) in
             // Dismiss the refresh control.
             DispatchQueue.main.async {
                 self.foodTable.refreshControl?.endRefreshing()
@@ -89,23 +89,18 @@ extension AviailableVC: UITableViewDataSource {
                 return
             }
             
-            FoodService.instance.removeItem(index: indexPath.row, handler: { (localRemoveSucceeded, error) in
-                
+            let removeResult = FoodService.instance.removeItem(index: indexPath.row) { (_, error) in
                 if let error = error {
-                    self.showErrorAlert(title: "Unable to remove data", message: error.localizedDescription)
-                    return
+                    self.showErrorAlert(title: "Remove failed", message: error.message)
+                } else {
+                    self.loadData()
                 }
-                
-                success(localRemoveSucceeded)
+            }
+            
+            success(removeResult)
+            if removeResult {
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
-            }, requestHandler: { (remoteRemoveSucceeded, error) in
-                if let error = error {
-                    self.showErrorAlert(title: "Remove failed", message: error.localizedDescription)
-                    return
-                }
-                
-                self.loadData()
-            })
+            }
         }
         removeAction.backgroundColor = EATHO_RED
         

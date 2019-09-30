@@ -67,13 +67,19 @@ extension RationComplementVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            FoodService.instance.removeItem(index: indexPath.row, handler: { (localRemoveSucceeded, error) in
-                success(localRemoveSucceeded)
+            
+            let removeResult = FoodService.instance.removeItem(index: indexPath.row) { (_, error) in
+                if let error = error {
+                    self.showErrorAlert(title: "Remove failed", message: error.message)
+                } else {
+                    self.loadData()
+                }
+            }
+            
+            success(removeResult)
+            if removeResult {
                 tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
-            }, requestHandler: { (remoteRemoveSucceeded, error) in
-                //todo show error
-                super.loadData()
-            })
+            }
         }
         removeAction.backgroundColor = EATHO_RED
         

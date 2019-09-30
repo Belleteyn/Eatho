@@ -24,6 +24,7 @@ class AuthService {
     var credentials: JSON {
         get {
             return [
+                "email": AuthService.instance.email ?? "",
                 "token": AuthService.instance.token ?? ""
             ]
         }

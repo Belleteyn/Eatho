@@ -30,8 +30,8 @@ class SearchFoodCell: FoodCell {
     @IBAction func addBtnPressed(_ sender: Any) {
         NotificationCenter.default.post(name: NOTIF_SEARCH_FOOD_ADD, object: nil)
         
-        FoodService.instance.insert(forId: id!, available: 0, dailyPortion: DailyPortion(min: 0, max: 0)) { (success, error) in
-            NotificationCenter.default.post(name: NOTIF_SEARCH_FOOD_ADD_DONE, object: nil, userInfo: ["success": success])
+        FoodService.instance.insert(forId: id!, available: 0, dailyPortion: DailyPortion(min: 0, max: 0)) { (_, error) in
+            NotificationCenter.default.post(name: NOTIF_SEARCH_FOOD_ADD_DONE, object: nil, userInfo: ["success": error == nil])
         }
     }
 

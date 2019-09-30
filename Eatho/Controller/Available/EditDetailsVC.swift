@@ -76,10 +76,10 @@ class EditDetailsVC: BaseVC {
         }
         
         spinner.startAnimating()
-        FoodService.instance.updateFood(food: food) {(success, error) in
+        FoodService.instance.updateFood(food: food) {(_, error) in
             self.spinner.stopAnimating()
             if let error = error {
-                self.showErrorAlert(title: "Update failed", message: error.localizedDescription)
+                self.showErrorAlert(title: "Update failed", message: error.message)
                 return
             }
             

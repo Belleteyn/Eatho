@@ -109,10 +109,10 @@ class CreationVC: BaseVC {
         let daily = DailyPortion(min: min, max: max)
         let food = FoodItem(name: name, type: type, availableWeight: available, nutrition: nutrition, dailyPortion: daily)
         
-        FoodService.instance.createNewFood(foodItem: food) { (success, error) in
+        FoodService.instance.createNewFood(foodItem: food) { (_, error) in
             self.spinner.stopAnimating()
             if let error = error {
-                self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: error.localizedDescription)
+                self.showErrorAlert(title: ERROR_MSG_FOOD_CREATION_FAILED, message: error.message)
                 return
             }
             

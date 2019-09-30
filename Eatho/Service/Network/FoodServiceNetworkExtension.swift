@@ -12,18 +12,12 @@ import SwiftyJSON
 
 extension FoodService {
     
-    func get(dataHandler: @escaping (_: [FoodItem]) -> (), handler: @escaping CompletionHandler) {
-        let params = AuthService.instance.credentials
+    func get(dataHandler: @escaping (_: [FoodItem]) -> (), completion: @escaping RequestCompletion) {
+        let params = AuthService.instance.credentials.dictionaryObject
         
-        Alamofire.request(URL_AVAILABLE, method: .get, parameters: params.dictionaryObject, encoding: URLEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
-            switch response.result {
-            case .success:
+        Network.get(url: URL_AVAILABLE, query: params) { (response, error) in
+            if let data = response?.data {
                 do {
-                    guard let data = response.data else {
-                        handler(false, LocalDataError(localizedDescription: ERROR_MSG_FAILED_JSON_ENCODE))
-                        return
-                    }
-                    
                     var foodArr = [FoodItem]()
                     if let jsonArr = try JSON(data: data).array {
                         for item in jsonArr {
@@ -32,45 +26,45 @@ extension FoodService {
                         }
                         
                         dataHandler(foodArr.reversed())
-                        handler(true, nil)
                     }
-                } catch let error {
-                    handler(false, error)
+                } catch let err {
+                    completion(response, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE)\n\(err.localizedDescription)"))
+                    return
                 }
-                
-            case .failure(let error):
-                handler(false, error)
             }
+            
+            completion(response, error)
         }
     }
     
-    func insertFoodRequest(foodItem: FoodItem, handler: @escaping (_: JSON?, _: Error?) -> ()) {
+    func insertFoodRequest(foodItem: FoodItem, completion: @escaping RequestCompletion, dataHandler: @escaping (_ json: JSON) -> ()) {
         guard let foodJson = foodItem.toJson(), let jsonDict = foodJson.dictionaryObject else {
-            handler(false, LocalDataError(localizedDescription: ERROR_MSG_FAILED_JSON_ENCODE))
+            completion(nil, ResponseError(code: -1, message: ERROR_MSG_FAILED_JSON_ENCODE))
             return
         }
         
         let body: [String: Any] = [
-            "token": AuthService.instance.token,
+            "email": AuthService.instance.email ?? "",
+            "token": AuthService.instance.token ?? "",
             "food": jsonDict
         ]
         
-        Alamofire.request(URL_ADD_FOOD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).responseJSON { (response) in
-            switch response.result {
-            case .success:
-                if let data = response.data {
-                    handler(JSON(data), nil)
-                } else {
-                    handler(nil, RequestError(localizedDescription: ERROR_MSG_INVALID_RESPONSE))
+        Network.post(url: URL_ADD_FOOD, body: body) { (response, error) in
+            if let data = response?.data {
+                do {
+                    let json = try JSON(data: data)
+                    dataHandler(json)
+                } catch let err {
+                    completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE)\n\(err.localizedDescription)"))
+                    return
                 }
-            case .failure(let error):
-                debugPrint(error)
-                handler(nil, error)
+                
+                completion(response, error)
             }
         }
     }
     
-    func insertRequest(forId id: String, available: Double, dailyPortion: DailyPortion, appendHandler: @escaping (_ : FoodItem) -> (), handler: @escaping CompletionHandler) {
+    func insertRequest(forId id: String, available: Double, dailyPortion: DailyPortion, appendHandler: @escaping (_ : FoodItem) -> (), completion: @escaping RequestCompletion) {
         
         var info: [String: Any] = [
             "id": id,
@@ -84,18 +78,13 @@ extension FoodService {
         }
         
         let body: [String: Any] = [
-            "token": AuthService.instance.token,
+            "email": AuthService.instance.email ?? "",
+            "token": AuthService.instance.token ?? "",
             "info": info
         ]
         
-        Alamofire.request(URL_AVAILABLE, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
-                guard let data = response.data else {
-                    handler(false, RequestError(localizedDescription: ERROR_MSG_INVALID_RESPONSE))
-                    return
-                }
-                
+        Network.post(url: URL_AVAILABLE, body: body) { (response, error) in
+            if let data = response?.data {
                 do {
                     if let json = try JSON(data: data).array {
                         for item in json {
@@ -105,45 +94,33 @@ extension FoodService {
                     }
                     
                     NotificationCenter.default.post(name: NOTIF_FOOD_DATA_CHANGED, object: nil)
-                    handler(true, nil)
                 } catch let err {
-                    handler(false, err)
+                    completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE)\n\(err.localizedDescription)"))
+                    return
                 }
-            case.failure(let error):
-                handler(false, error)
             }
+            
+            completion(response, error)
         }
     }
     
-    func updateRequest(data: JSON, handler: @escaping CompletionHandler) {
+    func updateRequest(data: JSON, completion: @escaping RequestCompletion) {
         let body: JSON = [
-            "token": AuthService.instance.token,
+            "email": AuthService.instance.email ?? "",
+            "token": AuthService.instance.token ?? "",
             "food": data
         ]
         
-        Alamofire.request(URL_AVAILABLE, method: .put, parameters: body.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
-                handler(true, nil)
-            case .failure(let err):
-                handler(false, err)
-            }
-        }
+        Network.put(url: URL_AVAILABLE, body: body.dictionaryObject, completion: completion)
     }
     
-    func deleteRequest(foodId: String, handler: @escaping CompletionHandler) {
+    func deleteRequest(foodId: String, completion: @escaping RequestCompletion) {
         let body = [
-            "token": AuthService.instance.token,
+            "email": AuthService.instance.email ?? "",
+            "token": AuthService.instance.token ?? "",
             "foodId": foodId
         ]
         
-        Alamofire.request(URL_AVAILABLE, method: .delete, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
-                handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
-            }
-        }
+        Network.delete(url: URL_AVAILABLE, body: body, completion: completion)
     }
 }

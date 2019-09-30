@@ -28,7 +28,7 @@ class FoodVC: BaseVC {
             spinner.startAnimating()
         }
         
-        FoodService.instance.getFood(handler: { (success, error) in
+        FoodService.instance.getFood(completion: { (_, error) in
             self.spinner.stopAnimating()
             
             if let error = error {

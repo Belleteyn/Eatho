@@ -28,10 +28,10 @@ class FoodService {
       - LocalDataError (about json encoding too)
      */
     
-    func getFood (handler: @escaping CompletionHandler) {
+    func getFood (completion: @escaping RequestCompletion) {
         get(dataHandler: { (foods) in
             self.foods = foods
-        }, handler: handler)
+        }, completion: completion)
     }
     
     /**
@@ -43,20 +43,11 @@ class FoodService {
      - RequestError
      */
     
-    func createNewFood (foodItem: FoodItem, handler: @escaping CompletionHandler) {
-        insertFoodRequest(foodItem: foodItem) { (json, err) in
-            if err != nil {
-                handler(false, err)
-                return
-            }
+    func createNewFood (foodItem: FoodItem, completion: @escaping RequestCompletion) {
+        insertFoodRequest(foodItem: foodItem, completion: completion) { (json) in
+            let dailyPortion = DailyPortion(min: (foodItem.dailyPortion.min ?? 0), max: (foodItem.dailyPortion.max ?? 0))
             
-            if let json = json {
-                let dailyPortion = DailyPortion(min: (foodItem.dailyPortion.min ?? 0), max: (foodItem.dailyPortion.max ?? 0))
-                
-                self.insert(forId: json["id"].stringValue, available: foodItem.available ?? 0.0, dailyPortion: dailyPortion, handler: handler)
-            } else {
-                handler(false, RequestError(localizedDescription: "got empty data from server"))
-            }
+            self.insert(forId: json["id"].stringValue, available: foodItem.available ?? 0.0, dailyPortion: dailyPortion, completion: completion)
         }
     }
     
@@ -70,10 +61,10 @@ class FoodService {
      - RequestError
      */
     
-    func insert (forId id: String, available: Double, dailyPortion: DailyPortion, handler: @escaping CompletionHandler) {
+    func insert (forId id: String, available: Double, dailyPortion: DailyPortion, completion: @escaping RequestCompletion) {
         insertRequest(forId: id, available: available, dailyPortion: dailyPortion, appendHandler: { (food) in
             self.foods.insert(food, at: 0)
-        }, handler: handler)
+        }, completion: completion)
     }
     
     /**
@@ -84,20 +75,14 @@ class FoodService {
      - LocalDataError
      */
     
-    func removeItem (index: Int, handler: CompletionHandler, requestHandler: @escaping CompletionHandler) {
-        guard index < foods.count && index >= 0 else {
-            handler(false, LocalDataError(localizedDescription: "Invalid index to remove food item \(index)"))
-            return
-        }
+    func removeItem (index: Int, completion: @escaping RequestCompletion) -> Bool {
+        guard index < foods.count && index >= 0 else { return false }
+        guard let food = foods[index].food, let id = food._id else { return false }
         
-        guard let food = foods[index].food, let id = food._id else {
-            handler(false, LocalDataError(localizedDescription: "Failed to fetch food id at index \(index), food will not be removed"))
-            return
-        }
-        
-        deleteRequest(foodId: id, handler: requestHandler)
+        deleteRequest(foodId: id, completion: completion)
         foods.remove(at: index)
-        handler(true, nil)
+        
+        return true
     }
     
     /**
@@ -109,9 +94,9 @@ class FoodService {
      - json encoding error
      */
     
-    func updateFood(food: FoodItem, handler: @escaping CompletionHandler) {
+    func updateFood(food: FoodItem, completion: @escaping RequestCompletion) {
         guard let row = foods.firstIndex(where: { $0.food!._id == food.food!._id }) else {
-            handler(false, LocalDataError(localizedDescription: "Failed to find food with id \(String(describing: food.food?._id)) to update"))
+            completion(nil, ResponseError(code: -1, message: "Failed to find food with id \(String(describing: food.food?._id)) to update"))
             return
         }
         
@@ -119,14 +104,15 @@ class FoodService {
             let data = try JSONEncoder().encode(food)
             let json = try JSON(data: data)
             
-            updateRequest(data: json) { (success, error) in
-                if success {
+            updateRequest(data: json) { (response, error) in
+                if error == nil {
                     self.foods[row] = food
                 }
-                handler(success, error)
+                
+                completion(response, error)
             }
         } catch let err {
-            handler(false, err)
+            completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_FAILED_JSON_ENCODE)\n\(err.localizedDescription)"))
         }
     }
 }
