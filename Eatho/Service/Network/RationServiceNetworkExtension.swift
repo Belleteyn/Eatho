@@ -80,7 +80,7 @@ extension RationService {
             "date": date
         ]
         
-        Network.delete(url: URL_RATION, query: body) { (response, error) in
+        Network.delete(url: URL_RATION, body: body) { (response, error) in
             completion(response, error)
         }
     }

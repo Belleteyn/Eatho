@@ -50,8 +50,8 @@ class Network {
         }
     }
     
-    static func delete(url: URLConvertible, query: Parameters?, completion: @escaping RequestCompletion) {
-        Alamofire.request(url, method: .delete, parameters: query, encoding: URLEncoding.default, headers: nil).validate().responseJSON { (response) in
+    static func delete(url: URLConvertible, body: Parameters?, completion: @escaping RequestCompletion) {
+        Alamofire.request(url, method: .delete, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
             
             switch response.result {
             case .success:

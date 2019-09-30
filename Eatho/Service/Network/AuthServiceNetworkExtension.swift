@@ -29,7 +29,7 @@ extension AuthService {
             "password": password
         ]
         
-        Network.delete(url: URL_TOKEN, query: params) { (response, error) in
+        Network.delete(url: URL_TOKEN, body: params) { (response, error) in
             handler(response, error)
         }
     }
