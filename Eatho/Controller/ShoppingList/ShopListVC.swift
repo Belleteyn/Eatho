@@ -47,10 +47,10 @@ class ShopListVC: BaseVC {
         // init data
         ShopListService.instance.requestData { (_, error)  in
             if let error = error {
-                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.localizedDescription)
-                return
+                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.message)
+            } else {
+                self.shopListTableView.reloadData()
             }
-            self.shopListTableView.reloadData()
         }
     }
     
@@ -66,11 +66,10 @@ class ShopListVC: BaseVC {
     @objc func authDataChanged() {
         ShopListService.instance.requestData { (_, error) in
             if let error = error {
-                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.localizedDescription)
-                return
+                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.message)
+            } else {
+                self.shopListTableView.reloadData()
             }
-            
-            self.shopListTableView.reloadData()
         }
     }
 }
@@ -128,8 +127,7 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
                 ShopListService.instance.removeItemFromShopList(index: indexPath.row) { (_, error) in
                     self.spinner.stopAnimating()
                     if let error = error {
-                        self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.localizedDescription)
-                        return
+                        self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.message)
                     }
                 }
             } else {
@@ -137,8 +135,7 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
                 ShopListService.instance.removeItemFromRecent(index: indexPath.row) { (_, error) in
                     self.spinner.stopAnimating()
                     if let error = error {
-                        self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.localizedDescription)
-                        return
+                        self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.message)
                     }
                 }
             }
@@ -155,8 +152,7 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
         if shopListTabBar.selectedItem == shopListTabBar.items?.last {
             ShopListService.instance.moveItemFromRecentToShopList(recentIndex: indexPath.row) { (_, error) in
                 if let error = error {
-                    self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.localizedDescription)
-                    return
+                    self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.message)
                 }
                 tableView.reloadData()
             }
@@ -198,11 +194,10 @@ extension ShopListVC: UITextFieldDelegate {
             self.spinner.stopAnimating()
             
             if let error = error {
-                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.localizedDescription)
-                return
+                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED, message: error.message)
+            } else {
+                textField.text = ""
             }
-            
-            textField.text = ""
         }
         
         if let index = service.shoppingList.firstIndex(where: { $0.0 == name } ) {

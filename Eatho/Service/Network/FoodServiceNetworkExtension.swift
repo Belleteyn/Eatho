@@ -38,18 +38,15 @@ extension FoodService {
     }
     
     func insertFoodRequest(foodItem: FoodItem, completion: @escaping RequestCompletion, dataHandler: @escaping (_ json: JSON) -> ()) {
-        guard let foodJson = foodItem.toJson(), let jsonDict = foodJson.dictionaryObject else {
+        guard let foodJson = foodItem.toJson() else {
             completion(nil, ResponseError(code: -1, message: ERROR_MSG_FAILED_JSON_ENCODE))
             return
         }
         
-        let body: [String: Any] = [
-            "email": AuthService.instance.email ?? "",
-            "token": AuthService.instance.token ?? "",
-            "food": jsonDict
-        ]
+        var body = AuthService.instance.credentials
+        body["food"] = foodJson
         
-        Network.post(url: URL_ADD_FOOD, body: body) { (response, error) in
+        Network.post(url: URL_ADD_FOOD, body: body.dictionaryObject) { (response, error) in
             if let data = response?.data {
                 do {
                     let json = try JSON(data: data)
@@ -66,24 +63,21 @@ extension FoodService {
     
     func insertRequest(forId id: String, available: Double, dailyPortion: DailyPortion, appendHandler: @escaping (_ : FoodItem) -> (), completion: @escaping RequestCompletion) {
         
-        var info: [String: Any] = [
+        var info: JSON = [
             "id": id,
             "available": available
         ]
         if let min = dailyPortion.min {
-            info["min"] = min
+            info["min"] = JSON(min)
         }
         if let max = dailyPortion.max {
-            info["max"] = max
+            info["max"] = JSON(max)
         }
         
-        let body: [String: Any] = [
-            "email": AuthService.instance.email ?? "",
-            "token": AuthService.instance.token ?? "",
-            "info": info
-        ]
+        var body = AuthService.instance.credentials
+        body["info"] = info
         
-        Network.post(url: URL_AVAILABLE, body: body) { (response, error) in
+        Network.post(url: URL_AVAILABLE, body: body.dictionaryObject) { (response, error) in
             if let data = response?.data {
                 do {
                     if let json = try JSON(data: data).array {
@@ -105,22 +99,16 @@ extension FoodService {
     }
     
     func updateRequest(data: JSON, completion: @escaping RequestCompletion) {
-        let body: JSON = [
-            "email": AuthService.instance.email ?? "",
-            "token": AuthService.instance.token ?? "",
-            "food": data
-        ]
+        var body = AuthService.instance.credentials
+        body["food"] = data
         
         Network.put(url: URL_AVAILABLE, body: body.dictionaryObject, completion: completion)
     }
     
     func deleteRequest(foodId: String, completion: @escaping RequestCompletion) {
-        let body = [
-            "email": AuthService.instance.email ?? "",
-            "token": AuthService.instance.token ?? "",
-            "foodId": foodId
-        ]
-        
-        Network.delete(url: URL_AVAILABLE, body: body, completion: completion)
+        var body = AuthService.instance.credentials
+        body["foodId"] = JSON(foodId)
+
+        Network.delete(url: URL_AVAILABLE, body: body.dictionaryObject, completion: completion)
     }
 }

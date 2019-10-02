@@ -14,10 +14,7 @@ import KeychainAccess
 class AuthService {
     static let instance = AuthService()
     
-    let defaults = UserDefaults.standard
-    
     var token: String?
-    
     private(set) var email: String?
     private var password: String?
     
@@ -120,8 +117,8 @@ class AuthService {
         self.email = nil //password was reset on writing keychain
         
         // clear saved data on sign out
-        defaults.set(nil, forKey: IS_CONFIGURED)
-        defaults.set(nil, forKey: USER_INFO)
+        UserDefaults.standard.set(nil, forKey: IS_CONFIGURED)
+        UserDefaults.standard.set(nil, forKey: USER_INFO)
         
         NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
     }

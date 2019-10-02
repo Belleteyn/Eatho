@@ -52,6 +52,8 @@ class SettingsVC: BaseVC {
         } else {
             self.tabBarController?.tabBar.items?[4].badgeValue = nil
         }
+        
+        settingsTableView.reloadRows(at: [IndexPath(row: 0, section: 0), IndexPath(row: 0, section: 1)], with: UITableView.RowAnimation.none)
     }
 }
 
@@ -104,6 +106,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
             cell.textLabel?.text = AuthService.instance.email
+            
             cell.textLabel?.textColor = TEXT_COLOR
             cell.detailTextLabel?.text = "account settings"
             cell.detailTextLabel?.textColor = TEXT_COLOR

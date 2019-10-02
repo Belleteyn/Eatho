@@ -26,33 +26,25 @@ class SearchService {
      - server error
      - RequestError
      */
-    func requestSearch(searchArg: String, handler: @escaping CompletionHandler) {
+    func requestSearch(searchArg: String, completion: @escaping RequestCompletion) {
         let params = [ "args": searchArg ]
         
-        Alamofire.request(URL_SEARCH_FOOD, method: .get, parameters: params, encoding: URLEncoding.default).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
+        Network.get(url: URL_SEARCH_FOOD, query: params) { (response, error) in
+            if let data = response?.data {
                 do {
-                    guard let data = response.data else {
-                        handler(false, RequestError(localizedDescription: ERROR_MSG_SEARCH_FAILED))
-                        return
-                    }
-                    
                     if let jsonArr = try JSON(data: data).array {
                         self.foods = [] //clear before
                         for item in jsonArr {
                             let food = Food(json: item)
                             self.foods.append(food)
                         }
-                        
-                        handler(true, nil)
                     }
                 } catch let error {
-                    handler(false, error)
+                    completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE)\n\(error.localizedDescription)"))
+                    return
                 }
                 
-            case .failure(let error):
-                handler(false, error)
+                completion(response, error)
             }
         }
     }

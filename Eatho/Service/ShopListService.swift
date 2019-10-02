@@ -25,28 +25,28 @@ class ShopListService {
         }
     }
     
-    func addItem(name: String, handler: @escaping CompletionHandler) {
+    func addItem(name: String, completion: @escaping RequestCompletion) {
         insert(key: name, value: false)
-        uploadData(handler: handler)
+        uploadData(completion: completion)
     }
     
-    func removeItemFromShopList(index: Int, handler: @escaping CompletionHandler) {
+    func removeItemFromShopList(index: Int, completion: @escaping RequestCompletion) {
         if index < shoppingList.count && index >= 0 {
             shoppingList.remove(at: index)
-            uploadData(handler: handler)
+            uploadData(completion: completion)
         } else {
             print("error: invalid index \(index) for shopping list array (\(shoppingList.count))")
         }
     }
     
-    func removeItemFromRecent(index: Int, handler: @escaping CompletionHandler) {
+    func removeItemFromRecent(index: Int, completion: @escaping RequestCompletion) {
         if index < mostRecentList.count && index >= 0 {
             mostRecentList.remove(at: index)
-            uploadData(handler: handler)
+            uploadData(completion: completion)
         }
     }
     
-    func moveItemFromRecentToShopList(recentIndex index: Int, handler: @escaping CompletionHandler) {
+    func moveItemFromRecentToShopList(recentIndex index: Int, completion: @escaping RequestCompletion) {
         if index < mostRecentList.count && index >= 0 {
             let key = mostRecentList[index]
             if let sListIndex = shoppingList.firstIndex(where: { $0.0 == key }) {
@@ -56,11 +56,11 @@ class ShopListService {
             }
             
             mostRecentList.remove(at: index)
-            uploadData(handler: handler)
+            uploadData(completion: completion)
         }
     }
     
-    func chageSelectionInShoppingList(key: String, value: Bool, handler: @escaping CompletionHandler) {
+    func chageSelectionInShoppingList(key: String, value: Bool, completion: @escaping RequestCompletion) {
         if let index = shoppingList.firstIndex(where: { $0.0 == key }) {
             shoppingList[index].value = value
         }
@@ -70,7 +70,7 @@ class ShopListService {
             mostRecentList.append(key)
         }
         
-        uploadData(handler: handler)
+        uploadData(completion: completion)
     }
     
     func clearData() {
@@ -85,19 +85,11 @@ class ShopListService {
      - server error
      - RequestError
      */
-    func requestData(handler: @escaping CompletionHandler) {
-        let query = [
-            "token": AuthService.instance.token
-        ]
+    func requestData(completion: @escaping RequestCompletion) {
+        let query = AuthService.instance.credentials
         
-        Alamofire.request(URL_SHOPPING_LIST_GET, method: .get, parameters: query, encoding: URLEncoding.default).validate().responseJSON { (response) in
-            switch (response.result) {
-            case .success:
-                guard let data = response.data else {
-                    handler(false, RequestError(localizedDescription: ERROR_MSG_INVALID_RESPONSE))
-                    return
-                }
-                
+        Network.get(url: URL_SHOPPING_LIST_GET, query: query.dictionaryObject) { (response, error) in
+            if let data = response?.data {
                 let json = JSON(data)
                 
                 if let shoppingList = json["shoppingList"].arrayObject as? [String] {
@@ -109,11 +101,9 @@ class ShopListService {
                 if let recent = json["recentPurchases"].arrayObject as? [String] {
                     self.mostRecentList = recent
                 }
-                
-                handler(true, nil)
-            case .failure(let error):
-                handler(false, error)
             }
+            
+            completion(response, error)
         }
     }
     
@@ -123,24 +113,14 @@ class ShopListService {
      possible errors:
      - server error
      */
-    func uploadData(handler: @escaping CompletionHandler) {
+    func uploadData(completion: @escaping RequestCompletion) {
         var uploadingList: [String] = []
         shoppingList.forEach { if !$0.1 { uploadingList.append($0.0) } }
         
-        let body: [String: Any] = [
-            "token": AuthService.instance.token,
-            "shoppingList": uploadingList,
-            "recentPurchases": mostRecentList
-        ]
+        var body = AuthService.instance.credentials
+        body["shoppingList"] = JSON(uploadingList)
+        body["recentPurchases"] = JSON(mostRecentList)
         
-        Alamofire.request(URL_SHOPPING_LIST_UPD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            switch (response.result) {
-            case .success:
-                handler(true, nil)
-            case .failure(let error):
-                debugPrint(error)
-                handler(false, error)
-            }
-        }
+        Network.post(url: URL_SHOPPING_LIST_UPD, body: body.dictionaryObject, completion: completion)
     }
 }

@@ -24,6 +24,7 @@ class SearchVC: FoodVC {
         NotificationCenter.default.addObserver(self, selector: #selector(addFinished(_:)), name: NOTIF_SEARCH_FOOD_ADD_DONE, object: nil)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(releaseTextInput))
+        tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
         
         configureSearch()
@@ -39,14 +40,14 @@ class SearchVC: FoodVC {
         
         searchController.searchBar.delegate = self // Monitor when the search button is tapped.
         searchController.searchBar.returnKeyType = .search
-        
         searchController.searchBar.placeholder = "Search food"
         searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barTintColor = EATHO_MAIN_COLOR
         searchController.searchBar.isHidden = false
-        
         searchController.searchBar.sizeToFit()
         
         foodTable.tableHeaderView = searchController.searchBar
+        
         if #available(iOS 11.0, *) {
         } else {
             searchController.dimsBackgroundDuringPresentation = false // The default is true.
@@ -83,7 +84,7 @@ class SearchVC: FoodVC {
         spinner.stopAnimating()
         if let success = notification.userInfo?["success"] as? Bool {
             if success {
-                navigationController?.popViewController(animated: true)
+                close()
             }
         }
     }
@@ -91,6 +92,10 @@ class SearchVC: FoodVC {
     @objc func releaseTextInput() {
         searchController.searchBar.searchTextField.resignFirstResponder()
     }
+    
+    @objc func close() {
+        searchController.isActive = false
+        self.dismiss(animated: true, completion: nil)
 }
 
 extension SearchVC: UISearchBarDelegate {

@@ -13,13 +13,10 @@ import SwiftyJSON
 extension RationService {
     
     func get(completion: @escaping RequestCompletion, dataHandler: @escaping (_: JSON) -> ()) {
-        let query: [String : Any] = [
-            "email": AuthService.instance.email ?? "",
-            "token": AuthService.instance.token ?? "",
-            "count": 10
-        ]
+        var query = AuthService.instance.credentials
+        query["count"] = 10
         
-        Network.get(url: URL_RATION, query: query) { (response, error) in
+        Network.get(url: URL_RATION, query: query.dictionaryObject) { (response, error) in
             if let data = response?.data {
                 guard let json = JSON(data).array else {
                     completion(nil, ResponseError(code: -1, message: ERROR_MSG_INVALID_RESPONSE))
@@ -36,11 +33,8 @@ extension RationService {
     }
     
     func update(ration: Ration, completion: @escaping RequestCompletion) {
-        let body: JSON = [
-            "email": AuthService.instance.email ?? "",
-            "token": AuthService.instance.token ?? "",
-            "ration": ration.toJson()
-        ]
+        var body: JSON = AuthService.instance.credentials
+        body["ration"] = ration.toJson()
         
         Network.put(url: URL_RATION, body: body.dictionaryObject) { (response, error) in
             completion(response, error)
@@ -48,14 +42,11 @@ extension RationService {
     }
     
     func prepRequest(days: Int, completion: @escaping RequestCompletion, dataHandler: @escaping (_: JSON) -> ()) {
-        let body: [String : Any] = [
-            "email": AuthService.instance.email ?? "",
-            "token": AuthService.instance.token ?? "",
-            "prepCount": days,
-            "diaryCount": 10
-        ]
+        var body = AuthService.instance.credentials
+        body["prepCount"] = JSON(days)
+        body["diaryCount"] = 10
         
-        Network.post(url: URL_RATION, body: body) { (response, error) in
+        Network.post(url: URL_RATION, body: body.dictionaryObject) { (response, error) in
             if let data = response?.data {
                 do {
                     if let json = try JSON(data: data).array {
@@ -74,13 +65,10 @@ extension RationService {
     }
     
     func delete(date: String, completion: @escaping RequestCompletion) {
-        let body = [
-            "email": AuthService.instance.email ?? "",
-            "token": AuthService.instance.token ?? "",
-            "date": date
-        ]
-        
-        Network.delete(url: URL_RATION, body: body) { (response, error) in
+        var body = AuthService.instance.credentials
+        body["date"] = JSON(date)
+
+        Network.delete(url: URL_RATION, body: body.dictionaryObject) { (response, error) in
             completion(response, error)
         }
     }

@@ -47,6 +47,8 @@ class SettingsService {
                     NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "decoding data error: \(err)"])
                     _userInfo = UserInfo()
                 }
+            } else {
+                _userInfo = UserInfo()
             }
             
             return _userInfo!
@@ -70,17 +72,13 @@ class SettingsService {
     
     func uploadUserData(data: Data) {
         do {
-            var json: JSON = [
-                "token": AuthService.instance.token
-            ]
+            var json: JSON = AuthService.instance.credentials
             json["userData"] = try JSON(data: data)
             
-            Alamofire.request(URL_USER_DATA, method: .post, parameters: json.dictionaryObject, encoding: JSONEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-                switch response.result {
-                case .success: ()
-                case .failure(let err):
-                    print("user data uploading failed: \(err)")
-                    NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "uploading data error: \(err)"])
+            Network.post(url: URL_USER_DATA, body: json.dictionaryObject) { (_, error) in
+                if let error = error {
+                    print("user data uploading failed: \(error)")
+                    NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "uploading data error: \(error)"])
                 }
             }
         } catch let err {
@@ -90,25 +88,20 @@ class SettingsService {
     }
     
     func downloadUserData() {
-        let json: JSON = [
-            "token": AuthService.instance.token
-        ]
+        let json = AuthService.instance.credentials
         
-        Alamofire.request(URL_SETTINGS, method: .get, parameters: json.dictionaryObject, encoding: URLEncoding.default, headers: JSON_HEADER).validate().responseJSON { (response) in
-            switch response.result {
-            case .success:
-                if let data = response.data {
-                    do {
-                        self.userInfo = try JSONDecoder().decode(UserInfo.self, from: data)
-                        NotificationCenter.default.post(name: NOTIF_USER_DATA_CHANGED, object: nil)
-                    } catch let err {
-                        debugPrint(err)
-                        NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "decoding user data error: \(err)"])
-                    }
+        Network.get(url: URL_SETTINGS, query: json.dictionaryObject) { (response, error) in
+            if let data = response?.data {
+                do {
+                    self.userInfo = try JSONDecoder().decode(UserInfo.self, from: data)
+                    NotificationCenter.default.post(name: NOTIF_USER_DATA_CHANGED, object: nil)
+                } catch let err {
+                    debugPrint(err)
+                    NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "decoding user data error: \(err)"])
                 }
-            case .failure(let err):
-                print("user data downloading failed: \(err)")
-                NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "downloading user data error: \(err)"])
+            } else if let error = error {
+                print("user data downloading failed: \(error)")
+                NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "downloading user data error: \(error)"])
             }
         }
     }
