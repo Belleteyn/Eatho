@@ -10,10 +10,10 @@ import UIKit
 
 class SearchVC: FoodVC {
     
-    /*
+    /**
      By initializing UISearchController with a nil value for the searchResultsController, you tell the search controller that you want use the same view you’re searching to display the results. If you specify a different view controller here, that will be used to display the results instead.
      */
-    let searchController = UISearchController(searchResultsController: nil)
+    private var searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,10 @@ class SearchVC: FoodVC {
         
         NotificationCenter.default.addObserver(self, selector: #selector(startSpinner), name: NOTIF_SEARCH_FOOD_ADD, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addFinished(_:)), name: NOTIF_SEARCH_FOOD_ADD_DONE, object: nil)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(releaseTextInput))
+        self.view.addGestureRecognizer(tap)
+        
         configureSearch()
     }
 
@@ -29,37 +33,37 @@ class SearchVC: FoodVC {
     
     func configureSearch() {
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        //searchController.hidesNavigationBarDuringPresentation = false
         
-        searchController.searchBar.barStyle = .default
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        searchController.searchBar.delegate = self // Monitor when the search button is tapped.
+        searchController.searchBar.returnKeyType = .search
+        
         searchController.searchBar.placeholder = "Search food"
-        searchController.searchBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.isHidden = false
         
-        navigationItem.largeTitleDisplayMode = .never
+        searchController.searchBar.sizeToFit()
         
-//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: TEXT_COLOR]
-//        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(string: "Search food", attributes: [NSAttributedString.Key.foregroundColor: TEXT_COLOR])
-        
-        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.textColor = UIColor.blue
-            if let backgroundview = textfield.subviews.first {
-
-                // Background color
-                backgroundview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5482930223)
-
-                // Rounded corner
-                backgroundview.layer.cornerRadius = 10;
-                backgroundview.clipsToBounds = true;
-            }
+        foodTable.tableHeaderView = searchController.searchBar
+        if #available(iOS 11.0, *) {
+        } else {
+            searchController.dimsBackgroundDuringPresentation = false // The default is true.
         }
-
-        navigationItem.searchController = searchController
+        
+        /** Specify that this view controller determines how the search controller is presented.
+            The search controller should be presented modally and match the physical size of this view controller.
+        */
         definesPresentationContext = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         searchController.isActive = true
+        //searchController.searchBar.becomeFirstResponder()
+        searchController.searchBar.searchTextField.becomeFirstResponder()
     }
     
     override func openDetails(index: Int) {
@@ -84,6 +88,16 @@ class SearchVC: FoodVC {
         }
     }
     
+    @objc func releaseTextInput() {
+        searchController.searchBar.searchTextField.resignFirstResponder()
+    }
+}
+
+extension SearchVC: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension SearchVC: UISearchResultsUpdating {
@@ -95,12 +109,12 @@ extension SearchVC: UISearchResultsUpdating {
             foodTable.reloadData()
         } else {
             spinner.startAnimating()
-            SearchService.instance.requestSearch(searchArg: searchText) { (success, error) in
+            SearchService.instance.requestSearch(searchArg: searchText) { (_, error) in
                 
                 self.spinner.stopAnimating()
                 
                 if let error = error {
-                    self.showErrorAlert(title: ERROR_TITLE_SEARCH_FAILED, message: error.localizedDescription)
+                    self.showErrorAlert(title: ERROR_TITLE_SEARCH_FAILED, message: error.message)
                 }
                 
                 self.foodTable.reloadData()
