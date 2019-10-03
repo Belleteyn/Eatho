@@ -96,6 +96,7 @@ class SearchVC: FoodVC {
     @objc func close() {
         searchController.isActive = false
         self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension SearchVC: UISearchBarDelegate {

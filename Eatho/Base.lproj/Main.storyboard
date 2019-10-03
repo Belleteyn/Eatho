@@ -2942,14 +2942,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdo-sB-ZS1">
-                                                    <rect key="frame" x="267.66666666666669" y="14" width="58.333333333333314" height="17"/>
+                                                    <rect key="frame" x="257.66666666666669" y="14" width="58.333333333333314" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Vdo-sB-ZS1" secondAttribute="trailing" constant="88" id="3Vg-fO-Lfu"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vdo-sB-ZS1" secondAttribute="trailing" constant="98" id="3Vg-fO-Lfu"/>
                                                 <constraint firstAttribute="trailing" secondItem="GG7-ii-OX4" secondAttribute="trailing" constant="12" id="7M0-dh-s8G"/>
                                                 <constraint firstItem="GG7-ii-OX4" firstAttribute="centerY" secondItem="tK0-js-8H8" secondAttribute="centerY" id="Ajq-2Z-oNy"/>
                                                 <constraint firstItem="Vdo-sB-ZS1" firstAttribute="centerY" secondItem="tK0-js-8H8" secondAttribute="centerY" id="JZn-49-nzF"/>
@@ -2983,7 +2983,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAr-Ns-Mmr">
-                                                    <rect key="frame" x="317" y="9" width="9" height="17"/>
+                                                    <rect key="frame" x="307" y="9" width="9" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.29803921570000003" green="0.32549019610000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2995,7 +2995,7 @@
                                                 <constraint firstItem="VgR-bQ-3WI" firstAttribute="centerY" secondItem="Lsl-FP-aEP" secondAttribute="centerY" id="5rB-vd-wp0"/>
                                                 <constraint firstItem="Lsl-FP-aEP" firstAttribute="leading" secondItem="PeO-ze-j2V" secondAttribute="leadingMargin" constant="16" id="ECQ-89-Tp4"/>
                                                 <constraint firstAttribute="trailing" secondItem="VgR-bQ-3WI" secondAttribute="trailing" constant="12" id="p1O-aN-w0Y"/>
-                                                <constraint firstAttribute="trailing" secondItem="IAr-Ns-Mmr" secondAttribute="trailing" constant="88" id="rW0-fn-Hld"/>
+                                                <constraint firstAttribute="trailing" secondItem="IAr-Ns-Mmr" secondAttribute="trailing" constant="98" id="rW0-fn-Hld"/>
                                                 <constraint firstItem="IAr-Ns-Mmr" firstAttribute="centerY" secondItem="Lsl-FP-aEP" secondAttribute="centerY" id="xjp-yy-T5m"/>
                                             </constraints>
                                         </tableViewCellContentView>
