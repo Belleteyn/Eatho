@@ -6,6 +6,8 @@
   Copyright © 2019 Серафима Зыкова. All rights reserved.
 */
 
+"of" = "из";
+
 /** Auth */
 "Email" = "Почта";
 "Password" = "Пароль";
@@ -15,6 +17,14 @@
 "g" = "г";
 "lb" = "lb";
 "oz" = "oz";
+"Proteins" = "Белки";
+"Carbs" = "Углеводы";
+"Fats" = "Жиры";
+"Calories" = "Калории";
+
+
+/** Settings */
+"Activity level" = "Уровень активности";
 
 /** Auth errors */
 "Please enter email" = "Пожалуйста, введите свой почтовый адрес в формате example@example.com";

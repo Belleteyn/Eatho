@@ -27,7 +27,7 @@ class DoubleInputCell: UITableViewCell, UITextViewDelegate {
         weightTextView.delegate = self
         percentTextView.delegate = self
         
-        weightLabel.text = "g"
+        weightLabel.text = "\(G)"
         percentLabel.text = "%"
     }
 
@@ -40,15 +40,15 @@ class DoubleInputCell: UITableViewCell, UITextViewDelegate {
         case .Proteins:
             percentPlaceholder = "\(truncateDoubleTail(info.nutrition.proteins["percent"]!))"
             weightPlaceholder = "\(truncateDoubleTail(info.nutrition.proteins["g"]!))"
-            mainLabel.text = "Proteins"
+            mainLabel.text = PROTEINS
         case .Carbs:
             percentPlaceholder = "\(truncateDoubleTail(info.nutrition.carbs["percent"]!))"
             weightPlaceholder = "\(truncateDoubleTail(info.nutrition.carbs["g"]!))"
-            mainLabel.text = "Carbs"
+            mainLabel.text = CARBS
         case .Fats:
             percentPlaceholder = "\(truncateDoubleTail(info.nutrition.fats["percent"]!))"
             weightPlaceholder = "\(truncateDoubleTail(info.nutrition.fats["g"]!))"
-            mainLabel.text = "Fats"
+            mainLabel.text = FATS
         default:
             return
         }

@@ -48,17 +48,17 @@ class RationNutrientsView: UIView {
             nutrientRelativityView.updateView(proteinsPercent: 0, carbsPercent: 0, fatsPercent: 0)
         }
         
-        totalCaloriesLbl.text = "\(Int(round(calories))) kcal"
-        carbsAmountLbl.text = "\(Int(round(carbs))) g"
-        proteinsAmountLbl.text = "\(Int(round(proteins))) g"
-        fatsAmountLbl.text = "\(Int(round(fats))) g"
+        totalCaloriesLbl.text = "\(Int(round(calories))) \(KCAL)"
+        carbsAmountLbl.text = "\(Int(round(carbs))) \(G)"
+        proteinsAmountLbl.text = "\(Int(round(proteins))) \(G)"
+        fatsAmountLbl.text = "\(Int(round(fats))) \(G)"
         
         chartView.initData(nutrition: nutrition, userNutrition: SettingsService.instance.userInfo.nutrition)
     }
     
     func setupUserData() {
         if expectedCaloriesLbl != nil {
-            expectedCaloriesLbl!.text = "of \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) kcal"
+            expectedCaloriesLbl!.text = "\(OF) \(Int(round(SettingsService.instance.userInfo.nutrition.calories))) \(KCAL)"
         }
     }
     

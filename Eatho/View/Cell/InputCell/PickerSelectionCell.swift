@@ -17,7 +17,7 @@ class PickerSelectionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        mainLabel.text = "Activity level"
+        mainLabel.text = NSLocalizedString("Activity level", comment: "Settings")
     }
     
     func setupView(type: String, description: String) {

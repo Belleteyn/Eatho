@@ -41,10 +41,10 @@ class RationChartView: BarChartView {
         let kcalOverDiff = userNutrition.calories < nutrition.calories ? kcal - ukcal : 0
 
         let dataSet = [
-            BarChartDataSet(entries: [BarChartDataEntry(x: 0.0, yValues: [p, pUnderDiff, pOverDiff])], label: "Proteins: \(pg) of \(upg) g"),
-            BarChartDataSet(entries: [BarChartDataEntry(x: 1.0, yValues: [c, cUnderDiff, cOverDiff])], label: "Carbs: \(cg) of \(ucg) g"),
-            BarChartDataSet(entries: [BarChartDataEntry(x: 2.0, yValues: [f, fUnderDiff, fOverDiff])], label: "Fats: \(fg) of \(ufg) g"),
-            BarChartDataSet(entries: [BarChartDataEntry(x: 3.0, yValues: [nutrition.calories, kcalUnderDiff, kcalOverDiff])], label: "Calories: \(kcal) of \(ukcal)")
+            BarChartDataSet(entries: [BarChartDataEntry(x: 0.0, yValues: [p, pUnderDiff, pOverDiff])], label: "\(PROTEINS): \(pg) \(OF) \(upg) \(G)"),
+            BarChartDataSet(entries: [BarChartDataEntry(x: 1.0, yValues: [c, cUnderDiff, cOverDiff])], label: "\(CARBS): \(cg) \(OF) \(ucg) \(G)"),
+            BarChartDataSet(entries: [BarChartDataEntry(x: 2.0, yValues: [f, fUnderDiff, fOverDiff])], label: "\(FATS): \(fg) \(OF) \(ufg) \(G)"),
+            BarChartDataSet(entries: [BarChartDataEntry(x: 3.0, yValues: [nutrition.calories, kcalUnderDiff, kcalOverDiff])], label: "\(CALORIES): \(kcal) \(OF) \(ukcal)")
         ]
         
         dataSet[0].colors = [EATHO_PROTEINS, EATHO_PROTEINS_LIGHT, EATHO_PROTEINS_DARK]
