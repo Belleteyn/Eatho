@@ -10,6 +10,12 @@
 "Email" = "Почта";
 "Password" = "Пароль";
 
+/** Food */
+"kcal" = "ккал";
+"g" = "г";
+"lb" = "lb";
+"oz" = "oz";
+
 /** Auth errors */
 "Please enter email" = "Пожалуйста, введите свой почтовый адрес в формате example@example.com";
 "Please enter password" = "Пожалуйста, введите пароль";

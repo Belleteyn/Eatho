@@ -28,7 +28,7 @@ class DiaryCell: UITableViewCell {
         self.date = ration.date
         
         dateLbl.text = EathoDateFormatter.instance.format(isoDate: date)
-        caloriesInfo.text = "\(round(ration.nutrition.calories)) kcal"
+        caloriesInfo.text = "\(round(ration.nutrition.calories)) \(KCAL)"
         
         let interval = date.timeIntervalSinceNow //in seconds
         let day = 24.0 * 60 * 60

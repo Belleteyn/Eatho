@@ -42,13 +42,13 @@ class FoodCell: UITableViewCell {
         icon.image = UIImage(named: food.icon)
         
         if SettingsService.instance.userInfo.lbsMetrics {
-            info.text = "\(truncateDoubleTail(kcalPerLb(kcalPerG: calories))) kkal (1 lb)"
+            info.text = "\(truncateDoubleTail(kcalPerLb(kcalPerG: calories))) \(KCAL) (1 \(LB)"
         } else {
-            info.text = "\(calories) kkal (100 g)"
+            info.text = "\(calories) \(KCAL) (100 \(G))"
         }
         
-        proteins.text = "\(food.nutrition.proteins ?? 0) g"
-        carbs.text = "\(food.nutrition.carbs.total ?? 0) g"
-        fats.text = "\(food.nutrition.fats.total ?? 0) g"
+        proteins.text = "\(food.nutrition.proteins ?? 0) \(G)"
+        carbs.text = "\(food.nutrition.carbs.total ?? 0) \(G)"
+        fats.text = "\(food.nutrition.fats.total ?? 0) \(G)"
     }
 }

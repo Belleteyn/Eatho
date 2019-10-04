@@ -28,18 +28,18 @@ class RationFoodCell: FoodCell {
         
         let caloriesPerPortion = round(portion * (food.nutrition.calories.total ?? 0) / 100)
         if SettingsService.instance.userInfo.lbsMetrics {
-            super.info.text = "\(truncateDoubleTail(convertMetrics(g: portion))) lbs (\(Int(caloriesPerPortion)) kcal)"
+            super.info.text = "\(truncateDoubleTail(convertMetrics(g: portion))) \(LB) (\(Int(caloriesPerPortion)) \(KCAL))"
         } else {
-            super.info.text = "\(Int(portion)) g (\(Int(caloriesPerPortion)) kcal)"
+            super.info.text = "\(Int(portion)) \(G) (\(Int(caloriesPerPortion)) \(KCAL))"
         }
         
         
         if editable {
             let delta = foodItem.delta ?? 0
             if SettingsService.instance.userInfo.lbsMetrics {
-                portionTxt.text = "\(truncateDoubleTail(convertMetrics(g: delta))) lbs"
+                portionTxt.text = "\(truncateDoubleTail(convertMetrics(g: delta))) \(LB)"
             } else {
-                portionTxt.text = "\(delta) g"
+                portionTxt.text = "\(delta) \(G)"
             }
             
             increaseBtn.isEnabled = ((foodItem.available ?? 0) > portion)

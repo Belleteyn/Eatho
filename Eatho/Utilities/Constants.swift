@@ -103,3 +103,9 @@ let EATHO_CARBS_DARK = #colorLiteral(red: 0.7897848888, green: 0.5032464764, blu
 let EATHO_FATS = EATHO_RED
 let EATHO_FATS_LIGHT = EATHO_RED_OPACITY50
 let EATHO_FATS_DARK = #colorLiteral(red: 0.8037964612, green: 0.375762808, blue: 0.3610030268, alpha: 0.8484589041)
+
+
+// localized common strings
+let G = NSLocalizedString("g", comment: "Food")
+let KCAL = NSLocalizedString("kcal", comment: "Food")
+let LB = NSLocalizedString("lb", comment: "Food")

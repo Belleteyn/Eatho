@@ -19,9 +19,9 @@ class AvailableFoodCell: FoodCell {
         super.updateViews(food: food)
         
         if SettingsService.instance.userInfo.lbsMetrics {
-            weightLbl.text = "\(truncateDoubleTail(convertMetrics(g: foodItem.available ?? 0))) lbs"
+            weightLbl.text = "\(truncateDoubleTail(convertMetrics(g: foodItem.available ?? 0))) \(LB)"
         } else {
-            weightLbl.text = "\(Int(foodItem.available ?? 0)) g"
+            weightLbl.text = "\(Int(foodItem.available ?? 0)) \(G)"
         }
     }
 }
