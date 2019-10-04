@@ -50,17 +50,26 @@ struct LocalDataError: Error {
  A good error message has three parts: problem identification, cause details if helpful, and a solution if possible.
  
  If text is long, use disclosure
+ 
+ 
+  ‼️ WARNING ‼️ don't forget to update localization if error messages were changed
+ 
  */
 
+/* Common errors */
 let ERROR_TITLE_NETWORK_UNREACHABLE = "Connection lost"
 let ERROR_MSG_NETWORK_UNREACHABLE = "Sorry! App cannot get your data without internet connection. \nPlease try again later 💜"
 
-let ERROR_MSG_LOGIN_MISSED = "Please enter email"
-let ERROR_MSG_PASSWORD_MISSED = "Please enter password"
-let ERROR_MSG_USER_NOT_FOUND = "This email was not registered, please check entered email or register if you didn't"
-let ERROR_MSG_ALREADY_REGISTERED = "This email was registered earlier"
-let ERROR_MSG_REGISTRATION_FAILED = "I don't know what could be wrong, but it was 😯"
-let ERROR_MSG_INCORRECT_PASSWORD = "Password is incorrect, try again! 😉"
+/* Auth errors */
+let ERROR_TITLE_AUTH = NSLocalizedString("Authorization error", comment: "Auth errors")
+let ERROR_MSG_KEYCHAIN = NSLocalizedString("Cannot save credentials in keychain", comment: "Auth errors")
+let ERROR_MSG_LOGIN_MISSED = NSLocalizedString("Please enter email", comment: "Auth errors")
+let ERROR_MSG_PASSWORD_MISSED = NSLocalizedString("Please enter password", comment: "Auth errors")
+let ERROR_MSG_USER_NOT_FOUND = NSLocalizedString("This email was not registered, please check entered email or register if you didn't", comment: "Auth errors")
+let ERROR_MSG_INCORRECT_PASSWORD = NSLocalizedString("Password is incorrect, try again! 😉", comment: "Auth errors")
+let ERROR_MSG_ALREADY_REGISTERED = NSLocalizedString("This email was registered earlier", comment: "Auth errors")
+let ERROR_MSG_REGISTRATION_FAILED = NSLocalizedString("I don't know what could be wrong, but it was 😯", comment: "Auth errors")
+
 
 
 let ERROR_MSG_FOOD_CREATION_FAILED = "Food creation error"

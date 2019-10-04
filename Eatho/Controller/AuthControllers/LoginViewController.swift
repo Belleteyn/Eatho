@@ -28,8 +28,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTxt.delegate = self
         passwordTxt.delegate = self
         
-        emailTxt.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
-        passwordTxt.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
+        emailTxt.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
+        passwordTxt.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
         view.addGestureRecognizer(tap)
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         self.passwordErrorMsg.text = ERROR_MSG_INCORRECT_PASSWORD
                         self.passwordSeparator.backgroundColor = EATHO_RED
                     case AuthError.keychain:
-                        self.showErrorAlert(title: "Auth error", message: "Cannot save credentials in keychain")
+                        self.showErrorAlert(title: ERROR_TITLE_AUTH, message: ERROR_MSG_KEYCHAIN)
                     }
                 } else {
                     self.showErrorAlert(title: ERROR_TITLE_NETWORK_UNREACHABLE, message: ERROR_MSG_NETWORK_UNREACHABLE)

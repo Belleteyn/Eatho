@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "Forgot password?"; ObjectID = "3UZ-c5-33d"; */
+"3UZ-c5-33d.text" = "Забыли пароль?";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "5aL-WA-Wyj"; */
+"5aL-WA-Wyj.normalTitle" = "Войти";
+
+/* Class = "UILabel"; text = " Recover"; ObjectID = "6SB-Vt-slW"; */
+"6SB-Vt-slW.text" = " Восстановить";
+
+/* Class = "UIButton"; normalTitle = "NEXT"; ObjectID = "MB3-hn-qzg"; */
+"MB3-hn-qzg.normalTitle" = "Далее";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Nje-Rv-SoM"; */
+"Nje-Rv-SoM.placeholder" = "Пароль";
+
+/* Class = "UILabel"; text = "Register"; ObjectID = "aNk-nG-tTs"; */
+"aNk-nG-tTs.text" = "Зарегистрироваться";
+
+/* Class = "UILabel"; text = "NO PASSWORD RECOVERY YET"; ObjectID = "fMF-Pf-135"; */
+"fMF-Pf-135.text" = "NO PASSWORD RECOVERY YET";
+
+/* Class = "UILabel"; text = "Don't have an account?"; ObjectID = "h7L-L4-1D8"; */
+"h7L-L4-1D8.text" = "Ещё нет аккаунта?";
+
+/* Class = "UIButton"; normalTitle = "Recover password"; ObjectID = "ifW-j0-AoJ"; */
+"ifW-j0-AoJ.normalTitle" = "Восстановление пароля";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "kiq-OW-hEb"; */
+"kiq-OW-hEb.placeholder" = "Емэйл";
+
+/* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "qFO-Ie-NKA"; */
+"qFO-Ie-NKA.normalTitle" = "Зарегистрироваться";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "r8L-k1-d1I"; */
+"r8L-k1-d1I.placeholder" = "Емэйл";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "sff-3E-nXc"; */
+"sff-3E-nXc.placeholder" = "Пароль";

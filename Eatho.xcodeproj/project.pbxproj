@@ -36,6 +36,7 @@
 		9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */; };
 		9549B1CD23210AE000A53AAB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CC23210AE000A53AAB /* Errors.swift */; };
 		9549B1CF2321714E00A53AAB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CE2321714E00A53AAB /* DateFormatter.swift */; };
+		954ED80F234788E500628BE5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 954ED811234788E500628BE5 /* Localizable.strings */; };
 		954F4E47231DA6B30088B6DD /* RationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E46231DA6B30088B6DD /* RationChartView.swift */; };
 		954F4E4A231E39270088B6DD /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E49231E39270088B6DD /* MathUtils.swift */; };
 		954F4E4C231E90C50088B6DD /* RationComplementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E4B231E90C40088B6DD /* RationComplementVC.swift */; };
@@ -153,6 +154,8 @@
 		9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		9549B1CC23210AE000A53AAB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		9549B1CE2321714E00A53AAB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		954ED80C234786B900628BE5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LoginScreen.strings; sourceTree = "<group>"; };
+		954ED810234788E500628BE5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		954F4E46231DA6B30088B6DD /* RationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationChartView.swift; sourceTree = "<group>"; };
 		954F4E49231E39270088B6DD /* MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtils.swift; sourceTree = "<group>"; };
 		954F4E4B231E90C40088B6DD /* RationComplementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationComplementVC.swift; sourceTree = "<group>"; };
@@ -175,7 +178,6 @@
 		9571892B2305C61E004A3EE3 /* Nutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrition.swift; sourceTree = "<group>"; };
 		9571892D2305CB9C004A3EE3 /* Nutrient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrient.swift; sourceTree = "<group>"; };
 		9572F90D22E5AD7E009C7B7B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		957E7EAD233CE45C00904D4B /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		957E7EAF233CE46100904D4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		957E7EB2233CE80A00904D4B /* PasswordRecoveryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryVC.swift; sourceTree = "<group>"; };
 		958195B3230ADD4D00B08C92 /* FoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodVC.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				957E7EAE233CE45C00904D4B /* LoginScreen.storyboard */,
 				95324E0A22DF614C005905FF /* Info.plist */,
 				95AED1882319187A00D7BE97 /* Model.xcdatamodeld */,
+				954ED811234788E500628BE5 /* Localizable.strings */,
 			);
 			path = Eatho;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954ED80F234788E500628BE5 /* Localizable.strings in Resources */,
 				95324E0922DF614C005905FF /* LaunchScreen.storyboard in Resources */,
 				95324E0622DF614C005905FF /* Assets.xcassets in Resources */,
 				957E7EAC233CE45C00904D4B /* LoginScreen.storyboard in Resources */,
@@ -894,11 +898,19 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		954ED811234788E500628BE5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				954ED810234788E500628BE5 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		957E7EAE233CE45C00904D4B /* LoginScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				957E7EAD233CE45C00904D4B /* ru */,
 				957E7EAF233CE46100904D4B /* Base */,
+				954ED80C234786B900628BE5 /* ru */,
 			);
 			name = LoginScreen.storyboard;
 			sourceTree = "<group>";

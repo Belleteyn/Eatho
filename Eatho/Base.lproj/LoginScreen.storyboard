@@ -281,7 +281,7 @@
             <objects>
                 <viewController storyboardIdentifier="PasswordRecoveryVC" id="zIr-4n-2YV" customClass="PasswordRecoveryVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sm6-Ap-Xll" customClass="GradientView" customModule="Eatho" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO PASSWORD RECOVERY YET" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMF-Pf-135">
@@ -565,6 +565,6 @@
         <image name="logo" width="154.5" height="153"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="12p-Nf-cfp"/>
+        <segue reference="peF-3l-8G3"/>
     </inferredMetricsTieBreakers>
 </document>
