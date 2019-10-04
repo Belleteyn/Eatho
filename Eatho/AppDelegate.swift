@@ -11,13 +11,20 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    enum AppMode {
+        case None, Main, Auth
+    }
+    
     var window: UIWindow?
-
+    private var openedMode: AppMode = .None
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(openAppInDesiredMode), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
-        openAppInDesiredMode()
+        let storyboard = UIStoryboard(name: "LaunchScreen", bundle: Bundle.main)
+        let vc = storyboard.instantiateInitialViewController()
+        self.window?.rootViewController = vc
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(openAppScreen), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         
         return true
     }
@@ -35,12 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        openAppInDesiredMode()
-        
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        openAppScreen()
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
@@ -49,44 +55,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func openMain() {
+        guard openedMode != .Main else { return }
+        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateInitialViewController()
         
-        if let keyWindow = UIApplication.shared.keyWindow {
-            UIView.transition(with: keyWindow, duration: 0.4, options: .transitionFlipFromLeft, animations: {
-                let oldState = UIView.areAnimationsEnabled
-                UIView.setAnimationsEnabled(false)
-                UIApplication.shared.keyWindow?.rootViewController = vc
-                UIView.setAnimationsEnabled(oldState)
-            })
-        } else {
-            self.window?.rootViewController = vc
+        if openedMode == .Auth {
+            if let keyWindow = UIApplication.shared.keyWindow {
+                UIView.transition(with: keyWindow, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+                    let oldState = UIView.areAnimationsEnabled
+                    UIView.setAnimationsEnabled(false)
+                    UIApplication.shared.keyWindow?.rootViewController = vc
+                    UIView.setAnimationsEnabled(oldState)
+                })
+                
+                openedMode = .Main
+                return
+            }
         }
+        
+        self.window?.rootViewController = vc
+        
+        openedMode = .Main
     }
     
     private func openAuth() {
+        guard openedMode != .Auth else { return }
+        
         let storyboard = UIStoryboard(name: "LoginScreen", bundle: Bundle.main)
         let vc = storyboard.instantiateInitialViewController()
         
-        if let keyWindow = UIApplication.shared.keyWindow {
-            UIView.transition(with: keyWindow, duration: 0.4, options: .transitionFlipFromRight, animations: {
-                let oldState = UIView.areAnimationsEnabled
-                UIView.setAnimationsEnabled(false)
-                UIApplication.shared.keyWindow?.rootViewController = vc
-                UIView.setAnimationsEnabled(oldState)
-            })
-        } else {
-            self.window?.rootViewController = vc
+        if openedMode == .Main {
+            if let keyWindow = UIApplication.shared.keyWindow {
+                UIView.transition(with: keyWindow, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+                    let oldState = UIView.areAnimationsEnabled
+                    UIView.setAnimationsEnabled(false)
+                    UIApplication.shared.keyWindow?.rootViewController = vc
+                    UIView.setAnimationsEnabled(oldState)
+                })
+                
+                openedMode = .Auth
+                return
+            }
         }
         
+        self.window?.rootViewController = vc
+        openedMode = .Auth
     }
     
-    @objc private func openAppInDesiredMode() {
+    @objc private func openAppScreen() {
         AuthService.instance.login { (_, error) in
-            if let error = error {
-                print(error) //TODO: critical alert message
+            if error != nil {
                 self.openAuth()
-                return
             } else {
                 self.openMain()
             }
