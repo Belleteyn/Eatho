@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		20EAFAAAEB8C00A73E7F3CA3 /* Pods_EathoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */; };
 		2A1DAB6A1374B9867D349312 /* Pods_Eatho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */; };
+		950236A72348AF9A0059DA8B /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950236A62348AF9A0059DA8B /* URLs.swift */; };
+		950236A92348AFBF0059DA8B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950236A82348AFBF0059DA8B /* Colors.swift */; };
 		951460C6231E97A100B5C04D /* FoodServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951460C5231E97A100B5C04D /* FoodServiceNetworkExtension.swift */; };
 		951460C8231EB55500B5C04D /* RationInsertionFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951460C7231EB55500B5C04D /* RationInsertionFoodCell.swift */; };
 		951460CA231F053200B5C04D /* ComplementParamsModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951460C9231F053200B5C04D /* ComplementParamsModalVC.swift */; };
@@ -122,6 +124,8 @@
 		41FFFBAE1CF841C989C04427 /* Pods-Eatho.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eatho.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eatho/Pods-Eatho.release.xcconfig"; sourceTree = "<group>"; };
 		43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EathoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		950236A52348A13D0059DA8B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		950236A62348AF9A0059DA8B /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		950236A82348AFBF0059DA8B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		951460C5231E97A100B5C04D /* FoodServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		951460C7231EB55500B5C04D /* RationInsertionFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationInsertionFoodCell.swift; sourceTree = "<group>"; };
 		951460C9231F053200B5C04D /* ComplementParamsModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplementParamsModalVC.swift; sourceTree = "<group>"; };
@@ -463,6 +467,8 @@
 				954F4E49231E39270088B6DD /* MathUtils.swift */,
 				9549B1CC23210AE000A53AAB /* Errors.swift */,
 				9549B1CE2321714E00A53AAB /* DateFormatter.swift */,
+				950236A62348AF9A0059DA8B /* URLs.swift */,
+				950236A82348AFBF0059DA8B /* Colors.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -772,6 +778,7 @@
 				95F7C80B23362936003BEE5B /* ErrorExtension.swift in Sources */,
 				951460C8231EB55500B5C04D /* RationInsertionFoodCell.swift in Sources */,
 				956D437122F2FEE00091C9C4 /* ActivityPickerVC.swift in Sources */,
+				950236A72348AF9A0059DA8B /* URLs.swift in Sources */,
 				95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */,
 				95DB28BE2328D9A6004511DD /* SingleInputCell.swift in Sources */,
 				95512AC322F089A80038790F /* SettingsVC.swift in Sources */,
@@ -841,6 +848,7 @@
 				95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */,
 				95512ABD22F089790038790F /* RationVC.swift in Sources */,
 				951460CA231F053200B5C04D /* ComplementParamsModalVC.swift in Sources */,
+				950236A92348AFBF0059DA8B /* Colors.swift in Sources */,
 				958195B4230ADD4D00B08C92 /* FoodVC.swift in Sources */,
 				956D437E22F6ADD40091C9C4 /* RecentPurchasesCell.swift in Sources */,
 				95278CFE22FC8EF300B015F7 /* Ration.swift in Sources */,
