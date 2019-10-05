@@ -60,6 +60,11 @@ struct LocalDataError: Error {
 let ERROR_TITLE_NETWORK_UNREACHABLE = "Connection lost"
 let ERROR_MSG_NETWORK_UNREACHABLE = "Sorry! App cannot get your data without internet connection. \nPlease try again later 💜"
 
+let ERROR_TITLE_REFRESH_FAILED = NSLocalizedString("Refresh failed", comment: "Common errors")
+let ERROR_TITLE_REMOVE_FAILED = NSLocalizedString("Remove failed", comment: "Common errors")
+
+let ERROR_MSG_INVALID_INDEX = NSLocalizedString("Invalid index", comment: "Common errors")
+
 /* Auth errors */
 let ERROR_TITLE_AUTH = NSLocalizedString("Authorization error", comment: "Auth errors")
 let ERROR_MSG_KEYCHAIN = NSLocalizedString("Cannot save credentials in keychain", comment: "Auth errors")

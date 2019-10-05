@@ -49,7 +49,7 @@ class AviailableVC: FoodVC {
             }
             
             if let error = error {
-                self.showErrorAlert(title: "Refresh failed", message: error.message)
+                self.showErrorAlert(title: ERROR_TITLE_REFRESH_FAILED, message: error.message)
             } else {
                 self.reloadTable()
             }
@@ -81,17 +81,17 @@ extension AviailableVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: REMOVE) { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             
             guard indexPath.row < FoodService.instance.foods.count else {
-                self.showErrorAlert(title: "Remove failed", message: "Failed to remove row \(indexPath.row): value is too big")
+                self.showErrorAlert(title: ERROR_TITLE_REMOVE_FAILED, message: "\(ERROR_MSG_INVALID_INDEX) \(indexPath.row)")
                 success(false)
                 return
             }
             
             let removeResult = FoodService.instance.removeItem(index: indexPath.row) { (_, error) in
                 if let error = error {
-                    self.showErrorAlert(title: "Remove failed", message: error.message)
+                    self.showErrorAlert(title: ERROR_TITLE_REMOVE_FAILED, message: error.message)
                 } else {
                     self.loadData()
                 }
@@ -104,16 +104,22 @@ extension AviailableVC: UITableViewDataSource {
         }
         removeAction.backgroundColor = EATHO_RED
         
-        let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Details") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: DETAILS) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             self.openDetails(index: indexPath.row)
             success(true)
         }
         
-        let updateAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Update") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let updateAction = UIContextualAction(style: UIContextualAction.Style.normal, title: UPDATE) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             super.openUpdateVC(index: indexPath.row)
             success(true)
         }
         updateAction.backgroundColor = EATHO_YELLOW
+        
+        if #available(iOS 13.0, *) {
+            removeAction.image = REMOVE_IMG
+            revealDetailsAction.image = INFO_IMG
+            updateAction.image = UPDATE_IMG
+        } 
         
         return UISwipeActionsConfiguration(actions: [removeAction, updateAction, revealDetailsAction])
     }

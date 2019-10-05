@@ -114,3 +114,17 @@ let CARBS = NSLocalizedString("Carbs", comment: "Food")
 let FATS = NSLocalizedString("Fats", comment: "Food")
 let CALORIES = NSLocalizedString("Calories", comment: "Food")
 let OF = NSLocalizedString("of", comment: "")
+
+// localized swipe actions
+let REMOVE = NSLocalizedString("Remove", comment: "Actions")
+let UPDATE = NSLocalizedString("Update", comment: "Actions")
+let DETAILS = NSLocalizedString("Details", comment: "Actions")
+
+// system images
+
+@available(iOS 13.0, *)
+let REMOVE_IMG = UIImage(systemName: "trash.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold))
+@available(iOS 13.0, *)
+let INFO_IMG = UIImage(systemName: "info.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold))
+@available(iOS 13.0, *)
+let UPDATE_IMG = UIImage(systemName: "pencil.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold))

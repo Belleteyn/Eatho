@@ -1,378 +1,155 @@
-
-/* Class = "UITextField"; placeholder = "Email"; ObjectID = "07J-mg-IjT"; */
-"07J-mg-IjT.placeholder" = "Email";
-
-/* Class = "UITextField"; placeholder = "Available (g)"; ObjectID = "0T1-5Y-69K"; */
-"0T1-5Y-69K.placeholder" = "Available (g)";
-
-/* Class = "UILabel"; text = "Banana"; ObjectID = "0rE-UJ-hes"; */
-"0rE-UJ-hes.text" = "Banana";
-
-/* Class = "UILabel"; text = "4,1 g"; ObjectID = "13X-6z-Lkt"; */
-"13X-6z-Lkt.text" = "4,1 g";
-
-/* Class = "UITextField"; placeholder = "Weight"; ObjectID = "1Y1-wx-fLT"; */
-"1Y1-wx-fLT.placeholder" = "Weight";
-
-/* Class = "UILabel"; text = "g"; ObjectID = "1qC-L0-3mb"; */
-"1qC-L0-3mb.text" = "g";
-
-/* Class = "UITextField"; placeholder = "Name"; ObjectID = "22x-YL-DGh"; */
-"22x-YL-DGh.placeholder" = "Name";
-
-/* Class = "UILabel"; text = "123 kkal (100g)"; ObjectID = "3ZJ-k8-GV6"; */
-"3ZJ-k8-GV6.text" = "123 kkal (100g)";
-
-/* Class = "UILabel"; text = "g"; ObjectID = "3mU-Sl-iyQ"; */
-"3mU-Sl-iyQ.text" = "g";
+/* Class = "UIButton"; normalTitle = "Sign out"; ObjectID = "2XE-cp-M2F"; */
+"2XE-cp-M2F.normalTitle" = "Выйти";
 
 /* Class = "UILabel"; text = "Fats"; ObjectID = "3r3-UU-X1R"; */
-"3r3-UU-X1R.text" = "Fats";
-
-/* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "6gC-Nz-2hp"; */
-"6gC-Nz-2hp.normalTitle" = "REGISTER";
-
-/* Class = "UILabel"; text = "Please set appropriate values"; ObjectID = "7aD-eC-kyq"; */
-"7aD-eC-kyq.text" = "Please set appropriate values";
+"3r3-UU-X1R.text" = "Жиры";
 
 /* Class = "UILabel"; text = "Carbohydrates"; ObjectID = "7nN-85-Xgw"; */
-"7nN-85-Xgw.text" = "Carbohydrates";
+"7nN-85-Xgw.text" = "Углеводы";
 
 /* Class = "UITabBarItem"; title = "Available"; ObjectID = "7xU-gC-K1Z"; */
-"7xU-gC-K1Z.title" = "Available";
+"7xU-gC-K1Z.title" = "Продукты";
 
-/* Class = "UITextField"; placeholder = "Age"; ObjectID = "8ey-mk-vVN"; */
-"8ey-mk-vVN.placeholder" = "Age";
-
-/* Class = "UILabel"; text = "Add here food that you have in your fridge"; ObjectID = "8mC-KY-XlE"; */
-"8mC-KY-XlE.text" = "Add here food that you have in your fridge";
-
-/* Class = "UILabel"; text = "kg, weight"; ObjectID = "9T8-6y-SjD"; */
-"9T8-6y-SjD.text" = "kg, weight";
+/* Class = "UILabel"; text = "Add here food that's available for you at the moment and we'll use it to create daily ration for you"; ObjectID = "8mC-KY-XlE"; */
+"8mC-KY-XlE.text" = "Добавьте сюда продукты, которые имеются у вас в данный момент - мы будем составлять из них дневной рацион";
 
 /* Class = "UINavigationItem"; title = "Shopping List"; ObjectID = "9Vw-I6-L7T"; */
-"9Vw-I6-L7T.title" = "Shopping List";
+"9Vw-I6-L7T.title" = "Список покупок";
 
 /* Class = "UINavigationItem"; title = "Ration for today"; ObjectID = "9qX-JE-DO7"; */
-"9qX-JE-DO7.title" = "Ration for today";
-
-/* Class = "UILabel"; text = "100 g"; ObjectID = "AZq-kx-KpV"; */
-"AZq-kx-KpV.text" = "100 g";
-
-/* Class = "UITextField"; placeholder = "Calories shortage (kcal)"; ObjectID = "Aij-ez-ceK"; */
-"Aij-ez-ceK.placeholder" = "Calories shortage (kcal)";
-
-/* Class = "UIButton"; normalTitle = "CALCULATE"; ObjectID = "BVJ-so-m57"; */
-"BVJ-so-m57.normalTitle" = "CALCULATE";
-
-/* Class = "UITextField"; placeholder = "Maximum portion size (g)"; ObjectID = "Bl4-6a-rkz"; */
-"Bl4-6a-rkz.placeholder" = "Maximum portion size (g)";
-
-/* Class = "UILabel"; text = "1289 kcal"; ObjectID = "C4K-ga-3zf"; */
-"C4K-ga-3zf.text" = "1289 kcal";
+"9qX-JE-DO7.title" = "Рацион";
 
 /* Class = "UITextField"; placeholder = "Add new item"; ObjectID = "CEN-Wg-51h"; */
-"CEN-Wg-51h.placeholder" = "Add new item";
-
-/* Class = "UITextField"; placeholder = "Fats (per 100g)"; ObjectID = "CI6-uq-NsL"; */
-"CI6-uq-NsL.placeholder" = "Fats (per 100g)";
+"CEN-Wg-51h.placeholder" = "Добавить";
 
 /* Class = "UITabBarItem"; title = "Available"; ObjectID = "CJO-gE-pjB"; */
-"CJO-gE-pjB.title" = "Available";
-
-/* Class = "UILabel"; text = "%"; ObjectID = "CLJ-Rd-uPd"; */
-"CLJ-Rd-uPd.text" = "%";
+"CJO-gE-pjB.title" = "Продукты";
 
 /* Class = "UILabel"; text = "Proteins"; ObjectID = "COf-Ma-wIP"; */
-"COf-Ma-wIP.text" = "Proteins";
+"COf-Ma-wIP.text" = "Белки";
 
-/* Class = "UILabel"; text = "kcal, calories shortage"; ObjectID = "CgW-hE-mUs"; */
-"CgW-hE-mUs.text" = "kcal, calories shortage";
+/* Class = "UILabel"; text = "Add portion size"; ObjectID = "DFU-hl-7zw"; */
+"DFU-hl-7zw.text" = "Размер порции";
 
-/* Class = "UIButton"; normalTitle = "Daily activity level"; ObjectID = "Cr5-i1-eur"; */
-"Cr5-i1-eur.normalTitle" = "Daily activity level";
-
-/* Class = "UIButton"; normalTitle = "  Scan barcode"; ObjectID = "Csk-fQ-U2M"; */
-"Csk-fQ-U2M.normalTitle" = "  Scan barcode";
-
-/* Class = "UILabel"; text = "of 0 kcal"; ObjectID = "CzD-9C-OEA"; */
-"CzD-9C-OEA.text" = "of 0 kcal";
+/* Class = "UILabel"; text = "Enable"; ObjectID = "F63-RA-vGC"; */
+"F63-RA-vGC.text" = "Разрешить";
 
 /* Class = "UILabel"; text = "Proteins"; ObjectID = "FOF-KC-KZt"; */
-"FOF-KC-KZt.text" = "Proteins";
-
-/* Class = "UITextField"; placeholder = "Confirm password"; ObjectID = "FlU-li-l7l"; */
-"FlU-li-l7l.placeholder" = "Confirm password";
-
-/* Class = "UILabel"; text = "unknown"; ObjectID = "GG7-ii-OX4"; */
-"GG7-ii-OX4.text" = "unknown";
-
-/* Class = "UILabel"; text = "0 kcal"; ObjectID = "GXj-AR-nIi"; */
-"GXj-AR-nIi.text" = "0 kcal";
+"FOF-KC-KZt.text" = "Белки";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Gur-Qy-pQ0"; */
-"Gur-Qy-pQ0.title" = "Settings";
+"Gur-Qy-pQ0.title" = "Настройки";
 
-/* Class = "UILabel"; text = "0"; ObjectID = "IAr-Ns-Mmr"; */
-"IAr-Ns-Mmr.text" = "0";
-
-/* Class = "UITextField"; placeholder = "Minimum portion size (g)"; ObjectID = "IWy-37-gIj"; */
-"IWy-37-gIj.placeholder" = "Minimum portion size (g)";
-
-/* Class = "UILabel"; text = "38 g"; ObjectID = "KJa-2X-U7u"; */
-"KJa-2X-U7u.text" = "38 g";
+/* Class = "UITextView"; text = "weight"; ObjectID = "HPo-uG-Dwy"; */
+"HPo-uG-Dwy.text" = "вес";
 
 /* Class = "UITabBarItem"; title = "Shopping list"; ObjectID = "Kxt-pM-uUj"; */
-"Kxt-pM-uUj.title" = "Shopping list";
+"Kxt-pM-uUj.title" = "Список покупок";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "L8v-pM-Tk8"; */
-"L8v-pM-Tk8.text" = "Label";
+/* Class = "UIViewController"; title = "Nutritional preferences"; ObjectID = "LHh-fZ-LFg"; */
+"LHh-fZ-LFg.title" = "Настройки нутриентов";
 
-/* Class = "UILabel"; text = "Available"; ObjectID = "L9N-xO-5VU"; */
-"L9N-xO-5VU.text" = "Available";
-
-/* Class = "UILabel"; text = "g"; ObjectID = "La4-Zz-R6o"; */
-"La4-Zz-R6o.text" = "g";
-
-/* Class = "UILabel"; text = "dietary fiber"; ObjectID = "Lsl-FP-aEP"; */
-"Lsl-FP-aEP.text" = "dietary fiber";
+/* Class = "UIViewController"; title = "Localization preferences"; ObjectID = "M88-n7-bJ9"; */
+"M88-n7-bJ9.title" = "Настройки локализации";
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "MNQ-33-aCW"; */
-"MNQ-33-aCW.title" = "Settings";
-
-/* Class = "UITextField"; placeholder = "Carbohydrates (per 100g)"; ObjectID = "Mh3-Do-Xu7"; */
-"Mh3-Do-Xu7.placeholder" = "Carbohydrates (per 100g)";
+"MNQ-33-aCW.title" = "Настройки";
 
 /* Class = "UILabel"; text = "Carbohydrates"; ObjectID = "NSt-fo-KWa"; */
-"NSt-fo-KWa.text" = "Carbohydrates";
+"NSt-fo-KWa.text" = "Углеводы";
 
 /* Class = "UILabel"; text = "Carbohydrates"; ObjectID = "NVV-aF-69j"; */
-"NVV-aF-69j.text" = "Carbohydrates";
-
-/* Class = "UILabel"; text = "Calories"; ObjectID = "NvG-9u-xfw"; */
-"NvG-9u-xfw.text" = "Calories";
-
-/* Class = "UILabel"; text = "0 g"; ObjectID = "OK7-ek-lON"; */
-"OK7-ek-lON.text" = "0 g";
-
-/* Class = "UITextField"; placeholder = "Height"; ObjectID = "OhQ-O6-0ER"; */
-"OhQ-O6-0ER.placeholder" = "Height";
-
-/* Class = "UILabel"; text = "Max daily portion"; ObjectID = "Oi0-Hm-IjI"; */
-"Oi0-Hm-IjI.text" = "Max daily portion";
-
-/* Class = "UINavigationItem"; title = "Title"; ObjectID = "PLU-7E-SYt"; */
-"PLU-7E-SYt.title" = "Title";
+"NVV-aF-69j.text" = "Углеводы";
 
 /* Class = "UILabel"; text = "days"; ObjectID = "Pvd-cb-qBv"; */
-"Pvd-cb-qBv.text" = "days";
+"Pvd-cb-qBv.text" = "дней";
 
-/* Class = "UITextField"; placeholder = "Password"; ObjectID = "RON-lo-MGX"; */
-"RON-lo-MGX.placeholder" = "Password";
+/* Class = "UILabel"; text = "Enable"; ObjectID = "Pzc-K0-1pE"; */
+"Pzc-K0-1pE.text" = "Разрешить";
 
-/* Class = "UILabel"; text = "4,1 g"; ObjectID = "Rdr-nx-XdN"; */
-"Rdr-nx-XdN.text" = "4,1 g";
-
-/* Class = "UITextField"; placeholder = "Glycemic index"; ObjectID = "TgE-3f-Lco"; */
-"TgE-3f-Lco.placeholder" = "Glycemic index";
-
-/* Class = "UILabel"; text = "Other parameters"; ObjectID = "USZ-ZA-ATb"; */
-"USZ-ZA-ATb.text" = "Other parameters";
-
-/* Class = "UILabel"; text = "100 g"; ObjectID = "UXE-ac-h37"; */
-"UXE-ac-h37.text" = "100 g";
-
-/* Class = "UILabel"; text = "g"; ObjectID = "Uv5-fv-9Ii"; */
-"Uv5-fv-9Ii.text" = "g";
-
-/* Class = "UILabel"; text = "years, age"; ObjectID = "Uys-e6-pQI"; */
-"Uys-e6-pQI.text" = "years, age";
-
-/* Class = "UILabel"; text = "Min daily portion"; ObjectID = "V0M-7M-piq"; */
-"V0M-7M-piq.text" = "Min daily portion";
-
-/* Class = "UILabel"; text = "123 kkal (100g)"; ObjectID = "VBR-Ze-gr8"; */
-"VBR-Ze-gr8.text" = "123 kkal (100g)";
+/* Class = "UILabel"; text = "Proteins"; ObjectID = "T3j-Jk-fDJ"; */
+"T3j-Jk-fDJ.text" = "Белки";
 
 /* Class = "UINavigationItem"; title = "Diary"; ObjectID = "VIF-5f-9An"; */
-"VIF-5f-9An.title" = "Diary";
+"VIF-5f-9An.title" = "Дневник";
 
-/* Class = "UILabel"; text = "unknown"; ObjectID = "Vdo-sB-ZS1"; */
-"Vdo-sB-ZS1.text" = "unknown";
+/* Class = "UISegmentedControl"; Wlz-d4-AlA.segmentTitles[0] = "kg, ml"; ObjectID = "Wlz-d4-AlA"; */
+"Wlz-d4-AlA.segmentTitles[0]" = "кг, мл";
 
-/* Class = "UILabel"; text = "0"; ObjectID = "VgR-bQ-3WI"; */
-"VgR-bQ-3WI.text" = "0";
+/* Class = "UISegmentedControl"; Wlz-d4-AlA.segmentTitles[1] = "lb, oz"; ObjectID = "Wlz-d4-AlA"; */
+"Wlz-d4-AlA.segmentTitles[1]" = "lb, oz";
 
 /* Class = "UILabel"; text = "Prep in advance for"; ObjectID = "WpV-7K-IrD"; */
-"WpV-7K-IrD.text" = "Prep in advance for";
+"WpV-7K-IrD.text" = "Рассчитать рацион заранее на";
 
-/* Class = "UILabel"; text = "kcal"; ObjectID = "XLx-X2-scg"; */
-"XLx-X2-scg.text" = "kcal";
+/* Class = "UILabel"; text = "Carbohydrates"; ObjectID = "Xd2-NV-0U5"; */
+"Xd2-NV-0U5.text" = "Углеводы";
 
 /* Class = "UINavigationItem"; title = "Create new food item"; ObjectID = "Xrf-lm-1YT"; */
-"Xrf-lm-1YT.title" = "Create new food item";
+"Xrf-lm-1YT.title" = "Создать";
 
 /* Class = "UILabel"; text = "Fats"; ObjectID = "Xxk-wb-SCo"; */
-"Xxk-wb-SCo.text" = "Fats";
+"Xxk-wb-SCo.text" = "Жиры";
 
 /* Class = "UITabBarItem"; title = "Shopping List"; ObjectID = "YNb-Ha-vxH"; */
-"YNb-Ha-vxH.title" = "Shopping List";
+"YNb-Ha-vxH.title" = "Покупки";
 
-/* Class = "UILabel"; text = "Nutrition facts"; ObjectID = "Zd3-AM-94p"; */
-"Zd3-AM-94p.text" = "Nutrition facts";
+/* Class = "UILabel"; text = "There can be added raw foods from your fridge or dishes that you cooked by yourself or  from your favourite restaurants. Feel free to add here all that you planning to eat"; ObjectID = "aSe-5u-Jb2"; */
+"aSe-5u-Jb2.text" = "Сюда можно добавить сырые продукты 🥑 или готовые блюда 🥗, приготовленные самостоятельно или в любимом ресторане - добавляйте все, что желаете видеть в своем рационе в ближайшее время";
 
-/* Class = "UILabel"; text = "food name"; ObjectID = "aY3-sT-8jR"; */
-"aY3-sT-8jR.text" = "food name";
+/* Class = "UISegmentedControl"; bfg-hJ-JYK.segmentTitles[0] = "Female"; ObjectID = "bfg-hJ-JYK"; */
+"bfg-hJ-JYK.segmentTitles[0]" = "Женский";
 
-/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "anh-MG-uVp"; */
-"anh-MG-uVp.normalTitle" = "LOGIN";
-
-/* Class = "UITextField"; placeholder = "Proteins (per 100g)"; ObjectID = "b4e-EX-aZG"; */
-"b4e-EX-aZG.placeholder" = "Proteins (per 100g)";
-
-/* Class = "UILabel"; text = "100 g"; ObjectID = "bS7-mS-QPD"; */
-"bS7-mS-QPD.text" = "100 g";
-
-/* Class = "UILabel"; text = "38 g"; ObjectID = "cPu-nO-LQh"; */
-"cPu-nO-LQh.text" = "38 g";
+/* Class = "UISegmentedControl"; bfg-hJ-JYK.segmentTitles[1] = "Male"; ObjectID = "bfg-hJ-JYK"; */
+"bfg-hJ-JYK.segmentTitles[1]" = "Мужской";
 
 /* Class = "UILabel"; text = "Welcome to Eatho!"; ObjectID = "cfk-B4-Maj"; */
-"cfk-B4-Maj.text" = "Welcome to Eatho!";
-
-/* Class = "UILabel"; text = "38 g"; ObjectID = "df7-gN-vhD"; */
-"df7-gN-vhD.text" = "38 g";
+"cfk-B4-Maj.text" = "Добро пожаловать в Eatho!";
 
 /* Class = "UILabel"; text = "Carbs"; ObjectID = "e5N-ao-PMW"; */
-"e5N-ao-PMW.text" = "Carbs";
-
-/* Class = "UILabel"; text = "EATHO"; ObjectID = "fhj-az-CyY"; */
-"fhj-az-CyY.text" = "EATHO";
-
-/* Class = "UILabel"; text = "%"; ObjectID = "fmh-VR-KB3"; */
-"fmh-VR-KB3.text" = "%";
+"e5N-ao-PMW.text" = "Углеводы";
 
 /* Class = "UILabel"; text = "Proteins"; ObjectID = "fui-Dw-zZK"; */
-"fui-Dw-zZK.text" = "Proteins";
+"fui-Dw-zZK.text" = "Белки";
 
 /* Class = "UILabel"; text = "Fats"; ObjectID = "fvH-7u-W8N"; */
-"fvH-7u-W8N.text" = "Fats";
+"fvH-7u-W8N.text" = "Жиры";
 
-/* Class = "UILabel"; text = "g"; ObjectID = "h8a-07-vnH"; */
-"h8a-07-vnH.text" = "g";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "hQZ-Gq-D8X"; */
-"hQZ-Gq-D8X.text" = "Label";
-
-/* Class = "UILabel"; text = "food name"; ObjectID = "hpn-oC-JLQ"; */
-"hpn-oC-JLQ.text" = "food name";
-
-/* Class = "UITextField"; placeholder = "Calories (per 100g)"; ObjectID = "ihE-qA-vGU"; */
-"ihE-qA-vGU.placeholder" = "Calories (per 100g)";
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "hAO-Qs-N5e"; */
+"hAO-Qs-N5e.normalTitle" = "Сохранить";
 
 /* Class = "UINavigationItem"; title = "Available"; ObjectID = "j0s-Wp-TpV"; */
-"j0s-Wp-TpV.title" = "Available";
+"j0s-Wp-TpV.title" = "Продукты";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "jXm-Qc-ZOn"; */
+"jXm-Qc-ZOn.normalTitle" = "Отмена";
 
 /* Class = "UILabel"; text = "Proteins"; ObjectID = "jfm-ol-JNb"; */
-"jfm-ol-JNb.text" = "Proteins";
-
-/* Class = "UIButton"; normalTitle = "LOG OUT"; ObjectID = "kct-gc-FTf"; */
-"kct-gc-FTf.normalTitle" = "LOG OUT";
-
-/* Class = "UILabel"; text = "Month, Day"; ObjectID = "knn-1c-Z4Q"; */
-"knn-1c-Z4Q.text" = "Month, Day";
-
-/* Class = "UILabel"; text = "123 kkal (100g)"; ObjectID = "mX8-cY-wOQ"; */
-"mX8-cY-wOQ.text" = "123 kkal (100g)";
+"jfm-ol-JNb.text" = "Белки";
 
 /* Class = "UIButton"; normalTitle = "Go"; ObjectID = "mbl-mC-ay3"; */
 "mbl-mC-ay3.normalTitle" = "Go";
 
-/* Class = "UILabel"; text = "Proteins"; ObjectID = "mvR-Fe-4rh"; */
-"mvR-Fe-4rh.text" = "Proteins";
-
-/* Class = "UITextField"; placeholder = "Email"; ObjectID = "nUF-PG-Uze"; */
-"nUF-PG-Uze.placeholder" = "Email";
-
-/* Class = "UILabel"; text = "Ration parameters"; ObjectID = "nct-mg-rDn"; */
-"nct-mg-rDn.text" = "Ration parameters";
-
-/* Class = "UILabel"; text = "4,1 g"; ObjectID = "nqa-hV-U0m"; */
-"nqa-hV-U0m.text" = "4,1 g";
-
-/* Class = "UILabel"; text = "Fats"; ObjectID = "oMO-Lx-mHk"; */
-"oMO-Lx-mHk.text" = "Fats";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "ox0-Hd-eTu"; */
-"ox0-Hd-eTu.text" = "Label";
-
-/* Class = "UILabel"; text = "Carbs"; ObjectID = "pB4-EW-IuI"; */
-"pB4-EW-IuI.text" = "Carbs";
-
-/* Class = "UILabel"; text = "g"; ObjectID = "pP6-2u-JU0"; */
-"pP6-2u-JU0.text" = "g";
-
-/* Class = "UINavigationItem"; title = "Title"; ObjectID = "pYs-WQ-iYB"; */
-"pYs-WQ-iYB.title" = "Title";
-
 /* Class = "UITabBarItem"; title = "Diary"; ObjectID = "pqJ-JJ-PAW"; */
-"pqJ-JJ-PAW.title" = "Diary";
-
-/* Class = "UILabel"; text = "0 g"; ObjectID = "pzw-m1-mqO"; */
-"pzw-m1-mqO.text" = "0 g";
+"pqJ-JJ-PAW.title" = "Дневник";
 
 /* Class = "UITabBarItem"; title = "Today"; ObjectID = "qPv-SU-kQG"; */
-"qPv-SU-kQG.title" = "Today";
-
-/* Class = "UILabel"; text = "200 g"; ObjectID = "rEK-SM-afl"; */
-"rEK-SM-afl.text" = "200 g";
-
-/* Class = "UILabel"; text = "Presume daily nutrients automatically"; ObjectID = "rHQ-Kd-gfW"; */
-"rHQ-Kd-gfW.text" = "Presume daily nutrients automatically";
-
-/* Class = "UILabel"; text = "0 g"; ObjectID = "sGT-mh-PsX"; */
-"sGT-mh-PsX.text" = "0 g";
-
-/* Class = "UISegmentedControl"; scY-yX-QtN.segmentTitles[0] = "Female"; ObjectID = "scY-yX-QtN"; */
-"scY-yX-QtN.segmentTitles[0]" = "Female";
-
-/* Class = "UISegmentedControl"; scY-yX-QtN.segmentTitles[1] = "Male"; ObjectID = "scY-yX-QtN"; */
-"scY-yX-QtN.segmentTitles[1]" = "Male";
-
-/* Class = "UITextField"; placeholder = "Password"; ObjectID = "sct-tY-Zzb"; */
-"sct-tY-Zzb.placeholder" = "Password";
+"qPv-SU-kQG.title" = "Рацион";
 
 /* Class = "UILabel"; text = "Fats"; ObjectID = "tJ3-9T-gwj"; */
-"tJ3-9T-gwj.text" = "Fats";
+"tJ3-9T-gwj.text" = "Жиры";
 
-/* Class = "UILabel"; text = "food name"; ObjectID = "tJe-a6-FvT"; */
-"tJe-a6-FvT.text" = "food name";
+/* Class = "UIViewController"; title = "Shopping list preferences"; ObjectID = "uUs-U0-LEb"; */
+"uUs-U0-LEb.title" = "Настройки списка покупок";
 
-/* Class = "UILabel"; text = "Calories"; ObjectID = "tK0-js-8H8"; */
-"tK0-js-8H8.text" = "Calories";
+/* Class = "UIViewController"; title = "Account settings"; ObjectID = "xPd-OF-IzZ"; */
+"xPd-OF-IzZ.title" = "Настройки аккаунта";
 
-/* Class = "UILabel"; text = "0 g"; ObjectID = "tbT-kM-L11"; */
-"tbT-kM-L11.text" = "0 g";
+/* Class = "UILabel"; text = "Fats"; ObjectID = "zSp-cd-BSD"; */
+"zSp-cd-BSD.text" = "Жиры";
 
-/* Class = "UIButton"; normalTitle = "Don't have an account? Click here to register"; ObjectID = "uC8-w4-d3c"; */
-"uC8-w4-d3c.normalTitle" = "Don't have an account? Click here to register";
+/* Class = "UILabel"; text = "0 kcal"; ObjectID = "GXj-AR-nIi"; */
+"GXj-AR-nIi.text" = "0 ккал";
 
-/* Class = "UITextField"; placeholder = "Type "; ObjectID = "uQB-sU-9ng"; */
-"uQB-sU-9ng.placeholder" = "Type ";
-
-/* Class = "UILabel"; text = "%"; ObjectID = "uzf-g4-uFm"; */
-"uzf-g4-uFm.text" = "%";
-
-/* Class = "UITextField"; placeholder = "Preferred portion size (g)"; ObjectID = "vnQ-LD-eGB"; */
-"vnQ-LD-eGB.placeholder" = "Preferred portion size (g)";
-
-/* Class = "UILabel"; text = "cm, height"; ObjectID = "wPk-h1-gOf"; */
-"wPk-h1-gOf.text" = "cm, height";
-
-/* Class = "UILabel"; text = "Banana"; ObjectID = "xEh-Ht-V9x"; */
-"xEh-Ht-V9x.text" = "Banana";
-
-/* Class = "UILabel"; text = "Delta portion"; ObjectID = "xoz-Ti-bnd"; */
-"xoz-Ti-bnd.text" = "Delta portion";
-
-/* Class = "UILabel"; text = "g"; ObjectID = "yh5-yx-24D"; */
-"yh5-yx-24D.text" = "g";
+/* Class = "UILabel"; text = "of 0 kcal"; ObjectID = "CzD-9C-OEA"; */
+"CzD-9C-OEA.text" = "из 0 ккал";
