@@ -78,19 +78,19 @@ let ERROR_MSG_REGISTRATION_FAILED = NSLocalizedString("I don't know what could b
 /* Available errors */
 let ERROR_MSG_FOOD_CREATION_FAILED = "Food creation error"
 let ERROR_MSG_FOOD_GET_FAILED = "Failed to get food list"
-let ERROR_MSG_SEARCH_FAILED = "Food search failed"
+let ERROR_TITLE_SEARCH_FAILED = "Food search failed"
+
 let ERROR_TITLE_CREATION_DATA_MISSED = "Please enter data"
 let ERROR_MSG_CREATION_DATA_MISSED = "All required fields must be filled"
 
 let ERROR_RATION_INVALID_INDEX = "Unable to remove item: no ration selected"
 
-let ERROR_TITLE_SEARCH_FAILED = "Food search failed"
 let ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED = "Shopping list fetching failed"
 let ERROR_TITLE_SHOPPING_LIST_UPDATE_FAILED = "Shopping list fetching failed"
 let ERROR_TITLE_DIARY_REQUEST_FAILED = "Diary request failed"
 let ERROR_TITLE_DIARY_PREP_FAILED = "Diary preparation request failed"
-let ERROR_TITLE_RATION_UPDATE_FAILED = "Ration update error"
 
 // Debug errors
+let ERROR_TITLE_UPDATE_FAILED = "Update failed"
 let ERROR_MSG_INVALID_RESPONSE = "Invalid server response"
 let ERROR_MSG_FAILED_JSON_ENCODE = "Failed data encoding"

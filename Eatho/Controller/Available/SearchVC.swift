@@ -156,9 +156,13 @@ extension SearchVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Details") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: DETAILS) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             self.openDetails(index: indexPath.row)
             success(true)
+        }
+        
+        if #available(iOS 13.0, *) {
+            revealDetailsAction.image = INFO_IMG
         }
         
         return UISwipeActionsConfiguration(actions: [revealDetailsAction])

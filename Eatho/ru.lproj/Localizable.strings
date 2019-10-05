@@ -42,6 +42,7 @@
 "Available" = "В наличии";
 "Minimal portion" = "Минимальная порция";
 "Maximal portion" = "Максимальная порция";
+"Delta portion" = "Дельта *";
 
 /** Food details */
 "Name" = "Название";
@@ -56,11 +57,15 @@
 "Nutrition facts" = "Пищевая ценность";
 "Other parameters" = "Прочие параметры";
 "marked optional fields" = "необязательные поля";
+"User info" = "Данные пользователя";
+"Minerals" = "Минералы";
+"Vitamins" = "Витамины";
 
 /** Common errors */
 "Refresh failed" = "Ошибка обновления";
 "Remove failed" = "Ошибка удаления";
 "Invalid index" = "Неправильный индекс";
+"Update failed" = "Ошибка обновления данных";
 
 /** Auth errors */
 "Please enter email" = "Пожалуйста, введите свой почтовый адрес в формате example@example.com";

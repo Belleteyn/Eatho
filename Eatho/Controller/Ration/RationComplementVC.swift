@@ -52,7 +52,7 @@ extension RationComplementVC: UITableViewDataSource {
                 cell.updateViews(foodItem: food, removeHandler: { (id) in
                     RationService.instance.removeItem(id: id, completion: { (_, error) in
                         if let error = error {
-                            self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error.message)
+                            self.showErrorAlert(title: ERROR_TITLE_UPDATE_FAILED, message: error.message)
                         }
                     })
                 }) { (foodItem) in

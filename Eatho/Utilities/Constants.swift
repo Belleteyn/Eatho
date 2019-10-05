@@ -76,6 +76,7 @@ let PER100G = NSLocalizedString("per 100g", comment: "Food")
 let AVAILABLE = NSLocalizedString("Available", comment: "Food")
 let MIN = NSLocalizedString("Minimal portion", comment: "Food")
 let MAX = NSLocalizedString("Maximal portion", comment: "Food")
+let DELTA = NSLocalizedString("Delta portion", comment: "Food")
 
 // localized swipe actions
 let REMOVE = NSLocalizedString("Remove", comment: "Actions")

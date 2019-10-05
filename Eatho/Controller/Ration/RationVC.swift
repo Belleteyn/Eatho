@@ -101,13 +101,13 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
                 cell.updateViews(foodItem: ration[indexPath.row], editable: isEditable, incPortionHandler: { (id) in
                     RationService.instance.incPortion(id: id, completion: { (_, error) in
                         if let error = error {
-                            self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error.message)
+                            self.showErrorAlert(title: ERROR_TITLE_UPDATE_FAILED, message: error.message)
                         }
                     })
                 }) { (id) in
                     RationService.instance.decPortion(id: id, completion: { (success, error) in
                         if let error = error {
-                            self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error.message)
+                            self.showErrorAlert(title: ERROR_TITLE_UPDATE_FAILED, message: error.message)
                         }
                     })
                 }
@@ -127,7 +127,7 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
             
             RationService.instance.removeItem(index: indexPath.row) { (_, error) in
                 if let error = error {
-                    self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error.message)
+                    self.showErrorAlert(title: ERROR_TITLE_UPDATE_FAILED, message: error.message)
                 }
             }
             

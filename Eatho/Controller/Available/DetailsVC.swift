@@ -68,14 +68,14 @@ class DetailsVC: BaseVC {
         var min = food.dailyPortion.min ?? 0
         var max = food.dailyPortion.max ?? 0
         var delta = food.delta ?? 0
-        var measureLabelText = "g"
+        var measureLabelText = G
         
         if SettingsService.instance.userInfo.lbsMetrics {
             available = truncateDoubleTail(convertMetrics(g: available))
             min = truncateDoubleTail(convertMetrics(g: min))
             max = truncateDoubleTail(convertMetrics(g: max))
             delta = truncateDoubleTail(convertMetrics(g: delta))
-            measureLabelText = "lbs"
+            measureLabelText = LB
         } else {
             available = truncateDoubleTail(available)
             min = truncateDoubleTail(min)
@@ -84,10 +84,10 @@ class DetailsVC: BaseVC {
         }
         
         var data = [Nutrient]()
-        data.append(Nutrient(name: "Available", perPorition: nil, per100g: available, measure: measureLabelText, type: .main))
-        data.append(Nutrient(name: "Daily min portion", perPorition: nil, per100g: min, measure: measureLabelText, type: .main))
-        data.append(Nutrient(name: "Daily max portion", perPorition: nil, per100g: max, measure: measureLabelText, type: .main))
-        data.append(Nutrient(name: "Delta portion", perPorition: nil, per100g: delta, measure: measureLabelText, type: .main))
+        data.append(Nutrient(name: AVAILABLE, perPorition: nil, per100g: available, measure: measureLabelText, type: .main))
+        data.append(Nutrient(name: MIN, perPorition: nil, per100g: min, measure: measureLabelText, type: .main))
+        data.append(Nutrient(name: MAX, perPorition: nil, per100g: max, measure: measureLabelText, type: .main))
+        data.append(Nutrient(name: DELTA, perPorition: nil, per100g: delta, measure: measureLabelText, type: .main))
         
         return data
     }
@@ -171,13 +171,13 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
         
         switch sect {
         case 0:
-            return "User info"
+            return NSLocalizedString("User info", comment: "Table headers")
         case 1:
-            return "Nutrition facts"
+            return NSLocalizedString("Nutrition facts", comment: "Table headers")
         case 2:
-            return "Minerals"
+            return NSLocalizedString("Minerals", comment: "Table headers")
         case 3:
-            return "Vitamins"
+            return NSLocalizedString("Vitamins", comment: "Table headers")
         default:
             return ""
         }

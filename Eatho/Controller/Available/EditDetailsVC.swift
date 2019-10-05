@@ -14,7 +14,7 @@ class EditDetailsVC: BaseVC {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    let titles = ["Available", "Minimal portion", "Maximal portion", "Delta portion" ]
+    let titles = [AVAILABLE, MIN, MAX, DELTA ]
     var values = Array(repeating: 0.0, count: 4)
     var food: FoodItem?
     
@@ -79,7 +79,7 @@ class EditDetailsVC: BaseVC {
         FoodService.instance.updateFood(food: food) {(_, error) in
             self.spinner.stopAnimating()
             if let error = error {
-                self.showErrorAlert(title: "Update failed", message: error.message)
+                self.showErrorAlert(title: ERROR_TITLE_UPDATE_FAILED, message: error.message)
                 return
             }
             
@@ -97,7 +97,7 @@ extension EditDetailsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
         
-        cell.setupView(title: titles[indexPath.row], additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0", text: values[indexPath.row] > 0 ? "\(values[indexPath.row])" : nil)
+        cell.setupView(title: titles[indexPath.row], additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? LB : G, placeholder: "0", text: values[indexPath.row] > 0 ? "\(values[indexPath.row])" : nil)
         cell.textField.keyboardType = .decimalPad
         
         cell.inpuFinishedDecimalHandler = {

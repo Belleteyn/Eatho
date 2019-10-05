@@ -119,7 +119,7 @@ class ComplementParamsModalVC: BaseVC {
             if error == nil {
                 self.dismiss(animated: true, completion: nil)
             } else {
-                self.showErrorAlert(title: ERROR_TITLE_RATION_UPDATE_FAILED, message: error!.message)
+                self.showErrorAlert(title: ERROR_TITLE_UPDATE_FAILED, message: error!.message)
             }
         }
     }
