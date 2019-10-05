@@ -128,7 +128,7 @@ class ComplementParamsModalVC: BaseVC {
 extension ComplementParamsModalVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "weight" {
+        if textView.text == NSLocalizedString("weight", comment: "") {
             textView.text = ""
             textView.textColor = TEXT_COLOR
         }
@@ -137,7 +137,7 @@ extension ComplementParamsModalVC: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.count == 0 {
             textView.textColor = LIGHT_TEXT_COLOR
-            textView.text = "weight"
+            textView.text = NSLocalizedString("weight", comment: "")
         }
     }
     
@@ -204,11 +204,11 @@ extension ComplementParamsModalVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Nutrition facts"
+            return NUTRITION_FACTS
         case 1:
-            return "Minerals"
+            return NSLocalizedString("Minerals", comment: "Table headers")
         case 2:
-            return "Vitamins"
+            return NSLocalizedString("Vitamins", comment: "Table headers")
         default:
             return ""
         }

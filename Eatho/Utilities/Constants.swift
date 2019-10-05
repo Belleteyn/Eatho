@@ -69,6 +69,7 @@ let SATURATED = NSLocalizedString("saturated", comment: "Food")
 let MONO = NSLocalizedString("monounsaturated", comment: "Food")
 let POLY = NSLocalizedString("polyunsaturated", comment: "Food")
 let GI = NSLocalizedString("Glycemic index", comment: "Food")
+let NUTRITION_FACTS = NSLocalizedString("Nutrition facts", comment: "Food")
 
 let PER100G = NSLocalizedString("per 100g", comment: "Food")
 

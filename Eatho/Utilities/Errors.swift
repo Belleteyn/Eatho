@@ -62,6 +62,7 @@ let ERROR_MSG_NETWORK_UNREACHABLE = "Sorry! App cannot get your data without int
 
 let ERROR_TITLE_REFRESH_FAILED = NSLocalizedString("Refresh failed", comment: "Common errors")
 let ERROR_TITLE_REMOVE_FAILED = NSLocalizedString("Remove failed", comment: "Common errors")
+let ERROR_TITLE_UPDATE_FAILED = NSLocalizedString("Update failed", comment: "Common errors")
 
 let ERROR_MSG_INVALID_INDEX = NSLocalizedString("Invalid index", comment: "Common errors")
 
@@ -91,6 +92,5 @@ let ERROR_TITLE_DIARY_REQUEST_FAILED = "Diary request failed"
 let ERROR_TITLE_DIARY_PREP_FAILED = "Diary preparation request failed"
 
 // Debug errors
-let ERROR_TITLE_UPDATE_FAILED = "Update failed"
 let ERROR_MSG_INVALID_RESPONSE = "Invalid server response"
 let ERROR_MSG_FAILED_JSON_ENCODE = "Failed data encoding"

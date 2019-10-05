@@ -123,7 +123,7 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
             return UISwipeActionsConfiguration(actions: [])
         }
         
-        let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: REMOVE) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             
             RationService.instance.removeItem(index: indexPath.row) { (_, error) in
                 if let error = error {
@@ -133,6 +133,10 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
             
             success(true)
             self.rationTableView.reloadData()
+        }
+        
+        if #available(iOS 13.0, *) {
+            removeAction.image = REMOVE_IMG
         }
         removeAction.backgroundColor = EATHO_RED
         

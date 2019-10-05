@@ -7,6 +7,7 @@
 */
 
 "of" = "из";
+"weight" = "вес";
 
 /** Actions */
 "Remove" = "Удалить";
@@ -24,6 +25,7 @@
 "oz" = "oz";
 "per 100g" = "на 100г";
 
+"Nutrition facts" = "Пищевая ценность";
 "Proteins" = "Белки";
 "Carbs" = "Углеводы";
 "Fats" = "Жиры";
@@ -54,7 +56,6 @@
 "Activity level" = "Уровень активности";
 
 /** Table headers */
-"Nutrition facts" = "Пищевая ценность";
 "Other parameters" = "Прочие параметры";
 "marked optional fields" = "необязательные поля";
 "User info" = "Данные пользователя";

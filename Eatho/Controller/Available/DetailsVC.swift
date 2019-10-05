@@ -173,7 +173,7 @@ extension DetailsVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return NSLocalizedString("User info", comment: "Table headers")
         case 1:
-            return NSLocalizedString("Nutrition facts", comment: "Table headers")
+            return NUTRITION_FACTS
         case 2:
             return NSLocalizedString("Minerals", comment: "Table headers")
         case 3:

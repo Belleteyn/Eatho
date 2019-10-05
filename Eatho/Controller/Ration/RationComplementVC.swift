@@ -66,11 +66,11 @@ extension RationComplementVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Remove") { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let removeAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: REMOVE) { (acion: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             
             let removeResult = FoodService.instance.removeItem(index: indexPath.row) { (_, error) in
                 if let error = error {
-                    self.showErrorAlert(title: "Remove failed", message: error.message)
+                    self.showErrorAlert(title: ERROR_TITLE_REMOVE_FAILED, message: error.message)
                 } else {
                     self.loadData()
                 }
@@ -83,16 +83,22 @@ extension RationComplementVC: UITableViewDataSource {
         }
         removeAction.backgroundColor = EATHO_RED
         
-        let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Details") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: DETAILS) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             super.openDetails(index: indexPath.row)
             success(true)
         }
         
-        let updateAction = UIContextualAction(style: UIContextualAction.Style.normal, title: "Update") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let updateAction = UIContextualAction(style: UIContextualAction.Style.normal, title: UPDATE) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             super.openUpdateVC(index: indexPath.row)
             success(true)
         }
         updateAction.backgroundColor = EATHO_YELLOW
+        
+        if #available(iOS 13.0, *) {
+            removeAction.image = REMOVE_IMG
+            revealDetailsAction.image = INFO_IMG
+            updateAction.image = UPDATE_IMG
+        }
         
         return UISwipeActionsConfiguration(actions: [removeAction, updateAction, revealDetailsAction])
     }
