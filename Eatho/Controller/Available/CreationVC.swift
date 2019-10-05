@@ -15,8 +15,8 @@ class CreationVC: BaseVC {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     // Representation values
-    private let nFactsNames = ["Calories", "from fat *", "Proteins", "Carbs", "dietary fiber *", "sugars *", "Fats", "trans *", "saturated *", "monounsaturated *", "polyunsaturated *", "Glycemic index *"]
-    private let userDataSectionNames = ["Available *", "Minimal portion *", "Maximal portion *"]
+    private let nFactsNames = [CALORIES, "* \(FROM_FAT)", PROTEINS, CARBS, "* \(FIBER)", "* \(SUGARS)", FATS, "* \(TRANS_FATS)", "* \(SATURATED)", "* \(MONO)", "* \(POLY)", "* \(GI)"]
+    private let userDataSectionNames = ["* \(AVAILABLE)", "* \(MIN)", "* \(MAX)"]
     
     private func isEnclosedCell(index: Int) -> Bool {
         return !(index == 0 || index == 2 || index == 3 || index == 6 || index == 11)
@@ -77,7 +77,7 @@ class CreationVC: BaseVC {
         
         if !isRequiredFieldsFilled() || name == nil {
             highlightRequiredRows()
-            showInfoAlert(title: "Please enter data", message: "All required fields must be filled")
+            showInfoAlert(title: ERROR_TITLE_CREATION_DATA_MISSED, message: ERROR_MSG_CREATION_DATA_MISSED)
             return
         }
         
@@ -129,9 +129,9 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 1:
-            return "Nutrition facts"
+            return NSLocalizedString("Nutrition facts", comment: "Table headers")
         case 2:
-            return "Other parameters"
+            return NSLocalizedString("Other parameters", comment: "Table headers")
         default:
             return ""
         }
@@ -139,7 +139,7 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section != 0 {
-            return "* marked optional fields"
+            return "* \(NSLocalizedString("marked optional fields", comment: "Table headers"))"
         }
         
         return ""
@@ -163,7 +163,7 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
         /* singleInputCellExtra: encosed (gray) cells in Nutrition Facts section */
         if indexPath.section == 1 && isEnclosedCell(index: indexPath.row) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCellExtra", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
-            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: "per 100g", placeholder: "0", text: nutritionalValues[indexPath.row] != -1 ?  "\(truncateDoubleTail(nutritionalValues[indexPath.row]))" : nil)
+            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: PER100G, placeholder: "0", text: nutritionalValues[indexPath.row] != -1 ?  "\(truncateDoubleTail(nutritionalValues[indexPath.row]))" : nil)
             cell.leftLabel.font = UIFont.systemFont(ofSize: 13)
             cell.inpuFinishedDecimalHandler = {
                 (_ val: Double) in
@@ -180,13 +180,13 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
         /* desc section */
         case 0:
             if indexPath.row == 0 {
-                cell.setupView(title: "Name", additionalDesc: "", placeholder: "enter food name", text: name)
+                cell.setupView(title: NSLocalizedString("Name", comment: "Food details"), additionalDesc: "", placeholder: NSLocalizedString("enter food name", comment: "Food details"), text: name)
                 cell.inputFinishedHandle = {
                     (_ val: String) in
                     self.name = val
                 }
             } else {
-                cell.setupView(title: "Type", additionalDesc: "", placeholder: "choose food type", text: type)
+                cell.setupView(title: NSLocalizedString("Type", comment: "Food details"), additionalDesc: "", placeholder: NSLocalizedString("choose food type", comment: "Food details"), text: type)
                 cell.inputFinishedHandle = {
                     (_ val: String) in
                     self.type = val
@@ -196,7 +196,7 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
            
         /* nutritional facts section */
         case 1:
-            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: "per 100g", placeholder: "0", text: nutritionalValues[indexPath.row] != -1 ? "\(truncateDoubleTail(nutritionalValues[indexPath.row]))" : nil)
+            cell.setupView(title: nFactsNames[indexPath.row], additionalDesc: PER100G, placeholder: "0", text: nutritionalValues[indexPath.row] != -1 ? "\(truncateDoubleTail(nutritionalValues[indexPath.row]))" : nil)
             cell.textField.keyboardType = .decimalPad
             cell.inpuFinishedDecimalHandler = {
                 (_ val: Double) in
@@ -205,7 +205,7 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
          
         /* user's data section */
         case 2:
-            cell.setupView(title: userDataSectionNames[indexPath.row], additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "g", placeholder: "0", text: userDataValues[indexPath.row] != -1 ? "\(truncateDoubleTail(userDataValues[indexPath.row]))" : nil)
+            cell.setupView(title: userDataSectionNames[indexPath.row], additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? LB : G, placeholder: "0", text: userDataValues[indexPath.row] != -1 ? "\(truncateDoubleTail(userDataValues[indexPath.row]))" : nil)
             cell.textField.keyboardType = .decimalPad
             cell.inpuFinishedDecimalHandler = {
                 (_ val: Double) in

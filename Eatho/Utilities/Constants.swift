@@ -54,11 +54,28 @@ let UNWIND_TO_WELCOME = "unwindToWelcome"
 let G = NSLocalizedString("g", comment: "Food")
 let KCAL = NSLocalizedString("kcal", comment: "Food")
 let LB = NSLocalizedString("lb", comment: "Food")
+let OF = NSLocalizedString("of", comment: "")
+
+// localized food and nutrient strings
 let PROTEINS = NSLocalizedString("Proteins", comment: "Food")
 let CARBS = NSLocalizedString("Carbs", comment: "Food")
 let FATS = NSLocalizedString("Fats", comment: "Food")
 let CALORIES = NSLocalizedString("Calories", comment: "Food")
-let OF = NSLocalizedString("of", comment: "")
+let FROM_FAT = NSLocalizedString("from fat", comment: "Food")
+let FIBER = NSLocalizedString("dietary fiber", comment: "Food")
+let SUGARS = NSLocalizedString("sugars", comment: "Food")
+let TRANS_FATS = NSLocalizedString("trans", comment: "Food")
+let SATURATED = NSLocalizedString("saturated", comment: "Food")
+let MONO = NSLocalizedString("monounsaturated", comment: "Food")
+let POLY = NSLocalizedString("polyunsaturated", comment: "Food")
+let GI = NSLocalizedString("Glycemic index", comment: "Food")
+
+let PER100G = NSLocalizedString("per 100g", comment: "Food")
+
+// user portion data
+let AVAILABLE = NSLocalizedString("Available", comment: "Food")
+let MIN = NSLocalizedString("Minimal portion", comment: "Food")
+let MAX = NSLocalizedString("Maximal portion", comment: "Food")
 
 // localized swipe actions
 let REMOVE = NSLocalizedString("Remove", comment: "Actions")

@@ -75,11 +75,12 @@ let ERROR_MSG_INCORRECT_PASSWORD = NSLocalizedString("Password is incorrect, try
 let ERROR_MSG_ALREADY_REGISTERED = NSLocalizedString("This email was registered earlier", comment: "Auth errors")
 let ERROR_MSG_REGISTRATION_FAILED = NSLocalizedString("I don't know what could be wrong, but it was 😯", comment: "Auth errors")
 
-
-
+/* Available errors */
 let ERROR_MSG_FOOD_CREATION_FAILED = "Food creation error"
 let ERROR_MSG_FOOD_GET_FAILED = "Failed to get food list"
 let ERROR_MSG_SEARCH_FAILED = "Food search failed"
+let ERROR_TITLE_CREATION_DATA_MISSED = "Please enter data"
+let ERROR_MSG_CREATION_DATA_MISSED = "All required fields must be filled"
 
 let ERROR_RATION_INVALID_INDEX = "Unable to remove item: no ration selected"
 
