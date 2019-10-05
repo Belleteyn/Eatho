@@ -40,8 +40,9 @@ class SearchVC: FoodVC {
         
         searchController.searchBar.delegate = self // Monitor when the search button is tapped.
         searchController.searchBar.returnKeyType = .search
-        searchController.searchBar.placeholder = "Search food"
         searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.searchTextField.backgroundColor = EATHO_VERY_LIGHT_PURPLE
+        searchController.searchBar.searchTextField.textColor = TEXT_COLOR
         searchController.searchBar.barTintColor = EATHO_MAIN_COLOR
         searchController.searchBar.isHidden = false
         searchController.searchBar.sizeToFit()
