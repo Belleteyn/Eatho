@@ -60,6 +60,8 @@
 "User info" = "Данные пользователя";
 "Minerals" = "Минералы";
 "Vitamins" = "Витамины";
+"shopping list" = "список покупок";
+"recent purchases" = "недавние";
 
 /** Common errors */
 "Refresh failed" = "Ошибка обновления";

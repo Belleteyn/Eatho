@@ -90,9 +90,9 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if shopListTabBar.selectedItem == shopListTabBar.items?.first {
-            return "shopping list"
+            return NSLocalizedString("shopping list", comment: "Table headers")
         } else {
-            return "recent purchases"
+            return NSLocalizedString("recent purchases", comment: "Table headers")
         }
     }
     
@@ -119,7 +119,7 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let trashAction = UIContextualAction(style: .destructive, title: "Remove") { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+        let trashAction = UIContextualAction(style: .destructive, title: REMOVE) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
             
             if self.shopListTabBar.selectedItem == self.shopListTabBar.items?.first {
                 self.spinner.startAnimating()
@@ -142,6 +142,10 @@ extension ShopListVC: UITableViewDelegate, UITableViewDataSource {
             
             success(true)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+        }
+        
+        if #available(iOS 13.0, *) {
+            trashAction.image = REMOVE_IMG
         }
         trashAction.backgroundColor = EATHO_RED
         
