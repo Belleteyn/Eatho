@@ -14,11 +14,11 @@ class SettingsService {
     static let instance = SettingsService()
     let defaults = UserDefaults.standard
     let activityPickerData = [
-        ["Minimal", ""],
-        ["Light", "training 3 times a week"],
-        ["Medium", "intensive training 3 or more times a week"],
-        ["High", "intensive training everyday"],
-        ["Extra", "athletes"]
+        [NSLocalizedString("Minimal", comment: "Settings"), ""],
+        [NSLocalizedString("Light", comment: ""), NSLocalizedString("training 3 times a week", comment: "")],
+        [NSLocalizedString("Medium", comment: ""), NSLocalizedString("intensive training 3 or more times a week", comment: "")],
+        [NSLocalizedString("High", comment: ""), NSLocalizedString("intensive training everyday", comment: "")],
+        [NSLocalizedString("Extra", comment: ""), NSLocalizedString("athletes", comment: "")]
     ]
     
     var isConfigured: Bool {

@@ -54,6 +54,15 @@
 
 /** Settings */
 "Activity level" = "Уровень активности";
+"Minimal" = "Минимальный";
+"Light" = "Легкий";
+"Medium" = "Средний";
+"High" = "Высокий";
+"Extra" = "Экстравысокий";
+"training 3 times a week" = "тренировки менее 3-х раз в неделю";
+"intensive training 3 or more times a week" = "интенсивные тренировки 3+ раз в неделю";
+"intensive training everyday" = "ежедневные интенсивные тренировки";
+"athletes" = "профессиональные атлеты";
 "Gender" = "Пол";
 "Weight" = "Вес";
 "Height" = "Рост";
