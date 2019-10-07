@@ -49,6 +49,7 @@ class SettingsService {
                 }
             } else {
                 _userInfo = UserInfo()
+                _userInfo?.localeLanguge = Locale.current.languageCode
             }
             
             return _userInfo!
