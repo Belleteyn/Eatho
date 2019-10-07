@@ -15,7 +15,7 @@ class EathoDateFormatter {
     private let isoFormatter = ISO8601DateFormatter()
     
     init() {
-        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.locale = Locale.current
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd") // set template after setting locale
     }
     
