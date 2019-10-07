@@ -29,6 +29,7 @@ class NutritionalSettingsVC: BaseVC {
         tableView.dataSource = self
         
         view.bindHeightToKeyboard()
+        tableView.bindHeightToKeyboard()
         
         if !SettingsService.instance.userInfo.setupNutrientsFlag {
             sectionsCount = 2
