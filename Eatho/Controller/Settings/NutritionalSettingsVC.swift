@@ -63,7 +63,7 @@ class NutritionalSettingsVC: BaseVC {
         }
         
         if let footer = tableView.footerView(forSection: 0) {
-            footer.textLabel?.text = SettingsService.instance.userInfo.nutrition.isValid ? "" : "Please set appropriate values"
+            footer.textLabel?.text = SettingsService.instance.userInfo.nutrition.isValid ? "" : NSLocalizedString("Please set appropriate values", comment: "Settings")
         }
         
         tableView.endUpdates()
@@ -126,11 +126,11 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Ration preferences"
+            return NSLocalizedString("Ration preferences", comment: "Settings")
         case 1:
-            return "Auto calculation"
+            return NSLocalizedString("Auto calculation", comment: "Settings")
         case 2:
-            return "Parameters for auto calculation"
+            return NSLocalizedString("Parameters for auto calculation", comment: "Settings")
         default:
             return nil
         }
@@ -139,7 +139,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 && !SettingsService.instance.userInfo.nutrition.isValid {
             tableView.footerView(forSection: section)?.textLabel?.textColor = EATHO_RED
-            return "Please set appropriate values"
+            return NSLocalizedString("Please set appropriate values", comment: "Swttings")
         }
     
         return nil
@@ -163,7 +163,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             if indexPath.row == 0 {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell {
-                    cell.setupView(title: "Calories", additionalDesc: "kcal", placeholder: nil, text: "\(truncateDoubleTail(SettingsService.instance.userInfo.nutrition.calories))")
+                    cell.setupView(title: CALORIES, additionalDesc: KCAL, placeholder: nil, text: "\(truncateDoubleTail(SettingsService.instance.userInfo.nutrition.calories))")
                     cell.inputChangedDecimalHandler = {
                         (_ val: Double) in
                         var info = SettingsService.instance.userInfo
@@ -206,7 +206,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                 }
             } else if indexPath.row == 5 {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell", for: indexPath) as? SegmentedControlCell {
-                    cell.setupView(title: "Gender", activeSegmentedControlIndex: SettingsService.instance.userInfo.gender) { (selectedIndex) in
+                    cell.setupView(title: NSLocalizedString("Gender", comment: "Settings"), activeSegmentedControlIndex: SettingsService.instance.userInfo.gender) { (selectedIndex) in
                         var info = SettingsService.instance.userInfo
                         info.gender = selectedIndex
                         SettingsService.instance.userInfo = info
@@ -216,7 +216,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
             } else if indexPath.row == 6 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
                 cell.textLabel?.textAlignment = .center
-                cell.textLabel?.text = "Calculate nutrition values"
+                cell.textLabel?.text = NSLocalizedString("Calculate nutrition values", comment: "Settings")
                 cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
                 cell.textLabel?.textColor = EATHO_PURPLE
                 return cell
@@ -224,7 +224,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell {
                     switch indexPath.row {
                     case 0:
-                        cell.setupView(title: "Weight", additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? "lbs" : "kg", placeholder: "0", text: "\(SettingsService.instance.userInfo.weight)")
+                        cell.setupView(title: NSLocalizedString("Weight", comment: "Settings"), additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? LB : NSLocalizedString("kg", comment: "Settings"), placeholder: "0", text: "\(SettingsService.instance.userInfo.weight)")
                         cell.inpuFinishedDecimalHandler = {
                             (_ val: Double) in
                             var info = SettingsService.instance.userInfo
@@ -232,7 +232,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                             SettingsService.instance.userInfo = info
                         }
                     case 1:
-                        cell.setupView(title: "Height", additionalDesc: "cm", placeholder: "0", text: "\(SettingsService.instance.userInfo.height)")
+                        cell.setupView(title: NSLocalizedString("Height", comment: "Settings"), additionalDesc: NSLocalizedString("cm", comment: "Settings"), placeholder: "0", text: "\(SettingsService.instance.userInfo.height)")
                         cell.inpuFinishedDecimalHandler = {
                             (_ val: Double) in
                             var info = SettingsService.instance.userInfo
@@ -240,7 +240,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                             SettingsService.instance.userInfo = info
                         }
                     case 2:
-                        cell.setupView(title: "Age", additionalDesc: "years", placeholder: "0", text: "\(SettingsService.instance.userInfo.age)")
+                        cell.setupView(title: NSLocalizedString("Age", comment: "Settings"), additionalDesc: NSLocalizedString("years", comment: "Settings"), placeholder: "0", text: "\(SettingsService.instance.userInfo.age)")
                         cell.inpuFinishedDecimalHandler = {
                             (_ val: Double) in
                             var info = SettingsService.instance.userInfo
@@ -248,7 +248,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
                             SettingsService.instance.userInfo = info
                         }
                     case 4:
-                        cell.setupView(title: "Calories shortage", additionalDesc: "kcal", placeholder: "0", text: "\(SettingsService.instance.userInfo.caloriesShortage)")
+                        cell.setupView(title: NSLocalizedString("Calories shortage", comment: "Settings"), additionalDesc: KCAL, placeholder: "0", text: "\(SettingsService.instance.userInfo.caloriesShortage)")
                         cell.inpuFinishedDecimalHandler = {
                             (_ val: Double) in
                             var info = SettingsService.instance.userInfo
@@ -271,9 +271,7 @@ extension NutritionalSettingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section == 2 else { return }
         
-        if indexPath.row == 3 {
-            performSegue(withIdentifier: "toActivityLevelSegue", sender: self)
-        } else if indexPath.row == 6 {
+        if indexPath.row == 6 {
             var info = SettingsService.instance.userInfo
             info.recalculateNutrition()
             SettingsService.instance.userInfo = info

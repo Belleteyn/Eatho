@@ -13,7 +13,12 @@ class SettingsVC: BaseVC {
     //Outlets
     @IBOutlet weak var settingsTableView: UITableView!
     
-    private var settingsList = [ "Nutritional preferences", "Localization preferences", "Shopping list preferences" ]
+    private var settingsList = [
+        NSLocalizedString("Nutritional preferences", comment: "Settings"),
+        NSLocalizedString("Localization preferences", comment: "Settings"),
+        NSLocalizedString("Shopping list preferences", comment: "Settings")
+    ]
+    
     private var isConfigureBadgeVisible: Bool {
         get {
             return !SettingsService.instance.isConfigured || !SettingsService.instance.userInfo.nutrition.isValid
@@ -108,7 +113,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = AuthService.instance.email
             
             cell.textLabel?.textColor = TEXT_COLOR
-            cell.detailTextLabel?.text = "account settings"
+            cell.detailTextLabel?.text = NSLocalizedString("account settings", comment: "Settings")
             cell.detailTextLabel?.textColor = TEXT_COLOR
             cell.imageView?.image = UIImage(named: "logo.png")
             return cell

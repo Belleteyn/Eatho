@@ -28,7 +28,7 @@ extension LocalizationSettingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell", for: indexPath) as? SegmentedControlCell {
-            cell.setupView(title: "Weight measures", activeSegmentedControlIndex: SettingsService.instance.userInfo.lbsMetrics ? 1 : 0) { (selectedIndex) in
+            cell.setupView(title: NSLocalizedString("Weight measures", comment: "Settings"), activeSegmentedControlIndex: SettingsService.instance.userInfo.lbsMetrics ? 1 : 0) { (selectedIndex) in
                 var info = SettingsService.instance.userInfo
                 info.lbsMetrics = (selectedIndex == 1)
                 SettingsService.instance.userInfo = info

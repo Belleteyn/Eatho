@@ -54,6 +54,25 @@
 
 /** Settings */
 "Activity level" = "Уровень активности";
+"Gender" = "Пол";
+"Weight" = "Вес";
+"Height" = "Рост";
+"Age" = "Возраст";
+"Calories shortage" = "Дефицит калорий"; 
+"Age" = "Рост";
+"kg" = "кг";
+"cm" = "см";
+"years" = "лет";
+"Nutritional preferences" = "Настройки калоража";
+"Localization preferences" = "Настройки локализации";
+"Shopping list preferences" = "Настройки списка покупок";
+"account settings" = "настройки аккаунта";
+"Please set appropriate values" = "Пожалуйста, задайте корректные значения: белки, жиры и углеводы должны в сумме составлять 100%";
+"Ration preferences" = "Настройки рациона";
+"Auto calculation" = "Автоматический расчёт питательной ценности";
+"Parameters for auto calculation" = "Параметры для автоматического расчёта";
+"Calculate nutrition values" = "Рассчитать";
+"Weight measures" = "Меры весов";
 
 /** Table headers */
 "Other parameters" = "Прочие параметры";
