@@ -13,6 +13,7 @@ class ComplementParamsModalVC: BaseVC {
     @IBOutlet weak var typeIcon: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var input: UITextView!
+    @IBOutlet weak var weightMeasureLabel: UILabel!
     @IBOutlet weak var chartView: NutritionChartView!
     @IBOutlet weak var nutritionTableView: UITableView!
     @IBOutlet weak var buttonStack: UIStackView!
@@ -47,6 +48,12 @@ class ComplementParamsModalVC: BaseVC {
         self.view.addGestureRecognizer(tapHandle)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHandler), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
+        if SettingsService.instance.userInfo.lbsMetrics {
+            weightMeasureLabel.text = LB
+        } else {
+            weightMeasureLabel.text = G
+        }
     }
     
     func setupView(foodItem: FoodItem) {
