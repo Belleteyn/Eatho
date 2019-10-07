@@ -177,6 +177,8 @@ class RationService {
      - RequestError: corrupted data or no data
      */
     func requestRation(completion: @escaping RequestCompletion) {
+        diary = []
+        
         get(completion: completion) { (json) in
             guard let dateStr = json["date"].string else {
                 completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE): Date is missed"))
