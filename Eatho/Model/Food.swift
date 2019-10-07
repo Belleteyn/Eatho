@@ -22,10 +22,8 @@ struct Food: Codable {
     }
     
     init(json: JSON) {
-        //TODO: localized name
-        
         self._id = json["_id"].string
-        self.name = json["name"]["en"].string
+        self.name = json["name"].string
         self.type = json["type"].string
         
         self.nutrition = NutritionFacts(json: json["nutrition"])
