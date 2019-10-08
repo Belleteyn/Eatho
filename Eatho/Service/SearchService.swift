@@ -27,7 +27,10 @@ class SearchService {
      - RequestError
      */
     func requestSearch(searchArg: String, completion: @escaping RequestCompletion) {
-        let params = [ "args": searchArg ]
+        var params = [ "args": searchArg ]
+        if let code = Locale.current.languageCode {
+            params["lang"] = code
+        }
         
         Network.get(url: URL_SEARCH_FOOD, query: params) { (response, error) in
             if let data = response?.data {
