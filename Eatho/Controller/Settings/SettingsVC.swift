@@ -35,6 +35,10 @@ class SettingsVC: BaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.popToViewController(self, animated: false)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         if isConfigureBadgeVisible {

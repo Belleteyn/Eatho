@@ -52,6 +52,10 @@ class RationVC: BaseVC {
         updateView()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.popToViewController(self, animated: false)
+    }
+    
     func updateView() {
         if let date = RationService.instance.currentDate {
             guard let formattedDate = EathoDateFormatter.instance.format(isoDate: date) else { return }

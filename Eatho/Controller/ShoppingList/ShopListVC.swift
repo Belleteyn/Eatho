@@ -55,6 +55,10 @@ class ShopListVC: BaseVC {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.popToViewController(self, animated: false)
+    }
+    
     // handlers
     @objc func tapHandle() {
         view.endEditing(true)
