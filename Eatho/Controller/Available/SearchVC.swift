@@ -72,10 +72,14 @@ class SearchVC: FoodVC {
     }
     
     override func openDetails(index: Int) {
-        guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as? DetailsVC else { return }
-        
-        present(detailsVC, animated: true, completion: nil)
-        detailsVC.initData(food: SearchService.instance.foods[index])
+        print("open")
+        openModal(identifier: "DetailsVC") { (vc) in
+            print("open completion")
+            if let detaisVC = vc as? DetailsVC {
+                print("init data")
+                detaisVC.initData(food: SearchService.instance.foods[index])
+            }
+        }
     }
     
     // Handlers
