@@ -17,6 +17,7 @@ class AccountSettingsVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateLogin()
         NotificationCenter.default.addObserver(self, selector: #selector(updateLogin), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
         
         signOutButton.addShadow(color: UIColor.black, opacity: 0.1, offset: CGSize(width: 0, height: 0))
@@ -28,6 +29,8 @@ class AccountSettingsVC: BaseVC {
 
     @IBAction func signOutButtonPressed(_ sender: Any) {
         AuthService.instance.logOut()
+        userNameLabel.text = ""
+        
         navigationController?.popViewController(animated: true)
     }
 }
