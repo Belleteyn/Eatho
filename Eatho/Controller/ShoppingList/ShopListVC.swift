@@ -40,12 +40,13 @@ class ShopListVC: BaseVC {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandle))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-        
-        // notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(authDataChanged), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         // init data
-        ShopListService.instance.requestData { (_, error)  in
+        ShopListService.instance.get { (_, error)  in
             if let error = error {
                 self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.message)
             } else {
@@ -61,16 +62,6 @@ class ShopListVC: BaseVC {
     
     @objc func dataUpdateHandle() {
         shopListTableView.reloadData()
-    }
-    
-    @objc func authDataChanged() {
-        ShopListService.instance.requestData { (_, error) in
-            if let error = error {
-                self.showErrorAlert(title: ERROR_TITLE_SHOPPING_LIST_REQUEST_FAILED, message: error.message)
-            } else {
-                self.shopListTableView.reloadData()
-            }
-        }
     }
 }
 

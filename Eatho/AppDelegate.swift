@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = storyboard.instantiateInitialViewController()
         self.window?.rootViewController = vc
         
-        NotificationCenter.default.addObserver(self, selector: #selector(openAppScreen), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(openMain), name: NOTIF_LOGGED_IN, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(openAuth), name: NOTIF_SIGNED_OUT, object: nil)
         
         return true
     }
@@ -54,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    private func openMain() {
+    @objc private func openMain() {
         guard openedMode != .Main else { return }
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -79,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         openedMode = .Main
     }
     
-    private func openAuth() {
+    @objc private func openAuth() {
         guard openedMode != .Auth else { return }
         
         let storyboard = UIStoryboard(name: "LoginScreen", bundle: Bundle.main)

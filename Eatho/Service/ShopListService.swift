@@ -16,6 +16,10 @@ class ShopListService {
     private (set) public var shoppingList: [(key: String, value: Bool)] = []
     private (set) public var mostRecentList: [String] = []
     
+    init() {
+        self.subscribeLoggedOut(selector: #selector(loggedOutHandler))
+    }
+    
     private func insert(key: String, value: Bool) {
         if let greater = shoppingList.firstIndex(where: { $0.0 > key } ) {
             let insertIndex = shoppingList.index(before: greater + 1)
@@ -73,7 +77,30 @@ class ShopListService {
         uploadData(completion: completion)
     }
     
-    func clearData() {
+    /**
+     requests food list with names containing `searchArg`
+     
+     possible errors:
+     - server error
+     */
+    func uploadData(completion: @escaping RequestCompletion) {
+        var uploadingList: [String] = []
+        shoppingList.forEach { if !$0.1 { uploadingList.append($0.0) } }
+        
+        var body = AuthService.instance.credentials
+        body["shoppingList"] = JSON(uploadingList)
+        body["recentPurchases"] = JSON(mostRecentList)
+        
+        Network.post(url: URL_SHOPPING_LIST_UPD, body: body.dictionaryObject, completion: completion)
+    }
+}
+
+extension ShopListService: Service {
+    @objc func loggedOutHandler() {
+        reset()
+    }
+    
+    func reset() {
         shoppingList = []
         mostRecentList = []
     }
@@ -85,7 +112,7 @@ class ShopListService {
      - server error
      - RequestError
      */
-    func requestData(completion: @escaping RequestCompletion) {
+    func get(completion: @escaping RequestCompletion) {
         let query = AuthService.instance.credentials
         
         Network.get(url: URL_SHOPPING_LIST_GET, query: query.dictionaryObject) { (response, error) in
@@ -105,22 +132,5 @@ class ShopListService {
             
             completion(response, error)
         }
-    }
-    
-    /**
-     requests food list with names containing `searchArg`
-     
-     possible errors:
-     - server error
-     */
-    func uploadData(completion: @escaping RequestCompletion) {
-        var uploadingList: [String] = []
-        shoppingList.forEach { if !$0.1 { uploadingList.append($0.0) } }
-        
-        var body = AuthService.instance.credentials
-        body["shoppingList"] = JSON(uploadingList)
-        body["recentPurchases"] = JSON(mostRecentList)
-        
-        Network.post(url: URL_SHOPPING_LIST_UPD, body: body.dictionaryObject, completion: completion)
     }
 }

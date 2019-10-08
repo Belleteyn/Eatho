@@ -115,7 +115,7 @@ extension SearchVC: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else { return }
         
         if searchText.isEmpty {
-            SearchService.instance.clearData()
+            SearchService.instance.reset()
             foodTable.reloadData()
         } else {
             spinner.startAnimating()

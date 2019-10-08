@@ -71,9 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     self.showErrorAlert(title: ERROR_TITLE_NETWORK_UNREACHABLE, message: ERROR_MSG_NETWORK_UNREACHABLE)
                 }
-            } else {
-                NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
-            }
+            } 
         })
     }
     

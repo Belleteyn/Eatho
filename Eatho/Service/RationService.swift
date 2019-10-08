@@ -41,9 +41,8 @@ class RationService {
         return presentedRationIndex <= todayRationIndex
     }
     
-    func resetData() {
-        diary = []
-        presentedRationIndex = -1
+    init() {
+        self.subscribeLoggedOut(selector: #selector(loggedOutHandler))
     }
     
     func setCurrent(forDate date: String?) {
@@ -170,44 +169,6 @@ class RationService {
     }
     
     /**
-     request last `n` rations
-     
-     possible errors:
-     - server error
-     - RequestError: corrupted data or no data
-     */
-    func requestRation(completion: @escaping RequestCompletion) {
-        diary = []
-        
-        get(completion: completion) { (json) in
-            guard let dateStr = json["date"].string else {
-                completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE): Date is missed"))
-                return
-            }
-            
-            let formatter = ISO8601DateFormatter()
-            guard let date = formatter.date(from: dateStr) else {
-                completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE): Wrong date format"))
-                return
-            }
-            
-            do {
-                let ration = try Ration(json: json)
-                self.diary.append(ration)
-                
-                let day = 24.0 * 60 * 60
-                let interval = date.timeIntervalSinceNow
-                if interval < 0 && day + interval >= 0 {
-                    self.todayRationIndex = self.diary.count - 1
-                    self.presentedRationIndex = self.todayRationIndex
-                }
-            } catch let err {
-                completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE):  \(err.localizedDescription)"))
-            }
-        }
-    }
-    
-    /**
      senf request to prepare rations for several days in advance
      
      possible errors:
@@ -266,5 +227,55 @@ class RationService {
         ration.nutrition.proteins += pp
         ration.nutrition.carbs += pc
         ration.nutrition.fats += pf
+    }
+}
+
+extension RationService: Service {
+    @objc func loggedOutHandler() {
+        reset()
+    }
+    
+    func reset() {
+        diary = []
+        presentedRationIndex = -1
+        todayRationIndex = -1
+    }
+    
+    /**
+     request last `n` rations
+     
+     possible errors:
+     - server error
+     - RequestError: corrupted data or no data
+     */
+    func get(completion: @escaping RequestCompletion) {
+        diary = []
+        
+        get(completion: completion) { (json) in
+            guard let dateStr = json["date"].string else {
+                completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE): Date is missed"))
+                return
+            }
+            
+            let formatter = ISO8601DateFormatter()
+            guard let date = formatter.date(from: dateStr) else {
+                completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE): Wrong date format"))
+                return
+            }
+            
+            do {
+                let ration = try Ration(json: json)
+                self.diary.append(ration)
+                
+                let day = 24.0 * 60 * 60
+                let interval = date.timeIntervalSinceNow
+                if interval < 0 && day + interval >= 0 {
+                    self.todayRationIndex = self.diary.count - 1
+                    self.presentedRationIndex = self.todayRationIndex
+                }
+            } catch let err {
+                completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_INVALID_RESPONSE):  \(err.localizedDescription)"))
+            }
+        }
     }
 }

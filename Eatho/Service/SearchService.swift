@@ -15,8 +15,8 @@ class SearchService {
     
     private(set) public var foods = [Food]()
     
-    func clearData() {
-        foods = []
+    init() {
+        self.subscribeLoggedOut(selector: #selector(loggedOutHandler))
     }
     
     /**
@@ -50,5 +50,19 @@ class SearchService {
                 completion(response, error)
             }
         }
+    }
+}
+
+extension SearchService: Service {
+    @objc func loggedOutHandler() {
+        reset()
+    }
+    
+    func reset() {
+        foods = []
+    }
+    
+    func get(completion: @escaping RequestCompletion) {
+        completion(nil, ResponseError(code: -1, message: "unavailable method"))
     }
 }

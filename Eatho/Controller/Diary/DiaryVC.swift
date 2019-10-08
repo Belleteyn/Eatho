@@ -28,7 +28,7 @@ class DiaryVC: BaseVC {
         configureRefreshControl()
         
         if RationService.instance.diary.count == 0 {
-            RationService.instance.requestRation { (_, error) in
+            RationService.instance.get { (_, error) in
                 if let error = error {
                     self.showErrorAlert(title: ERROR_TITLE_DIARY_REQUEST_FAILED, message: error.message)
                 } else {
@@ -46,7 +46,7 @@ class DiaryVC: BaseVC {
     }
     
     @objc func handleRefresh() {
-        RationService.instance.requestRation { (_, error) in
+        RationService.instance.get { (_, error) in
             DispatchQueue.main.async {
                 self.diaryTableView.refreshControl?.endRefreshing()
             }

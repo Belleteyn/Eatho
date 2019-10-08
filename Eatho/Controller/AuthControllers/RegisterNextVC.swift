@@ -49,9 +49,7 @@ class RegisterNextVC: UIViewController, UITextFieldDelegate {
             if let error = error { //todo: may be network error
                 self.errorLabel.text = ERROR_MSG_REGISTRATION_FAILED
                 self.separatorView.backgroundColor = EATHO_RED
-            } else {
-                NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
-            }
+            } 
         }
     }
     

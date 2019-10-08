@@ -15,23 +15,8 @@ class FoodService {
     
     private(set) public var foods: [FoodItem] = []
     
-    func clearData() {
-        foods = []
-    }
-    
-    /**
-     fetch available food array, replace old one
-     
-     possible errors:
-      - server error
-      - json encoding error
-      - LocalDataError (about json encoding too)
-     */
-    
-    func getFood (completion: @escaping RequestCompletion) {
-        get(dataHandler: { (foods) in
-            self.foods = foods
-        }, completion: completion)
+    init() {
+        self.subscribeLoggedOut(selector: #selector(loggedOutHandler))
     }
     
     /**
@@ -114,5 +99,29 @@ class FoodService {
         } catch let err {
             completion(nil, ResponseError(code: -1, message: "\(ERROR_MSG_FAILED_JSON_ENCODE)\n\(err.localizedDescription)"))
         }
+    }
+}
+
+extension FoodService: Service {
+    @objc func loggedOutHandler() {
+        reset()
+    }
+    
+    func reset() {
+        foods = []
+    }
+    
+    /**
+     fetch available food array, replace old one
+     
+     possible errors:
+      - server error
+      - json encoding error
+      - LocalDataError (about json encoding too)
+     */
+    func get(completion: @escaping RequestCompletion) {
+        get(dataHandler: { (foods) in
+            self.foods = foods
+        }, completion: completion)
     }
 }

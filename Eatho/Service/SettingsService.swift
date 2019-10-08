@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class SettingsService {
     static let instance = SettingsService()
-    let defaults = UserDefaults.standard
+    
     let activityPickerData = [
         [NSLocalizedString("Minimal", comment: "Settings"), ""],
         [NSLocalizedString("Light", comment: ""), NSLocalizedString("training 3 times a week", comment: "")],
@@ -23,44 +23,23 @@ class SettingsService {
     
     var isConfigured: Bool {
         get {
-            return defaults.bool(forKey: IS_CONFIGURED)
-        }
-        
-        set {
-            defaults.set(newValue, forKey: IS_CONFIGURED)
+            guard let info = _userInfo else { return false }
+            return info.nutrition.calories > 0
         }
     }
     
     private var _userInfo: UserInfo?
     var userInfo: UserInfo {
         get {
-            if let ui = _userInfo {
-                return ui
-            }
-            
-            if let data = defaults.value(forKey: USER_INFO) as? Data {
-                do {
-                    let info = try JSONDecoder().decode(UserInfo.self, from: data)
-                    _userInfo = info
-                } catch let err {
-                    debugPrint("reading UserInfo error: \(err)")
-                    NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "decoding data error: \(err)"])
-                    _userInfo = UserInfo()
-                }
-            } else {
-                _userInfo = UserInfo()
-                _userInfo?.localeLanguge = Locale.current.languageCode
-            }
-            
             return _userInfo!
         }
         
         set {
             do {
                 let encodedData = try JSONEncoder().encode(newValue)
-                defaults.setValue(encodedData, forKey: USER_INFO)
+                UserDefaults.standard.setValue(encodedData, forKey: USER_INFO)
+                
                 _userInfo = newValue
-                isConfigured = true
                 
                 NotificationCenter.default.post(name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
                 uploadUserData(data: encodedData)
@@ -71,7 +50,27 @@ class SettingsService {
         }
     }
     
-    func uploadUserData(data: Data) {
+    init() {
+        self.subscribeLoggedIn(selector: #selector(loggedInHandler))
+        self.subscribeLoggedOut(selector: #selector(loggedOutHandler))
+        self.subscribeSignedOut(selector: #selector(signedOutHandler))
+        
+        if let data = UserDefaults.standard.value(forKey: USER_INFO) as? Data {
+            do {
+                let info = try JSONDecoder().decode(UserInfo.self, from: data)
+                _userInfo = info
+                return
+            } catch let err {
+                debugPrint("reading UserInfo error: \(err)")
+                NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "decoding data error: \(err)"])
+            }
+        }
+        
+        _userInfo = UserInfo()
+        _userInfo?.localeLanguge = Locale.current.languageCode
+    }
+    
+    private func uploadUserData(data: Data) {
         do {
             var json: JSON = AuthService.instance.credentials
             json["userData"] = try JSON(data: data)
@@ -87,8 +86,28 @@ class SettingsService {
             NotificationCenter.default.post(name: NOTIF_USER_DATA_SYNC_ERROR, object: nil, userInfo: ["error": "encoding data error: \(err)"])
         }
     }
+}
+
+extension SettingsService: Service {
+    @objc func loggedInHandler() {
+        get { (_, _) in
+            
+        }
+    }
     
-    func downloadUserData() {
+    @objc func loggedOutHandler() {
+        reset()
+    }
+    
+    @objc func signedOutHandler() {
+        UserDefaults.standard.set(nil, forKey: USER_INFO)
+    }
+    
+    func reset() {
+        _userInfo = nil
+    }
+    
+    func get(completion: @escaping RequestCompletion) {
         let json = AuthService.instance.credentials
         
         Network.get(url: URL_SETTINGS, query: json.dictionaryObject) { (response, error) in

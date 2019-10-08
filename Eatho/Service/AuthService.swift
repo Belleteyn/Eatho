@@ -11,6 +11,8 @@ import Alamofire
 import SwiftyJSON
 import KeychainAccess
 
+typealias CompletionHandler = (_ success: Bool, _ error: Error? ) -> ()
+
 class AuthService {
     static let instance = AuthService()
     
@@ -56,6 +58,7 @@ class AuthService {
         requestToken(email: email, password: password) { (response, error) in
             if let response = response {
                 self.updateLocalToken(result: response.result)
+                NotificationCenter.default.post(name: NOTIF_LOGGED_IN, object: nil)
                 completion(true, nil)
                 return
             }
@@ -78,6 +81,7 @@ class AuthService {
             if let response = response {
                 self.updateLocalToken(result: response.result)
                 self.writeKeychain(email: email, password: password)
+                NotificationCenter.default.post(name: NOTIF_LOGGED_IN, object: nil)
                 handler(true, nil)
                 return
             }
@@ -104,6 +108,7 @@ class AuthService {
             //todo: on error try again?
         }
         
+        NotificationCenter.default.post(name: NOTIF_LOGGED_OUT, object: nil)
         self.token = nil
     }
     
@@ -116,11 +121,7 @@ class AuthService {
         writeKeychain(email: email, password: nil)
         self.email = nil //password was reset on writing keychain
         
-        // clear saved data on sign out
-        UserDefaults.standard.set(nil, forKey: IS_CONFIGURED)
-        UserDefaults.standard.set(nil, forKey: USER_INFO)
-        
-        NotificationCenter.default.post(name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+        NotificationCenter.default.post(name: NOTIF_SIGNED_OUT, object: nil)
     }
     
     func register(email: String, password: String, handler: @escaping CompletionHandler) {

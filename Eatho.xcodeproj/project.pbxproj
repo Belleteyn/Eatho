@@ -94,6 +94,7 @@
 		95F7C80D23362D9F003BEE5B /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7C80C23362D9F003BEE5B /* AlertVC.swift */; };
 		95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711C22EE438600BD6B87 /* CreationVC.swift */; };
 		95F9711F22EE45AE00BD6B87 /* BarcodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */; };
+		95FD9AA1234CAF9600D803E1 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD9AA0234CAF9600D803E1 /* Service.swift */; };
 		98770598EA10BDF9C007DAE1 /* Pods_EathoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35640F6AB094A3B244160383 /* Pods_EathoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +218,7 @@
 		95F7C80C23362D9F003BEE5B /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		95F9711C22EE438600BD6B87 /* CreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationVC.swift; sourceTree = "<group>"; };
 		95F9711E22EE45AE00BD6B87 /* BarcodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeButton.swift; sourceTree = "<group>"; };
+		95FD9AA0234CAF9600D803E1 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eatho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -281,6 +283,7 @@
 				95512AC422F0D3DA0038790F /* SettingsService.swift */,
 				956D438122F6B0B60091C9C4 /* ShopListService.swift */,
 				958195B5230B22E700B08C92 /* SearchService.swift */,
+				95FD9AA0234CAF9600D803E1 /* Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -843,6 +846,7 @@
 				95E50E1E2341F68D001A9A99 /* Network.swift in Sources */,
 				95512ABF22F0898A0038790F /* ShopListVC.swift in Sources */,
 				95501B6D232675E400225108 /* EathoTabBarController.swift in Sources */,
+				95FD9AA1234CAF9600D803E1 /* Service.swift in Sources */,
 				956D438222F6B0B60091C9C4 /* ShopListService.swift in Sources */,
 				952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */,
 				95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */,

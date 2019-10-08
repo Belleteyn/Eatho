@@ -9,22 +9,17 @@
 import Foundation
 import UIKit
 
-// Type
-typealias CompletionHandler = (_ success: Bool, _ error: Error? ) -> ()
-typealias DataCompletionHandler = (_ food: FoodItem?) -> ()
-
 // Keychain
 let KEYCHAIN_SERVICE = "EathoService"
 
 // user defaults
-let LOGGED_IN_KEY = "loggedIn"
-let TOKEN_KEY = "token"
-let USER_LOGIN_EMAIL = "userLoginEmail"
-let IS_CONFIGURED = "settingsConfigured"
 let USER_INFO = "eathoUserInfo"
 
 // notifications
-let NOTIF_AUTH_DATA_CHANGED = Notification.Name(rawValue: "authDataChanged")
+let NOTIF_LOGGED_IN = Notification.Name("loggedIn")
+let NOTIF_LOGGED_OUT = Notification.Name("loggedOut")
+let NOTIF_SIGNED_OUT = Notification.Name("signedOut")
+
 let NOTIF_USER_DATA_CHANGED = Notification.Name(rawValue: "userDataChanged")
 let NOTIF_FOOD_DATA_CHANGED = Notification.Name("foodDataChanged")
 let NOTIF_RATION_DATA_CHANGED = Notification.Name("rationDataChanged")

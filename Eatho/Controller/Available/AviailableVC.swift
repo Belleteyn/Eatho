@@ -42,7 +42,7 @@ class AviailableVC: FoodVC {
     // Handlers
     
     @objc func handleRefresh() {
-        FoodService.instance.getFood(completion: { (_, error) in
+        FoodService.instance.get(completion: { (_, error) in
             // Dismiss the refresh control.
             DispatchQueue.main.async {
                 self.foodTable.refreshControl?.endRefreshing()

@@ -31,7 +31,7 @@ class RationVC: BaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
         
         if RationService.instance.diary.count == 0 {
-            RationService.instance.requestRation { (_, error) in
+            RationService.instance.get { (_, error) in
                 if let error = error {
                     self.showErrorAlert(title: ERROR_TITLE_DIARY_REQUEST_FAILED, message: error.message)
                 } else {

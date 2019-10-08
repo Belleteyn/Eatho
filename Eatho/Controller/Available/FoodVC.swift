@@ -20,7 +20,7 @@ class FoodVC: BaseVC {
         
         spinner.hidesWhenStopped = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NOTIF_AUTH_DATA_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NOTIF_LOGGED_IN, object: nil)
     }
     
     @objc func loadData() {
@@ -28,7 +28,7 @@ class FoodVC: BaseVC {
             spinner.startAnimating()
         }
         
-        FoodService.instance.getFood(completion: { (_, error) in
+        FoodService.instance.get(completion: { (_, error) in
             self.spinner.stopAnimating()
             
             if let error = error {
@@ -38,8 +38,6 @@ class FoodVC: BaseVC {
             
             self.reloadTable()
         })
-        
-        
     }
     
     func reloadTable() {
