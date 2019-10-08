@@ -20,6 +20,9 @@ class SearchVC: FoodVC {
         
         foodTable.dataSource = self
         
+        view.bindHeightToKeyboard()
+        foodTable.bindHeightToKeyboard()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(startSpinner), name: NOTIF_SEARCH_FOOD_ADD, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addFinished(_:)), name: NOTIF_SEARCH_FOOD_ADD_DONE, object: nil)
         
