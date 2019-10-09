@@ -9,12 +9,14 @@
 import UIKit
 
 class BaseVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Common subscriptions
         subscribeToSettingsError()
+        
+        tabBarController?.delegate = self
     }
 
     func openModal(identifier: String, completion: @escaping (_ vc: UIViewController) -> ()) {
@@ -26,6 +28,15 @@ class BaseVC: UIViewController {
         
         self.navigationController?.present(navController, animated: true) {
             completion(vc)
+        }
+    }
+}
+
+extension BaseVC: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        if let nav = viewController as? UINavigationController {
+            nav.popToRootViewController(animated: false)
         }
     }
 }

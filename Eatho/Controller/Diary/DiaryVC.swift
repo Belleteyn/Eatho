@@ -40,10 +40,6 @@ class DiaryVC: BaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.popToViewController(self, animated: false)
-    }
-    
     func configureRefreshControl() {
         diaryTableView.refreshControl = UIRefreshControl()
         diaryTableView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)

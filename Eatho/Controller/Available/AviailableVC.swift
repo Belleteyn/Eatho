@@ -32,10 +32,6 @@ class AviailableVC: FoodVC {
         super.reloadTable()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.popToViewController(self, animated: false)
-    }
-    
     // Configure
     
     func configureRefreshControl() {
