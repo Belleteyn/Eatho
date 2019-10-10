@@ -79,6 +79,15 @@ let REMOVE = NSLocalizedString("Remove", comment: "Actions")
 let UPDATE = NSLocalizedString("Update", comment: "Actions")
 let DETAILS = NSLocalizedString("Details", comment: "Actions")
 
+//
+let NUTRITION_WARNING_TEXT = "Please, note that all formulas for calories and nutrients calculation are not perfect and may not conform to your body or your goals.".localized
+let NUTRITION_CONSULT_TITLE = "Consult with your doctor or your fitness trainer".localized
+let NUTRITION_CONSULT_TEXT = "to get optimal nutrients in your daily ingestions".localized
+let NUTRITION_CORRECT_TITLE = "Correct values".localized
+let NUTRITION_CORRECT_TEXT = "if you feel overwhelmed or hungry".localized
+let NUTRITION_NEEDS_TITLE = "Correct ration".localized
+let NUTRITION_NEEDS_TEXT = "Remember that every body is individual and it's needs can vary due to outside parameters".localized
+
 // system images
 
 @available(iOS 13.0, *)

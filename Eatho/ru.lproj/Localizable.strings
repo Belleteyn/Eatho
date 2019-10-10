@@ -109,3 +109,13 @@
 /** Available errors */
 "Please enter data" = "Пожалуйста, введите обязательные данные";
 "All required fields must be filled" = "Все подсвеченные поля необходимо заполнить";
+
+
+/**Text*/
+"Please, note that all formulas for calories and nutrients calculation are not perfect and may not conform to your body or your goals." = "Пожалуйста, примите во внимание, что формулы расчета калоража дают усредненный результат и могут не подойти вашему организму или вашим целям.";
+"Consult with your doctor or your fitness trainer" = "Проконсультируйтесь с врачом или тренером.";
+"to get optimal nutrients in your daily ingestions" = "Специалисты помогут подобрать режим питания, при котором вы будете чувствовать себя комфортно и следовать своим целям по сбросу, набору или поддержанию веса.";
+"Correct values" = "Корректируйте значения настроек.";
+"if you feel overwhelmed or hungry" = "Если придерживаясь рекомендаций чувствуете сильный голод, переедание, усталость, недомогание или прочие симптомы ухудшения самочувствия";
+"Correct ration" = "Корректируйте рацион";
+"Remember that every body is individual and it's needs can vary due to outside parameters" = "Потребности огранизма могут меняться в зависимости от дневной активности, сна, уровня стресса, погоды и многих других факторов. Не бойтесь корректировать рацион с учетом своих пожеланий.";
