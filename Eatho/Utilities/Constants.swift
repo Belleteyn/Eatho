@@ -25,7 +25,6 @@ let NOTIF_FOOD_DATA_CHANGED = Notification.Name("foodDataChanged")
 let NOTIF_RATION_DATA_CHANGED = Notification.Name("rationDataChanged")
 let NOTIF_SHOPPING_LIST_DATA_CHAGNED = Notification.Name("shoppingListDataChanged")
 
-let NOTIF_USER_ACTIVITY_LEVEL_CHANGED = Notification.Name("userActivityLevelChanged")
 let NOTIF_USER_NUTRITION_CHANGED = Notification.Name("userNutritionChanged")
 let NOTIF_USER_DATA_SYNC_ERROR = Notification.Name("userDataSyncError")
 

@@ -14,12 +14,16 @@ class ActivityPickerVC: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     @IBOutlet weak var activityPicker: UIPickerView!
     @IBOutlet var bgView: UIView!
     
+    var delegate: PickerViewIndexDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // picker
         activityPicker.dataSource = self
         activityPicker.delegate = self
+        
+        activityPicker.layer.cornerRadius = 6
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandle))
         bgView.addGestureRecognizer(tap)
@@ -63,7 +67,10 @@ class ActivityPickerVC: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        NotificationCenter.default.post(name: NOTIF_USER_ACTIVITY_LEVEL_CHANGED, object: nil, userInfo: ["activityIndex": row])
+        if let delegate = delegate {
+            delegate.indexChanged(index: row)
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     

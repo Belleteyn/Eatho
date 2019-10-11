@@ -40,7 +40,6 @@ class NutritionalSettingsVC: BaseVC {
         view.addGestureRecognizer(tap)
         
         NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(pickerValueHandler(_:)), name: NOTIF_USER_ACTIVITY_LEVEL_CHANGED, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NOTIF_USER_DATA_CHANGED, object: nil)
     }
 
