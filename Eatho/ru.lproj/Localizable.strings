@@ -68,7 +68,6 @@
 "Height" = "Рост";
 "Age" = "Возраст";
 "Calories shortage" = "Дефицит калорий"; 
-"Age" = "Рост";
 "kg" = "кг";
 "cm" = "см";
 "years" = "лет";
@@ -82,6 +81,11 @@
 "Parameters for auto calculation" = "Параметры для автоматического расчёта";
 "Calculate nutrition values" = "Рассчитать";
 "Weight measures" = "Меры весов";
+"Macronutrients" = "Макронутриенты";
+"Edit" = "Редактирование";
+"Automatic" = "Автоматическое вычисление";
+"Setup values" = "Установить веса";
+"Setup percentage" = "Установить проценты";
 
 /** Table headers */
 "Other parameters" = "Прочие параметры";
@@ -112,7 +116,7 @@
 
 
 /**Text*/
-"Please, note that all formulas for calories and nutrients calculation are not perfect and may not conform to your body or your goals." = "Пожалуйста, примите во внимание, что формулы расчета калоража дают усредненный результат и могут не подойти вашему организму или вашим целям.";
+"Please, note that all formulas for calories and nutrients calculation are not perfect and may not conform to your body or your goals." = "Формулы расчета калоража дают усредненный результат и могут не подойти вашему организму или вашим целям.";
 "Consult with your doctor or your fitness trainer" = "Проконсультируйтесь с врачом или тренером.";
 "to get optimal nutrients in your daily ingestions" = "Специалисты помогут подобрать режим питания, при котором вы будете чувствовать себя комфортно и следовать своим целям по сбросу, набору или поддержанию веса.";
 "Correct values" = "Корректируйте значения настроек.";
