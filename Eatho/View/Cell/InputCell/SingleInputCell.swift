@@ -115,7 +115,7 @@ extension SingleInputCell: UITextFieldDelegate {
             return
         }
         
-        guard let val = Double(text) else { return }
+        guard let val = Double(text.decimalized) else { return }
         if let inpuFinishedDecimalHandler = inpuFinishedDecimalHandler {
             inpuFinishedDecimalHandler(val)
             return
