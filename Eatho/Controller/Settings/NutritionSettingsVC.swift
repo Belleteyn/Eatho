@@ -18,12 +18,15 @@ class NutritionSettingsVC: UIViewController {
     @IBOutlet weak var correctRationTitle: UILabel!
     @IBOutlet weak var correcRationText: UILabel!
     
-    @IBOutlet weak var chartView: UIView!
+    @IBOutlet weak var chartView: UserNutritionChartView!
     @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         warningText.text = NUTRITION_WARNING_TEXT
         consultWarningTitle.text = NUTRITION_CONSULT_TITLE
@@ -32,6 +35,114 @@ class NutritionSettingsVC: UIViewController {
         correctWarningText.text = NUTRITION_CORRECT_TEXT
         correctRationTitle.text = NUTRITION_NEEDS_TITLE
         correcRationText.text = NUTRITION_NEEDS_TEXT
+        
+        chartView.initData(nutrition: SettingsService.instance.userInfo.nutrition)
+//        if SettingsService.instance.userInfo.nutrition.isValid {
+//            chartView.initData(nutrition: SettingsService.instance.userInfo.nutrition)
+//        } else {
+//            chartView.isHidden = true
+//        }
+        
     }
 
+}
+
+extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 42
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Macronutrients".localized
+        case 1:
+            return "Edit".localized
+        default:
+            return ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 4
+        case 1:
+            return 3
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
+        
+        switch indexPath.section {
+        case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "basicUserNutrientCell", for: indexPath)
+            let userNutrition = SettingsService.instance.userInfo.nutrition
+            
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = CALORIES
+                cell.detailTextLabel?.text = "\(userNutrition.calories) \(KCAL)"
+            case 1:
+                cell.textLabel?.text = PROTEINS
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.proteins["g"] ?? 0)) \(G) / \(userNutrition.proteins["percent"] ?? 0)%"
+            case 2:
+                cell.textLabel?.text = CARBS
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.carbs["g"] ?? 0)) \(G) / \(userNutrition.carbs["percent"] ?? 0)%"
+            case 3:
+                cell.textLabel?.text = FATS
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.fats["g"] ?? 0)) \(G) / \(userNutrition.fats["percent"] ?? 0)%"
+            
+            default: ()
+            }
+            
+            cell.textLabel?.textColor = TEXT_COLOR
+            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 14)
+            cell.detailTextLabel?.textColor = TEXT_COLOR
+            
+            return cell
+        case 1:
+            cell = tableView.dequeueReusableCell(withIdentifier: "selectableUserNutrientCell", for: indexPath)
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "Automatic".localized
+            case 1:
+                cell.textLabel?.text = "Setup values".localized
+            case 2:
+                cell.textLabel?.text = "Setup percentage".localized
+            default: ()
+            }
+            
+            cell.textLabel?.textColor = EATHO_PURPLE
+            cell.detailTextLabel?.text = ""
+            cell.accessoryType = .disclosureIndicator
+            
+            return cell
+        default: ()
+        }
+        
+        
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected", indexPath)
+        switch indexPath.row {
+        case 0:
+            performSegue(withIdentifier: "toAuthomaticNutritionCalculationsSegue", sender: self)
+        case 1:
+            performSegue(withIdentifier: "toSetupGramsSegue", sender: self)
+        case 2:
+            performSegue(withIdentifier: "toPercentSetupSegue", sender: self)
+        default:
+            ()
+        }
+    }
 }
