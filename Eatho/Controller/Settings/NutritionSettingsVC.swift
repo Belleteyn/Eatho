@@ -45,6 +45,29 @@ class NutritionSettingsVC: UIViewController {
         
     }
 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let autoVC = segue.destination as? AutomaticNutritionCalculationsVC {
+            autoVC.delegate = self
+        }
+    }
+}
+
+extension NutritionSettingsVC: UserInfoDelegate {
+    var userInfo: UserInfo {
+        get {
+            return SettingsService.instance.userInfo
+        }
+        
+        set {
+            SettingsService.instance.userInfo = newValue
+            tableView.reloadSections(IndexSet(integer: 0), with: UITableView.RowAnimation.automatic)
+        }
+    }
+
+    func userInfoChanged(userInfo: UserInfo) {
+        self.userInfo = userInfo
+    }
 }
 
 extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
@@ -92,13 +115,13 @@ extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
                 cell.detailTextLabel?.text = "\(userNutrition.calories) \(KCAL)"
             case 1:
                 cell.textLabel?.text = PROTEINS
-                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.proteins["g"] ?? 0)) \(G) / \(userNutrition.proteins["percent"] ?? 0)%"
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.proteins["g"] ?? 0)) \(G) / \(truncateDoubleTail(userNutrition.proteins["percent"] ?? 0)) %"
             case 2:
                 cell.textLabel?.text = CARBS
-                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.carbs["g"] ?? 0)) \(G) / \(userNutrition.carbs["percent"] ?? 0)%"
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.carbs["g"] ?? 0)) \(G) / \(truncateDoubleTail(userNutrition.carbs["percent"] ?? 0)) %"
             case 3:
                 cell.textLabel?.text = FATS
-                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.fats["g"] ?? 0)) \(G) / \(userNutrition.fats["percent"] ?? 0)%"
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.fats["g"] ?? 0)) \(G) / \(truncateDoubleTail(userNutrition.fats["percent"] ?? 0)) %"
             
             default: ()
             }
@@ -133,7 +156,6 @@ extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected", indexPath)
         switch indexPath.row {
         case 0:
             performSegue(withIdentifier: "toAuthomaticNutritionCalculationsSegue", sender: self)

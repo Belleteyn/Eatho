@@ -12,7 +12,11 @@ class AutomaticNutritionCalculationsVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var info = SettingsService.instance.userInfo
+    var delegate: UserInfoDelegate?
+    private enum UserParams {
+        case Weight, Height, Age, Gender, Activity, CalShortage, Btn
+        static let types: [UserParams] = [.Weight, .Height, .Age, .Gender, .Activity, .CalShortage, .Btn]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +27,6 @@ class AutomaticNutritionCalculationsVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandle(_:)))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-        
-        info = SettingsService.instance.userInfo
     }
     
     @objc func tapHandle(_ sender: UITapGestureRecognizer) {
@@ -40,8 +42,10 @@ class AutomaticNutritionCalculationsVC: UIViewController {
 
 extension AutomaticNutritionCalculationsVC: PickerViewIndexDelegate {
     func indexChanged(index: Int) {
-        info.activityIndex = index
-        SettingsService.instance.userInfo = info
+        guard var delegate = delegate else { return }
+
+        delegate.userInfo.activityIndex = index
+        delegate.userInfoChanged(userInfo: delegate.userInfo)
         
         tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .automatic)
     }
@@ -51,62 +55,45 @@ extension AutomaticNutritionCalculationsVC: PickerViewIndexDelegate {
 
 extension AutomaticNutritionCalculationsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 4 {
+        guard indexPath.row < UserParams.types.count else {
+            return UITableViewCell()
+        }
+        
+        let type = UserParams.types[indexPath.row]
+        switch type {
+        case .Activity:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "pickerSelectionCell", for: indexPath) as? PickerSelectionCell {
-                let index = info.activityIndex
                 
+                guard let index = delegate?.userInfo.activityIndex else { return cell }
                 cell.setupView(type: SettingsService.instance.activityPickerData[index][0], description: SettingsService.instance.activityPickerData[index][1])
-                return cell
-            }
-        } else if indexPath.row == 3 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell", for: indexPath) as? SegmentedControlCell {
-                cell.setupView(title: NSLocalizedString("Gender", comment: "Settings"), activeSegmentedControlIndex: info.gender) { (selectedIndex) in
-                    self.info.gender = selectedIndex
-                    SettingsService.instance.userInfo = self.info
-                }
-                return cell
-            }
-        } else {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell {
-                switch indexPath.row {
-                case 0:
-                    cell.setupView(title: NSLocalizedString("Weight", comment: "Settings"), additionalDesc: info.lbsMetrics ? LB : NSLocalizedString("kg", comment: "Settings"), placeholder: "0", text: "\(info.weight)")
-                    cell.inpuFinishedDecimalHandler = {
-                        (_ val: Double) in
-                        print("!!!")
-                        self.info.weight = val
-                        SettingsService.instance.userInfo = self.info
-                    }
-                case 1:
-                    cell.setupView(title: NSLocalizedString("Height", comment: "Settings"), additionalDesc: NSLocalizedString("cm", comment: "Settings"), placeholder: "0", text: "\(info.height)")
-                    cell.inpuFinishedDecimalHandler = {
-                        (_ val: Double) in
-                        self.info.height = val
-                        SettingsService.instance.userInfo = self.info
-                    }
-                case 2:
-                    cell.setupView(title: NSLocalizedString("Age", comment: "Settings"), additionalDesc: NSLocalizedString("years", comment: "Settings"), placeholder: "0", text: "\(info.age)")
-                    cell.inpuFinishedDecimalHandler = {
-                        (_ val: Double) in
-                        self.info.age = Int(val)
-                        SettingsService.instance.userInfo = self.info
-                    }
-                case 5:
-                    cell.setupView(title: NSLocalizedString("Calories shortage", comment: "Settings"), additionalDesc: KCAL, placeholder: "0", text: "\(info.caloriesShortage)")
-                    cell.inpuFinishedDecimalHandler = {
-                        (_ val: Double) in
-                        self.info.caloriesShortage = val
-                        SettingsService.instance.userInfo = self.info
-                    }
-                default: ()
-                }
                 
                 return cell
             }
+        case .Gender:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell", for: indexPath) as? SegmentedControlCell {
+                
+                guard let gender = delegate?.userInfo.gender else { return cell }
+                cell.setupView(title: NSLocalizedString("Gender", comment: "Settings"), activeSegmentedControlIndex: gender) { (selectedIndex) in
+                    
+                    guard var delegate = self.delegate else { return }
+                    delegate.userInfo.gender = selectedIndex
+                    delegate.userInfoChanged(userInfo: delegate.userInfo)
+                }
+                return cell
+            }
+        case .Btn:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
+            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.text = NSLocalizedString("Calculate nutrition values", comment: "Settings")
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
+            cell.textLabel?.textColor = EATHO_PURPLE
+            return cell
+        default:
+            return configureSungleViewCell(type: type, indexPath: indexPath)
         }
         
         return UITableViewCell()
@@ -114,5 +101,76 @@ extension AutomaticNutritionCalculationsVC: UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 6 {
+            guard var delegate = self.delegate else { return }
+            delegate.userInfo.recalculateNutrition()
+            delegate.userInfoChanged(userInfo: delegate.userInfo)
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+
+    private func configureSungleViewCell(type: UserParams, indexPath: IndexPath) -> SingleInputCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell {
+            
+            switch type {
+            case .Weight:
+                guard let lbsMetrics = delegate?.userInfo.lbsMetrics else { return cell }
+                guard let weight = delegate?.userInfo.weight else { return cell }
+                
+                cell.setupView(title: NSLocalizedString("Weight", comment: "Settings"), additionalDesc: lbsMetrics ? LB : NSLocalizedString("kg", comment: "Settings"), placeholder: "0", text: "\(weight)")
+                cell.inpuFinishedDecimalHandler = {
+                    (_ val: Double) in
+                    
+                    guard var delegate = self.delegate else { return }
+                    delegate.userInfo.weight = val
+                    delegate.userInfoChanged(userInfo: delegate.userInfo)
+                }
+                
+            case .Height:
+                guard let height = delegate?.userInfo.height else { return cell }
+                
+                cell.setupView(title: NSLocalizedString("Height", comment: "Settings"), additionalDesc: NSLocalizedString("cm", comment: "Settings"), placeholder: "0", text: "\(height)")
+                cell.inpuFinishedDecimalHandler = {
+                    (_ val: Double) in
+                    
+                    guard var delegate = self.delegate else { return }
+                    delegate.userInfo.height = val
+                    delegate.userInfoChanged(userInfo: delegate.userInfo)
+                }
+                
+            case .Age:
+                guard let age = delegate?.userInfo.age else { return cell }
+                
+                cell.setupView(title: NSLocalizedString("Age", comment: "Settings"), additionalDesc: NSLocalizedString("years", comment: "Settings"), placeholder: "0", text: "\(age)")
+                cell.inpuFinishedDecimalHandler = {
+                    (_ val: Double) in
+                    
+                    guard var delegate = self.delegate else { return }
+                    delegate.userInfo.age = Int(val)
+                    delegate.userInfoChanged(userInfo: delegate.userInfo)
+                }
+                
+            case .CalShortage:
+                guard let caloriesShortage = delegate?.userInfo.caloriesShortage else { return cell }
+                
+                cell.setupView(title: NSLocalizedString("Calories shortage", comment: "Settings"), additionalDesc: KCAL, placeholder: "0", text: "\(caloriesShortage)")
+                cell.inpuFinishedDecimalHandler = {
+                    (_ val: Double) in
+                    
+                    guard var delegate = self.delegate else { return }
+                    delegate.userInfo.caloriesShortage = val
+                    delegate.userInfoChanged(userInfo: delegate.userInfo)
+                }
+                
+            default: ()
+            }
+            return cell
+        }
+        
+        return SingleInputCell()
     }
 }

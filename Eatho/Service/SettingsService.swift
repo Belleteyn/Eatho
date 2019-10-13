@@ -40,8 +40,8 @@ class SettingsService {
                 UserDefaults.standard.setValue(encodedData, forKey: USER_INFO)
                 
                 _userInfo = newValue
+                _userInfo?.localeLanguage = Locale.current.languageCode
                 
-                NotificationCenter.default.post(name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
                 uploadUserData(data: encodedData)
             } catch let err {
                 debugPrint("writing UserInfo error: \(err)")
@@ -67,7 +67,7 @@ class SettingsService {
         }
         
         _userInfo = UserInfo()
-        _userInfo?.localeLanguge = Locale.current.languageCode
+        _userInfo?.localeLanguage = Locale.current.languageCode
     }
     
     private func uploadUserData(data: Data) {
