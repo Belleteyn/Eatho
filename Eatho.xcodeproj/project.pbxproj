@@ -42,6 +42,7 @@
 		9549B1CB23204CB000A53AAB /* RationServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */; };
 		9549B1CD23210AE000A53AAB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CC23210AE000A53AAB /* Errors.swift */; };
 		9549B1CF2321714E00A53AAB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9549B1CE2321714E00A53AAB /* DateFormatter.swift */; };
+		954CA5862353B51300E9A406 /* NumericalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954CA5852353B51300E9A406 /* NumericalExtension.swift */; };
 		954ED80F234788E500628BE5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 954ED811234788E500628BE5 /* Localizable.strings */; };
 		954F4E47231DA6B30088B6DD /* RationChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E46231DA6B30088B6DD /* RationChartView.swift */; };
 		954F4E4A231E39270088B6DD /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F4E49231E39270088B6DD /* MathUtils.swift */; };
@@ -172,6 +173,7 @@
 		9549B1CA23204CB000A53AAB /* RationServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		9549B1CC23210AE000A53AAB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		9549B1CE2321714E00A53AAB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		954CA5852353B51300E9A406 /* NumericalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericalExtension.swift; sourceTree = "<group>"; };
 		954ED80C234786B900628BE5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LoginScreen.strings; sourceTree = "<group>"; };
 		954ED810234788E500628BE5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		954F4E46231DA6B30088B6DD /* RationChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationChartView.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				9540020A2327E7C300AED17B /* ShadowExtension.swift */,
 				95F7C80A23362936003BEE5B /* ErrorExtension.swift */,
 				95FD9AA6234F72DE00D803E1 /* StringExtension.swift */,
+				954CA5852353B51300E9A406 /* NumericalExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 				95FD9AA1234CAF9600D803E1 /* Service.swift in Sources */,
 				956D438222F6B0B60091C9C4 /* ShopListService.swift in Sources */,
 				952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */,
+				954CA5862353B51300E9A406 /* NumericalExtension.swift in Sources */,
 				95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */,
 				95512ABD22F089790038790F /* RationVC.swift in Sources */,
 				951460CA231F053200B5C04D /* ComplementParamsModalVC.swift in Sources */,
