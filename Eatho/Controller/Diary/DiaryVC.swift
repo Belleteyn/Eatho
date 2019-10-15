@@ -10,22 +10,25 @@ import UIKit
 
 class DiaryVC: BaseVC {
 
-    @IBOutlet weak var daysPicker: UIPickerView!
     @IBOutlet weak var diaryTableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    @IBOutlet weak var prepLabel: UILabel!
+    @IBOutlet weak var prepButton: EathoButton!
+    
+    var days = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        daysPicker.delegate = self
-        daysPicker.dataSource = self
-        
         diaryTableView.delegate = self
         diaryTableView.dataSource = self
         
         spinner.hidesWhenStopped = true
         
         configureRefreshControl()
+        setupPrepLabel(days: days)
+        prepButton.setTitle(PREPARE, for: .normal)
         
         if RationService.instance.diary.count == 0 {
             RationService.instance.get { (_, error) in
@@ -43,6 +46,10 @@ class DiaryVC: BaseVC {
     func configureRefreshControl() {
         diaryTableView.refreshControl = UIRefreshControl()
         diaryTableView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    }
+    
+    func setupPrepLabel(days: Int) {
+        prepLabel.text = "\(days) \(DAYS)"
     }
     
     @objc func handleRefresh() {
@@ -64,8 +71,26 @@ class DiaryVC: BaseVC {
     }
     
     @IBAction func advancePrepPressed(_ sender: Any) {
+
+    }
+    
+    @IBAction func decButtonPressed(_ sender: Any) {
+        if days > 1 {
+            days -= 1
+            setupPrepLabel(days: days)
+        }
+    }
+    
+    @IBAction func incButtonPressed(_ sender: Any) {
+        if days < 7 {
+            days += 1
+            setupPrepLabel(days: days)
+        }
+    }
+    
+    @IBAction func prepButtonPressed(_ sender: Any) {
         spinner.startAnimating()
-        RationService.instance.prepRation(forDays: daysPicker.selectedRow(inComponent: 0) + 1) { (_, error) in
+        RationService.instance.prepRation(forDays: days) { (_, error) in
             self.spinner.stopAnimating()
             
             if let error = error {
@@ -75,25 +100,6 @@ class DiaryVC: BaseVC {
             }
         }
     }
-    
-}
-
-extension DiaryVC: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 7
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row + 1)"
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: "\(row + 1)", attributes: [NSAttributedString.Key.foregroundColor : TEXT_COLOR, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10)])
-    }
 }
 
 extension DiaryVC: UITableViewDelegate, UITableViewDataSource {
@@ -102,6 +108,8 @@ extension DiaryVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < RationService.instance.diary.count else { return UITableViewCell() }
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "diaryCell") as? DiaryCell {
             cell.updateView(ration: RationService.instance.diary[indexPath.row])
             return cell

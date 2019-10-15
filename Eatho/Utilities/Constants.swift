@@ -67,6 +67,10 @@ let NUTRITION_FACTS = NSLocalizedString("Nutrition facts", comment: "Food")
 
 let PER100G = NSLocalizedString("per 100g", comment: "Food")
 
+//diary
+let DAYS = NSLocalizedString("days", comment: "Diary")
+let PREPARE = NSLocalizedString("prepare", comment: "Diary")
+
 // user portion data
 let AVAILABLE = NSLocalizedString("Available", comment: "Food")
 let MIN = NSLocalizedString("Minimal portion", comment: "Food")

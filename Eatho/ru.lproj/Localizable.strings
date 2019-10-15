@@ -52,6 +52,10 @@
 "Type" = "Тип";
 "choose food type" = "выберите тип";
 
+/** Diary */
+"days" = "дней";
+"prepare" = "Подготовить";
+
 /** Settings */
 "Activity level" = "Уровень активности";
 "Minimal" = "Минимальный";
