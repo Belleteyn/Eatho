@@ -84,8 +84,7 @@
 "Macronutrients" = "Макронутриенты";
 "Edit" = "Редактирование";
 "Automatic" = "Автоматическое вычисление";
-"Setup values" = "Установить веса";
-"Setup percentage" = "Установить проценты";
+"Setup values" = "Ввести значения";
 
 /** Table headers */
 "Other parameters" = "Прочие параметры";

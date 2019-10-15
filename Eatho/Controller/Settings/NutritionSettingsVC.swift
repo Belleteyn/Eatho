@@ -35,14 +35,8 @@ class NutritionSettingsVC: UIViewController {
         correctWarningText.text = NUTRITION_CORRECT_TEXT
         correctRationTitle.text = NUTRITION_NEEDS_TITLE
         correcRationText.text = NUTRITION_NEEDS_TEXT
-        
-        chartView.initData(nutrition: SettingsService.instance.userInfo.nutrition)
-//        if SettingsService.instance.userInfo.nutrition.isValid {
-//            chartView.initData(nutrition: SettingsService.instance.userInfo.nutrition)
-//        } else {
-//            chartView.isHidden = true
-//        }
-        
+    
+        updateChart()
     }
 
     
@@ -50,6 +44,19 @@ class NutritionSettingsVC: UIViewController {
         if let autoVC = segue.destination as? AutomaticNutritionCalculationsVC {
             autoVC.delegate = self
         }
+        
+        if let valuesSetupVC = segue.destination as? NutritionGramsSetupVC {
+            valuesSetupVC.delegate = self
+        }
+    }
+    
+    func updateChart() {
+        chartView.initData(nutrition: SettingsService.instance.userInfo.nutrition)
+//        if SettingsService.instance.userInfo.nutrition.isValid {
+//            chartView.initData(nutrition: SettingsService.instance.userInfo.nutrition)
+//        } else {
+//            chartView.isHidden = true
+//        }
     }
 }
 
@@ -62,6 +69,7 @@ extension NutritionSettingsVC: UserInfoDelegate {
         set {
             SettingsService.instance.userInfo = newValue
             tableView.reloadSections(IndexSet(integer: 0), with: UITableView.RowAnimation.automatic)
+            updateChart()
         }
     }
 
@@ -95,7 +103,7 @@ extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 3
+            return 2
         default:
             return 0
         }
@@ -112,7 +120,7 @@ extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = CALORIES
-                cell.detailTextLabel?.text = "\(userNutrition.calories) \(KCAL)"
+                cell.detailTextLabel?.text = "\(userNutrition.calories.truncated()) \(KCAL)"
             case 1:
                 cell.textLabel?.text = PROTEINS
                 cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.proteins["g"] ?? 0)) \(G) / \(truncateDoubleTail(userNutrition.proteins["percent"] ?? 0)) %"
@@ -138,8 +146,6 @@ extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
                 cell.textLabel?.text = "Automatic".localized
             case 1:
                 cell.textLabel?.text = "Setup values".localized
-            case 2:
-                cell.textLabel?.text = "Setup percentage".localized
             default: ()
             }
             
@@ -161,8 +167,6 @@ extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
             performSegue(withIdentifier: "toAuthomaticNutritionCalculationsSegue", sender: self)
         case 1:
             performSegue(withIdentifier: "toSetupGramsSegue", sender: self)
-        case 2:
-            performSegue(withIdentifier: "toPercentSetupSegue", sender: self)
         default:
             ()
         }
