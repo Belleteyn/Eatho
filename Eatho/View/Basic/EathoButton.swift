@@ -29,6 +29,24 @@ class EathoButton: UIButton {
         }
     }
     
+    @IBInspectable var shadowOpacity: Float = 0 {
+        didSet {
+            self.layer.shadowOpacity = shadowOpacity / 100
+        }
+    }
+    
+    @IBInspectable var xOffset: CGFloat = 0.0 {
+        didSet {
+            self.layer.shadowOffset = CGSize(width: xOffset, height: yOffset)
+        }
+    }
+    
+    @IBInspectable var yOffset: CGFloat = 0.0 {
+        didSet {
+            self.layer.shadowOffset = CGSize(width: xOffset, height: yOffset)
+        }
+    }
+    
     override func awakeFromNib() {
         self.setupView()
     }
@@ -50,5 +68,9 @@ class EathoButton: UIButton {
         self.layer.cornerRadius = cornerRadius
         self.layer.borderColor = borderColor.cgColor
         self.layer.borderWidth = borderWidth / 10
+        
+        self.layer.shadowColor = UIColor.darkGray.cgColor
+        self.layer.shadowOpacity = shadowOpacity
+        self.layer.shadowOffset = CGSize(width: xOffset, height: yOffset)
     }
 }

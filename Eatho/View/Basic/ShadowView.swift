@@ -17,9 +17,9 @@ class ShadowView: UIView {
         }
     }
     
-    @IBInspectable var shadowOpacity: Float = 0.75 {
+    @IBInspectable var shadowOpacity: Float = 75 {
         didSet {
-            self.layer.shadowOpacity = shadowOpacity
+            self.layer.shadowOpacity = shadowOpacity / 100
         }
     }
     
@@ -45,9 +45,11 @@ class ShadowView: UIView {
     
     func setupView() {
         self.layer.cornerRadius = cornerRadius
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowColor = UIColor.darkGray.cgColor
         self.layer.shadowOpacity = shadowOpacity
         
         self.layer.shadowOffset = CGSize(width: xOffset, height: yOffset)
+        
+        //self.clipsToBounds = true
     }
 }
