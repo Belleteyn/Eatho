@@ -1261,7 +1261,7 @@
         <scene sceneID="k85-4W-uBh">
             <objects>
                 <viewController storyboardIdentifier="RationModalVC" id="IUG-ds-sy0" customClass="RationModalVC" customModule="Eatho" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="crb-1r-9SB">
+                    <view key="view" contentMode="scaleToFill" id="crb-1r-9SB" customClass="GradientView" customModule="Eatho" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1271,7 +1271,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <blurEffect style="light"/>
+                                <blurEffect style="regular"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dau-Xw-ezZ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="97"/>
@@ -1533,6 +1533,14 @@
                             <constraint firstItem="YPz-Vz-f0S" firstAttribute="top" secondItem="TdA-Zd-dxP" secondAttribute="bottom" constant="8" id="kuc-PQ-5kv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OvG-mh-Ls5"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                <color key="value" red="0.80392156859999997" green="0.63137254899999995" blue="0.96470588239999999" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                <color key="value" red="0.6588235294" green="0.62352941179999999" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="chartView" destination="TdA-Zd-dxP" id="hL0-zq-bFa"/>
