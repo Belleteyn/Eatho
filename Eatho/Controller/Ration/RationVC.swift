@@ -142,4 +142,8 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
         
         return UISwipeActionsConfiguration(actions: [removeAction])
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 114
+    }
 }

@@ -17,6 +17,7 @@ class DiaryVC: BaseVC {
     @IBOutlet weak var prepButton: EathoButton!
     
     var days = 1
+    var selectedRowIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,13 @@ class DiaryVC: BaseVC {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(dataChangedHandle), name: NOTIF_RATION_DATA_CHANGED, object: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destVC = segue.destination as? RationModalVC {
+            guard selectedRowIndex >= 0 && selectedRowIndex < RationService.instance.diary.count else { return }
+            destVC.ration = RationService.instance.diary[selectedRowIndex]
+        }
     }
     
     func configureRefreshControl() {
@@ -68,10 +76,6 @@ class DiaryVC: BaseVC {
     
     @objc func dataChangedHandle() {
         diaryTableView.reloadData()
-    }
-    
-    @IBAction func advancePrepPressed(_ sender: Any) {
-
     }
     
     @IBAction func decButtonPressed(_ sender: Any) {
@@ -116,5 +120,10 @@ extension DiaryVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedRowIndex = indexPath.row
+        performSegue(withIdentifier: "toModalDiaryRationSegue", sender: self)
     }
 }

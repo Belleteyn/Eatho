@@ -18,6 +18,7 @@
 		951987432350D72700F56B96 /* NutritionGramsSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951987422350D72700F56B96 /* NutritionGramsSetupVC.swift */; };
 		9519874B2351043C00F56B96 /* PickerViewIndexDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9519874A2351043C00F56B96 /* PickerViewIndexDelegate.swift */; };
 		951D215A22F9627200A8CDB9 /* NutrientsRelativityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */; };
+		9520B6D62357033D00F06DCE /* RationModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520B6D52357033D00F06DCE /* RationModalVC.swift */; };
 		95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95231CB7230AD917009EDCB7 /* SearchVC.swift */; };
 		95278CFC22FC729B00B015F7 /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95278CFB22FC729A00B015F7 /* DiaryCell.swift */; };
 		95278CFE22FC8EF300B015F7 /* Ration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95278CFD22FC8EF300B015F7 /* Ration.swift */; };
@@ -144,6 +145,7 @@
 		951987462350DC7600F56B96 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		9519874A2351043C00F56B96 /* PickerViewIndexDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewIndexDelegate.swift; sourceTree = "<group>"; };
 		951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsRelativityView.swift; sourceTree = "<group>"; };
+		9520B6D52357033D00F06DCE /* RationModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationModalVC.swift; sourceTree = "<group>"; };
 		95231CB7230AD917009EDCB7 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		95278CFB22FC729A00B015F7 /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
 		95278CFD22FC8EF300B015F7 /* Ration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ration.swift; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				95512AC022F089970038790F /* DiaryVC.swift */,
+				9520B6D52357033D00F06DCE /* RationModalVC.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -831,6 +834,7 @@
 				950236A72348AF9A0059DA8B /* URLs.swift in Sources */,
 				95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */,
 				95DB28BE2328D9A6004511DD /* SingleInputCell.swift in Sources */,
+				9520B6D62357033D00F06DCE /* RationModalVC.swift in Sources */,
 				95512AC322F089A80038790F /* SettingsVC.swift in Sources */,
 				954F4E4A231E39270088B6DD /* MathUtils.swift in Sources */,
 				954002082327DAF100AED17B /* ShoppingListSettingsVC.swift in Sources */,
