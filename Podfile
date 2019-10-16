@@ -13,6 +13,7 @@ target 'Eatho' do
   pod 'Charts'
   pod 'KeychainAccess'
   pod 'CryptoSwift'
+  pod 'TPPDF'
 
   target 'EathoTests' do
     inherit! :search_paths

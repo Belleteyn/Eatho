@@ -19,6 +19,7 @@
 		9519874B2351043C00F56B96 /* PickerViewIndexDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9519874A2351043C00F56B96 /* PickerViewIndexDelegate.swift */; };
 		951D215A22F9627200A8CDB9 /* NutrientsRelativityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */; };
 		9520B6D62357033D00F06DCE /* RationModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520B6D52357033D00F06DCE /* RationModalVC.swift */; };
+		9520B6D8235731AA00F06DCE /* PdfCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520B6D7235731AA00F06DCE /* PdfCreator.swift */; };
 		95231CB8230AD917009EDCB7 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95231CB7230AD917009EDCB7 /* SearchVC.swift */; };
 		95278CFC22FC729B00B015F7 /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95278CFB22FC729A00B015F7 /* DiaryCell.swift */; };
 		95278CFE22FC8EF300B015F7 /* Ration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95278CFD22FC8EF300B015F7 /* Ration.swift */; };
@@ -146,6 +147,7 @@
 		9519874A2351043C00F56B96 /* PickerViewIndexDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewIndexDelegate.swift; sourceTree = "<group>"; };
 		951D215922F9627200A8CDB9 /* NutrientsRelativityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsRelativityView.swift; sourceTree = "<group>"; };
 		9520B6D52357033D00F06DCE /* RationModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationModalVC.swift; sourceTree = "<group>"; };
+		9520B6D7235731AA00F06DCE /* PdfCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfCreator.swift; sourceTree = "<group>"; };
 		95231CB7230AD917009EDCB7 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		95278CFB22FC729A00B015F7 /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
 		95278CFD22FC8EF300B015F7 /* Ration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ration.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				9549B1CE2321714E00A53AAB /* DateFormatter.swift */,
 				950236A62348AF9A0059DA8B /* URLs.swift */,
 				950236A82348AFBF0059DA8B /* Colors.swift */,
+				9520B6D7235731AA00F06DCE /* PdfCreator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TPPDF/TPPDF.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -796,6 +800,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPPDF.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -862,6 +867,7 @@
 				958CD81822E9CEA600DC6EB6 /* EathoButton.swift in Sources */,
 				9549B1C92320201300A53AAB /* ShadowView.swift in Sources */,
 				95324DFF22DF6149005905FF /* AppDelegate.swift in Sources */,
+				9520B6D8235731AA00F06DCE /* PdfCreator.swift in Sources */,
 				95512AC122F089970038790F /* DiaryVC.swift in Sources */,
 				95D3DFD62306E37400685806 /* EditableCell.swift in Sources */,
 				954F4E4C231E90C50088B6DD /* RationComplementVC.swift in Sources */,

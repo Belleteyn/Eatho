@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:playgrounds/pdf.playground">
+   </FileRef>
+   <FileRef
       location = "group:Eatho.xcodeproj">
    </FileRef>
    <FileRef

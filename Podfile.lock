@@ -5,7 +5,10 @@ PODS:
   - Charts/Core (3.3.0)
   - CryptoSwift (1.0.0)
   - KeychainAccess (3.2.0)
+  - SwiftLint (0.34.0)
   - SwiftyJSON (5.0.0)
+  - TPPDF (1.5.3):
+    - SwiftLint
 
 DEPENDENCIES:
   - Alamofire
@@ -13,6 +16,7 @@ DEPENDENCIES:
   - CryptoSwift
   - KeychainAccess
   - SwiftyJSON
+  - TPPDF
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -20,15 +24,19 @@ SPEC REPOS:
     - Charts
     - CryptoSwift
     - KeychainAccess
+    - SwiftLint
     - SwiftyJSON
+    - TPPDF
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+  SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  TPPDF: 4fdeb5e280eb6d97479312c6d60526a381ae606d
 
-PODFILE CHECKSUM: 4c16139961513cb9c7ad044d0e8f8bafa43f10fb
+PODFILE CHECKSUM: 6bb176241427bd9a68063e5d8c858902025599ba
 
 COCOAPODS: 1.5.2
