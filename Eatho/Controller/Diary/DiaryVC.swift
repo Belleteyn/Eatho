@@ -47,7 +47,7 @@ class DiaryVC: BaseVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? RationModalVC {
             guard selectedRowIndex >= 0 && selectedRowIndex < RationService.instance.diary.count else { return }
-            destVC.ration = RationService.instance.diary[selectedRowIndex]
+            destVC.setRation(ration: RationService.instance.diary[selectedRowIndex])
         }
     }
     

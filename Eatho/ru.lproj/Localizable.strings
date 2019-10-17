@@ -50,7 +50,7 @@
 "Delta portion" = "Дельта *";
 
 "Portion" = "Порция";
-"Overall" = "Всего";
+"Overall" = "Итого";
 
 /** Food details */
 "Name" = "Название";
@@ -61,6 +61,7 @@
 /** Diary */
 "days" = "дней";
 "prepare" = "Подготовить";
+"Food list" = "Список продуктов";
 
 /** Settings */
 "Activity level" = "Уровень активности";

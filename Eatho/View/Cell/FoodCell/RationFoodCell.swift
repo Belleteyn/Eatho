@@ -17,11 +17,8 @@ class RationFoodCell: FoodCell {
     var incPortionHandler: ((_: String) -> ())?
     var decPortionHandler: ((_: String) -> ())?
     
-    func updateViews(foodItem: FoodItem, editable: Bool, incPortionHandler: @escaping ((_: String) -> ()), decPortionHandler: @escaping ((_: String) -> ())) {
+    func updateViews(foodItem: FoodItem) {
         guard let food = foodItem.food else { return }
-        
-        self.decPortionHandler = decPortionHandler
-        self.incPortionHandler = incPortionHandler
         super.updateViews(food: food)
         
         let portion = foodItem.portion ?? 0
@@ -33,7 +30,19 @@ class RationFoodCell: FoodCell {
             super.info.text = "\(Int(portion)) \(G) (\(Int(caloriesPerPortion)) \(KCAL))"
         }
         
+        portionTxt.isHidden = true
+        increaseBtn.isHidden = true
+        decreaseBtn.isHidden = true
+    }
+    
+    func updateViews(foodItem: FoodItem, editable: Bool, incPortionHandler: @escaping ((_: String) -> ()), decPortionHandler: @escaping ((_: String) -> ())) {
         
+        self.decPortionHandler = decPortionHandler
+        self.incPortionHandler = incPortionHandler
+        
+        updateViews(foodItem: foodItem)
+    
+        let portion = foodItem.portion ?? 0
         if editable {
             let delta = foodItem.delta ?? 0
             if SettingsService.instance.userInfo.lbsMetrics {

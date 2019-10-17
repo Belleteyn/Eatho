@@ -14,7 +14,17 @@ class RationModalVC: UIViewController {
     @IBOutlet weak var chartView: RationChartView!
     @IBOutlet weak var tableView: UITableView!
     
-    var ration: Ration?
+    private var ration: Ration?
+    
+    private var summary: [(String, Double)] = [
+        ("Calories".localized, 0.0),
+        ("Proteins".localized, 0.0),
+        ("Carbs".localized, 0.0),
+        ("Sugars".localized, 0.0),
+        ("Fiber".localized, 0.0),
+        ("Fats".localized, 0.0),
+        ("Trans".localized, 0.0)
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +44,30 @@ class RationModalVC: UIViewController {
         chartView.layer.cornerRadius = 8
         chartView.clipsToBounds = true
         chartView.backgroundColor = UIColor.white
+    }
+    
+    func setRation(ration: Ration) {
+        self.ration = ration
+        
+        for food in ration.ration {
+            let portion = food.portion ?? 0
+            
+            let calories = food.food?.nutrition.calories.total ?? 0
+            let proteins = food.food?.nutrition.proteins ?? 0
+            let carbs = food.food?.nutrition.carbs.total ?? 0
+            let sugars = food.food?.nutrition.carbs.sugars ?? 0
+            let fiber = food.food?.nutrition.carbs.dietaryFiber ?? 0
+            let fats = food.food?.nutrition.fats.total ?? 0
+            let trasn = food.food?.nutrition.fats.trans ?? 0
+            
+            summary[0].1 += calories * portion / 100
+            summary[1].1 += proteins * portion / 100
+            summary[2].1 += carbs * portion / 100
+            summary[3].1 += sugars * portion / 100
+            summary[4].1 += fiber * portion / 100
+            summary[5].1 += fats * portion / 100
+            summary[6].1 += trasn * portion / 100
+        }
     }
     
     @objc func tapHandler() {
@@ -69,25 +103,68 @@ class RationModalVC: UIViewController {
 }
 
 extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Overall".localized
+        case 1:
+            return "Food list".localized
+        default:
+            return ""
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let ration = ration else { return 0 }
-        return ration.ration.count
+        
+        switch section {
+        case 0:
+            return 7
+        case 1:
+            return ration.ration.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let ration = ration else { return UITableViewCell() }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell", for: indexPath) as? RationFoodCell else { return UITableViewCell() }
         
-        cell.updateViews(foodItem: ration.ration[indexPath.row], editable: false, incPortionHandler: { (_) in
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath)
+            cell.textLabel?.textColor = TEXT_COLOR
+            cell.detailTextLabel?.textColor = TEXT_COLOR
             
-        }) { (_) in
+            let measure = indexPath.row == 0 ? KCAL : G
+            cell.textLabel?.text = summary[indexPath.row].0
+            cell.detailTextLabel?.text = "\(summary[indexPath.row].1.truncated()) \(measure)"
             
+            return cell
+        case 1:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell", for: indexPath) as? RationFoodCell {
+                cell.updateViews(foodItem: ration.ration[indexPath.row])
+                return cell
+            }
+        default:
+            return UITableViewCell()
         }
         
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 114
+        switch indexPath.section {
+        case 0:
+            return 42
+        case 1:
+            return 114
+        default:
+            return 0
+        }
     }
 }
