@@ -33,8 +33,11 @@
 
 "from fat" = "от жиров";
 "dietary fiber" = "клетчатка";
+"Fiber" = "Клетчатка";
 "sugars" = "сахар";
+"Sugars" = "Cахар";
 "trans" = "трансжиры";
+"Trans" = "Трансжиры";
 "saturated" = "насыщенные";
 "monounsaturated" = "мононенасыщенные";
 "polyunsaturated" = "полиненасыщенные";
@@ -45,6 +48,9 @@
 "Minimal portion" = "Минимальная порция";
 "Maximal portion" = "Максимальная порция";
 "Delta portion" = "Дельта *";
+
+"Portion" = "Порция";
+"Overall" = "Всего";
 
 /** Food details */
 "Name" = "Название";

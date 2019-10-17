@@ -10,16 +10,16 @@ import Foundation
 
 extension Double {
     func truncated() -> Double {
-        var x = self * 100
+        var x = self * 10
         x.round()
-        return x / 100
+        return x / 10
     }
 }
 
 extension Float {
     func truncated() -> Float {
-        var x = self * 100
+        var x = self * 10
         x.round()
-        return x / 100
+        return x / 10
     }
 }
