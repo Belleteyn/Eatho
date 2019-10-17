@@ -14,19 +14,21 @@ import TPPDF
 class PdfCreator {
     static let instance = PdfCreator()
     
-    func createDocument(title: String, username: String, ration: [FoodItem]) -> URL? {
+    func createDocument(title: String, username: String, ration: [FoodItem]) -> (Data?, Error?) {
         
         let titleFont = UIFont(name: "Avenir", size: 20) ?? UIFont.systemFont(ofSize: 20)
         let headerFont = UIFont(name: "Avenir", size: 11) ?? UIFont.systemFont(ofSize: 11)
         
         let document = PDFDocument(format: .a4)
+        document.info.title = title
+        document.info.author = "EathoApp"
+        
         document.add(.headerRight, attributedText: NSAttributedString(string: username, attributes: [NSAttributedString.Key.foregroundColor : TEXT_COLOR, NSAttributedString.Key.font: headerFont]))
         document.add(.headerLeft, attributedText: NSAttributedString(string: "EathoApp", attributes: [NSAttributedString.Key.foregroundColor : TEXT_COLOR, NSAttributedString.Key.font: headerFont]))
         document.add(.contentCenter, attributedText: NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor : TEXT_COLOR, NSAttributedString.Key.font : titleFont]))
         document.add(space: 12)
         
         let table = customizedTable()
-        
         let data = createData(ration: ration)
         
         let defaultAlignment: [PDFTableCellAlignment] = [.left, .left, .left, .left, .left, .left, .left, .left, .left]
@@ -35,23 +37,18 @@ class PdfCreator {
         do {
             try table.generateCells(data: data, alignments: alignments)
         } catch {
-            debugPrint(error)
+            return (nil, error)
         }
 
         table.widths = [0.2, 0.11, 0.11, 0.11, 0.11, 0.09, 0.09, 0.11, 0.07]
-        
         document.add(table: table)
         
         do {
-            let doc = try PDFGenerator.generateURL(document: document, filename: "Example.pdf")
-            print(doc)
-            
-            return doc
+            let doc = try PDFGenerator.generateData(document: document)
+            return (doc, nil)
         } catch {
-            debugPrint(error)
+            return (nil, error)
         }
-        
-        return nil
     }
     
     private func customizedTable() -> PDFTable {

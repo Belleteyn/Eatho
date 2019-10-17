@@ -41,7 +41,22 @@ class RationModalVC: UIViewController {
     }
     
     @IBAction func pdfButtonPressed(_ sender: Any) {
-        //todo: create pdf
+        guard let title = titleLabel.text, let ration = ration?.ration else { return }
+        
+        let pdfRes = PdfCreator.instance.createDocument(title: title, username: AuthService.instance.email ?? "", ration: ration)
+        
+        if let pdf = pdfRes.0 {
+            let vc = UIActivityViewController(
+              activityItems: [pdf],
+              applicationActivities: nil
+            )
+
+            present(vc, animated: true, completion: nil)
+            
+        } else if let error = pdfRes.1 {
+            showErrorAlert(title: "Cannot create pfd".localized, message: error.localizedDescription)
+            return
+        }
     }
     
     @IBAction func closeButtonPressed(_ sender: Any) {

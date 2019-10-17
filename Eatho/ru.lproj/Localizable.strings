@@ -123,6 +123,8 @@
 "Please enter data" = "Пожалуйста, введите обязательные данные";
 "All required fields must be filled" = "Все подсвеченные поля необходимо заполнить";
 
+/** Diary errors*/
+"Cannot create pdf" = "Ошибка при создании pdf";
 
 /**Text*/
 "Please, note that all formulas for calories and nutrients calculation are not perfect and may not conform to your body or your goals." = "Формулы расчета калоража дают усредненный результат и могут не подойти вашему организму или вашим целям.";
