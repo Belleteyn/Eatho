@@ -14,6 +14,8 @@ class RationModalVC: UIViewController {
     @IBOutlet weak var chartView: RationChartView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var editButton: UIButton!
+    
     private var ration: Ration?
     
     private var summary: [(String, Double)] = [
@@ -44,6 +46,10 @@ class RationModalVC: UIViewController {
         chartView.layer.cornerRadius = 8
         chartView.clipsToBounds = true
         chartView.backgroundColor = UIColor.white
+        
+        if let date = ration.date {
+            editButton.isHidden = (DateComparator.compareDateWithToday(date: date) < 0)
+        }
     }
     
     func setRation(ration: Ration) {
