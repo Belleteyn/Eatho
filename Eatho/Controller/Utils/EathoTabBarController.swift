@@ -40,7 +40,7 @@ class EathoTabBarController: UITabBarController, UITabBarControllerDelegate {
         guard let controllers = viewControllers else { return false }
         
         if viewController == controllers[2] { //user selects Ration -> expects to see today ration
-            RationService.instance.setCurrent(forDate: nil)
+            RationService.instance.setCurrent(forISODate: nil)
         }
         
         return true

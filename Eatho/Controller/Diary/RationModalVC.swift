@@ -36,10 +36,10 @@ class RationModalVC: UIViewController {
         view.addGestureRecognizer(tap)
         
         guard let ration = self.ration else { return }
-        guard let date = EathoDateFormatter.instance.date(fromString: ration.date) else { return }
+        guard let date = ration.localizedDateStr else { return }
         guard let nutrition = RationService.instance.nutrition else { return }
         
-        titleLabel.text = EathoDateFormatter.instance.format(isoDate: date)
+        titleLabel.text = date
         chartView.initData(nutrition: nutrition, userNutrition: SettingsService.instance.userInfo.nutrition)
         chartView.layer.cornerRadius = 8
         chartView.clipsToBounds = true

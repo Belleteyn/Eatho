@@ -99,6 +99,7 @@
 		95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446B230469BA00BAAE01 /* DetailsVC.swift */; };
 		95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */; };
 		95F61097235264C800E796CC /* UserInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F61096235264C800E796CC /* UserInfoDelegate.swift */; };
+		95F6D12C2359882000DB82A6 /* DateComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6D12B2359882000DB82A6 /* DateComparator.swift */; };
 		95F7C80B23362936003BEE5B /* ErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7C80A23362936003BEE5B /* ErrorExtension.swift */; };
 		95F7C80D23362D9F003BEE5B /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7C80C23362D9F003BEE5B /* AlertVC.swift */; };
 		95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711C22EE438600BD6B87 /* CreationVC.swift */; };
@@ -235,6 +236,7 @@
 		95EF446B230469BA00BAAE01 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsCell.swift; sourceTree = "<group>"; };
 		95F61096235264C800E796CC /* UserInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDelegate.swift; sourceTree = "<group>"; };
+		95F6D12B2359882000DB82A6 /* DateComparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComparator.swift; sourceTree = "<group>"; };
 		95F7C80A23362936003BEE5B /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtension.swift; sourceTree = "<group>"; };
 		95F7C80C23362D9F003BEE5B /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		95F9711C22EE438600BD6B87 /* CreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationVC.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				950236A62348AF9A0059DA8B /* URLs.swift */,
 				950236A82348AFBF0059DA8B /* Colors.swift */,
 				9520B6D7235731AA00F06DCE /* PdfCreator.swift */,
+				95F6D12B2359882000DB82A6 /* DateComparator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -869,6 +872,7 @@
 				95324DFF22DF6149005905FF /* AppDelegate.swift in Sources */,
 				9520B6D8235731AA00F06DCE /* PdfCreator.swift in Sources */,
 				95512AC122F089970038790F /* DiaryVC.swift in Sources */,
+				95F6D12C2359882000DB82A6 /* DateComparator.swift in Sources */,
 				95D3DFD62306E37400685806 /* EditableCell.swift in Sources */,
 				954F4E4C231E90C50088B6DD /* RationComplementVC.swift in Sources */,
 				951D215A22F9627200A8CDB9 /* NutrientsRelativityView.swift in Sources */,

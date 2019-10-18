@@ -14,25 +14,20 @@ class DiaryCell: UITableViewCell {
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var caloriesInfo: UILabel!
     
-    var date: String?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func updateView(ration: Ration) {
-        guard let date = EathoDateFormatter.instance.date(fromString: ration.date) else { return }
-        self.date = ration.date
+        guard let date = ration.date, let localizedDateStr = ration.localizedDateStr else { return }
         
-        dateLbl.text = EathoDateFormatter.instance.format(isoDate: date)
+        dateLbl.text = localizedDateStr
         caloriesInfo.text = "\(round(ration.nutrition.calories)) \(KCAL)"
         
-        let interval = date.timeIntervalSinceNow //in seconds
-        let day = 24.0 * 60 * 60
-        
-        if interval > 0 {
+        let comparison = DateComparator.compareDateWithToday(date: date)
+        if comparison > 0 {
             imgView.image = UIImage(named: "content_item_4.png")
-        } else if day + interval >= 0 {
+        } else if comparison == 0 {
             imgView.image = UIImage(named: "content_today.png")
         } else {
             imgView.image = UIImage(named: "content_item_1.png")

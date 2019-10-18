@@ -33,7 +33,7 @@ class RationService {
     var currentDate: String? {
         get {
             if presentedRationIndex == -1 { return nil }
-            return diary[presentedRationIndex].date
+            return diary[presentedRationIndex].localizedDateStr
         }
     }
 
@@ -45,10 +45,10 @@ class RationService {
         self.subscribeLoggedOut(selector: #selector(loggedOutHandler))
     }
     
-    func setCurrent(forDate date: String?) {
+    func setCurrent(forISODate date: String?) {
         if let date = date {
             presentedRationIndex = diary.firstIndex(where: { (ration) -> Bool in
-                return ration.date == date
+                return ration.isoDate == date
             }) ?? -1
         } else {
             presentedRationIndex = todayRationIndex

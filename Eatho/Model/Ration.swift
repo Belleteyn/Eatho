@@ -10,14 +10,22 @@ import Foundation
 import SwiftyJSON
 
 class Ration {
-    var date = ""
+    var isoDate = ""
+    var date: Date?
+    var localizedDateStr: String?
+    
     var nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
     var error = Dictionary<String, Double>()
     var ration = [FoodItem]()
     
     init(json: JSON) throws {
-        guard let date = json["date"].string else { throw DataParseError.corruptedData }
-        self.date = date
+        guard let isoDate = json["date"].string else { throw DataParseError.corruptedData }
+        
+        self.isoDate = isoDate
+        self.localizedDateStr = EathoDateFormatter.instance.format(isoDate: isoDate)
+        if let date = EathoDateFormatter.instance.date(fromString: isoDate) {
+            self.date = date
+        }
         
         do {
             self.nutrition = try Nutrition(NutritionFacts(json: json["nutrition"]))
@@ -37,7 +45,7 @@ class Ration {
     }
     
     init(_ other: Ration) {
-        self.date = other.date
+        self.isoDate = other.isoDate
         self.nutrition = other.nutrition
         self.error = other.error
         self.ration = other.ration
@@ -47,7 +55,7 @@ class Ration {
         do {
             let ration = try JSON(JSONEncoder().encode(self.ration))
             let json: JSON = [
-                "date": self.date,
+                "date": self.isoDate,
                 "nutrition": [
                     "calories": [ "total": self.nutrition.calories ],
                     "proteins": self.nutrition.proteins,

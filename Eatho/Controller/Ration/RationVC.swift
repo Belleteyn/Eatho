@@ -54,10 +54,9 @@ class RationVC: BaseVC {
     
     func updateView() {
         if let date = RationService.instance.currentDate {
-            guard let formattedDate = EathoDateFormatter.instance.format(isoDate: date) else { return }
             rationTableView.reloadData()
             rationInfoView.setupNutrition()
-            navigationItem.title = formattedDate
+            navigationItem.title = date
         }
     }
     
