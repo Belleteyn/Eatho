@@ -11,7 +11,6 @@ import UIKit
 class RationModalVC: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var chartView: RationChartView!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var editButton: UIButton!
@@ -20,13 +19,16 @@ class RationModalVC: UIViewController {
     var openRationHandler: (() -> ())?
     
     private var summary: [(String, Double)] = [
-        ("Calories".localized, 0.0),
-        ("Proteins".localized, 0.0),
-        ("Carbs".localized, 0.0),
         ("Sugars".localized, 0.0),
         ("Fiber".localized, 0.0),
-        ("Fats".localized, 0.0),
         ("Trans".localized, 0.0)
+    ]
+    
+    private var chartsData: [NutrientData] = [
+        NutrientData(name: "Calories".localized, measure: "\(KCAL)", color: EATHO_MAIN_COLOR),
+        NutrientData(name: "Proteins".localized, measure: "\(G)", color: EATHO_PROTEINS),
+        NutrientData(name: "Carbs".localized, measure: "\(G)", color: EATHO_CARBS),
+        NutrientData(name: "Fats".localized, measure: "\(G)", color: EATHO_FATS)
     ]
     
     override func viewDidLoad() {
@@ -35,18 +37,10 @@ class RationModalVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
-        view.addGestureRecognizer(tap)
-        
         guard let ration = self.ration else { return }
         guard let date = ration.localizedDateStr else { return }
-        guard let nutrition = RationService.instance.nutrition else { return }
         
         titleLabel.text = date
-        chartView.initData(nutrition: nutrition, userNutrition: SettingsService.instance.userInfo.nutrition)
-        chartView.layer.cornerRadius = 8
-        chartView.clipsToBounds = true
-        chartView.backgroundColor = UIColor.white
         
         if let date = ration.date {
             editButton.isHidden = (DateComparator.compareDateWithToday(date: date) < 0)
@@ -58,18 +52,20 @@ class RationModalVC: UIViewController {
         
         let overall = ration.nutrition
         
-        summary[0].1 = overall.calories
-        summary[1].1 = overall.proteins
-        summary[2].1 = overall.carbs
-        summary[3].1 = overall.sugars
-        summary[4].1 = overall.fiber
-        summary[5].1 = overall.fats
-        summary[6].1 = overall.trans
+        summary[0].1 = overall.sugars
+        summary[1].1 = overall.fiber
+        summary[2].1 = overall.trans
+        
+        chartsData[0].value = overall.calories
+        chartsData[0].expectedValue = SettingsService.instance.userInfo.nutrition.calories
+        chartsData[1].value = overall.proteins
+        chartsData[1].expectedValue = SettingsService.instance.userInfo.nutrition.proteins["g"] ?? 0
+        chartsData[2].value = overall.carbs
+        chartsData[2].expectedValue = SettingsService.instance.userInfo.nutrition.carbs["g"] ?? 0
+        chartsData[3].value = overall.fats
+        chartsData[3].expectedValue = SettingsService.instance.userInfo.nutrition.fats["g"] ?? 0
     }
     
-    @objc func tapHandler() {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func pdfButtonPressed(_ sender: Any) {
         guard let title = titleLabel.text, let ration = ration?.ration else { return }
@@ -106,14 +102,14 @@ class RationModalVC: UIViewController {
 
 extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
-            return "Overall".localized
         case 1:
+            return "Overall".localized
+        case 2:
             return "Food list".localized
         default:
             return ""
@@ -125,8 +121,10 @@ extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
         
         switch section {
         case 0:
-            return 7
+            return chartsData.count
         case 1:
+            return summary.count
+        case 2:
             return ration.ration.count
         default:
             return 0
@@ -138,6 +136,12 @@ extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as? ChartCell {
+                let data = chartsData[indexPath.row]
+                cell.updateViews(typename: data.name, measure: data.measure, value: data.value, expectedValue: data.expectedValue, color: data.color)
+                return cell
+            }
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath)
             cell.textLabel?.textColor = TEXT_COLOR
             cell.detailTextLabel?.textColor = TEXT_COLOR
@@ -147,7 +151,7 @@ extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
             cell.detailTextLabel?.text = "\(summary[indexPath.row].1.truncated()) \(measure)"
             
             return cell
-        case 1:
+        case 2:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell", for: indexPath) as? RationFoodCell {
                 cell.updateViews(foodItem: ration.ration[indexPath.row])
                 return cell
@@ -162,8 +166,10 @@ extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 42
+            return 58
         case 1:
+            return 38
+        case 2:
             return 114
         default:
             return 0

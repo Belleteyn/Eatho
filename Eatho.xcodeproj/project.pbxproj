@@ -87,7 +87,6 @@
 		95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEDA07230728D10094E161 /* EditDetailsVC.swift */; };
 		95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */; };
 		95D3DFD42306A89700685806 /* NutritionChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD32306A89700685806 /* NutritionChartView.swift */; };
-		95D3DFD62306E37400685806 /* EditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3DFD52306E37400685806 /* EditableCell.swift */; };
 		95D7768E233D0EBE00CD72BA /* RegisterNextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D7768D233D0EBE00CD72BA /* RegisterNextVC.swift */; };
 		95D77690233E2F2900CD72BA /* AuthServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D7768F233E2F2900CD72BA /* AuthServiceNetworkExtension.swift */; };
 		95DB28BE2328D9A6004511DD /* SingleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BD2328D9A6004511DD /* SingleInputCell.swift */; };
@@ -99,6 +98,8 @@
 		95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */; };
 		95F61097235264C800E796CC /* UserInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F61096235264C800E796CC /* UserInfoDelegate.swift */; };
 		95F6D12C2359882000DB82A6 /* DateComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6D12B2359882000DB82A6 /* DateComparator.swift */; };
+		95F6D12E235A082100DB82A6 /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6D12D235A082100DB82A6 /* ChartCell.swift */; };
+		95F6D130235A086D00DB82A6 /* SingleValuePieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F6D12F235A086D00DB82A6 /* SingleValuePieChart.swift */; };
 		95F7C80B23362936003BEE5B /* ErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7C80A23362936003BEE5B /* ErrorExtension.swift */; };
 		95F7C80D23362D9F003BEE5B /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F7C80C23362D9F003BEE5B /* AlertVC.swift */; };
 		95F9711D22EE438600BD6B87 /* CreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F9711C22EE438600BD6B87 /* CreationVC.swift */; };
@@ -223,7 +224,6 @@
 		95AEDA07230728D10094E161 /* EditDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsVC.swift; sourceTree = "<group>"; };
 		95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationNutrientsView.swift; sourceTree = "<group>"; };
 		95D3DFD32306A89700685806 /* NutritionChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionChartView.swift; sourceTree = "<group>"; };
-		95D3DFD52306E37400685806 /* EditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCell.swift; sourceTree = "<group>"; };
 		95D7768D233D0EBE00CD72BA /* RegisterNextVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNextVC.swift; sourceTree = "<group>"; };
 		95D7768F233E2F2900CD72BA /* AuthServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		95DB28BD2328D9A6004511DD /* SingleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputCell.swift; sourceTree = "<group>"; };
@@ -235,6 +235,8 @@
 		95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsCell.swift; sourceTree = "<group>"; };
 		95F61096235264C800E796CC /* UserInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDelegate.swift; sourceTree = "<group>"; };
 		95F6D12B2359882000DB82A6 /* DateComparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComparator.swift; sourceTree = "<group>"; };
+		95F6D12D235A082100DB82A6 /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
+		95F6D12F235A086D00DB82A6 /* SingleValuePieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleValuePieChart.swift; sourceTree = "<group>"; };
 		95F7C80A23362936003BEE5B /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtension.swift; sourceTree = "<group>"; };
 		95F7C80C23362D9F003BEE5B /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		95F9711C22EE438600BD6B87 /* CreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationVC.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				954F4E46231DA6B30088B6DD /* RationChartView.swift */,
 				95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */,
 				95FD9AA8234FC3B100D803E1 /* UserNutritionChartView.swift */,
+				95F6D12F235A086D00DB82A6 /* SingleValuePieChart.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -604,7 +607,7 @@
 				956D437F22F6ADF10091C9C4 /* ShoppingListCell.swift */,
 				95278CFB22FC729A00B015F7 /* DiaryCell.swift */,
 				95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */,
-				95D3DFD52306E37400685806 /* EditableCell.swift */,
+				95F6D12D235A082100DB82A6 /* ChartCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */,
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
 				954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */,
+				95F6D130235A086D00DB82A6 /* SingleValuePieChart.swift in Sources */,
 				95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */,
 				95D77690233E2F2900CD72BA /* AuthServiceNetworkExtension.swift in Sources */,
 				954CA5842353B28700E9A406 /* SliderCell.swift in Sources */,
@@ -870,7 +874,6 @@
 				9520B6D8235731AA00F06DCE /* PdfCreator.swift in Sources */,
 				95512AC122F089970038790F /* DiaryVC.swift in Sources */,
 				95F6D12C2359882000DB82A6 /* DateComparator.swift in Sources */,
-				95D3DFD62306E37400685806 /* EditableCell.swift in Sources */,
 				954F4E4C231E90C50088B6DD /* RationComplementVC.swift in Sources */,
 				951D215A22F9627200A8CDB9 /* NutrientsRelativityView.swift in Sources */,
 				958CD81322E971E700DC6EB6 /* AuthService.swift in Sources */,
@@ -908,6 +911,7 @@
 				951987402350D70400F56B96 /* AutomaticNutritionCalculationsVC.swift in Sources */,
 				95512ABF22F0898A0038790F /* ShopListVC.swift in Sources */,
 				95501B6D232675E400225108 /* EathoTabBarController.swift in Sources */,
+				95F6D12E235A082100DB82A6 /* ChartCell.swift in Sources */,
 				95FD9AA1234CAF9600D803E1 /* Service.swift in Sources */,
 				956D438222F6B0B60091C9C4 /* ShopListService.swift in Sources */,
 				952A6B7122E2480200FD8D50 /* FoodItem.swift in Sources */,

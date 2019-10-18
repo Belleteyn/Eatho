@@ -7,6 +7,16 @@
 //
 
 import Foundation
+import UIKit
+
+struct NutrientData {
+    let name: String
+    let measure: String
+    let color: UIColor
+    
+    var value: Double = 0
+    var expectedValue: Double = 0
+}
 
 enum NutrientType {
     case Calories, Proteins, Carbs, Fats
