@@ -48,6 +48,9 @@ class DiaryVC: BaseVC {
         if let destVC = segue.destination as? RationModalVC {
             guard selectedRowIndex >= 0 && selectedRowIndex < RationService.instance.diary.count else { return }
             destVC.setRation(ration: RationService.instance.diary[selectedRowIndex])
+            destVC.openRationHandler = {
+                self.tabBarController?.selectedIndex = 2
+            }
         }
     }
     

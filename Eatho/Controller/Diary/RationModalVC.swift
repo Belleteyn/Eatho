@@ -17,6 +17,7 @@ class RationModalVC: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     
     private var ration: Ration?
+    var openRationHandler: (() -> ())?
     
     private var summary: [(String, Double)] = [
         ("Calories".localized, 0.0),
@@ -104,7 +105,12 @@ class RationModalVC: UIViewController {
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
-        //todo: open in edit mode
+        guard let ration = self.ration, let handler = openRationHandler else { return }
+        RationService.instance.setCurrent(forISODate: ration.isoDate)
+        
+        self.dismiss(animated: true) {
+            handler()
+        }
     }
 }
 
