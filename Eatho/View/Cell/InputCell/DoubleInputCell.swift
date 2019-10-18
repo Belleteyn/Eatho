@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum NutritionInputType {
+    case Calories, Proteins, Carbs, Fats
+}
+
 class DoubleInputCell: UITableViewCell, UITextViewDelegate {
 
     @IBOutlet weak var weightTextView: UITextView!

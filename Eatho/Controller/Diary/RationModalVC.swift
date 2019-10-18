@@ -56,25 +56,15 @@ class RationModalVC: UIViewController {
     func setRation(ration: Ration) {
         self.ration = ration
         
-        for food in ration.ration {
-            let portion = food.portion ?? 0
-            
-            let calories = food.food?.nutrition.calories.total ?? 0
-            let proteins = food.food?.nutrition.proteins ?? 0
-            let carbs = food.food?.nutrition.carbs.total ?? 0
-            let sugars = food.food?.nutrition.carbs.sugars ?? 0
-            let fiber = food.food?.nutrition.carbs.dietaryFiber ?? 0
-            let fats = food.food?.nutrition.fats.total ?? 0
-            let trasn = food.food?.nutrition.fats.trans ?? 0
-            
-            summary[0].1 += calories * portion / 100
-            summary[1].1 += proteins * portion / 100
-            summary[2].1 += carbs * portion / 100
-            summary[3].1 += sugars * portion / 100
-            summary[4].1 += fiber * portion / 100
-            summary[5].1 += fats * portion / 100
-            summary[6].1 += trasn * portion / 100
-        }
+        let overall = ration.nutrition
+        
+        summary[0].1 = overall.calories
+        summary[1].1 = overall.proteins
+        summary[2].1 = overall.carbs
+        summary[3].1 = overall.sugars
+        summary[4].1 = overall.fiber
+        summary[5].1 = overall.fats
+        summary[6].1 = overall.trans
     }
     
     @objc func tapHandler() {

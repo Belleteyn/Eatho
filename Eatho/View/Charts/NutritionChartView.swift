@@ -11,14 +11,14 @@ import Charts
 
 class NutritionChartView: PieChartView {
     
-    var nutrition: Nutrition?
+    var nutrition: OverallNutrition?
     
     func initData(nutrition: NutritionFacts) {
-        self.nutrition = Nutrition(calories: nutrition.calories.total!, proteins: nutrition.proteins!, carbs: nutrition.carbs.total!, fats: nutrition.fats.total!)
+        self.nutrition = OverallNutrition(calories: nutrition.calories.total!, proteins: nutrition.proteins!, carbs: nutrition.carbs.total!, fats: nutrition.fats.total!)
         renderChart()
     }
     
-    func initData(nutrition: Nutrition) {
+    func initData(nutrition: OverallNutrition) {
         self.nutrition = nutrition
         renderChart()
     }

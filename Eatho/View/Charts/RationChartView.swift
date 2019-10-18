@@ -11,10 +11,10 @@ import Charts
 
 class RationChartView: BarChartView {
 
-    var nutrition: Nutrition?
+    var nutrition: OverallNutrition?
     var userNutrition: UserNutrition?
     
-    func initData(nutrition: Nutrition, userNutrition: UserNutrition) {
+    func initData(nutrition: OverallNutrition, userNutrition: UserNutrition) {
         self.nutrition = nutrition
         self.userNutrition = userNutrition
         

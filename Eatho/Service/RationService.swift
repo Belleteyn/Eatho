@@ -16,7 +16,7 @@ class RationService {
     public private(set) var presentedRationIndex = -1
     private var todayRationIndex = -1
     
-    var nutrition: Nutrition? {
+    var nutrition: OverallNutrition? {
         get {
             if presentedRationIndex == -1 { return nil }
             return diary[presentedRationIndex].nutrition

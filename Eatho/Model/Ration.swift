@@ -14,7 +14,7 @@ class Ration {
     var date: Date?
     var localizedDateStr: String?
     
-    var nutrition = Nutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
+    var nutrition = OverallNutrition(calories: 0, proteins: 0, carbs: 0, fats: 0)
     var error = Dictionary<String, Double>()
     var ration = [FoodItem]()
     
@@ -28,7 +28,7 @@ class Ration {
         }
         
         do {
-            self.nutrition = try Nutrition(NutritionFacts(json: json["nutrition"]))
+            self.nutrition = try OverallNutrition(NutritionFacts(json: json["nutrition"]))
         } catch let err {
             throw err
         }
