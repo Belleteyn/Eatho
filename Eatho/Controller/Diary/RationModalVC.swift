@@ -146,9 +146,8 @@ extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.textColor = TEXT_COLOR
             cell.detailTextLabel?.textColor = TEXT_COLOR
             
-            let measure = indexPath.row == 0 ? KCAL : G
             cell.textLabel?.text = summary[indexPath.row].0
-            cell.detailTextLabel?.text = "\(summary[indexPath.row].1.truncated()) \(measure)"
+            cell.detailTextLabel?.text = "\(summary[indexPath.row].1.truncated()) \(G)"
             
             return cell
         case 2:
