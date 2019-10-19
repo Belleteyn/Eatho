@@ -45,11 +45,23 @@ class FoodVC: BaseVC {
         foodTable.isHidden = (FoodService.instance.foods.count == 0)
     }
     
-    func openDetails(index: Int) {
+    func openDetails(foodItem: FoodItem) {
         guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as? DetailsVC else { return }
         
         present(detailsVC, animated: true, completion: nil)
-        detailsVC.initData(food: FoodService.instance.foods[index])
+        detailsVC.initData(food: foodItem)
+    }
+    
+    func openDetails(food: Food) {
+        guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as? DetailsVC else { return }
+
+        if let vc = presentedViewController {
+            vc.present(detailsVC, animated: true, completion: nil)
+        } else {
+            present(detailsVC, animated: true, completion: nil)
+        }
+        
+        detailsVC.initData(food: food)
     }
     
     func openUpdateVC(index: Int) {

@@ -71,17 +71,6 @@ class SearchVC: FoodVC {
         searchController.searchBar.searchTextField.becomeFirstResponder()
     }
     
-    override func openDetails(index: Int) {
-        print("open")
-        openModal(identifier: "DetailsVC") { (vc) in
-            print("open completion")
-            if let detaisVC = vc as? DetailsVC {
-                print("init data")
-                detaisVC.initData(food: SearchService.instance.foods[index])
-            }
-        }
-    }
-    
     // Handlers
     
     @objc func startSpinner() {
@@ -165,7 +154,7 @@ extension SearchVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: DETAILS) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            self.openDetails(index: indexPath.row)
+            self.openDetails(food: SearchService.instance.foods[indexPath.row])
             success(true)
         }
         
@@ -174,5 +163,9 @@ extension SearchVC: UITableViewDataSource {
         }
         
         return UISwipeActionsConfiguration(actions: [revealDetailsAction])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.openDetails(food: SearchService.instance.foods[indexPath.row])
     }
 }

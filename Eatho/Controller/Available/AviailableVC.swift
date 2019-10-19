@@ -105,7 +105,7 @@ extension AviailableVC: UITableViewDataSource {
         removeAction.backgroundColor = EATHO_RED
         
         let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: DETAILS) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            self.openDetails(index: indexPath.row)
+            self.openDetails(foodItem: FoodService.instance.foods[indexPath.row])
             success(true)
         }
         
@@ -122,6 +122,10 @@ extension AviailableVC: UITableViewDataSource {
         } 
         
         return UISwipeActionsConfiguration(actions: [removeAction, updateAction, revealDetailsAction])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.openDetails(foodItem: FoodService.instance.foods[indexPath.row])
     }
 }
 

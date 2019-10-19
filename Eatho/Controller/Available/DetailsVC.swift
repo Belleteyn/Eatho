@@ -23,34 +23,61 @@ class DetailsVC: BaseVC {
     var minerals = [Nutrient]()
     var vitamins = [Nutrient]()
     
+    var isEditEnabled = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let name = food?.food?.name {
+            titleLbl.text = name
+        }
+        
+        if let nutrition = foodInfo?.nutrition {
+            chartView.initData(nutrition: nutrition)
+        }
+        
+        editButton.isEnabled = isEditEnabled
     }
     
     func initData(food: FoodItem) {
         guard let foodInfo = food.food, let name = foodInfo.name else { return }
         self.food = food
-        titleLbl.text = name
+        
+        if let titleLbl = titleLbl {
+            titleLbl.text = name
+        }
         
         userData = getUserData(food: food)
         macro = foodInfo.nutrition.getMacro(portion: food.delta)
         minerals = foodInfo.nutrition.getMinerals(portion: food.delta)
         vitamins = foodInfo.nutrition.getVitamins(portion: food.delta)
         
-        chartView.initData(nutrition: foodInfo.nutrition)
+        if let chartView = chartView {
+            chartView.initData(nutrition: foodInfo.nutrition)
+        }
     }
     
     func initData(food: Food) {
         self.foodInfo = food
-        titleLbl.text = food.name!
+        
+        if let titleLbl = titleLbl {
+            titleLbl.text = food.name
+        }
         
         macro = food.nutrition.getMacro(portion: nil)
         minerals = food.nutrition.getMinerals(portion: nil)
         vitamins = food.nutrition.getVitamins(portion: nil)
         
-        chartView.initData(nutrition: food.nutrition)
+        if let chartView = chartView {
+            chartView.initData(nutrition: food.nutrition)
+        }
         
-        editButton.isEnabled = false
+        if let editButton = editButton {
+            editButton.isEnabled = false
+        } else {
+            isEditEnabled = false
+        }
+        
     }
     
     @IBAction func editPressed(_ sender: Any) {

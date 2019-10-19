@@ -84,7 +84,7 @@ extension RationComplementVC: UITableViewDataSource {
         removeAction.backgroundColor = EATHO_RED
         
         let revealDetailsAction = UIContextualAction(style: UIContextualAction.Style.normal, title: DETAILS) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            super.openDetails(index: indexPath.row)
+            super.openDetails(foodItem: FoodService.instance.foods[indexPath.row])
             success(true)
         }
         

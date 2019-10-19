@@ -19,7 +19,7 @@ class BaseVC: UIViewController {
         tabBarController?.delegate = self
     }
 
-    func openModal(identifier: String, completion: @escaping (_ vc: UIViewController) -> ()) {
+    func openModalWithNavigation(identifier: String, completion: @escaping (_ vc: UIViewController) -> ()) {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: identifier) else { return }
         
         let navController = UINavigationController(rootViewController: vc)
