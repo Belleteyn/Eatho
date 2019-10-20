@@ -40,6 +40,18 @@ class RationComplementVC: FoodVC {
     }
 }
 
+extension RationComplementVC: FoodItemDelegate {
+    func foodItemChanged(food: FoodItem, updatedIndex: Int?) {
+        if let index = updatedIndex {
+            foodTable.reloadRows(at: [IndexPath(row: index, section: 0)], with: UITableView.RowAnimation.automatic)
+        } else {
+            foodTable.reloadData()
+        }
+    }
+    
+    
+}
+
 extension RationComplementVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FoodService.instance.foods.count
@@ -89,7 +101,7 @@ extension RationComplementVC: UITableViewDataSource {
         }
         
         let updateAction = UIContextualAction(style: UIContextualAction.Style.normal, title: UPDATE) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            super.openUpdateVC(index: indexPath.row)
+            super.openUpdateVC(index: indexPath.row, delegate: self)
             success(true)
         }
         updateAction.backgroundColor = EATHO_YELLOW

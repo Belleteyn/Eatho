@@ -16,7 +16,11 @@ class EditDetailsVC: BaseVC {
     
     let titles = [AVAILABLE, MIN, MAX, DELTA ]
     var values = Array(repeating: 0.0, count: 4)
+    
     var food: FoodItem?
+    var index: Int?
+    
+    var delegate: FoodItemDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +34,10 @@ class EditDetailsVC: BaseVC {
         self.view.addGestureRecognizer(tap)
     }
     
-    func setupView(title: String, food: FoodItem) {
+    func setupView(title: String, food: FoodItem, index: Int?) {
         titleLbl.text = title
         self.food = food
+        self.index = index
         
         var available = food.available ?? 0
         var min = food.dailyPortion.min != nil ? Double(food.dailyPortion.min!) : 0
@@ -83,6 +88,7 @@ class EditDetailsVC: BaseVC {
                 return
             }
             
+            self.delegate?.foodItemChanged(food: food, updatedIndex: self.index)
             self.dismiss(animated: true, completion: nil)
         }
     }

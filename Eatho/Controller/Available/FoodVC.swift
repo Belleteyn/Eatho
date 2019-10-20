@@ -64,14 +64,15 @@ class FoodVC: BaseVC {
         detailsVC.initData(food: food)
     }
     
-    func openUpdateVC(index: Int) {
+    func openUpdateVC(index: Int, delegate: FoodItemDelegate?) {
         guard let editVC = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
         
+        editVC.delegate = delegate
         present(editVC, animated: true, completion: nil)
         
         let foodItem = FoodService.instance.foods[index]
         guard let food = foodItem.food, let name = food.name else { return }
-        editVC.setupView(title: name, food: foodItem)
+        editVC.setupView(title: name, food: foodItem, index: index)
     }
 }
 

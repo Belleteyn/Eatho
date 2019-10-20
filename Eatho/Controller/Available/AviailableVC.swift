@@ -66,6 +66,20 @@ class AviailableVC: FoodVC {
 }
 
 
+extension AviailableVC: FoodItemDelegate {
+    func foodItemChanged(food: FoodItem, updatedIndex index: Int?) {
+        if let index = index {
+            self.foodTable.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        } else {
+            self.foodTable.reloadData()
+        }
+        
+    }
+    
+    
+}
+
+
 extension AviailableVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FoodService.instance.foods.count
@@ -110,7 +124,7 @@ extension AviailableVC: UITableViewDataSource {
         }
         
         let updateAction = UIContextualAction(style: UIContextualAction.Style.normal, title: UPDATE) { (action: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            super.openUpdateVC(index: indexPath.row)
+            super.openUpdateVC(index: indexPath.row, delegate: self)
             success(true)
         }
         updateAction.backgroundColor = EATHO_YELLOW
