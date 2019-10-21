@@ -10,7 +10,7 @@ import UIKit
 
 class DetailsVC: BaseVC {
 
-    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var chartView: NutritionChartView!
     @IBOutlet weak var fullInfoTableView: UITableView!
@@ -29,7 +29,9 @@ class DetailsVC: BaseVC {
         super.viewDidLoad()
         
         if let name = food?.food?.name {
-            titleLbl.text = name
+            navigationBar.topItem?.title = name
+        } else if let name = foodInfo?.name {
+            navigationBar.topItem?.title = name
         }
         
         if let nutrition = foodInfo?.nutrition {
@@ -37,14 +39,17 @@ class DetailsVC: BaseVC {
         }
         
         editButton.isEnabled = isEditEnabled
+        
+        fullInfoTableView.delegate = self
+        fullInfoTableView.dataSource = self
     }
     
     func initData(food: FoodItem) {
         guard let foodInfo = food.food, let name = foodInfo.name else { return }
         self.food = food
         
-        if let titleLbl = titleLbl {
-            titleLbl.text = name
+        if let navigationBar = navigationBar {
+            navigationBar.topItem?.title = name
         }
         
         userData = getUserData(food: food)
@@ -60,8 +65,10 @@ class DetailsVC: BaseVC {
     func initData(food: Food) {
         self.foodInfo = food
         
-        if let titleLbl = titleLbl {
-            titleLbl.text = food.name
+        if let navigationBar = navigationBar {
+            if let name = foodInfo?.name {
+                navigationBar.topItem?.title = name
+            }
         }
         
         macro = food.nutrition.getMacro(portion: nil)
@@ -83,7 +90,15 @@ class DetailsVC: BaseVC {
     @IBAction func editPressed(_ sender: Any) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "EditDetailsVC") as? EditDetailsVC else { return }
         present(vc, animated: true, completion: nil)
-        vc.setupView(title: titleLbl.text!, food: food!, index: nil)
+        
+        var title = ""
+        if let name = food?.food?.name {
+            title = name
+        } else if let name = foodInfo?.name {
+            title = name
+        }
+        
+        vc.setupView(title: title, food: food!, index: nil)
     }
     
     @IBAction func backPressed(_ sender: Any) {

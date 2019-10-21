@@ -10,7 +10,7 @@ import UIKit
 
 class EditDetailsVC: BaseVC {
 
-    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -35,7 +35,7 @@ class EditDetailsVC: BaseVC {
     }
     
     func setupView(title: String, food: FoodItem, index: Int?) {
-        titleLbl.text = title
+        navigationBar.topItem?.title = title
         self.food = food
         self.index = index
         
