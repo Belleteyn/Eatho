@@ -23,10 +23,10 @@ class RationService {
         }
     }
     
-    var currentRation: [FoodItem]? {
+    var currentRation: Ration? {
         get {
             if presentedRationIndex == -1 { return nil }
-            return diary[presentedRationIndex].ration
+            return diary[presentedRationIndex]
         }
     }
     
