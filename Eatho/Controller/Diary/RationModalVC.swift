@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RationModalVC: UIViewController {
+class RationModalVC: OverviewVC {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -17,19 +17,6 @@ class RationModalVC: UIViewController {
     
     private var ration: Ration?
     var openRationHandler: (() -> ())?
-    
-    private var summary: [(String, Double)] = [
-        ("Sugars".localized, 0.0),
-        ("Fiber".localized, 0.0),
-        ("Trans".localized, 0.0)
-    ]
-    
-    private var chartsData: [NutrientData] = [
-        NutrientData(name: "Calories".localized, measure: "\(KCAL)", color: EATHO_MAIN_COLOR),
-        NutrientData(name: "Proteins".localized, measure: "\(G)", color: EATHO_PROTEINS),
-        NutrientData(name: "Carbs".localized, measure: "\(G)", color: EATHO_CARBS),
-        NutrientData(name: "Fats".localized, measure: "\(G)", color: EATHO_FATS)
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,21 +36,7 @@ class RationModalVC: UIViewController {
     
     func setRation(ration: Ration) {
         self.ration = ration
-        
-        let overall = ration.nutrition
-        
-        summary[0].1 = overall.sugars
-        summary[1].1 = overall.fiber
-        summary[2].1 = overall.trans
-        
-        chartsData[0].value = overall.calories
-        chartsData[0].expectedValue = SettingsService.instance.userInfo.nutrition.calories
-        chartsData[1].value = overall.proteins
-        chartsData[1].expectedValue = SettingsService.instance.userInfo.nutrition.proteins["g"] ?? 0
-        chartsData[2].value = overall.carbs
-        chartsData[2].expectedValue = SettingsService.instance.userInfo.nutrition.carbs["g"] ?? 0
-        chartsData[3].value = overall.fats
-        chartsData[3].expectedValue = SettingsService.instance.userInfo.nutrition.fats["g"] ?? 0
+        super.setupChartsData(overallNutrition: ration.nutrition)
     }
     
     
@@ -121,9 +94,9 @@ extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
         
         switch section {
         case 0:
-            return chartsData.count
+            return chartsSectionSize
         case 1:
-            return summary.count
+            return overviewSectionSize
         case 2:
             return ration.ration.count
         default:
@@ -136,20 +109,9 @@ extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath) as? ChartCell {
-                let data = chartsData[indexPath.row]
-                cell.updateViews(typename: data.name, measure: data.measure, value: data.value, expectedValue: data.expectedValue, color: data.color)
-                return cell
-            }
+            return dequeueChartCell(tableView, cellForRowAt: indexPath, cellIdentifier: "chartCell")
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath)
-            cell.textLabel?.textColor = TEXT_COLOR
-            cell.detailTextLabel?.textColor = TEXT_COLOR
-            
-            cell.textLabel?.text = summary[indexPath.row].0
-            cell.detailTextLabel?.text = "\(summary[indexPath.row].1.truncated()) \(G)"
-            
-            return cell
+            return dequeueOverviewCell(tableView, cellForRowAt: indexPath, cellIdentifier: "summaryCell")
         case 2:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "rationFoodCell", for: indexPath) as? RationFoodCell {
                 cell.updateViews(foodItem: ration.ration[indexPath.row])
@@ -165,9 +127,9 @@ extension RationModalVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 58
+            return recommendedChartCellHeight
         case 1:
-            return 38
+            return recommendedOverviewCellHeight
         case 2:
             return 114
         default:

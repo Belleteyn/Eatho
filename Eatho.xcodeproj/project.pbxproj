@@ -93,7 +93,9 @@
 		95DB28C0232928C0004511DD /* DoubleInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28BF232928C0004511DD /* DoubleInputCell.swift */; };
 		95DB28C223298640004511DD /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28C123298640004511DD /* SwitchCell.swift */; };
 		95DB28C6232A4952004511DD /* PickerSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB28C5232A4952004511DD /* PickerSelectionCell.swift */; };
+		95DF5F0E235EEF7D00B17490 /* RationOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DF5F0D235EEF7D00B17490 /* RationOverview.swift */; };
 		95DF5F16235F324E00B17490 /* TabDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DF5F15235F324E00B17490 /* TabDelegate.swift */; };
+		95DF5F182360397A00B17490 /* OverviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DF5F172360397A00B17490 /* OverviewVC.swift */; };
 		95E50E1E2341F68D001A9A99 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E50E1D2341F68D001A9A99 /* Network.swift */; };
 		95EF446C230469BA00BAAE01 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446B230469BA00BAAE01 /* DetailsVC.swift */; };
 		95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */; };
@@ -232,7 +234,9 @@
 		95DB28BF232928C0004511DD /* DoubleInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleInputCell.swift; sourceTree = "<group>"; };
 		95DB28C123298640004511DD /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		95DB28C5232A4952004511DD /* PickerSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectionCell.swift; sourceTree = "<group>"; };
+		95DF5F0D235EEF7D00B17490 /* RationOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationOverview.swift; sourceTree = "<group>"; };
 		95DF5F15235F324E00B17490 /* TabDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDelegate.swift; sourceTree = "<group>"; };
+		95DF5F172360397A00B17490 /* OverviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewVC.swift; sourceTree = "<group>"; };
 		95E50E1D2341F68D001A9A99 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		95EF446B230469BA00BAAE01 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		95EF446D23049A6400BAAE01 /* FoodDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsCell.swift; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 				9571892D2305CB9C004A3EE3 /* Nutrient.swift */,
 				956D437922F377F30091C9C4 /* UserInfo.swift */,
 				95278CFD22FC8EF300B015F7 /* Ration.swift */,
+				95DF5F0D235EEF7D00B17490 /* RationOverview.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 			children = (
 				95501B6C232675E400225108 /* EathoTabBarController.swift */,
 				95F7C80C23362D9F003BEE5B /* AlertVC.swift */,
+				95DF5F172360397A00B17490 /* OverviewVC.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -872,6 +878,7 @@
 				951460C6231E97A100B5C04D /* FoodServiceNetworkExtension.swift in Sources */,
 				9519874B2351043C00F56B96 /* PickerViewIndexDelegate.swift in Sources */,
 				951987432350D72700F56B96 /* NutritionGramsSetupVC.swift in Sources */,
+				95DF5F0E235EEF7D00B17490 /* RationOverview.swift in Sources */,
 				95F6D136235B88C700DB82A6 /* FoodItemDelegate.swift in Sources */,
 				95A05A1F22F84D2B002A35B9 /* FoodCell.swift in Sources */,
 				95278CFC22FC729B00B015F7 /* DiaryCell.swift in Sources */,
@@ -931,6 +938,7 @@
 				950236A92348AFBF0059DA8B /* Colors.swift in Sources */,
 				958195B4230ADD4D00B08C92 /* FoodVC.swift in Sources */,
 				956D437E22F6ADD40091C9C4 /* RecentPurchasesCell.swift in Sources */,
+				95DF5F182360397A00B17490 /* OverviewVC.swift in Sources */,
 				95FD9AA9234FC3B100D803E1 /* UserNutritionChartView.swift in Sources */,
 				95278CFE22FC8EF300B015F7 /* Ration.swift in Sources */,
 				95DF5F16235F324E00B17490 /* TabDelegate.swift in Sources */,
