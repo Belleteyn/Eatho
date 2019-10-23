@@ -68,6 +68,11 @@ class OverviewVC: BaseVC {
         cell.textLabel?.text = summary[indexPath.row].0
         cell.detailTextLabel?.text = "\(summary[indexPath.row].1.truncated()) \(G)"
         
+        if UIScreen.main.bounds.width < SCREEN_WIDTH_LIMIT {
+            cell.textLabel?.font = SmallScreenMediumFont
+            cell.detailTextLabel?.font = SmallScreenMediumFont
+        }
+        
         return cell
     }
 }

@@ -99,3 +99,11 @@ let REMOVE_IMG = UIImage(systemName: "trash.circle", withConfiguration: UIImage.
 let INFO_IMG = UIImage(systemName: "info.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold))
 @available(iOS 13.0, *)
 let UPDATE_IMG = UIImage(systemName: "pencil.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold))
+
+
+// fonts for
+let SmallScreenSmallFont = UIFont.systemFont(ofSize: 11)
+let SmallScreenMediumFont = UIFont.systemFont(ofSize: 13)
+let SmallScreenBigFont = UIFont.systemFont(ofSize: 15)
+
+let SCREEN_WIDTH_LIMIT: CGFloat = 380
