@@ -22,6 +22,8 @@ class RationVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabChangeDelegate = self
+        
         rationTableView.delegate = self
         rationTableView.dataSource = self
         
@@ -144,5 +146,10 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 114
+extension RationVC: TabDelegate {
+    func tabChanged(vc: UIViewController) {
+        if vc as? RationVC != nil {
+            RationService.instance.setCurrent(forISODate: nil)
+        }
     }
 }

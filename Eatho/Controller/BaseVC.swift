@@ -10,6 +10,8 @@ import UIKit
 
 class BaseVC: UIViewController {
     
+    var tabChangeDelegate: TabDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +39,10 @@ extension BaseVC: UITabBarControllerDelegate {
         
         if let nav = viewController as? UINavigationController {
             nav.popToRootViewController(animated: false)
+        }
+        
+        if let delegate = tabChangeDelegate {
+            delegate.tabChanged(vc: viewController)
         }
     }
 }
