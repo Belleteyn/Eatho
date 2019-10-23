@@ -10,50 +10,58 @@ import UIKit
 
 class RationNutrientsView: UIView {
 
-    @IBOutlet weak var nutrientRelativityView: NutrientsRelativityView!
-    
-    @IBOutlet weak var collapsedView: UIView!
-    @IBOutlet weak var expandedView: UIView!
-    @IBOutlet weak var collapsedViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var chartHeight: NSLayoutConstraint!
-    
     @IBOutlet weak var totalCaloriesLbl: UILabel!
     @IBOutlet weak var expectedCaloriesLbl: UILabel!
+    
     @IBOutlet weak var carbsAmountLbl: UILabel!
-    @IBOutlet weak var carbsLbl: UILabel!
     @IBOutlet weak var fatsAmountLbl: UILabel!
-    @IBOutlet weak var fatsLbl: UILabel!
     @IBOutlet weak var proteinsAmountLbl: UILabel!
+    
+    @IBOutlet weak var carbsLbl: UILabel!
+    @IBOutlet weak var fatsLbl: UILabel!
     @IBOutlet weak var proteinsLbl: UILabel!
-    @IBOutlet weak var divider: UIView!
     
-    @IBOutlet weak var chartView: RationChartView!
+    private var overview: RationOverview?
     
-    @IBOutlet weak var expandImg: UIImageView!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        carbsLbl.text = CARBS
+        carbsLbl.textColor = EATHO_CARBS
+        
+        fatsLbl.text = FATS
+        fatsLbl.textColor = EATHO_FATS
+        
+        proteinsLbl.text = PROTEINS
+        proteinsLbl.textColor = EATHO_PROTEINS
+        
+        //change font size for small screens
+        if UIScreen.main.bounds.width < SCREEN_WIDTH_LIMIT {
+            totalCaloriesLbl.font = SmallScreenMediumFont
+            carbsAmountLbl.font = SmallScreenMediumFont
+            fatsAmountLbl.font = SmallScreenMediumFont
+            proteinsAmountLbl.font = SmallScreenMediumFont
+            
+            expectedCaloriesLbl.font = SmallScreenSmallFont
+            carbsLbl.font = SmallScreenSmallFont
+            fatsLbl.font = SmallScreenSmallFont
+            proteinsLbl.font = SmallScreenSmallFont
+        }
+    }
     
-    func setupNutrition() {
-        guard let nutrition = RationService.instance.nutrition else { return }
+    func setupNutrition(overallNureirion nutrition: OverallNutrition?) {
+        guard let nutrition = nutrition else { return }
+        self.overview = RationOverview(nutrition: nutrition)
+        
         let calories = nutrition.calories
         let carbs = nutrition.carbs
         let proteins = nutrition.proteins
         let fats = nutrition.fats
         
-        if (calories != 0) {
-            let carbsPercent = (carbs * 4.1 / calories)
-            let proteinsPercent = (proteins * 4.1 / calories)
-            let fatsPercent = (fats * 9.29 / calories)
-            
-            nutrientRelativityView.updateView(proteinsPercent: proteinsPercent, carbsPercent: carbsPercent, fatsPercent: fatsPercent)
-        } else {
-            nutrientRelativityView.updateView(proteinsPercent: 0, carbsPercent: 0, fatsPercent: 0)
-        }
-        
         totalCaloriesLbl.text = "\(Int(round(calories))) \(KCAL)"
         carbsAmountLbl.text = "\(Int(round(carbs))) \(G)"
         proteinsAmountLbl.text = "\(Int(round(proteins))) \(G)"
         fatsAmountLbl.text = "\(Int(round(fats))) \(G)"
-        
-        chartView.initData(nutrition: nutrition, userNutrition: SettingsService.instance.userInfo.nutrition)
     }
     
     func setupUserData() {
@@ -62,57 +70,31 @@ class RationNutrientsView: UIView {
         }
     }
     
-    func changeMode(expanded: Bool) {
-        UIView.animate(withDuration: 0.3) {
-            if expanded {
-                self.setupExpandedView()
-            } else {
-                self.setupCollapsedView()
-            }
-            
-            self.chartView.layoutIfNeeded()
-            self.expandedView.layoutIfNeeded()
-            self.collapsedView.layoutIfNeeded()
-        }
-        
-    }
-    
-    func setupCollapsedView() {
-        self.expandImg.transform = CGAffineTransform(rotationAngle: 0)
-        
-        collapsedViewHeight.constant = 52
-        chartHeight.constant = 0
-        
-        totalCaloriesLbl.isHidden = false
-        expectedCaloriesLbl.isHidden = false
-        carbsAmountLbl.isHidden = false
-        carbsLbl.isHidden = false
-        fatsAmountLbl.isHidden = false
-        fatsLbl.isHidden = false
-        proteinsAmountLbl.isHidden = false
-        proteinsLbl.isHidden = false
-        divider.isHidden = false
-        
-        chartView.isHidden = true
-    }
-    
-    
-    func setupExpandedView() {
-        self.expandImg.transform = CGAffineTransform(rotationAngle: .pi)
-        
-        collapsedViewHeight.constant = 0
-        chartHeight.constant = 220
-        
+    func hide() {
         totalCaloriesLbl.isHidden = true
         expectedCaloriesLbl.isHidden = true
-        carbsAmountLbl.isHidden = true
-        carbsLbl.isHidden = true
-        fatsAmountLbl.isHidden = true
-        fatsLbl.isHidden = true
-        proteinsAmountLbl.isHidden = true
-        proteinsLbl.isHidden = true
-        divider.isHidden = true
         
-        chartView.isHidden = false
+        carbsLbl.isHidden = true
+        carbsAmountLbl.isHidden = true
+        
+        proteinsLbl.isHidden = true
+        proteinsAmountLbl.isHidden = true
+        
+        fatsLbl.isHidden = true
+        fatsAmountLbl.isHidden = true
+    }
+    
+    func reveal() {
+        totalCaloriesLbl.isHidden = false
+        expectedCaloriesLbl.isHidden = false
+        
+        carbsLbl.isHidden = false
+        carbsAmountLbl.isHidden = false
+        
+        proteinsLbl.isHidden = false
+        proteinsAmountLbl.isHidden = false
+        
+        fatsLbl.isHidden = false
+        fatsAmountLbl.isHidden = false
     }
 }

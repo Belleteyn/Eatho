@@ -17,7 +17,7 @@ class RationVC: OverviewVC {
     // Outlets
     @IBOutlet weak var rationTableView: UITableView!
     @IBOutlet weak var overviewTableView: UITableView!
-    @IBOutlet weak var overviewChartView: UIView!
+    @IBOutlet weak var overviewChartView: RationNutrientsView!
     
     @IBOutlet weak var overviewViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var overviewTableHeightConstraint: NSLayoutConstraint!
@@ -70,6 +70,8 @@ class RationVC: OverviewVC {
         
         if let overall = ration?.nutrition {
             super.setupChartsData(overallNutrition: overall)
+            overviewChartView.setupUserData()
+            overviewChartView.setupNutrition(overallNureirion: overall)
             rationTableView.reloadData()
             overviewTableView.reloadData()
         }
@@ -98,6 +100,7 @@ class RationVC: OverviewVC {
         UIView.animate(withDuration: 0.3) {
             self.overviewViewHeightConstraint.constant = 60
             self.overviewTableHeightConstraint.constant = 0
+            self.overviewChartView.reveal()
             
             self.view.layoutIfNeeded()
         }
@@ -124,6 +127,7 @@ class RationVC: OverviewVC {
         UIView.animate(withDuration: 0.3) {
             self.overviewViewHeightConstraint.constant = 0
             self.overviewTableHeightConstraint.constant = 360
+            self.overviewChartView.hide()
             
             self.view.layoutIfNeeded()
         }
@@ -318,5 +322,28 @@ extension RationVC: TabDelegate {
         if vc as? RationVC != nil {
             RationService.instance.setCurrent(forISODate: nil)
         }
+    }
+}
+
+extension RationVC: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print("begin dragging \(scrollView)")
+    }
+    
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        print("scrollViewDidScrollToTop \(scrollView)")
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        print("scrollViewWillBeginDecelerating \(scrollView)")
+    }
+    
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        print("scrollViewShouldScrollToTop \(scrollView)")
+        return true
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("scrollViewDidEndDragging \(scrollView), \(decelerate)")
     }
 }
