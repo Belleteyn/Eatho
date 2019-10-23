@@ -90,7 +90,6 @@ class RationVC: OverviewVC {
 
         overviewTableView.reloadData()
         
-        
         UIView.animate(withDuration: 0.3) {
             self.overviewViewHeightConstraint.constant = 60
             self.overviewTableHeightConstraint.constant = 0
@@ -266,25 +265,3 @@ extension RationVC: TabDelegate {
     }
 }
 
-extension RationVC: UIScrollViewDelegate {
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print("begin dragging \(scrollView)")
-    }
-    
-    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        print("scrollViewDidScrollToTop \(scrollView)")
-    }
-    
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        print("scrollViewWillBeginDecelerating \(scrollView)")
-    }
-    
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        print("scrollViewShouldScrollToTop \(scrollView)")
-        return true
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("scrollViewDidEndDragging \(scrollView), \(decelerate)")
-    }
-}
