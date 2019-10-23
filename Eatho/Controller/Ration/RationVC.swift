@@ -11,13 +11,13 @@ import UIKit
 class RationVC: OverviewVC {
     
     enum TableState {
-        case CollapsingSection, CollapsingRows, Collapsed, ExpandingClearing, ExpandingRows, ExpandingSections, Expanded
+        case Collapsed, Expanded
     }
     
     // Outlets
     @IBOutlet weak var rationTableView: UITableView!
     @IBOutlet weak var overviewTableView: UITableView!
-    @IBOutlet weak var overviewChartView: RationNutrientsView!
+    @IBOutlet weak var overviewCollapsedView: RationNutrientsView!
     
     @IBOutlet weak var overviewViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var overviewTableHeightConstraint: NSLayoutConstraint!
@@ -57,7 +57,7 @@ class RationVC: OverviewVC {
         overviewTableView.addGestureRecognizer(tableTap)
         
         let viewTap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
-        overviewChartView.addGestureRecognizer(viewTap)
+        overviewCollapsedView.addGestureRecognizer(viewTap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,8 +70,8 @@ class RationVC: OverviewVC {
         
         if let overall = ration?.nutrition {
             super.setupChartsData(overallNutrition: overall)
-            overviewChartView.setupUserData()
-            overviewChartView.setupNutrition(overallNureirion: overall)
+            overviewCollapsedView.setupUserData()
+            overviewCollapsedView.setupNutrition(overallNureirion: overall)
             rationTableView.reloadData()
             overviewTableView.reloadData()
         }
@@ -84,23 +84,16 @@ class RationVC: OverviewVC {
     func collapseTable() {
         guard state != .Collapsed else { return }
         
-        state = .CollapsingSection
-        overviewTableView.deleteSections(IndexSet(integer: IndexSet.Element(1)), with: UITableView.RowAnimation.top)
-        
-        state = .CollapsingRows
-        var indexPaths = [IndexPath]()
-        for i in 0..<chartsSectionSize {
-            indexPaths.append(IndexPath(row: i, section: 0))
-        }
-        overviewTableView.deleteRows(at: indexPaths, with: .automatic)
-        
         state = .Collapsed
+        let sectionsSet = IndexSet(integersIn: 0...1)
+        overviewTableView.deleteSections(sectionsSet, with: UITableView.RowAnimation.top)
+
         overviewTableView.reloadData()
+        
         
         UIView.animate(withDuration: 0.3) {
             self.overviewViewHeightConstraint.constant = 60
             self.overviewTableHeightConstraint.constant = 0
-            self.overviewChartView.reveal()
             
             self.view.layoutIfNeeded()
         }
@@ -109,25 +102,13 @@ class RationVC: OverviewVC {
     func expandTable() {
         guard state != .Expanded else { return }
 
-        state = .ExpandingClearing
-        overviewTableView.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        
-        state = .ExpandingRows
-        var indexPaths = [IndexPath]()
-        for i in 0..<chartsSectionSize {
-            indexPaths.append(IndexPath(row: i, section: 0))
-        }
-        overviewTableView.insertRows(at: indexPaths, with: .automatic)
-        
-        state = .ExpandingSections
-        overviewTableView.insertSections(IndexSet(integer: 1), with: .bottom)
-
         state = .Expanded
+        let sectionsSet = IndexSet(integersIn: 0...1)
+        overviewTableView.insertSections(sectionsSet, with: .bottom)
         
         UIView.animate(withDuration: 0.3) {
             self.overviewViewHeightConstraint.constant = 0
             self.overviewTableHeightConstraint.constant = 360
-            self.overviewChartView.hide()
             
             self.view.layoutIfNeeded()
         }
@@ -145,8 +126,6 @@ class RationVC: OverviewVC {
             expandTable()
         case .Expanded:
             collapseTable()
-        default:
-            () //transition already in move
         }
     }
     
@@ -162,17 +141,7 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
         } else if tableView == overviewTableView {
             switch state {
             case .Collapsed:
-                return 1
-            case .CollapsingSection:
-                return 1
-            case .CollapsingRows:
-                return 1
-            case .ExpandingClearing:
-                return 1
-            case .ExpandingRows:
-                return 1
-            case .ExpandingSections:
-                return 2
+                return 0
             case .Expanded:
                 return 2
             }
@@ -189,24 +158,7 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             switch state {
             case .Collapsed:
-                return 1
-            case .CollapsingSection:
-                return chartsSectionSize //second section removed
-            case .CollapsingRows:
                 return 0
-            case .ExpandingClearing:
-                return 0
-            case .ExpandingRows:
-                return chartsSectionSize
-            case .ExpandingSections:
-                switch section {
-                case 0:
-                    return chartsSectionSize
-                case 1:
-                    return overviewSectionSize
-                default:
-                    return 0
-                }
             case .Expanded:
                 switch section {
                 case 0:
@@ -223,20 +175,13 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == overviewTableView {
-            if state == .Collapsed {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "briefInfoCell", for: indexPath)
-                cell.backgroundColor = EATHO_LIGHT_PURPLE
-                cell.textLabel?.text = "INFO"
-                return cell
-            } else {
-                switch indexPath.section {
-                case 0:
-                    return dequeueChartCell(tableView, cellForRowAt: indexPath, cellIdentifier: "chartCell")
-                case 1:
-                    return dequeueOverviewCell(tableView, cellForRowAt: indexPath, cellIdentifier: "overviewCell")
-                default:
-                    return UITableViewCell()
-                }
+            switch indexPath.section {
+            case 0:
+                return dequeueChartCell(tableView, cellForRowAt: indexPath, cellIdentifier: "chartCell")
+            case 1:
+                return dequeueOverviewCell(tableView, cellForRowAt: indexPath, cellIdentifier: "overviewCell")
+            default:
+                return UITableViewCell()
             }
             
         } else {
@@ -301,10 +246,6 @@ extension RationVC: UITableViewDelegate, UITableViewDataSource {
         if tableView == rationTableView {
             return 114
         } else {
-            if state == .Collapsed {
-                return recommendedOverviewCellHeight
-            }
-            
             switch indexPath.section {
             case 0:
                 return recommendedChartCellHeight * 0.75
