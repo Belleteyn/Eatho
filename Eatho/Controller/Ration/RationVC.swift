@@ -17,6 +17,10 @@ class RationVC: OverviewVC {
     // Outlets
     @IBOutlet weak var rationTableView: UITableView!
     @IBOutlet weak var overviewTableView: UITableView!
+    @IBOutlet weak var overviewChartView: UIView!
+    
+    @IBOutlet weak var overviewViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var overviewTableHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -49,13 +53,11 @@ class RationVC: OverviewVC {
             }
         }
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
-        overviewTableView.addGestureRecognizer(tap)
+        let tableTap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        overviewTableView.addGestureRecognizer(tableTap)
         
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler))
-        swipe.direction = .up
-        swipe.numberOfTouchesRequired = 1
-        overviewTableView.addGestureRecognizer(swipe)
+        let viewTap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        overviewChartView.addGestureRecognizer(viewTap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,6 +94,13 @@ class RationVC: OverviewVC {
         
         state = .Collapsed
         overviewTableView.reloadData()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.overviewViewHeightConstraint.constant = 60
+            self.overviewTableHeightConstraint.constant = 0
+            
+            self.view.layoutIfNeeded()
+        }
     }
     
     func expandTable() {
@@ -111,6 +120,13 @@ class RationVC: OverviewVC {
         overviewTableView.insertSections(IndexSet(integer: 1), with: .bottom)
 
         state = .Expanded
+        
+        UIView.animate(withDuration: 0.3) {
+            self.overviewViewHeightConstraint.constant = 0
+            self.overviewTableHeightConstraint.constant = 360
+            
+            self.view.layoutIfNeeded()
+        }
     }
     
     // handlers
