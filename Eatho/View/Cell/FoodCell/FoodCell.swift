@@ -26,6 +26,12 @@ class FoodCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
+        
+        name.font = BIG_FONT
+        info.font = SMALL_FONT
+        proteins.font = MEDIUM_FONT
+        fats.font = MEDIUM_FONT
+        carbs.font = MEDIUM_FONT
     }
 
     func setupView() {

@@ -35,18 +35,17 @@ class RationNutrientsView: UIView {
         proteinsLbl.text = PROTEINS
         proteinsLbl.textColor = EATHO_PROTEINS
         
+        
         //change font size for small screens
-        if UIScreen.main.bounds.width < SCREEN_WIDTH_LIMIT {
-            totalCaloriesLbl.font = SmallScreenMediumFont
-            carbsAmountLbl.font = SmallScreenMediumFont
-            fatsAmountLbl.font = SmallScreenMediumFont
-            proteinsAmountLbl.font = SmallScreenMediumFont
-            
-            expectedCaloriesLbl.font = SmallScreenSmallFont
-            carbsLbl.font = SmallScreenSmallFont
-            fatsLbl.font = SmallScreenSmallFont
-            proteinsLbl.font = SmallScreenSmallFont
-        }
+        totalCaloriesLbl.font = MEDIUM_FONT
+        carbsAmountLbl.font = MEDIUM_FONT
+        fatsAmountLbl.font = MEDIUM_FONT
+        proteinsAmountLbl.font = MEDIUM_FONT
+        
+        expectedCaloriesLbl.font = SMALL_FONT
+        carbsLbl.font = SMALL_FONT
+        fatsLbl.font = SMALL_FONT
+        proteinsLbl.font = SMALL_FONT
     }
     
     func setupNutrition(overallNureirion nutrition: OverallNutrition?) {

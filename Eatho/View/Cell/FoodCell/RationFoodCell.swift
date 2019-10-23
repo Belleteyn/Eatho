@@ -17,6 +17,11 @@ class RationFoodCell: FoodCell {
     var incPortionHandler: ((_: String) -> ())?
     var decPortionHandler: ((_: String) -> ())?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        portionTxt.font = MEDIUM_FONT
+    }
+    
     func updateViews(foodItem: FoodItem) {
         guard let food = foodItem.food else { return }
         super.updateViews(food: food)

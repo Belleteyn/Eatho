@@ -18,11 +18,9 @@ class ChartCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        if UIScreen.main.bounds.width < SCREEN_WIDTH_LIMIT {
-            descriptionLabel.font = SmallScreenMediumFont
-            valuesLabel.font = SmallScreenMediumFont
-            expectedValuesLabel.font = SmallScreenSmallFont
-        }
+        expectedValuesLabel.font = SMALL_FONT
+        descriptionLabel.font = MEDIUM_FONT
+        valuesLabel.font = MEDIUM_FONT
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

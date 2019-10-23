@@ -19,6 +19,10 @@ class RationInsertionFoodCell: FoodCell {
     var openModalHandler: ((_: FoodItem) -> ())?
     var removeHandler: ((_: String) -> ())?
     
+    override func awakeFromNib() {
+        weightLbl.font = MEDIUM_FONT
+    }
+    
     func updateViews(foodItem: FoodItem, removeHandler: @escaping (_ id: String) -> (), openModalHandler: @escaping (_: FoodItem) -> ()) {
         self.foodItem = foodItem
         self.removeHandler = removeHandler

@@ -107,3 +107,33 @@ let SmallScreenMediumFont = UIFont.systemFont(ofSize: 13)
 let SmallScreenBigFont = UIFont.systemFont(ofSize: 15)
 
 let SCREEN_WIDTH_LIMIT: CGFloat = 380
+
+var SMALL_FONT: UIFont {
+    get {
+        if UIScreen.main.bounds.width < SCREEN_WIDTH_LIMIT {
+            return UIFont.systemFont(ofSize: 11)
+        } else {
+            return UIFont.systemFont(ofSize: 13)
+        }
+    }
+}
+
+var MEDIUM_FONT: UIFont {
+    get {
+        if UIScreen.main.bounds.width < SCREEN_WIDTH_LIMIT {
+            return UIFont.systemFont(ofSize: 13)
+        } else {
+            return UIFont.systemFont(ofSize: 15)
+        }
+    }
+}
+
+var BIG_FONT: UIFont {
+    get {
+        if UIScreen.main.bounds.width < SCREEN_WIDTH_LIMIT {
+            return UIFont.systemFont(ofSize: 15)
+        } else {
+            return UIFont.systemFont(ofSize: 17)
+        }
+    }
+}
