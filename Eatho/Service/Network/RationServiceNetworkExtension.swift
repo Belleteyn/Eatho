@@ -35,6 +35,7 @@ extension RationService {
     func update(ration: Ration, completion: @escaping RequestCompletion) {
         var body: JSON = AuthService.instance.credentials
         body["ration"] = ration.toJson()
+        body["replaceFollowingRations"] = false
         
         Network.put(url: URL_RATION, body: body.dictionaryObject) { (response, error) in
             completion(response, error)
@@ -43,8 +44,7 @@ extension RationService {
     
     func prepRequest(days: Int, completion: @escaping RequestCompletion, dataHandler: @escaping (_: JSON) -> ()) {
         var body = AuthService.instance.credentials
-        body["prepCount"] = JSON(days)
-        body["diaryCount"] = 10
+        body["count"] = JSON(days)
         
         Network.post(url: URL_RATION, body: body.dictionaryObject) { (response, error) in
             if let data = response?.data {

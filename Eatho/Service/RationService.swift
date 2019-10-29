@@ -176,11 +176,14 @@ class RationService {
      - json decoding error
      */
     func prepRation(forDays days: Int, completion: @escaping RequestCompletion) {
-        diary = []
         prepRequest(days: days, completion: completion) { (json) in
             do {
                 let ration = try Ration(json: json)
-                self.diary.append(ration)
+                let index = self.diary.firstIndex { (storedRation) -> Bool in
+                    guard let sdate = storedRation.date, let date = ration.date else { return false }
+                    return sdate < date
+                }
+                self.diary.insert(ration, at: index ?? 0)
             } catch let err {
                 completion(nil, ResponseError(code: -1, message: err.localizedDescription))
             }
