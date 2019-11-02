@@ -8,34 +8,23 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: BaseAuthVC, UITextFieldDelegate {
 
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBOutlet weak var loginSeparatorView: UIView!
     @IBOutlet weak var passwordSeparatorView: UIView!
     @IBOutlet weak var errorMsg: UILabel!
     
-    @IBOutlet weak var itemsStack: UIStackView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nextButton.isEnabled = false
         
         emailTxt.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         passwordTxt.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         
         emailTxt.addTarget(self, action: #selector(textFieldChangeHandle(_:)), for: .editingChanged)
         passwordTxt.addTarget(self, action: #selector(textFieldChangeHandle(_:)), for: .editingChanged)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tap)
-        
-        itemsStack.bindPositionToKeyboard()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -94,10 +83,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Handlers
-    
-    @objc func handleTap() {
-        view.endEditing(true)
-    }
     
     @objc func textFieldChangeHandle(_ textField: UITextField) {
         guard let email = emailTxt.text else { return }

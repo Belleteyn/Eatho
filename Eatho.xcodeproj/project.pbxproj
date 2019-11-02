@@ -11,6 +11,7 @@
 		2A1DAB6A1374B9867D349312 /* Pods_Eatho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38E2536262A0E9DCB29F5F0 /* Pods_Eatho.framework */; };
 		950236A72348AF9A0059DA8B /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950236A62348AF9A0059DA8B /* URLs.swift */; };
 		950236A92348AFBF0059DA8B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950236A82348AFBF0059DA8B /* Colors.swift */; };
+		95081DA6236E06D70004FF0A /* BaseAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95081DA5236E06D70004FF0A /* BaseAuthVC.swift */; };
 		951460C6231E97A100B5C04D /* FoodServiceNetworkExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951460C5231E97A100B5C04D /* FoodServiceNetworkExtension.swift */; };
 		951460C8231EB55500B5C04D /* RationInsertionFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951460C7231EB55500B5C04D /* RationInsertionFoodCell.swift */; };
 		951460CA231F053200B5C04D /* ComplementParamsModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951460C9231F053200B5C04D /* ComplementParamsModalVC.swift */; };
@@ -144,6 +145,7 @@
 		43BE0B36E6F0609A4647006C /* Pods_EathoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EathoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		950236A62348AF9A0059DA8B /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		950236A82348AFBF0059DA8B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		95081DA5236E06D70004FF0A /* BaseAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthVC.swift; sourceTree = "<group>"; };
 		951460C5231E97A100B5C04D /* FoodServiceNetworkExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodServiceNetworkExtension.swift; sourceTree = "<group>"; };
 		951460C7231EB55500B5C04D /* RationInsertionFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationInsertionFoodCell.swift; sourceTree = "<group>"; };
 		951460C9231F053200B5C04D /* ComplementParamsModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplementParamsModalVC.swift; sourceTree = "<group>"; };
@@ -370,9 +372,9 @@
 				95324E2C22DF615C005905FF /* Model */,
 				95324DFE22DF6149005905FF /* AppDelegate.swift */,
 				95324E0222DF6149005905FF /* Main.storyboard */,
-				95324E0522DF614C005905FF /* Assets.xcassets */,
-				95324E0722DF614C005905FF /* LaunchScreen.storyboard */,
 				957E7EAE233CE45C00904D4B /* LoginScreen.storyboard */,
+				95324E0722DF614C005905FF /* LaunchScreen.storyboard */,
+				95324E0522DF614C005905FF /* Assets.xcassets */,
 				95324E0A22DF614C005905FF /* Info.plist */,
 				95AED1882319187A00D7BE97 /* Model.xcdatamodeld */,
 				954ED811234788E500628BE5 /* Localizable.strings */,
@@ -570,6 +572,7 @@
 		95A9984D22F81D85007DE2A4 /* AuthControllers */ = {
 			isa = PBXGroup;
 			children = (
+				95081DA5236E06D70004FF0A /* BaseAuthVC.swift */,
 				95324E3022DFB978005905FF /* LoginViewController.swift */,
 				958CD81922E9DB7500DC6EB6 /* RegisterVC.swift */,
 				95D7768D233D0EBE00CD72BA /* RegisterNextVC.swift */,
@@ -917,6 +920,7 @@
 				954CE8572354AE7900479D11 /* NutrientType.swift in Sources */,
 				95EF446E23049A6400BAAE01 /* FoodDetailsCell.swift in Sources */,
 				958CD81A22E9DB7500DC6EB6 /* RegisterVC.swift in Sources */,
+				95081DA6236E06D70004FF0A /* BaseAuthVC.swift in Sources */,
 				956D437422F316E20091C9C4 /* KeyboardBindedView.swift in Sources */,
 				958195B8230B2DA100B08C92 /* Food.swift in Sources */,
 				956D438022F6ADF10091C9C4 /* ShoppingListCell.swift in Sources */,

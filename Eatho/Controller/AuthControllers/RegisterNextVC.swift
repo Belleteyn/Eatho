@@ -8,12 +8,10 @@
 
 import UIKit
 
-class RegisterNextVC: UIViewController {
+class RegisterNextVC: BaseAuthVC {
 
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var registerButton: EathoButton!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var email: String?
     
@@ -30,7 +28,7 @@ class RegisterNextVC: UIViewController {
     }
     
     @objc func textFieldChangedHandle(_ textField: UITextField) {
-        registerButton.isEnabled = (textField.text != "")
+        nextButton.isEnabled = (textField.text != "")
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -52,9 +50,5 @@ class RegisterNextVC: UIViewController {
                 self.showErrorAlert(title: "ERROR".localized, message: error.localizedDescription)
             } 
         }
-    }
-    
-    @objc func handleTap() {
-        view.endEditing(true)
     }
 }

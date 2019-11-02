@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterVC: UIViewController {
+class RegisterVC: BaseAuthVC {
 
     @IBOutlet weak var inputTextField: UITextField!
     
@@ -16,9 +16,6 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var toRecoverButton: UIButton!
-    @IBOutlet weak var nextButton: EathoButton!
-    
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var parentVC: UIViewController?
     
@@ -28,11 +25,6 @@ class RegisterVC: UIViewController {
         inputTextField.delegate = self
         inputTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         inputTextField.addTarget(self, action: #selector(textFieldChangeHander(_:)), for: .editingChanged)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tap)
-        
-        nextButton.isEnabled = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,10 +34,6 @@ class RegisterVC: UIViewController {
     }
     
     // Handlers
-    
-    @objc func handleTap() {
-        view.endEditing(true)
-    }
     
     @objc func textFieldChangeHander(_ textField: UITextField) {
         if let text = textField.text {
