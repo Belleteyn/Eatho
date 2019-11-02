@@ -126,10 +126,8 @@ class AuthService {
     
     func register(email: String, password: String, handler: @escaping CompletionHandler) {
         registrationRequest(email: email, password: password) { (response, error) in
-            if let response = response {
-                self.updateLocalToken(result: response.result)
-                self.writeKeychain(email: email, password: password)
-                handler(true, nil)
+            if response != nil {
+                self.login(email: email, password: password, handler: handler)
             } else {
                 handler(false, error as? Error)
             }
