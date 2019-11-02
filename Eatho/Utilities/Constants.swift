@@ -39,6 +39,7 @@ let JSON_HEADER: [String : String] = ["Content-Type": "application/json; charset
 // segues
 let TO_LOGIN_SEGUE = "toLoginSegue"
 let TO_REGISTER_SEGUE = "toRegisterSegue"
+let TO_PASSWORD_REGISTRATION_SEGUE = "toPasswordRegisterSegue"
 let TO_PWD_RECOVERY_SEGUE = "toPwdRecoverySegue"
 let TO_AVAILABLE_SEGUE = "toAvailableSegue"
 let TO_REG_PASSWORD = "toRegPasswordSegue"

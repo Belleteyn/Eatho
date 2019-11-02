@@ -13,6 +13,7 @@ class RegisterNextVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var email: String?
@@ -25,10 +26,12 @@ class RegisterNextVC: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tap)
+        
+        emailLabel.text = email
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     

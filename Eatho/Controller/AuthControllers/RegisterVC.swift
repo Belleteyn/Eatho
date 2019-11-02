@@ -8,12 +8,16 @@
 
 import UIKit
 
-class RegisterVC: UIViewController, UITextFieldDelegate {
+class RegisterVC: UIViewController {
 
     @IBOutlet weak var inputTextField: UITextField!
+    
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    
     @IBOutlet weak var toRecoverButton: UIButton!
+    @IBOutlet weak var nextButton: EathoButton!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var parentVC: UIViewController?
@@ -23,10 +27,35 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         
         inputTextField.delegate = self
         inputTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
+        inputTextField.addTarget(self, action: #selector(textFieldChangeHander(_:)), for: .editingChanged)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tap)
+        
+        nextButton.isEnabled = false
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? RegisterNextVC {
+            vc.email = inputTextField.text
+        }
+    }
+    
+    // Handlers
+    
+    @objc func handleTap() {
+        view.endEditing(true)
+    }
+    
+    @objc func textFieldChangeHander(_ textField: UITextField) {
+        if let text = textField.text {
+            nextButton.isEnabled = StringValidation.isEmail(string: text)
+        } else {
+            nextButton.isEnabled = false
+        }
+    }
+    
+    // Actions
     
     @IBAction func backButtonPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -34,10 +63,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func nextPressed() {
-        guard let email = inputTextField.text, email != "" else {
-            separatorView.backgroundColor = EATHO_RED
-            return
-        }
+        guard let email = inputTextField.text, email != "" else { return }
         
         self.view.endEditing(false)
         spinner.startAnimating()
@@ -46,10 +72,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             self.spinner.stopAnimating()
             
             if response != nil {
-                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterNextVC") as? RegisterNextVC {
-                    vc.email = email
-                    self.present(vc, animated: true)
-                }
+                self.performSegue(withIdentifier: TO_PASSWORD_REGISTRATION_SEGUE, sender: self)
             } else if error != nil {
                 self.errorLabel.text = ERROR_MSG_ALREADY_REGISTERED
                 self.separatorView.backgroundColor = EATHO_RED
@@ -66,19 +89,14 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-    @objc func handleTap() {
-        view.endEditing(true)
-    }
+}
+
+
+extension RegisterVC: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.errorLabel.text = ""
         self.separatorView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6588184932)
         self.toRecoverButton.isHidden = true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nextPressed()
-        return true
     }
 }

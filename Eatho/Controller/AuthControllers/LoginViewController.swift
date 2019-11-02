@@ -12,43 +12,61 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    @IBOutlet weak var loginSeparator: UIView!
-    @IBOutlet weak var passwordSeparator: UIView!
-    
-    @IBOutlet weak var loginErrorMsg: UILabel!
-    @IBOutlet weak var passwordErrorMsg: UILabel!
+    @IBOutlet weak var loginSeparatorView: UIView!
+    @IBOutlet weak var passwordSeparatorView: UIView!
+    @IBOutlet weak var errorMsg: UILabel!
     
     @IBOutlet weak var itemsStack: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        emailTxt.delegate = self
-        passwordTxt.delegate = self
+        
+        nextButton.isEnabled = false
         
         emailTxt.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         passwordTxt.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+        emailTxt.addTarget(self, action: #selector(textFieldChangeHandle(_:)), for: .editingChanged)
+        passwordTxt.addTarget(self, action: #selector(textFieldChangeHandle(_:)), for: .editingChanged)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tap)
         
         itemsStack.bindPositionToKeyboard()
     }
     
-    @IBAction func loginPressed(_ sender: Any) {
-        guard let email = emailTxt.text, emailTxt.text != "" else {
-            loginErrorMsg.text = ERROR_MSG_LOGIN_MISSED
-            loginSeparator.backgroundColor = EATHO_RED
-            return
-        }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
-        guard let pass = passwordTxt.text, passwordTxt.text != "" else {
-            passwordErrorMsg.text = ERROR_MSG_PASSWORD_MISSED
-            passwordSeparator.backgroundColor = EATHO_RED
-            return
+        removeError()
+        emailTxt.text = ""
+        passwordTxt.text = ""
+    }
+    
+    func setupPasswordError(message: String) {
+        loginSeparatorView.backgroundColor = EATHO_RED
+        passwordSeparatorView.backgroundColor = EATHO_RED
+        errorMsg.text = message
+    }
+    
+    func removeError() {
+        loginSeparatorView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6588184932)
+        passwordSeparatorView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6588184932)
+        errorMsg.text = ""
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? RegisterVC {
+            vc.parentVC = self
         }
+    }
+    
+    @IBAction func loginPressed(_ sender: Any) {
+        guard let email = emailTxt.text, emailTxt.text != "" else { return }
+        guard let pass = passwordTxt.text, passwordTxt.text != "" else { return }
         
         self.view.endEditing(false)
         
@@ -59,14 +77,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if let error = error {
                 if let error = error as? AuthError {
                     switch error {
-                    case AuthError.login:
-                        self.loginErrorMsg.text = ERROR_MSG_USER_NOT_FOUND
-                        self.loginSeparator.backgroundColor = EATHO_RED
-                    case AuthError.password:
-                        self.passwordErrorMsg.text = ERROR_MSG_INCORRECT_PASSWORD
-                        self.passwordSeparator.backgroundColor = EATHO_RED
                     case AuthError.keychain:
                         self.showErrorAlert(title: ERROR_TITLE_AUTH, message: ERROR_MSG_KEYCHAIN)
+                    default:
+                        self.setupPasswordError(message: ERROR_MSG_LOG_PASS_INVALID)
                     }
                 } else {
                     self.showErrorAlert(title: ERROR_TITLE_NETWORK_UNREACHABLE, message: ERROR_MSG_NETWORK_UNREACHABLE)
@@ -75,28 +89,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    @IBAction func registerPressed(_ sender: Any) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "RegisterVC") as? RegisterVC {
-            vc.parentVC = self
-            present(vc, animated: true)
-        }
+    @IBAction func pwdRecoveryPressed(_ sender: Any) {
+        performSegue(withIdentifier: TO_PWD_RECOVERY_SEGUE, sender: self)
     }
     
-    @IBAction func pwdRecoveryPressed(_ sender: Any) {
-        performSegue(withIdentifier: TO_PWD_RECOVERY_SEGUE, sender: nil)
-    }
+    // Handlers
     
     @objc func handleTap() {
-        view.endEditing(false)
+        view.endEditing(true)
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == emailTxt {
-            loginSeparator.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6588184932)
-            loginErrorMsg.text = ""
-        } else if textField == passwordTxt {
-            passwordSeparator.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6588184932)
-            passwordErrorMsg.text = ""
-        }
+    @objc func textFieldChangeHandle(_ textField: UITextField) {
+        guard let email = emailTxt.text else { return }
+        
+        removeError()
+        nextButton.isEnabled = (StringValidation.isEmail(string: email) && passwordTxt.text != "")
     }
 }
