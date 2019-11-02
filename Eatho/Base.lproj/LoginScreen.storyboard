@@ -79,16 +79,19 @@
                                             <action selector="backButtonPressed:" destination="qWp-aP-0Wg" eventType="touchUpInside" id="gom-9n-gc3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MB3-hn-qzg" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                        <rect key="frame" x="60" y="410" width="294" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MB3-hn-qzg" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
+                                        <rect key="frame" x="60" y="410" width="294" height="36"/>
                                         <color key="backgroundColor" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="h3N-cj-5wF"/>
+                                            <constraint firstAttribute="height" constant="36" id="h3N-cj-5wF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="NEXT">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="0.69509845889999999" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -222,16 +225,19 @@
                                             <action selector="backButtonPressed:" destination="jfp-5R-2C7" eventType="touchUpInside" id="iWV-q3-d8V"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFO-Ie-NKA" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                        <rect key="frame" x="60" y="410" width="294" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFO-Ie-NKA" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
+                                        <rect key="frame" x="60" y="410" width="294" height="36"/>
                                         <color key="backgroundColor" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="HDJ-KV-59E"/>
+                                            <constraint firstAttribute="height" constant="36" id="HDJ-KV-59E"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="REGISTER">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="0.69509845889999999" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -295,9 +301,8 @@
                     <navigationItem key="navigationItem" id="duG-Zp-OQC"/>
                     <connections>
                         <outlet property="emailLabel" destination="Nuq-TN-B0L" id="GMk-wI-e9A"/>
-                        <outlet property="errorLabel" destination="bUn-aS-5PZ" id="UIm-7N-Vyu"/>
                         <outlet property="inputTextField" destination="Nje-Rv-SoM" id="UVC-fp-2VQ"/>
-                        <outlet property="separatorView" destination="80o-lv-XEu" id="IKV-LG-TR6"/>
+                        <outlet property="registerButton" destination="qFO-Ie-NKA" id="TXJ-QV-WTK"/>
                         <outlet property="spinner" destination="cKC-3H-6yy" id="CcD-oL-3Cx"/>
                     </connections>
                 </viewController>
@@ -359,10 +364,10 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKx-5g-d72" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                <rect key="frame" x="60" y="450" width="294" height="30"/>
+                                <rect key="frame" x="60" y="450" width="294" height="36"/>
                                 <color key="backgroundColor" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="MeX-92-7cj"/>
+                                    <constraint firstAttribute="height" constant="36" id="MeX-92-7cj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="NEXT">
@@ -492,7 +497,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="bUH-RM-3qv">
-                                        <rect key="frame" x="40" y="260.5" width="334" height="253"/>
+                                        <rect key="frame" x="40" y="259" width="334" height="256"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="div-Ix-BQV">
                                                 <rect key="frame" x="134.5" y="0.0" width="65" height="65"/>
@@ -605,10 +610,10 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5aL-WA-Wyj" customClass="EathoButton" customModule="Eatho" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="220" width="334" height="33"/>
+                                                <rect key="frame" x="0.0" y="220" width="334" height="36"/>
                                                 <color key="backgroundColor" red="0.56078431370000004" green="0.53725490200000003" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="33" id="Lvf-Pf-vjJ"/>
+                                                    <constraint firstAttribute="height" constant="36" id="Lvf-Pf-vjJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                 <state key="normal" title="LOGIN">
@@ -630,6 +635,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="xOffset">
                                                         <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
