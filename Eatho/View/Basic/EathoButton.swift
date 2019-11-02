@@ -29,6 +29,12 @@ class EathoButton: UIButton {
         }
     }
     
+    @IBInspectable var shadowColor: UIColor = UIColor.gray {
+        didSet {
+            self.layer.shadowColor = shadowColor.cgColor
+        }
+    }
+    
     @IBInspectable var shadowOpacity: Float = 0 {
         didSet {
             self.layer.shadowOpacity = shadowOpacity / 100
