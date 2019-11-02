@@ -40,7 +40,9 @@ let JSON_HEADER: [String : String] = ["Content-Type": "application/json; charset
 let TO_LOGIN_SEGUE = "toLoginSegue"
 let TO_REGISTER_SEGUE = "toRegisterSegue"
 let TO_PASSWORD_REGISTRATION_SEGUE = "toPasswordRegisterSegue"
-let TO_PWD_RECOVERY_SEGUE = "toPwdRecoverySegue"
+let TO_PWD_RESET_SEGUE = "toPwdRecoverySegue"
+let TO_PWD_RESET_CODE_SEGUE = "toCodeInputPassResetSegue"
+let TO_PWD_SET_SEGUE = "toNewPasswordSegue"
 let TO_AVAILABLE_SEGUE = "toAvailableSegue"
 let TO_REG_PASSWORD = "toRegPasswordSegue"
 let UNWIND_TO_WELCOME = "unwindToWelcome"
@@ -91,6 +93,8 @@ let NUTRITION_CORRECT_TITLE = "Correct values".localized
 let NUTRITION_CORRECT_TEXT = "if you feel overwhelmed or hungry".localized
 let NUTRITION_NEEDS_TITLE = "Correct ration".localized
 let NUTRITION_NEEDS_TEXT = "Remember that every body is individual and it's needs can vary due to outside parameters".localized
+
+let PASSWORD_RESET_INFO_TEXT = "We sent confirmation code on entered email. Please enter it here. If you didn't receive code in 20 seconds, feel free to contact us to get help".localized
 
 // system images
 

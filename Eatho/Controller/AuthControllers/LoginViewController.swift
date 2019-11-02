@@ -79,7 +79,7 @@ class LoginViewController: BaseAuthVC, UITextFieldDelegate {
     }
     
     @IBAction func pwdRecoveryPressed(_ sender: Any) {
-        performSegue(withIdentifier: TO_PWD_RECOVERY_SEGUE, sender: self)
+        performSegue(withIdentifier: TO_PWD_RESET_SEGUE, sender: self)
     }
     
     // Handlers
