@@ -41,6 +41,7 @@ class SettingsService {
                 
                 _userInfo = newValue
                 _userInfo?.localeLanguage = Locale.current.languageCode
+                _userInfo?.localeGMTSeconds = TimeZone.current.secondsFromGMT()
                 
                 uploadUserData(data: encodedData)
             } catch let err {

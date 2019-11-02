@@ -20,6 +20,7 @@ struct UserInfo: Codable {
     var isShoppingListAutomated = true
     var lbsMetrics = false
     var localeLanguage: String?
+    var localeGMTSeconds: Int?
     
     mutating func recalculateNutrition() {
         let lean = leanMass(weightKg: weight, heightM: height, age: Double(age), gender: gender)
