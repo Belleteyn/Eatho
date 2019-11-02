@@ -35,7 +35,7 @@ class RegisterNextVC: UIViewController, UITextFieldDelegate {
     @IBAction func registerPressed() {
         guard let email = email else { return }
         guard let password = inputTextField.text, password != "" else {
-            errorLabel.text = ERROR_MSG_PASSWORD_MISSED
+            errorLabel.text = ERROR_MSG_ALREADY_REGISTERED
             separatorView.backgroundColor = EATHO_RED
             return
         }
@@ -47,7 +47,7 @@ class RegisterNextVC: UIViewController, UITextFieldDelegate {
             self.spinner.stopAnimating()
             
             if let error = error { //todo: may be network error
-                self.errorLabel.text = ERROR_MSG_REGISTRATION_FAILED
+                self.errorLabel.text = ERROR_MSG_REGISTRATION_UNKNOWN_ERROR
                 self.separatorView.backgroundColor = EATHO_RED
             } 
         }

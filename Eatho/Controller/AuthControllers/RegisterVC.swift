@@ -35,7 +35,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextPressed() {
         guard let email = inputTextField.text, email != "" else {
-            errorLabel.text = ERROR_MSG_LOGIN_MISSED
             separatorView.backgroundColor = EATHO_RED
             return
         }

@@ -69,12 +69,9 @@ let ERROR_MSG_INVALID_INDEX = NSLocalizedString("Invalid index", comment: "Commo
 /* Auth errors */
 let ERROR_TITLE_AUTH = NSLocalizedString("Authorization error", comment: "Auth errors")
 let ERROR_MSG_KEYCHAIN = NSLocalizedString("Cannot save credentials in keychain", comment: "Auth errors")
-let ERROR_MSG_LOGIN_MISSED = NSLocalizedString("Please enter email", comment: "Auth errors")
-let ERROR_MSG_PASSWORD_MISSED = NSLocalizedString("Please enter password", comment: "Auth errors")
-let ERROR_MSG_USER_NOT_FOUND = NSLocalizedString("This email was not registered, please check entered email or register if you didn't", comment: "Auth errors")
-let ERROR_MSG_INCORRECT_PASSWORD = NSLocalizedString("Password is incorrect, try again! 😉", comment: "Auth errors")
-let ERROR_MSG_ALREADY_REGISTERED = NSLocalizedString("This email was registered earlier", comment: "Auth errors")
-let ERROR_MSG_REGISTRATION_FAILED = NSLocalizedString("I don't know what could be wrong, but it was 😯", comment: "Auth errors")
+let ERROR_MSG_LOG_PASS_INVALID = NSLocalizedString("Login and password combination is invalid", comment: "Auth errors")
+let ERROR_MSG_ALREADY_REGISTERED = NSLocalizedString("Sorry, we're unable to register this email", comment: "Auth errors")
+let ERROR_MSG_REGISTRATION_UNKNOWN_ERROR = NSLocalizedString("We don't know what could be wrong, but it was 😯", comment: "Auth errors")
 
 /* Available errors */
 let ERROR_MSG_FOOD_CREATION_FAILED = "Food creation error"
