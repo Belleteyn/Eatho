@@ -12,12 +12,12 @@ class BaseAuthVC: UIViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var itemsStack: UIStackView!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var confirmButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        nextButton.isEnabled = false
+        
+        confirmButton.isEnabled = false
         spinner.hidesWhenStopped = true
         itemsStack.bindPositionToKeyboard()
         

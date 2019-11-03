@@ -29,9 +29,9 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
     
     @objc func textFieldChangedHandle(_ textField: UITextField) {
         if let text = textField.text {
-            nextButton.isEnabled = (text.count == 4)
+            confirmButton.isEnabled = (text.count == 4)
         } else {
-            nextButton.isEnabled = false
+            confirmButton.isEnabled = false
         }
     }
 

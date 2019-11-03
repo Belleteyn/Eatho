@@ -28,7 +28,7 @@ class RegisterNextVC: BaseAuthVC {
     }
     
     @objc func textFieldChangedHandle(_ textField: UITextField) {
-        nextButton.isEnabled = (textField.text != "")
+        confirmButton.isEnabled = (textField.text != "")
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -46,7 +46,7 @@ class RegisterNextVC: BaseAuthVC {
         AuthService.instance.register(email: email, password: password) { (success, error) in
             self.spinner.stopAnimating()
             
-            if let error = error { //todo: may be network error
+            if let error = error { 
                 self.showErrorAlert(title: "ERROR".localized, message: error.localizedDescription)
             } 
         }

@@ -21,9 +21,9 @@ class PasswordRecoveryInitVC: BaseAuthVC {
     
     @objc func textFieldChangeHander(_ textField: UITextField) {
         if let text = textField.text {
-            nextButton.isEnabled = StringValidation.isEmail(string: text)
+            confirmButton.isEnabled = StringValidation.isEmail(string: text)
         } else {
-            nextButton.isEnabled = false
+            confirmButton.isEnabled = false
         }
     }
     

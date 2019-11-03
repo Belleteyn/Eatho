@@ -88,6 +88,6 @@ class LoginViewController: BaseAuthVC, UITextFieldDelegate {
         guard let email = emailTxt.text else { return }
         
         removeError()
-        nextButton.isEnabled = (StringValidation.isEmail(string: email) && passwordTxt.text != "")
+        confirmButton.isEnabled = (StringValidation.isEmail(string: email) && passwordTxt.text != "")
     }
 }
