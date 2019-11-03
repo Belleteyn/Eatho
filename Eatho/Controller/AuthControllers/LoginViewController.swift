@@ -20,6 +20,9 @@ class LoginViewController: BaseAuthVC, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailTxt.delegate = self
+        passwordTxt.delegate = self
+        
         emailTxt.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         passwordTxt.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         
@@ -89,5 +92,25 @@ class LoginViewController: BaseAuthVC, UITextFieldDelegate {
         
         removeError()
         confirmButton.isEnabled = (StringValidation.isEmail(string: email) && passwordTxt.text != "")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == emailTxt {
+            guard let text = textField.text else { return false }
+            if StringValidation.isEmail(string: text) {
+                emailTxt.resignFirstResponder()
+                passwordTxt.becomeFirstResponder()
+                return true
+            }
+        } else if textField == passwordTxt {
+            if textField.text != nil && textField.text != "" {
+                passwordTxt.resignFirstResponder()
+                loginPressed(self)
+                return true
+            }
+        }
+        
+        return false
     }
 }

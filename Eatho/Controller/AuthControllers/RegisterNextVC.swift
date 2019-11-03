@@ -18,8 +18,10 @@ class RegisterNextVC: BaseAuthVC {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        inputTextField.delegate = self
         inputTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         inputTextField.addTarget(self, action: #selector(textFieldChangedHandle(_:)), for: .editingChanged)
+        inputTextField.becomeFirstResponder()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tap)
@@ -50,5 +52,18 @@ class RegisterNextVC: BaseAuthVC {
                 self.showErrorAlert(title: "ERROR".localized, message: error.localizedDescription)
             } 
         }
+    }
+}
+
+extension RegisterNextVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text != nil && textField.text != "" {
+            textField.resignFirstResponder()
+            registerPressed()
+            return true
+        }
+        
+        return false
     }
 }

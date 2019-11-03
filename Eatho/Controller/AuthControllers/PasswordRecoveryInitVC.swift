@@ -15,8 +15,11 @@ class PasswordRecoveryInitVC: BaseAuthVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailInputField.delegate = self
         emailInputField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         emailInputField.addTarget(self, action: #selector(textFieldChangeHander(_:)), for: .editingChanged)
+        emailInputField.becomeFirstResponder()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PasswordRecoveryCodeVC {
@@ -49,5 +52,19 @@ class PasswordRecoveryInitVC: BaseAuthVC {
                 self.performSegue(withIdentifier: TO_PWD_RESET_CODE_SEGUE, sender: self)
             }
         }
+    }
+}
+
+extension PasswordRecoveryInitVC: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let email = textField.text else { return false }
+        if StringValidation.isEmail(string: email) {
+            textField.resignFirstResponder()
+            nextButtonPressed(self)
+            return true
+        }
+
+        return false
     }
 }

@@ -24,6 +24,7 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
         emailLabel.text = email
         helpLabel.text = TEXT_NOT_RECEIVED_CODE
         
+        codeInputField.delegate = self
         codeInputField.addTarget(self, action: #selector(textFieldChangedHandle(_:)), for: .editingChanged)
     }
     
@@ -48,5 +49,22 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
     
     @IBAction func nextPressed(_ sender: Any) {
         performSegue(withIdentifier: TO_PWD_SET_SEGUE, sender: self)
+    }
+}
+
+extension PasswordRecoveryCodeVC: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text else { return false }
+        
+        if text.count != 4 {
+            return false
+        }
+        
+        if Int(text) == nil {
+            return false
+        }
+
+        return true
     }
 }

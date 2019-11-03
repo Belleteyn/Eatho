@@ -25,6 +25,8 @@ class RegisterVC: BaseAuthVC {
         inputTextField.delegate = self
         inputTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         inputTextField.addTarget(self, action: #selector(textFieldChangeHander(_:)), for: .editingChanged)
+        
+        inputTextField.becomeFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,5 +88,16 @@ extension RegisterVC: UITextFieldDelegate {
         self.errorLabel.text = ""
         self.separatorView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6588184932)
         self.toRecoverButton.isHidden = true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let email = textField.text else { return false }
+        if StringValidation.isEmail(string: email) {
+            textField.resignFirstResponder()
+            nextPressed()
+            return true
+        }
+        
+        return false
     }
 }

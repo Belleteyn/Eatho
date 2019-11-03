@@ -22,6 +22,7 @@ class PasswordRecoveryEnterPwdVC: BaseAuthVC {
         infoLabel.text = ""
         emailLabel.text = email
         
+        textField.delegate = self
         textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         
         textField.addTarget(self, action: #selector(textFieldChangeHandle(_:)), for: .editingChanged)
@@ -41,5 +42,18 @@ class PasswordRecoveryEnterPwdVC: BaseAuthVC {
         spinner.startAnimating()
         
         //todo request
+    }
+}
+
+extension PasswordRecoveryEnterPwdVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text != nil && textField.text != "" {
+            textField.resignFirstResponder()
+            resetButtonPressed(self)
+            return true
+        }
+        
+        return false
     }
 }
