@@ -17,6 +17,11 @@ class PasswordRecoveryInitVC: BaseAuthVC {
         
         emailInputField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: "Auth"), attributes: [NSAttributedString.Key.foregroundColor : LOGIN_PLACEHOLDER_COLOR])
         emailInputField.addTarget(self, action: #selector(textFieldChangeHander(_:)), for: .editingChanged)
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PasswordRecoveryCodeVC {
+            vc.email = emailInputField.text
+        }
     }
     
     @objc func textFieldChangeHander(_ textField: UITextField) {

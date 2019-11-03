@@ -11,12 +11,18 @@ import UIKit
 class PasswordRecoveryCodeVC: BaseAuthVC {
 
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var helpLabel: UILabel!
     @IBOutlet weak var codeInputField: UITextField!
+    
+    var email: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        infoLabel.text = PASSWORD_RESET_INFO_TEXT
+        infoLabel.text = TEXT_SENT_CONFIRMATION_CODE
+        emailLabel.text = email
+        helpLabel.text = TEXT_NOT_RECEIVED_CODE
         
         codeInputField.addTarget(self, action: #selector(textFieldChangedHandle(_:)), for: .editingChanged)
     }

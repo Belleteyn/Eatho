@@ -94,7 +94,9 @@ let NUTRITION_CORRECT_TEXT = "if you feel overwhelmed or hungry".localized
 let NUTRITION_NEEDS_TITLE = "Correct ration".localized
 let NUTRITION_NEEDS_TEXT = "Remember that every body is individual and it's needs can vary due to outside parameters".localized
 
-let PASSWORD_RESET_INFO_TEXT = "We sent confirmation code on entered email. Please enter it here. If you didn't receive code in 20 seconds, feel free to contact us to get help".localized
+let TEXT_SENT_CONFIRMATION_CODE = "We sent confirmation code to".localized
+let TEXT_NOT_RECEIVED_CODE = "If you didn't receive code in 20 seconds, feel free to contact us to get help".localized
+let TEXT_ENTER_NEW_PASSWORD = "Please enter new password for".localized
 
 // system images
 
