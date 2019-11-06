@@ -86,13 +86,17 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
     
     @IBAction func helpButtonPressed(_ sender: Any) {
         if let mailVC = MailService.instance.createEmailVC(to: MailService.Address.support.rawValue, subject: MailService.Subject.passwordResetCode.rawValue, text: MailService.Message.passwordResetCode.rawValue) {
-            
+
             mailVC.mailComposeDelegate = self
-            self.navigationController?.pushViewController(mailVC, animated: true)
+            self.present(mailVC, animated: true, completion: nil)
         } else {
-            if let link = URL(string: "mailto:\(MailService.Address.support.rawValue)?subject=\(MailService.Subject.passwordResetCode.rawValue)&body=\(MailService.Message.passwordResetCode.rawValue)") {
-                if UIApplication.shared.canOpenURL(link) {
-                    UIApplication.shared.open(link, options: [:], completionHandler: nil)
+        
+            if let subject = MailService.Subject.passwordResetCode.rawValue.toURL(),
+                let message = MailService.Message.passwordResetCode.rawValue.toURL(),
+                let url = URL(string: "mailto:\(MailService.Address.support.rawValue)?subject=\(subject)&body=\(message)") {
+                
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     return
                 }
             }
@@ -130,7 +134,6 @@ extension PasswordRecoveryCodeVC: MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
-        navigationController?.popViewController(animated: true)
         controller.dismiss(animated: true, completion: nil)
     }
 }
