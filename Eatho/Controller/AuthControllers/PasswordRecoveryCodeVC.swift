@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class PasswordRecoveryCodeVC: BaseAuthVC {
 
@@ -18,6 +19,8 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
     @IBOutlet weak var textFieldUnderlineView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     
+    @IBOutlet weak var supportAddressLabel: UILabel!
+    
     var email: String?
     var code: String?
     
@@ -28,6 +31,8 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
         emailLabel.text = email
         helpLabel.text = TEXT_NOT_RECEIVED_CODE
         errorLabel.text = WRONG_CODE_ERROR
+        
+        supportAddressLabel.text = MailService.Address.support.rawValue
         
         codeInputField.delegate = self
         codeInputField.addTarget(self, action: #selector(textFieldChangedHandle(_:)), for: .editingChanged)
@@ -80,8 +85,20 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {
-        let email = "eatho@support.com"
-        
+        if let mailVC = MailService.instance.createEmailVC(to: MailService.Address.support.rawValue, subject: MailService.Subject.passwordResetCode.rawValue, text: MailService.Message.passwordResetCode.rawValue) {
+            
+            mailVC.mailComposeDelegate = self
+            self.navigationController?.pushViewController(mailVC, animated: true)
+        } else {
+            if let link = URL(string: "mailto:\(MailService.Address.support.rawValue)?subject=\(MailService.Subject.passwordResetCode.rawValue)&body=\(MailService.Message.passwordResetCode.rawValue)") {
+                if UIApplication.shared.canOpenURL(link) {
+                    UIApplication.shared.open(link, options: [:], completionHandler: nil)
+                    return
+                }
+            }
+            
+            showErrorAlert(title: ERROR_TITLE_MAIL_SERVICE_UNAVAILABLE, message: "\(ERROR_MESSAGE_MAIL_SERVICE_UNAVAILABLE) \(MailService.Address.support.rawValue)")
+        }
     }
 }
 
@@ -106,5 +123,14 @@ extension PasswordRecoveryCodeVC: UITextFieldDelegate {
         textField.resignFirstResponder()
         nextPressed(self)
         return true
+    }
+}
+
+extension PasswordRecoveryCodeVC: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        navigationController?.popViewController(animated: true)
+        controller.dismiss(animated: true, completion: nil)
     }
 }

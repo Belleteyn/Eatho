@@ -112,6 +112,9 @@
 "Invalid index" = "Неправильный индекс";
 "Update failed" = "Ошибка обновления данных";
 
+"Unable to send mail" = "Невозможно отправить письмо";
+"We cannot send email from your device, please contact us directly at " = "Мы не можем отправить письмо с вашего устройства, пожалуйста свяжитесь с нами по адресу ";
+
 /** Auth errors */
 "Login and password combination is invalid" = "Неверная комбинация логина и пароля.";
 "Sorry, we're unable to register this email" = "Извините, мы не можем зарегистрировать этот почтовый адрес";

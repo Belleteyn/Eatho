@@ -60,6 +60,9 @@ struct LocalDataError: Error {
 let ERROR_TITLE_NETWORK_UNREACHABLE = "Connection lost"
 let ERROR_MSG_NETWORK_UNREACHABLE = "Sorry! App cannot get your data without internet connection. \nPlease try again later 💜"
 
+let ERROR_TITLE_MAIL_SERVICE_UNAVAILABLE = "Unable to send mail".localized
+let ERROR_MESSAGE_MAIL_SERVICE_UNAVAILABLE = "We cannot send email from your device, please contact us directly at ".localized
+
 let ERROR_TITLE_REFRESH_FAILED = NSLocalizedString("Refresh failed", comment: "Common errors")
 let ERROR_TITLE_REMOVE_FAILED = NSLocalizedString("Remove failed", comment: "Common errors")
 let ERROR_TITLE_UPDATE_FAILED = NSLocalizedString("Update failed", comment: "Common errors")

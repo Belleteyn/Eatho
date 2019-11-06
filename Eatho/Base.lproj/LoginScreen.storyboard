@@ -660,29 +660,48 @@
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qG4-9l-fh3">
-                                <rect key="frame" x="20" y="832" width="374" height="30"/>
+                                <rect key="frame" x="20" y="822" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="tzq-vz-LIt"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <state key="normal" title="Help">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="helpButtonPressed:" destination="qU6-xX-6LC" eventType="touchUpInside" id="tzA-a1-ilu"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kc-X0-UVW">
+                                <rect key="frame" x="177.5" y="822" width="59" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaA-fC-MIK">
+                                <rect key="frame" x="207" y="862" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="L27-Bt-7J0" firstAttribute="centerY" secondItem="Fxu-TW-Efn" secondAttribute="centerY" id="4O8-MR-JKS"/>
                             <constraint firstItem="nz6-AJ-Yxe" firstAttribute="trailing" secondItem="qG4-9l-fh3" secondAttribute="trailing" constant="20" id="Bbq-K0-4NA"/>
                             <constraint firstItem="qG4-9l-fh3" firstAttribute="bottom" secondItem="nz6-AJ-Yxe" secondAttribute="bottom" id="Bug-bN-rbX"/>
+                            <constraint firstItem="qG4-9l-fh3" firstAttribute="top" secondItem="0kc-X0-UVW" secondAttribute="top" id="F7w-8z-DO9"/>
                             <constraint firstItem="2i8-SU-Q1C" firstAttribute="top" secondItem="nz6-AJ-Yxe" secondAttribute="top" id="GtV-XU-yR6"/>
                             <constraint firstItem="2i8-SU-Q1C" firstAttribute="leading" secondItem="nz6-AJ-Yxe" secondAttribute="leading" constant="20" id="NfP-bA-xOs"/>
                             <constraint firstItem="UUY-2o-7kW" firstAttribute="centerY" secondItem="2i8-SU-Q1C" secondAttribute="centerY" id="OGs-EQ-gek"/>
                             <constraint firstItem="MS5-un-GDH" firstAttribute="centerY" secondItem="Fxu-TW-Efn" secondAttribute="centerY" constant="-61" id="QJ3-WT-PY4"/>
+                            <constraint firstItem="qG4-9l-fh3" firstAttribute="centerX" secondItem="eaA-fC-MIK" secondAttribute="centerX" id="beU-E3-bv2"/>
                             <constraint firstItem="L27-Bt-7J0" firstAttribute="centerX" secondItem="Fxu-TW-Efn" secondAttribute="centerX" id="dxZ-z5-Xbd"/>
+                            <constraint firstItem="qG4-9l-fh3" firstAttribute="bottom" secondItem="eaA-fC-MIK" secondAttribute="bottom" id="kgK-Y1-D7y"/>
                             <constraint firstItem="UUY-2o-7kW" firstAttribute="centerX" secondItem="Fxu-TW-Efn" secondAttribute="centerX" id="n11-dd-gTr"/>
                             <constraint firstItem="qG4-9l-fh3" firstAttribute="leading" secondItem="nz6-AJ-Yxe" secondAttribute="leading" constant="20" id="qXB-q2-Jym"/>
                             <constraint firstItem="nz6-AJ-Yxe" firstAttribute="trailing" secondItem="MS5-un-GDH" secondAttribute="trailing" constant="40" id="qee-ne-Sky"/>
+                            <constraint firstItem="qG4-9l-fh3" firstAttribute="centerX" secondItem="0kc-X0-UVW" secondAttribute="centerX" id="rBk-hP-v59"/>
                             <constraint firstItem="MS5-un-GDH" firstAttribute="leading" secondItem="nz6-AJ-Yxe" secondAttribute="leading" constant="40" id="zUh-hW-Gst"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nz6-AJ-Yxe"/>
@@ -705,6 +724,7 @@
                         <outlet property="infoLabel" destination="uFm-xu-uHA" id="ffo-li-UTC"/>
                         <outlet property="itemsStack" destination="MS5-un-GDH" id="mNM-vT-tRM"/>
                         <outlet property="spinner" destination="L27-Bt-7J0" id="R1A-P5-PT5"/>
+                        <outlet property="supportAddressLabel" destination="eaA-fC-MIK" id="Ug6-Lb-els"/>
                         <outlet property="textFieldUnderlineView" destination="Uua-ej-5g3" id="6eU-Dl-1R4"/>
                         <segue destination="az0-eU-TDP" kind="show" identifier="toNewPasswordSegue" id="7uJ-hZ-jMF"/>
                     </connections>

@@ -87,6 +87,7 @@
 		95A5B29F230EDF36002F54F9 /* UserNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5B29E230EDF35002F54F9 /* UserNutrition.swift */; };
 		95AED18A2319187A00D7BE97 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95AED1882319187A00D7BE97 /* Model.xcdatamodeld */; };
 		95AEDA08230728D10094E161 /* EditDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AEDA07230728D10094E161 /* EditDetailsVC.swift */; };
+		95B09B332372EECA0048C614 /* MailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B09B322372EECA0048C614 /* MailService.swift */; };
 		95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */; };
 		95C6C5D5236C98970007D42C /* PasswordRecoveryCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C6C5D4236C98970007D42C /* PasswordRecoveryCodeVC.swift */; };
 		95C6C5D7236C98AF0007D42C /* PasswordRecoveryEnterPwdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C6C5D6236C98AF0007D42C /* PasswordRecoveryEnterPwdVC.swift */; };
@@ -232,6 +233,7 @@
 		95A5B29E230EDF35002F54F9 /* UserNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNutrition.swift; sourceTree = "<group>"; };
 		95AED1892319187A00D7BE97 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		95AEDA07230728D10094E161 /* EditDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailsVC.swift; sourceTree = "<group>"; };
+		95B09B322372EECA0048C614 /* MailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailService.swift; sourceTree = "<group>"; };
 		95BFB58D23131A5600296CA2 /* RationNutrientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RationNutrientsView.swift; sourceTree = "<group>"; };
 		95C6C5D4236C98970007D42C /* PasswordRecoveryCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryCodeVC.swift; sourceTree = "<group>"; };
 		95C6C5D6236C98AF0007D42C /* PasswordRecoveryEnterPwdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryEnterPwdVC.swift; sourceTree = "<group>"; };
@@ -545,6 +547,7 @@
 				9520B6D7235731AA00F06DCE /* PdfCreator.swift */,
 				95F6D12B2359882000DB82A6 /* DateComparator.swift */,
 				9564F94F236D9E25003F8655 /* StringValidation.swift */,
+				95B09B322372EECA0048C614 /* MailService.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				95BFB58E23131A5600296CA2 /* RationNutrientsView.swift in Sources */,
 				956D437A22F377F30091C9C4 /* UserInfo.swift in Sources */,
 				954002042327CAE800AED17B /* AccountSettingsVC.swift in Sources */,
+				95B09B332372EECA0048C614 /* MailService.swift in Sources */,
 				95F6D130235A086D00DB82A6 /* SingleValuePieChart.swift in Sources */,
 				95A5B29D230BAA8D002F54F9 /* SearchFoodCell.swift in Sources */,
 				95D77690233E2F2900CD72BA /* AuthServiceNetworkExtension.swift in Sources */,
