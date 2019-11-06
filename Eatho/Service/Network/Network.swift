@@ -67,9 +67,13 @@ class Network {
             do {
                 let errJson = try JSON(data: data)
                 
-                if let code = errJson["code"].int, let message = errJson["error"].string {
+                let message = errJson["error"].string ?? ""
+                
+                if let code = errJson["code"].int {
                     let err = ResponseError(code: code, message: message)
                     return err
+                } else if let code = response.response?.statusCode {
+                    return ResponseError(code: code, message: message)
                 }
             } catch {}
         }
