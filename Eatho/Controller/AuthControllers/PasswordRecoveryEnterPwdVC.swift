@@ -20,7 +20,7 @@ class PasswordRecoveryEnterPwdVC: BaseAuthVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        infoLabel.text = ""
+        infoLabel.text = TEXT_ENTER_NEW_PASSWORD
         emailLabel.text = email
         
         textField.delegate = self

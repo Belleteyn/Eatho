@@ -72,6 +72,7 @@ let ERROR_MSG_KEYCHAIN = NSLocalizedString("Cannot save credentials in keychain"
 let ERROR_MSG_LOG_PASS_INVALID = NSLocalizedString("Login and password combination is invalid", comment: "Auth errors")
 let ERROR_MSG_ALREADY_REGISTERED = NSLocalizedString("Sorry, we're unable to register this email", comment: "Auth errors")
 let ERROR_MSG_REGISTRATION_UNKNOWN_ERROR = NSLocalizedString("We don't know what could be wrong, but it was 😯", comment: "Auth errors")
+let WRONG_CODE_ERROR = "Wrong code".localized
 
 /* Available errors */
 let ERROR_MSG_FOOD_CREATION_FAILED = "Food creation error"

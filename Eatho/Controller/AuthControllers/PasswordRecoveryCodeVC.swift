@@ -15,7 +15,11 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
     @IBOutlet weak var helpLabel: UILabel!
     @IBOutlet weak var codeInputField: UITextField!
     
+    @IBOutlet weak var textFieldUnderlineView: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
+    
     var email: String?
+    var code: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,7 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
         infoLabel.text = TEXT_SENT_CONFIRMATION_CODE
         emailLabel.text = email
         helpLabel.text = TEXT_NOT_RECEIVED_CODE
+        errorLabel.text = WRONG_CODE_ERROR
         
         codeInputField.delegate = self
         codeInputField.addTarget(self, action: #selector(textFieldChangedHandle(_:)), for: .editingChanged)
@@ -32,6 +37,13 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
         super.viewDidAppear(animated)
         
         codeInputField.becomeFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PasswordRecoveryEnterPwdVC {
+            vc.email = email
+            vc.code = code
+        }
     }
     
     @objc func textFieldChangedHandle(_ textField: UITextField) {
@@ -66,11 +78,20 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
             }
         }
     }
+    
+    @IBAction func helpButtonPressed(_ sender: Any) {
+        let email = "eatho@support.com"
+        
     }
 }
 
 extension PasswordRecoveryCodeVC: UITextFieldDelegate {
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        errorLabel.isHidden = true
+        textFieldUnderlineView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6588184932)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else { return false }
         
@@ -82,6 +103,8 @@ extension PasswordRecoveryCodeVC: UITextFieldDelegate {
             return false
         }
 
+        textField.resignFirstResponder()
+        nextPressed(self)
         return true
     }
 }

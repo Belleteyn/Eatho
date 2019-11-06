@@ -119,6 +119,7 @@
 "We sent confirmation code to" = "Мы отправили код подтверждения на";
 "If you didn't receive code in 20 seconds, feel free to contact us to get help" = "Если письмо не пришло в течение 20 секунд, напишите нам, мы обязательно вам поможем.";
 "Please enter new password for" = "Введите новый пароль для";
+"Wrong code" = "Неправильный код";
 
 /** Available errors */
 "Please enter data" = "Пожалуйста, введите обязательные данные";
