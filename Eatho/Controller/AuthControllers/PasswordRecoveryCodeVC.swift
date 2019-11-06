@@ -48,7 +48,24 @@ class PasswordRecoveryCodeVC: BaseAuthVC {
     }
     
     @IBAction func nextPressed(_ sender: Any) {
-        performSegue(withIdentifier: TO_PWD_SET_SEGUE, sender: self)
+        guard let text = codeInputField.text, let email = email else { return }
+        code = text
+        
+        AuthService.instance.resetPasswordCodeRequest(email: email, code: text) { (response, error) in
+            self.spinner.stopAnimating()
+            if let error = error {
+                print(error.code)
+                if error.code == 500 {
+                    self.errorLabel.isHidden = false
+                    self.textFieldUnderlineView.backgroundColor = EATHO_RED
+                } else {
+                    self.showErrorAlert(title: "ERROR".localized, message: error.message)
+                }
+            } else {
+                self.performSegue(withIdentifier: TO_PWD_SET_SEGUE, sender: self)
+            }
+        }
+    }
     }
 }
 

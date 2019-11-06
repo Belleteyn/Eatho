@@ -15,6 +15,7 @@ class PasswordRecoveryEnterPwdVC: BaseAuthVC {
     @IBOutlet weak var emailLabel: UILabel!
     
     var email: String?
+    var code: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +40,18 @@ class PasswordRecoveryEnterPwdVC: BaseAuthVC {
     }
     
     @IBAction func resetButtonPressed(_ sender: Any) {
+        guard let text = textField.text, let code = code, let email = email else { return }
+        
         spinner.startAnimating()
         
-        //todo request
+        AuthService.instance.resetPasswordRequest(email: email, code: code, password: text, handler: { (response, error) in
+            self.spinner.stopAnimating()
+            if let error = error {
+                self.showErrorAlert(title: "ERROR".localized, message: error.message)
+            } else {
+                self.backButtonPressed(self)
+            }
+        })
     }
 }
 

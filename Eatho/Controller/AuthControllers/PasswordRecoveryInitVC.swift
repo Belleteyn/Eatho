@@ -44,7 +44,7 @@ class PasswordRecoveryInitVC: BaseAuthVC {
         guard let email = emailInputField.text else { return }
         spinner.startAnimating()
         
-        AuthService.instance.restorePasswordCodeRequest(email: email) { (response, error) in
+        AuthService.instance.resetPasswordInitRequest(email: email) { (response, error) in
             self.spinner.stopAnimating()
             if let error = error {
                 self.showErrorAlert(title: "ERROR".localized, message: error.message)

@@ -52,4 +52,31 @@ extension AuthService {
             handler(response, error)
         }
     }
+    
+    func resetPasswordInitRequest(email: String, handler: @escaping RequestCompletion) {
+        let body: [String : Any] = [
+            "email": email
+        ]
+        
+        Network.post(url: URL_RESET_PASSWORD_INIT, body: body, completion: handler)
+    }
+    
+    func resetPasswordCodeRequest(email: String, code: String, handler: @escaping RequestCompletion) {
+        let body: [String : Any] = [
+            "email": email,
+            "code": code
+        ]
+        
+        Network.post(url: URL_RESET_PASSWORD_CODE, body: body, completion: handler)
+    }
+    
+    func resetPasswordRequest(email: String, code: String, password: String, handler: @escaping RequestCompletion) {
+        let body: [String : Any] = [
+            "email": email,
+            "code": code,
+            "password": password
+        ]
+        
+        Network.post(url: URL_RESET_PASSWORD, body: body, completion: handler)
+    }
 }

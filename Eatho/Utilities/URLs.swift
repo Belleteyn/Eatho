@@ -13,6 +13,9 @@ let URL_API = "http://127.0.0.1:3001/api"
 
 let URL_REGISTER = "\(URL_BASE)/auth/register"
 let URL_CHECK_EMAIL = "\(URL_BASE)/auth/emailCheck"
+let URL_RESET_PASSWORD_INIT = "\(URL_BASE)/auth/resetPassword/init"
+let URL_RESET_PASSWORD_CODE = "\(URL_BASE)/auth/resetPassword/code"
+let URL_RESET_PASSWORD = "\(URL_BASE)/auth/resetPassword"
 let URL_LOGIN = "\(URL_BASE)/auth/login"
 let URL_TOKEN = "\(URL_BASE)/auth/token"
 
