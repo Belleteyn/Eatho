@@ -442,6 +442,7 @@
 				954F4E45231D42CE0088B6DD /* Diary */,
 				956D436E22F2FEB50091C9C4 /* Settings */,
 				95501B6B232675AE00225108 /* Utils */,
+				95501B6C232675E400225108 /* EathoTabBarController.swift */,
 				95952852233A525600707D3C /* BaseVC.swift */,
 			);
 			path = Controller;
@@ -500,7 +501,6 @@
 		95501B6B232675AE00225108 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				95501B6C232675E400225108 /* EathoTabBarController.swift */,
 				95F7C80C23362D9F003BEE5B /* AlertVC.swift */,
 				95DF5F172360397A00B17490 /* OverviewVC.swift */,
 			);
