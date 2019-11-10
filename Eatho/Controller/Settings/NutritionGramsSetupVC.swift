@@ -62,7 +62,7 @@ extension NutritionGramsSetupVC: UITableViewDataSource, UITableViewDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell {
             switch indexPath.row {
             case 1:
-                cell.setupView(title: PROTEINS, additionalDesc: "\(G), \(truncateDoubleTail(userInfo.nutrition.proteins["percent"] ?? 0)) %", placeholder: "0", text: "\(userInfo.nutrition.proteins["g"] ?? 0)")
+                cell.setupView(title: PROTEINS, additionalDesc: "\(G), \(truncateDoubleTail(userInfo.nutrition.proteins.percent)) %", placeholder: "0", text: "\(userInfo.nutrition.proteins.g)")
                 
                 cell.inpuFinishedDecimalHandler = {(val: Double) in
                     guard var delegate = self.delegate else { return }
@@ -71,7 +71,7 @@ extension NutritionGramsSetupVC: UITableViewDataSource, UITableViewDelegate {
                     tableView.reloadData()
                 }
             case 2:
-                cell.setupView(title: CARBS, additionalDesc: "\(G), \(truncateDoubleTail(userInfo.nutrition.carbs["percent"] ?? 0)) %", placeholder: "0", text: "\(userInfo.nutrition.carbs["g"] ?? 0)")
+                cell.setupView(title: CARBS, additionalDesc: "\(G), \(truncateDoubleTail(userInfo.nutrition.carbs.percent)) %", placeholder: "0", text: "\(userInfo.nutrition.carbs.g)")
                 
                 cell.inpuFinishedDecimalHandler = {(val: Double) in
                     guard var delegate = self.delegate else { return }
@@ -80,7 +80,7 @@ extension NutritionGramsSetupVC: UITableViewDataSource, UITableViewDelegate {
                     tableView.reloadData()
                 }
             case 3:
-                cell.setupView(title: FATS, additionalDesc: "\(G), \(truncateDoubleTail(userInfo.nutrition.fats["percent"] ?? 0)) %", placeholder: "0", text: "\(userInfo.nutrition.fats["g"] ?? 0)")
+                cell.setupView(title: FATS, additionalDesc: "\(G), \(truncateDoubleTail(userInfo.nutrition.fats.percent)) %", placeholder: "0", text: "\(userInfo.nutrition.fats.g)")
                 
 
             default: ()

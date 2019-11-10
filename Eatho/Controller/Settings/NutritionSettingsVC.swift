@@ -123,13 +123,13 @@ extension NutritionSettingsVC: UITableViewDelegate, UITableViewDataSource {
                 cell.detailTextLabel?.text = "\(userNutrition.calories.truncated()) \(KCAL)"
             case 1:
                 cell.textLabel?.text = PROTEINS
-                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.proteins["g"] ?? 0)) \(G) / \(truncateDoubleTail(userNutrition.proteins["percent"] ?? 0)) %"
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.proteins.g)) \(G) / \(truncateDoubleTail(userNutrition.proteins.percent)) %"
             case 2:
                 cell.textLabel?.text = CARBS
-                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.carbs["g"] ?? 0)) \(G) / \(truncateDoubleTail(userNutrition.carbs["percent"] ?? 0)) %"
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.carbs.g)) \(G) / \(truncateDoubleTail(userNutrition.carbs.percent)) %"
             case 3:
                 cell.textLabel?.text = FATS
-                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.fats["g"] ?? 0)) \(G) / \(truncateDoubleTail(userNutrition.fats["percent"] ?? 0)) %"
+                cell.detailTextLabel?.text = "\(truncateDoubleTail(userNutrition.fats.g)) \(G) / \(truncateDoubleTail(userNutrition.fats.percent)) %"
             
             default: ()
             }

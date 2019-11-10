@@ -27,8 +27,8 @@ class RationChartView: BarChartView {
         let p = truncateDoubleTail(nutrition.proteins * 4.1), c = truncateDoubleTail(nutrition.carbs * 4.1), f = truncateDoubleTail(nutrition.fats * 9.29), kcal = truncateDoubleTail(nutrition.calories)
         let pg = truncateDoubleTail(nutrition.proteins), cg = truncateDoubleTail(nutrition.carbs), fg = truncateDoubleTail(nutrition.fats)
         
-        let up = truncateDoubleTail(userNutrition.proteins["kcal"]!), uc = truncateDoubleTail(userNutrition.carbs["kcal"]!), uf = truncateDoubleTail(userNutrition.fats["kcal"]!), ukcal = truncateDoubleTail(userNutrition.calories)
-        let upg = truncateDoubleTail(userNutrition.proteins["g"]!), ucg = truncateDoubleTail(userNutrition.carbs["g"]!), ufg = truncateDoubleTail(userNutrition.fats["g"]!)
+        let up = truncateDoubleTail(userNutrition.proteins.kcal), uc = truncateDoubleTail(userNutrition.carbs.kcal), uf = truncateDoubleTail(userNutrition.fats.kcal), ukcal = truncateDoubleTail(userNutrition.calories)
+        let upg = truncateDoubleTail(userNutrition.proteins.g), ucg = truncateDoubleTail(userNutrition.carbs.g), ufg = truncateDoubleTail(userNutrition.fats.g)
         
         let pUnderDiff = up > p ? up - p : 0
         let cUnderDiff = uc > c ? uc - c : 0

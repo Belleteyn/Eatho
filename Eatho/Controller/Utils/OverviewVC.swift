@@ -41,11 +41,11 @@ class OverviewVC: BaseVC {
         chartsData[0].value = overall.calories
         chartsData[0].expectedValue = SettingsService.instance.userInfo.nutrition.calories
         chartsData[1].value = overall.proteins
-        chartsData[1].expectedValue = SettingsService.instance.userInfo.nutrition.proteins["g"] ?? 0
+        chartsData[1].expectedValue = SettingsService.instance.userInfo.nutrition.proteins.g
         chartsData[2].value = overall.carbs
-        chartsData[2].expectedValue = SettingsService.instance.userInfo.nutrition.carbs["g"] ?? 0
+        chartsData[2].expectedValue = SettingsService.instance.userInfo.nutrition.carbs.g
         chartsData[3].value = overall.fats
-        chartsData[3].expectedValue = SettingsService.instance.userInfo.nutrition.fats["g"] ?? 0
+        chartsData[3].expectedValue = SettingsService.instance.userInfo.nutrition.fats.g
     }
     
     func dequeueChartCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, cellIdentifier: String) -> ChartCell {

@@ -22,9 +22,9 @@ class UserNutritionChartView: PieChartView {
         var dataSet: PieChartDataSet
         
         if let nutrition = self.nutrition {
-            let proteins = nutrition.proteins["percent"] ?? 0
-            let carbs = nutrition.carbs["percent"] ?? 0
-            let fats = nutrition.fats["percent"] ?? 0
+            let proteins = nutrition.proteins.percent
+            let carbs = nutrition.carbs.percent
+            let fats = nutrition.fats.percent
             
             
             let entryProteins = PieChartDataEntry(value: proteins, label: "\(PROTEINS)")
