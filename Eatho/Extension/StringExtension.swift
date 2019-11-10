@@ -30,4 +30,8 @@ extension String {
         return NSAttributedString.init(string: self)
       }
     }
+    
+    func toURL() -> String? {
+        return addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+    }
 }
