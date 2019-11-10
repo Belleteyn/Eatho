@@ -117,7 +117,7 @@ class PdfCreator {
         let transPerPortion = trans != nil ? trans! / 100.0 * portion : nil
         
         data.append(name)
-        if SettingsService.instance.userInfo.lbsMetrics {
+        if SettingsService.instance.userInfo.imperialMetrics {
             data.append("\(convertMetrics(g: portion).truncated()) \(LB)")
         } else {
             data.append("\(portion.truncated()) \(G)")

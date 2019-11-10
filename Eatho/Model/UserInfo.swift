@@ -18,7 +18,7 @@ struct UserInfo: Codable {
     var activityIndex = 0
     var nutrition = UserNutrition()
     var isShoppingListAutomated = true
-    var lbsMetrics = false
+    var imperialMetrics: Bool
     var localeLanguage: String?
     var localeGMTSeconds: Int?
     

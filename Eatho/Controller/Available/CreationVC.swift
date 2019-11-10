@@ -88,7 +88,7 @@ class CreationVC: BaseVC {
         var min = userDataValues[1] != -1 ? userDataValues[1] : 0
         var max = userDataValues[2] != -1 ? userDataValues[2] : 0
         
-        if SettingsService.instance.userInfo.lbsMetrics {
+        if SettingsService.instance.userInfo.imperialMetrics {
             available = convertMetrics(lbs: available)
             min = convertMetrics(lbs: min)
             max = convertMetrics(lbs: max)
@@ -205,7 +205,7 @@ extension CreationVC: UITableViewDelegate, UITableViewDataSource {
          
         /* user's data section */
         case 2:
-            cell.setupView(title: userDataSectionNames[indexPath.row], additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? LB : G, placeholder: "0", text: userDataValues[indexPath.row] != -1 ? "\(truncateDoubleTail(userDataValues[indexPath.row]))" : nil)
+            cell.setupView(title: userDataSectionNames[indexPath.row], additionalDesc: SettingsService.instance.userInfo.imperialMetrics ? LB : G, placeholder: "0", text: userDataValues[indexPath.row] != -1 ? "\(truncateDoubleTail(userDataValues[indexPath.row]))" : nil)
             cell.textField.keyboardType = .decimalPad
             cell.inpuFinishedDecimalHandler = {
                 (_ val: Double) in

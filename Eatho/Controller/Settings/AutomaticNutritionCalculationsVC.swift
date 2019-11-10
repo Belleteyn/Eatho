@@ -118,10 +118,9 @@ extension AutomaticNutritionCalculationsVC: UITableViewDelegate, UITableViewData
             
             switch type {
             case .Weight:
-                guard let lbsMetrics = delegate?.userInfo.lbsMetrics else { return cell }
-                guard let weight = delegate?.userInfo.weight else { return cell }
+                guard let userInfo = delegate?.userInfo else { return cell }
                 
-                cell.setupView(title: NSLocalizedString("Weight", comment: "Settings"), additionalDesc: lbsMetrics ? LB : NSLocalizedString("kg", comment: "Settings"), placeholder: "0", text: "\(weight)")
+                cell.setupView(title: NSLocalizedString("Weight", comment: "Settings"), additionalDesc: userInfo.imperialMetrics ? LB : NSLocalizedString("kg", comment: "Settings"), placeholder: "0", text: "\(userInfo.weight.truncated())")
                 cell.inpuFinishedDecimalHandler = {
                     (_ val: Double) in
                     

@@ -47,7 +47,7 @@ class FoodCell: UITableViewCell {
         name.text = food.name
         icon.image = UIImage(named: food.icon)
         
-        if SettingsService.instance.userInfo.lbsMetrics {
+        if SettingsService.instance.userInfo.imperialMetrics {
             info.text = "\(truncateDoubleTail(kcalPerLb(kcalPerG: calories))) \(KCAL) (1 \(LB)"
         } else {
             info.text = "\(calories) \(KCAL) (100 \(G))"

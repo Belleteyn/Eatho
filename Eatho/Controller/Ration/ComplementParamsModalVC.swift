@@ -49,7 +49,7 @@ class ComplementParamsModalVC: BaseVC {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHandler), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
-        if SettingsService.instance.userInfo.lbsMetrics {
+        if SettingsService.instance.userInfo.imperialMetrics {
             weightMeasureLabel.text = LB
         } else {
             weightMeasureLabel.text = G

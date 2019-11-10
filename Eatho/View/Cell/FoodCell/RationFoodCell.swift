@@ -29,7 +29,7 @@ class RationFoodCell: FoodCell {
         let portion = foodItem.portion ?? 0
         
         let caloriesPerPortion = round(portion * (food.nutrition.calories.total ?? 0) / 100)
-        if SettingsService.instance.userInfo.lbsMetrics {
+        if SettingsService.instance.userInfo.imperialMetrics {
             super.info.text = "\(truncateDoubleTail(convertMetrics(g: portion))) \(LB) (\(Int(caloriesPerPortion)) \(KCAL))"
         } else {
             super.info.text = "\(Int(portion)) \(G) (\(Int(caloriesPerPortion)) \(KCAL))"
@@ -50,7 +50,7 @@ class RationFoodCell: FoodCell {
         let portion = foodItem.portion ?? 0
         if editable {
             let delta = foodItem.delta ?? 0
-            if SettingsService.instance.userInfo.lbsMetrics {
+            if SettingsService.instance.userInfo.imperialMetrics {
                 portionTxt.text = "\(truncateDoubleTail(convertMetrics(g: delta))) \(LB)"
             } else {
                 portionTxt.text = "\(delta) \(G)"

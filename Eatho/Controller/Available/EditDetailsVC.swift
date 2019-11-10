@@ -44,7 +44,7 @@ class EditDetailsVC: BaseVC {
         var max = food.dailyPortion.min != nil ? Double(food.dailyPortion.max!) : 0
         var delta = food.delta ?? 0
         
-        if SettingsService.instance.userInfo.lbsMetrics {
+        if SettingsService.instance.userInfo.imperialMetrics {
             available = truncateDoubleTail(convertMetrics(g: available))
             min = truncateDoubleTail(convertMetrics(g: min))
             max = truncateDoubleTail(convertMetrics(g: max))
@@ -68,7 +68,7 @@ class EditDetailsVC: BaseVC {
     @IBAction func savePressed(_ sender: Any) {
         guard var food = food else { return }
         
-        if SettingsService.instance.userInfo.lbsMetrics {
+        if SettingsService.instance.userInfo.imperialMetrics {
             food.available = convertMetrics(lbs: values[0])
             food.dailyPortion.min = convertMetrics(lbs: values[1])
             food.dailyPortion.max = convertMetrics(lbs: values[2])
@@ -103,7 +103,7 @@ extension EditDetailsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "singleInputCell", for: indexPath) as? SingleInputCell else { return UITableViewCell() }
         
-        cell.setupView(title: titles[indexPath.row], additionalDesc: SettingsService.instance.userInfo.lbsMetrics ? LB : G, placeholder: "0", text: values[indexPath.row] > 0 ? "\(values[indexPath.row])" : nil)
+        cell.setupView(title: titles[indexPath.row], additionalDesc: SettingsService.instance.userInfo.imperialMetrics ? LB : G, placeholder: "0", text: values[indexPath.row] > 0 ? "\(values[indexPath.row])" : nil)
         cell.textField.keyboardType = .decimalPad
         
         cell.inpuFinishedDecimalHandler = {

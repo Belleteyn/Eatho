@@ -112,7 +112,7 @@ class DetailsVC: BaseVC {
         var delta = food.delta ?? 0
         var measureLabelText = G
         
-        if SettingsService.instance.userInfo.lbsMetrics {
+        if SettingsService.instance.userInfo.imperialMetrics {
             available = truncateDoubleTail(convertMetrics(g: available))
             min = truncateDoubleTail(convertMetrics(g: min))
             max = truncateDoubleTail(convertMetrics(g: max))
