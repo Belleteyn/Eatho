@@ -21,17 +21,21 @@ class SettingsService {
         [NSLocalizedString("Extra", comment: ""), NSLocalizedString("athletes", comment: "")]
     ]
     
-    var isConfigured: Bool {
+    var isWarningBadgeVisible: Bool {
         get {
-            guard let info = _userInfo else { return false }
-            return info.nutrition.calories > 0
+            guard let nutrition = _userInfo?.nutrition else { return true }
+            return !nutrition.isSet || !nutrition.isValid
         }
     }
     
     private var _userInfo: UserInfo?
     var userInfo: UserInfo {
         get {
-            return _userInfo!
+            if let userInfo = _userInfo {
+                return userInfo
+            } else {
+                return UserInfo()
+            }
         }
         
         set {
@@ -43,6 +47,7 @@ class SettingsService {
                 _userInfo?.localeLanguage = Locale.current.languageCode
                 _userInfo?.localeGMTSeconds = TimeZone.current.secondsFromGMT()
                 
+                NotificationCenter.default.post(name: NOTIF_USER_DATA_CHANGED, object: nil)
                 uploadUserData(data: encodedData)
             } catch let err {
                 debugPrint("writing UserInfo error: \(err)")
@@ -51,11 +56,7 @@ class SettingsService {
         }
     }
     
-    init() {
-        self.subscribeLoggedIn(selector: #selector(loggedInHandler))
-        self.subscribeLoggedOut(selector: #selector(loggedOutHandler))
-        self.subscribeSignedOut(selector: #selector(signedOutHandler))
-        
+    fileprivate func initUserInfo() {
         if let data = UserDefaults.standard.value(forKey: USER_INFO) as? Data {
             do {
                 let info = try JSONDecoder().decode(UserInfo.self, from: data)
@@ -69,6 +70,17 @@ class SettingsService {
         
         _userInfo = UserInfo()
         _userInfo?.localeLanguage = Locale.current.languageCode
+    }
+    
+    init() {
+        self.subscribeLoggedIn(selector: #selector(loggedInHandler))
+        self.subscribeLoggedOut(selector: #selector(loggedOutHandler))
+        self.subscribeSignedOut(selector: #selector(signedOutHandler))
+        
+        initUserInfo()
+        get { (_, _) in
+            
+        }
     }
     
     private func uploadUserData(data: Data) {
@@ -106,6 +118,7 @@ extension SettingsService: Service {
     
     func reset() {
         _userInfo = nil
+        NotificationCenter.default.post(name: NOTIF_USER_DATA_CHANGED, object: nil)
     }
     
     func get(completion: @escaping RequestCompletion) {

@@ -19,12 +19,6 @@ class SettingsVC: BaseVC {
         NSLocalizedString("Shopping list preferences", comment: "Settings")
     ]
     
-    private var isConfigureBadgeVisible: Bool {
-        get {
-            return !SettingsService.instance.isConfigured || !SettingsService.instance.userInfo.nutrition.isValid
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,13 +29,6 @@ class SettingsVC: BaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        if isConfigureBadgeVisible {
-            self.tabBarController?.tabBar.items?[4].badgeValue = "!"
-        }
-    }
-    
     // Handlers
     
     @objc func tapHandler() {
@@ -49,12 +36,6 @@ class SettingsVC: BaseVC {
     }
     
     @objc func userNutritionChangedHandler() {
-        if isConfigureBadgeVisible {
-            self.tabBarController?.tabBar.items?[4].badgeValue = "!"
-        } else {
-            self.tabBarController?.tabBar.items?[4].badgeValue = nil
-        }
-        
         settingsTableView.reloadRows(at: [IndexPath(row: 0, section: 0), IndexPath(row: 0, section: 1)], with: UITableView.RowAnimation.none)
     }
 }
@@ -62,8 +43,8 @@ class SettingsVC: BaseVC {
 
 extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     
-    func addBadgeToCell(cell: UITableViewCell) {
-        if isConfigureBadgeVisible {
+    func configureCellBadge(cell: UITableViewCell) {
+        if SettingsService.instance.isWarningBadgeVisible {
             let size: CGFloat = cell.frame.height / 2
             let badge = UILabel(frame: CGRect(x: 0, y: 0, width: size, height: size))
             badge.text = "!"
@@ -119,7 +100,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.textColor = TEXT_COLOR
             cell.textLabel?.text = settingsList[indexPath.row]
             if indexPath.row == 0 { //Nutritional preferences
-                addBadgeToCell(cell: cell)
+                configureCellBadge(cell: cell)
             }
             return cell
         default:

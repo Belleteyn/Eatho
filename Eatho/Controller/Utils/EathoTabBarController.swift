@@ -14,8 +14,11 @@ class EathoTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         
         delegate = self
+        userDataChangedHandler()
         
         NotificationCenter.default.addObserver(self, selector: #selector(openRationHandler(_:)), name: NOTIF_DIARY_OPEN, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userDataChangedHandler), name: NOTIF_USER_DATA_CHANGED, object: nil)
     }
     
     func switchTab(to index: Int) {
@@ -34,6 +37,16 @@ class EathoTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     @objc func openRationHandler(_ notification: Notification) {
         switchTab(to: 2)
+    }
+    
+    @objc func userDataChangedHandler() {
+        if SettingsService.instance.isWarningBadgeVisible {
+            tabBar.items?[4].badgeValue = "!"
+        } else {
+            tabBar.items?[4].badgeValue = nil
+        }
+        
+        
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
