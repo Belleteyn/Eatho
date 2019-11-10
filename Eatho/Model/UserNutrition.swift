@@ -26,6 +26,12 @@ struct UserNutrition: Codable {
         "percent": 0
     ]
     
+    var isSet: Bool {
+        get {
+            return calories > 0
+        }
+    }
+    
     var isValid: Bool {
         get {
             return abs(100 - proteins["percent"]! - carbs["percent"]! - fats["percent"]!) < 0.2
