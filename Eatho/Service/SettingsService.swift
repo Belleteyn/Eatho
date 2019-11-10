@@ -44,8 +44,6 @@ class SettingsService {
                 UserDefaults.standard.setValue(encodedData, forKey: USER_INFO)
                 
                 _userInfo = newValue
-                _userInfo?.localeLanguage = Locale.current.languageCode
-                _userInfo?.localeGMTSeconds = TimeZone.current.secondsFromGMT()
                 
                 NotificationCenter.default.post(name: NOTIF_USER_DATA_CHANGED, object: nil)
                 uploadUserData(data: encodedData)
@@ -69,7 +67,6 @@ class SettingsService {
         }
         
         _userInfo = UserInfo()
-        _userInfo?.localeLanguage = Locale.current.languageCode
     }
     
     init() {
@@ -126,8 +123,10 @@ extension SettingsService: Service {
         
         Network.get(url: URL_SETTINGS, query: json.dictionaryObject) { (response, error) in
             if let data = response?.data {
+                
                 do {
-                    self.userInfo = try JSONDecoder().decode(UserInfo.self, from: data)
+                    let json = try JSON(data: data)
+                    self.userInfo = UserInfo(json: json)
                     NotificationCenter.default.post(name: NOTIF_USER_DATA_CHANGED, object: nil)
                 } catch let err {
                     debugPrint(err)

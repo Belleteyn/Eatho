@@ -51,6 +51,17 @@ struct UserNutrition: Codable {
         }
     }
     
+    init() {
+        
+    }
+    
+    init(json: JSON) {
+        self.calories = json["calories"].double ?? 0.0
+        self.proteins = UserNutrient(json: json["proteins"])
+        self.carbs = UserNutrient(json: json["carbs"])
+        self.fats = UserNutrient(json: json["fats"])
+    }
+    
     mutating func setVal(index: Int, grams: Double?, percent: Double? = nil, updCalories: Bool = false) {
         if let grams = grams {
             switch index {
