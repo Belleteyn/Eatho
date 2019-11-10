@@ -27,6 +27,7 @@ class SettingsVC: BaseVC {
         
         // notifications
         NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_NUTRITION_CHANGED, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userNutritionChangedHandler), name: NOTIF_USER_DATA_CHANGED, object: nil)
     }
     
     // Handlers
